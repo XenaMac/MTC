@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Home Screen</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+	<script src="scripts/jquery.ui.map.full.min.js" type="text/javascript"></script>
+	    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCPD4KV7nRK1NbmJQKyXUEarZilBVPgcbg&sensor=false">
+    </script>
+
+
+</head>
+<body>
+	<script type="text/javascript">
+		$('#home_screen').live('pagecreate', function(){
+			try{
+			initializeMap(42,-73);
+			}
+			catch(error){
+				alert(error);
+			}
+		});
+		
+		$('#home_screen').live('pageshow', function(){
+			$('#map_canvas').gmap('refresh');
+		});
+		
+		 function initializeMap(lat,lng) {
+			try{
+              $('#map_canvas').gmap({'center': '42.345573,-71.098326'});   
+			}
+			catch(error)
+			{alert(error);}
+          }
+	</script>
+	<div data-role="page" id="home_screen" data-position="fixed">
+		<div data-role="header">LATA FPS Mobile Home</div><!--header-->
+		<div data-role="content">
+			<div class="ui-grid-a">
+				<div class="ui-block-a" style="width:20%">
+				<ul data-role="listview" data-inset="true" data-filter="false">
+					<li><a href="LogAssist.html" id="LogAssist" class="test">Log Assist</a></li>
+					<li><a href="#" id="OnResponse" class="test">Set On Response</a></li>
+					<li><a href="#" id="OffResponse" class="test">Set On Patrol</a></li>
+					<li><a href="#" id="LogOff" class="test">Log Off</a></li>
+				</ul>
+				</div>
+				<div class="ui-block-b" style="width:80%">
+					Requests
+					<ul data-role="listview" data-inset="true" data-filter="false">
+					<li><a href="#" id="Request0910120844" class="request">Request for Assist</a></li>
+					<li><a href="#" id="Request0910120843" class="request">Request for Assist</a></li>
+					<li><a href="#" id="Request0910120842" class="request">Request for Assist</a></li>
+					<li><a href="#" id="Request0910120841" class="request">Request for Assist</a></li>
+				</ul>
+				</div>	   
+			</div>
+			<!--
+			<div id="map_canvas" style="width:100%;height:50%"></div>	
+			</div>-->
+		</div><!--content-->
+
+		<div data-role="footer" data-position="fixed">LATA FPS Mobile Home</div>
+	</div> <!--page-->
+
+</body>
+</html>

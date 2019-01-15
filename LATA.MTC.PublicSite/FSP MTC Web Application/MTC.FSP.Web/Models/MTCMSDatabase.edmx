@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MTCMotoristSurveysModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnswerText" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostedAnswers">
+          <Key>
+            <PropertyRef Name="PostedSurveyID" />
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="PostedSurveyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AnswerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Checked" Type="int" />
+          <Property Name="AnswerVal" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PostedSurveys">
+          <Key>
+            <PropertyRef Name="PostedSurveyID" />
+          </Key>
+          <Property Name="PostedSurveyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SurveyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PostDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionText" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="QuestionTypeID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionTypes">
+          <Key>
+            <PropertyRef Name="QuestionTypeID" />
+          </Key>
+          <Property Name="QuestionTypeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Surveys">
+          <Key>
+            <PropertyRef Name="SurveyID" />
+          </Key>
+          <Property Name="SurveyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SurveyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="SurveyNotes" Type="varchar" MaxLength="500" />
+          <Property Name="SurveyBoilerplate" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SurveysQuestions">
+          <Key>
+            <PropertyRef Name="SurveyID" />
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="SurveyID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostedSurveys_Surveys">
+          <End Role="Surveys" Type="Self.Surveys" Multiplicity="1" />
+          <End Role="PostedSurveys" Type="Self.PostedSurveys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surveys">
+              <PropertyRef Name="SurveyID" />
+            </Principal>
+            <Dependent Role="PostedSurveys">
+              <PropertyRef Name="SurveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_QuestionTypes">
+          <End Role="QuestionTypes" Type="Self.QuestionTypes" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionTypes">
+              <PropertyRef Name="QuestionTypeID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="QuestionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveysQuestions_Questions">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
+          <End Role="SurveysQuestions" Type="Self.SurveysQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="SurveysQuestions">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveysQuestions_Surveys">
+          <End Role="Surveys" Type="Self.Surveys" Multiplicity="1" />
+          <End Role="SurveysQuestions" Type="Self.SurveysQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surveys">
+              <PropertyRef Name="SurveyID" />
+            </Principal>
+            <Dependent Role="SurveysQuestions">
+              <PropertyRef Name="SurveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MTCMotoristSurveysModelStoreContainer">
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostedAnswers" EntityType="Self.PostedAnswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostedSurveys" EntityType="Self.PostedSurveys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Surveys" EntityType="Self.Surveys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveysQuestions" EntityType="Self.SurveysQuestions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostedSurveys_Surveys" Association="Self.FK_PostedSurveys_Surveys">
+            <End Role="Surveys" EntitySet="Surveys" />
+            <End Role="PostedSurveys" EntitySet="PostedSurveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_QuestionTypes" Association="Self.FK_Questions_QuestionTypes">
+            <End Role="QuestionTypes" EntitySet="QuestionTypes" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveysQuestions_Questions" Association="Self.FK_SurveysQuestions_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="SurveysQuestions" EntitySet="SurveysQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveysQuestions_Surveys" Association="Self.FK_SurveysQuestions_Surveys">
+            <End Role="Surveys" EntitySet="Surveys" />
+            <End Role="SurveysQuestions" EntitySet="SurveysQuestions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MTCMotoristSurveysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionID" Type="Guid" Nullable="false" />
+          <Property Name="AnswerText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Answers_Questions" FromRole="Answers" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="PostedAnswer">
+          <Key>
+            <PropertyRef Name="PostedSurveyID" />
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="PostedSurveyID" Type="Guid" Nullable="false" />
+          <Property Name="AnswerID" Type="Guid" Nullable="false" />
+          <Property Name="Checked" Type="Int32" />
+          <Property Name="AnswerVal" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PostedSurvey">
+          <Key>
+            <PropertyRef Name="PostedSurveyID" />
+          </Key>
+          <Property Name="PostedSurveyID" Type="Guid" Nullable="false" />
+          <Property Name="SurveyID" Type="Guid" Nullable="false" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Survey" Relationship="Self.FK_PostedSurveys_Surveys" FromRole="PostedSurveys" ToRole="Surveys" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="QuestionTypeID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Questions" FromRole="Questions" ToRole="Answers" />
+          <NavigationProperty Name="QuestionType" Relationship="Self.FK_Questions_QuestionTypes" FromRole="Questions" ToRole="QuestionTypes" />
+          <NavigationProperty Name="SurveysQuestions" Relationship="Self.FK_SurveysQuestions_Questions" FromRole="Questions" ToRole="SurveysQuestions" />
+        </EntityType>
+        <EntityType Name="QuestionType">
+          <Key>
+            <PropertyRef Name="QuestionTypeID" />
+          </Key>
+          <Property Name="QuestionTypeID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_QuestionTypes" FromRole="QuestionTypes" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="Survey">
+          <Key>
+            <PropertyRef Name="SurveyID" />
+          </Key>
+          <Property Name="SurveyID" Type="Guid" Nullable="false" />
+          <Property Name="SurveyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SurveyNotes" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SurveyBoilerplate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PostedSurveys" Relationship="Self.FK_PostedSurveys_Surveys" FromRole="Surveys" ToRole="PostedSurveys" />
+          <NavigationProperty Name="SurveysQuestions" Relationship="Self.FK_SurveysQuestions_Surveys" FromRole="Surveys" ToRole="SurveysQuestions" />
+        </EntityType>
+        <EntityType Name="SurveysQuestion">
+          <Key>
+            <PropertyRef Name="SurveyID" />
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="SurveyID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionID" Type="Guid" Nullable="false" />
+          <Property Name="QuestionNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_SurveysQuestions_Questions" FromRole="SurveysQuestions" ToRole="Questions" />
+          <NavigationProperty Name="Survey" Relationship="Self.FK_SurveysQuestions_Surveys" FromRole="SurveysQuestions" ToRole="Surveys" />
+        </EntityType>
+        <Association Name="FK_Answers_Questions">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+          <End Role="Answers" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostedSurveys_Surveys">
+          <End Role="Surveys" Type="Self.Survey" Multiplicity="1" />
+          <End Role="PostedSurveys" Type="Self.PostedSurvey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surveys">
+              <PropertyRef Name="SurveyID" />
+            </Principal>
+            <Dependent Role="PostedSurveys">
+              <PropertyRef Name="SurveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_QuestionTypes">
+          <End Role="QuestionTypes" Type="Self.QuestionType" Multiplicity="1" />
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionTypes">
+              <PropertyRef Name="QuestionTypeID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="QuestionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveysQuestions_Questions">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1" />
+          <End Role="SurveysQuestions" Type="Self.SurveysQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="SurveysQuestions">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SurveysQuestions_Surveys">
+          <End Role="Surveys" Type="Self.Survey" Multiplicity="1" />
+          <End Role="SurveysQuestions" Type="Self.SurveysQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surveys">
+              <PropertyRef Name="SurveyID" />
+            </Principal>
+            <Dependent Role="SurveysQuestions">
+              <PropertyRef Name="SurveyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MTCMotoristSurveysEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="PostedAnswers" EntityType="Self.PostedAnswer" />
+          <EntitySet Name="PostedSurveys" EntityType="Self.PostedSurvey" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
+          <EntitySet Name="Surveys" EntityType="Self.Survey" />
+          <EntitySet Name="SurveysQuestions" EntityType="Self.SurveysQuestion" />
+          <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostedSurveys_Surveys" Association="Self.FK_PostedSurveys_Surveys">
+            <End Role="Surveys" EntitySet="Surveys" />
+            <End Role="PostedSurveys" EntitySet="PostedSurveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_QuestionTypes" Association="Self.FK_Questions_QuestionTypes">
+            <End Role="QuestionTypes" EntitySet="QuestionTypes" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveysQuestions_Questions" Association="Self.FK_SurveysQuestions_Questions">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="SurveysQuestions" EntitySet="SurveysQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SurveysQuestions_Surveys" Association="Self.FK_SurveysQuestions_Surveys">
+            <End Role="Surveys" EntitySet="Surveys" />
+            <End Role="SurveysQuestions" EntitySet="SurveysQuestions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MTCMotoristSurveysModelStoreContainer" CdmEntityContainer="MTCMotoristSurveysEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="MTCMotoristSurveysModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostedAnswers">
+            <EntityTypeMapping TypeName="MTCMotoristSurveysModel.PostedAnswer">
+              <MappingFragment StoreEntitySet="PostedAnswers">
+                <ScalarProperty Name="PostedSurveyID" ColumnName="PostedSurveyID" />
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+                <ScalarProperty Name="Checked" ColumnName="Checked" />
+                <ScalarProperty Name="AnswerVal" ColumnName="AnswerVal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostedSurveys">
+            <EntityTypeMapping TypeName="MTCMotoristSurveysModel.PostedSurvey">
+              <MappingFragment StoreEntitySet="PostedSurveys">
+                <ScalarProperty Name="PostedSurveyID" ColumnName="PostedSurveyID" />
+                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="MTCMotoristSurveysModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuestionTypeID" ColumnName="QuestionTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionTypes">
+            <EntityTypeMapping TypeName="MTCMotoristSurveysModel.QuestionType">
+              <MappingFragment StoreEntitySet="QuestionTypes">
+                <ScalarProperty Name="QuestionTypeID" ColumnName="QuestionTypeID" />
+                <ScalarProperty Name="QuestionType1" ColumnName="QuestionType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Surveys">
+            <EntityTypeMapping TypeName="MTCMotoristSurveysModel.Survey">
+              <MappingFragment StoreEntitySet="Surveys">
+                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+                <ScalarProperty Name="SurveyName" ColumnName="SurveyName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="SurveyNotes" ColumnName="SurveyNotes" />
+                <ScalarProperty Name="SurveyBoilerplate" ColumnName="SurveyBoilerplate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveysQuestions">
+            <EntityTypeMapping TypeName="MTCMotoristSurveysModel.SurveysQuestion">
+              <MappingFragment StoreEntitySet="SurveysQuestions">
+                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

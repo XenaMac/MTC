@@ -1,0 +1,62 @@
+﻿@model FSP.Domain.Model.CHPInspection
+@{
+    ViewBag.Title = "Create";    
+}
+<div>
+    @Html.ActionLink("Back to CHP Inspections", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InspectionDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InspectionDate)
+            @Html.ValidationMessageFor(model => model.InspectionDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FleetVehicleID)
+        </div>
+        <div class="editor-field">
+           @Html.DropDownListFor(x => x.FleetVehicleID, new SelectList(ViewBag.FleetVehicles, "FleetVehicleID", "VehicleNumber"), "--Select Vehicle--", new { @class="span4" })
+            @Html.ValidationMessageFor(model => model.FleetVehicleID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BadgeID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.BadgeID, new SelectList(ViewBag.CHPOfficers, "BadgeID", "OfficerLastName"), "--Select CHP Officer--", new { @class="span4" })
+            @Html.ValidationMessageFor(model => model.BadgeID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContractorID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ContractorID, new SelectList(ViewBag.Contractors, "ContractorID", "ContractCompanyName"), "--Select Contractor--", new { @class="span4" })
+            @Html.ValidationMessageFor(model => model.ContractorID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InspectionTypeID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.InspectionTypeID, new SelectList(ViewBag.InspectionTypes, "InspectionTypeID", "InspectionType1"), "--Select Contractor--", new { @class="span4" })
+            @Html.ValidationMessageFor(model => model.InspectionTypeID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InspectionNotes)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.InspectionNotes, new { @class = "span4", rows = 5 })
+            @Html.ValidationMessageFor(model => model.InspectionNotes)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}

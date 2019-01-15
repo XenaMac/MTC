@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Junk";
+}
+<script src="@Url.Content("~/Scripts/jquery-1.8.2.js")"></script>
+<script src="@Url.Content("~/Scripts/knockout-2.2.0.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.signalR-0.5.3.js")"></script>
+<script src="http://localhost/FSP.Web.4.5/signalr/hubs" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        //hub methods
+        var hub = $.connection.junkHub;
+
+        hub.writeMessage = function (message) {
+            alert(message);
+        }
+      
+        $.connection.hub.start(function () {
+            hub.initialize();
+        });
+
+
+    });
+
+</script>
+
+<h2>Junk</h2>

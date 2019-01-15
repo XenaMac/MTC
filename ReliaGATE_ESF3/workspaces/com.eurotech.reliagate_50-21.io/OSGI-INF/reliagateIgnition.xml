@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+	name="com.eurotech.reliagate.io.ignition.IgnitionService"
+	activate="activate"
+	deactivate="deactivate"
+	enabled="true"
+	immediate="true">
+   <implementation class="com.eurotech.reliagate.io.ignition.impl.IgnitionImpl"/>
+   <service>
+   		<provide interface="com.eurotech.reliagate.io.ignition.IgnitionService"/>
+   </service>
+   <reference name="I2cBusService"
+       		  cardinality="1..1"
+       		  policy="static"
+       		  bind="setI2cBusService"  
+       		  unbind="unsetI2cBusService"
+       		  interface="com.eurotech.reliagate.io.i2cbus.I2cBusService"/>
+</scr:component>

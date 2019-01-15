@@ -1,0 +1,743 @@
+﻿html, body {
+    height: 100%;
+    min-height: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+/* temporary fixes for display purposes */
+.navbar-brand {
+    height: auto;
+}
+
+.navbar-nav {
+    margin-top: 6px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #aaa;
+}
+/* */
+#statusIndicator {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 37px;
+    height: 10px;
+    width: 70px;
+    /*border: 1px solid red;*/
+    z-index: 99;
+}
+
+.body-content {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#mainWindow {
+    font-family: sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+#header {
+    font-size: 11pt;
+    height: 50px;
+    width: 100%;
+    min-width: 100%;
+    border-bottom: 2px solid #cccccc;
+    overflow: visible;
+    z-index: 10;
+}
+
+#mainToolset{
+    width: 15em;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    border-right: 2px solid #cccccc;
+}
+
+#ServiceCheck{
+    font-weight: bold;
+}
+
+.panelHeader {
+    font-size: 16px;
+    font-weight: bold;
+    height: 2em;
+    margin: 0px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.editorDiv{
+    height: 20em;
+    margin-top:10px;
+    overflow:scroll;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.menuGroup{
+    padding-bottom: 5px;
+    margin: 0;
+    text-align: left;
+    display: inline;
+    list-style: none;
+}
+
+.menuGroup li {
+    display: inline-block;
+    margin-right: -4px;
+    position: relative;
+}
+
+.buttonGroup{
+    border-right: none;
+}
+
+.menuItem{
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.menuItem ul{
+    padding: 0;
+    margin: 0;
+    position:absolute;
+    width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    z-index: 999;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.menuItem ul li {
+    background: #fff;
+    display: block;
+    padding: 2px;
+    margin: 2px;
+}
+
+.menuItem ul li:hover { 
+    background: #aaa;
+    padding: 2px;
+    margin: 2px;
+}
+
+.menuItem:hover ul {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+.menuImage{
+    padding: 5px;
+}
+
+#HomeButton{
+    position: absolute;
+    top: 95px;
+    left: 20px;
+    z-index: 50;
+}
+
+#basemapGallery{
+   position: absolute;
+   background-color: #ffffff;
+   right: 20px;
+   top:10px;
+   z-index: 999;
+   width: 380px;
+   height: 380px;
+   overflow: auto;
+   border: 1px solid #cccccc;
+}
+
+.esriAttributeInspector .atiLayerName{
+    display: none;
+}
+
+.dj_ie .infowindow .window .top .right .user .content { 
+    position: relative;
+}
+
+.dj_ie .simpleInfoWindow .content {
+    position: relative;
+}
+
+.saveButton{
+    padding-left:5px;
+    margin:0px;
+    width:16px;
+    height:16px;
+}
+
+.cancelButton{
+    padding-left:5px;
+    margin-left:45px;
+    width:16px;
+    height:16px;
+}
+
+.nonModal_underlay{
+    display: none;
+}
+
+#truckLegendPopup{
+    background-repeat: no-repeat;
+    background-image: url('Images/mtc_truck_legend_v3-01.png');
+    background-position-y: bottom;
+    width: 205px;
+    height: 360px;
+}
+
+#congestionLegendPopup{
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-image: url('Images/congestion legend-01.png');
+    width: 177px;
+    height: 190px;
+}
+
+.hilite{
+    background-color: #cccccc;
+}
+
+/* beat selector styling */
+#beatSelectorContainer {
+    height: 300px;
+    overflow: auto;
+}
+
+.beatSelector {
+    border: 1px solid black;
+    margin: 0;
+    width: 500px;
+    overflow: auto;
+}
+
+.beatSelectorTitle {
+    border: 1px solid Red;
+    font-family: arial, verdana;
+    font-weight: bold;
+    text-align: center;
+    height: auto;
+    border-bottom: 2px solid black;
+}
+
+.beatSelection {
+    font-family: arial, verdana;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.beatRadio {
+}
+
+.claro .dijitRadio {
+    background-image: none;
+    overflow: visible;
+}
+
+/* segment selector styling */
+.claro .dijitCheckBox {
+    background-image: none;
+    overflow: visible;
+}
+
+.segmentSelector {
+    border: 1px solid black;
+    margin: 5px;
+    height: 125px;
+    width: 95%;
+    overflow: auto;
+}
+
+.segmentSelectorTitle {
+    font-family: arial, verdana;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.segmentSelection {
+    font-family: arial, verdana;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.segmentCheckBox {
+    margin-left: 5px;
+}
+
+.checkBoxLabel {
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 10pt;
+}
+
+.accordionHeading {
+    font-weight: bold;
+}
+
+/* Beat Creator Styling */
+#beatsContainer {
+    margin-top: 10px;
+}
+
+.beatButton {
+    padding: 5px;
+}
+
+.beatCreator {
+    background-color: #cccccc;
+    border: 1px solid black;
+    margin: 5px;
+    height: auto;
+    width: 500px;
+}
+
+.beatCreatorTitle {
+    background-color: #aaaaaa;
+    font-family: arial, verdana;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.sectionTitle {
+    font-family: arial, verdana;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.beatEditor{
+    height: 125px;
+    width: 95%;
+    margin-left: 5px;
+    overflow: auto;
+}
+
+.beatAttributeInspectorElement{
+    margin-left: 10px;
+    font-family: arial, verdana;
+    font-weight: normal;
+    font-size: 10pt;
+    padding: 5px;
+}
+
+.beatAttributeInspectorElement > label + input {
+    display: block;
+}
+
+#beatDescription {
+    width: 90%;
+    height: 100px;
+}
+
+.activeCheckBox {
+}
+
+#beatFreeways {
+    /*width: 50%;*/
+    display: block;
+}
+
+/* popup styling */
+.esriPopup .sizer {
+    width: auto;
+    min-width: 310px;
+}
+.esriPopup.light .esriPopupWrapper {
+    border: none;
+}
+
+.esriPopup.light div.titleButton,
+.esriPopup.light div.titleButton close,
+.esriPopup.light div.titlePane .titleButton,
+.esriPopup.light div.actionsPane .actionsPane {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.esriPopup.light div.titlePane {
+    height: auto;
+    background-color: #555555;
+    color: #ffffff;
+}
+
+.esriPopup.light .titlePane .title{
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.esriPopup .contentPane {
+    text-align: left;
+    color: #000000;
+}
+
+.esriPopup.light .contentPane {
+    color: #000000;
+}
+
+.esriPopup .gallery {
+    margin: 0 auto;
+}
+
+.esriPopup.light .actionList .zoomTo{
+
+}
+
+td.attrName {
+    color: #000000;
+    width: auto;
+}
+
+.esriViewPopup .mainSection .attrTable td.attrName{
+    color: #000000;
+    font-weight: bold;
+}
+
+td.attrValue {
+    color: #000000;
+}
+
+.esriViewPopup .editSummary {
+    display: none;
+}
+
+#followLink {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    background-color: #cccccc;
+    color: #000000;
+}
+
+#followButton{
+    border: 1px solid #cccccc;
+    background-color: #cccccc;
+    position: absolute;
+    z-index: 999;
+    margin-top: 150px;
+    margin-left: 10px;
+    color: #000000;
+    padding: 5px;
+}
+
+#assistLink {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    background-color: #cccccc;
+    color: #000000;
+}
+
+#stopFollowingLink {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    background-color: #cccccc;
+    color: #000000;
+}
+
+.truckPopupContent {
+    color: #000000;
+}
+
+.truckContentTitle{
+
+}
+
+.beatPopupContent {
+    color: #000000;
+}
+
+.beatContentTitle {
+    font-weight: bold;
+}
+
+.claro .dijitAccordionContainer .dijitAccordionContainer-child{
+    padding: 5px;
+}
+
+/*Edit List stuff*/
+#containerDiv {
+    height: auto;
+    width: 100%;
+    padding: 0;
+}
+
+#templatePickerDiv {
+    margin-top: 20px;
+    height: auto;
+}
+
+.templatePicker {
+
+}
+
+.groupLabel {
+
+}
+
+.itemSymbol {
+    width: 40px;
+}
+
+.itemLabel {
+    display: none;
+}
+
+.item {
+    margin-left: 10px;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.dojoxGridRowTable {
+    table-layout: auto;
+}
+
+.grid {
+    margin-left: 40px;
+}
+
+#EditList{
+    width: auto;
+}
+
+.EditList .el-title {
+    line-height: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.EditList .el-title-container{
+    color: #555;
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    padding: 5px;
+
+}
+
+.EditList .el-container{
+    border-bottom: 1px solid #cccccc;
+}
+
+.EditList .el-text{
+    float: left;
+    padding: 0;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 16px;
+    height: 16px;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.EditList .el-icon {
+    float: left;
+    height: 16px;
+    width: 16px;
+    margin: 0;
+    margin-right: 5px;
+    vertical-align: middle;
+    font-size: 12px;
+    background-color: #fff;
+    background-image: none;
+    color: #000;
+}
+
+/* Editor Tools */
+#toolsContainer {
+    margin: 5px;
+    height: 100px;
+    width: auto;
+}
+
+#editTools {
+    border: 1px solid red;
+    margin: 5px;
+    padding: 5px;
+    height: 20px;
+    width: auto;
+}
+
+#editToolsTitle{
+}
+
+#createToolsTitle{
+}
+
+.toolsTitle{
+    text-align: center;
+    font-weight: bold;
+    color: #555555;
+}
+
+#createTools {
+    border: 1px solid red;
+    margin: 5px;
+    padding: 5px;
+    height: 20px;
+    width: auto;
+}
+
+/*TOC stuff*/
+#tocContainer{
+
+}
+
+.TableOfContents{
+    width: auto;
+    margin-top: 20px;
+}
+
+.TableOfContents .toc-title{
+    line-height: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.TableOfContents .toc-first-layer .toc-title {
+    line-height: 16px;
+}
+
+.TableOfContents .toc-title-container {
+    color: #555;
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+    padding: 5px;
+}
+
+.TableOfContents .toc-text{
+    float: left;
+    padding: 0;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 16px;
+    height: 16px;
+    border: 1px solid transparent;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.esriRTL .TableOfContents .toc-text {
+    float: right;
+}
+
+.TableOfContents .toc-checkbox {
+    float: left;
+    height: 16px;
+    width: 16px;
+    margin: 0;
+    margin-right: 5px;
+    border: 2px solid #bababa;
+    vertical-align: middle;
+    font-size: 12px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+}
+
+.TableOfContents .toc-checkbox:hover{
+    border: 2px solid red;
+    color: #555;
+}
+
+.TableOfContents .toc-checkbox:active {
+    color: #999;
+}
+
+.esriRTL .toc-settings {
+    margin-right: 0;
+    float: left;
+    margin-left: 15px;
+}
+
+.icon-check-1 {
+    font-family: 'arial';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1em;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    margin-left: .2em;
+    font-variant: normal;
+    text-transform: none;
+}
+
+.icon-check-1:before { 
+    content: 'x';
+}
+
+.toc-feature-list {
+    list-style-type:circle;
+    list-style-position: outside;
+    padding: 5px;
+    margin: 5px;
+}
+
+.toc-feature {
+    padding: 2px;
+    margin-left: 15px;
+}
+
+.toc-feature:hover{
+    font-weight: bold;
+    background-color: #eeeeee;
+}
+
+.toc-feature:active{
+    font-weight: bold;
+    background-color: #dddddd;
+}
+
+.feature_active{
+    font-weight: bold;
+    background-color: #dddddd;
+}
+
+.toc-feature-holder{
+    width: auto;
+    border: 1px solid #bababa;
+    height: auto;
+    max-height: 200px;
+    min-width: 150px;
+    overflow-y: scroll;
+}
+
+.display-layer{
+    color: #0000aa;
+}
+
+#addLayerDialog {
+    width: 400px;
+    height: auto;
+}
+
+#serviceURL{
+    
+}
+
+.active {
+    background-color: #dddddd;
+}

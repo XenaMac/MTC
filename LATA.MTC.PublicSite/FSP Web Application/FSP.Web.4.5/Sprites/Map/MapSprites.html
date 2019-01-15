@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps JavaScript API v3 Example: Map Simple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        html, body, #map_canvas
+        {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+    </style>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDVGMBMCxemD0_VM3UjKVKNxfC1lstlTW4&sensor=false" type="text/javascript"></script>
+    <script src="../../Scripts/jquery-1.8.3.js"></script>
+    <script src="../../Scripts/markerwithlabel.js"></script>
+    <script src="../../Scripts/jQueryRotateCompressed.2.1.js"></script>
+    <script src="RichMarker.js"></script>
+    <script src="TruckMarkerOverlay.js"></script>
+    <script src="USGSOverlay.js"></script>
+    <script src="MapSprites.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('#btn_rotate').css('cursor', 'wait');
+
+        });
+
+    </script>
+
+</head>
+<body>   
+    <div id="map_canvas"></div>
+    <input id="btn_rotate" type="button" value="Rotate" style="position: absolute; top: 3px; left: 3px;" />
+    <input id="txt_angle" type="input"  style="position: absolute; top: 33px; left: 3px;" />
+    <!--<img id="img_truck" src="OnAssist.png" style="position: absolute; top: 63px; left: 233px;" />-->
+</body>
+</html>
+

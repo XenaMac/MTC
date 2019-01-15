@@ -1,0 +1,99 @@
+﻿
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="chpOfficersController" ng-cloak>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>CHP Officers <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h2>
+                @Html.ActionLink("Back to Tables", "Index", "Tables")
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <a class="btn btn-success" href="~/CHPOfficers/Manage" title="add chp officer"><i class="fa fa-plus"></i> CHP Officer</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" data-page-size="20" data-limit-navigation="10">
+                    <thead>
+                        <tr>
+                            <th>
+                                Badge ID
+                            </th>
+                            <th>
+                                Last Name
+                            </th>
+                            <th>
+                                First Name
+                            </th>
+                            <th>
+                                Beats Monitored
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Phone
+                            </th>
+                            <th data-sort-ignore="true"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="c in chpOfficers">
+                            <td ng-bind="c.BadgeId"></td>
+                            <td ng-bind="c.OfficerLastName"></td>
+                            <td ng-bind="c.OfficerFirstName"></td>
+                            <td>
+                                <div ng-repeat="b in c.Beats">
+                                    <span ng-bind="b.BeatNumber"></span>
+                                </div>
+                            </td>
+                            <td ng-bind="c.Email"></td>
+                            <td ng-bind="c.Phone"></td>
+                            <td>
+                                <div class="pull-right">
+                                    <a ng-href="~/CHPOfficers/Manage/{{c.Id}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                    <a ng-href="~/CHPOfficers/Delete/{{c.Id}}" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/chpOfficersController.js"></script>
+    <script src="~/app/services/chpOfficerService.js"></script>
+
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

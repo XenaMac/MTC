@@ -1,0 +1,32 @@
+
+.newButton {
+	-moz-box-shadow:inset 0px 3px 21px 2px #0f0f0f;
+	-webkit-box-shadow:inset 0px 3px 21px 2px #0f0f0f;
+	box-shadow:inset 0px 3px 21px 2px #0f0f0f;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #00ff00), color-stop(1, #09ba0f) );
+	background:-moz-linear-gradient( center top, #00ff00 5%, #09ba0f 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ff00', endColorstr='#09ba0f');
+	background-color:#00ff00;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:17px;
+	border:1px solid #268a16;
+	display:inline-block;
+	color:#282828 !important;
+	font-family:arial;
+	font-size:21px;
+	font-weight:bold;
+	padding:25px 200px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #4f8c17;
+}.newButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #09ba0f), color-stop(1, #00ff00) );
+	background:-moz-linear-gradient( center top, #09ba0f 5%, #00ff00 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#09ba0f', endColorstr='#00ff00');
+	background-color:#66CC99;
+}.newButton:active {
+	position:relative;
+	top:6px;
+}
+
+

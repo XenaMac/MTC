@@ -1,0 +1,165 @@
+﻿html, body {
+    height: 100%;
+    min-height: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+/* temporary fixes for display purposes */
+.navbar-brand {
+    height: auto;
+}
+
+.navbar-nav {
+    margin-top: 6px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #aaa;
+}
+/* */
+.body-content {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#mainWindow {
+    font-family: sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+#header {
+    font-size: 11pt;
+    height: 50px;
+    width: 100%;
+    min-width: 100%;
+    border-bottom: 2px solid #cccccc;
+    margin-top:20px;
+}
+
+#mainToolset{
+    width: 15em;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    border-right: 2px solid #cccccc;
+}
+
+.panelHeader {
+    font-size: 16px;
+    font-weight: bold;
+    height: 2em;
+    margin: 0px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.editorDiv{
+    height: 20em;
+    margin-top:10px;
+    overflow:scroll;
+}
+
+.menuItem{
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.menuGroup{
+    border-right: 1px solid #aaaaaa;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.buttonGroup{
+    border-right: none;
+    margin-left: 70px;
+}
+
+.adminGroup{
+    border-right: none;
+}
+
+.menuImage{
+    padding: 5px;
+}
+
+#HomeButton{
+    position: absolute;
+    top: 95px;
+    left: 20px;
+    z-index: 50;
+}
+
+#basemapGallery{
+   position: absolute;
+   background-color: #ffffff;
+   right: 20px;
+   top:10px;
+   z-index: 999;
+   width: 380px;
+   height: 380px;
+   overflow: auto;
+   border: 1px solid #000000;
+}
+
+/* full screen dijit styling */
+/*
+.container {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #eee;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+*/
+
+#fullscreen{
+    position: absolute;
+    z-index: 4;
+    top: 20px;
+    right: 20px;
+    border: 1px solid red;
+}
+
+.fs .toggle{
+    width: 30px;
+    height: 30px;
+    border: 1px solid #57585A;
+    -webkit-user-select: none;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.fs .toggle:hover {
+    background-color: #eee;
+}
+
+.fs .toggle:active{
+    background-color: #ddd;
+}
+
+.fs .enter {
+    background: #fff url('Images/fullscreen_enter.png') no-repeat center center;
+}
+
+.fs .exit{
+    background: #fff url('Images/fullscreen_exit.png') no-repeat center center;
+}
+
+/* segment selector styling */
+.segmentSelector{
+    border: 1px solid red;
+}

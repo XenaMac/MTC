@@ -1,0 +1,65 @@
+﻿@model FSP.Domain.Model.Contractor
+@{
+    ViewBag.Title = "Create";
+    
+}
+<div>
+    @Html.ActionLink("Back to Contractors", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Address)           
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.City)          
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.State)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.State)         
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Zip)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Zip)          
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OfficeTelephone)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.OfficeTelephone)        
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MCPNumber)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.MCPNumber)        
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MCPExpiration)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.MCPExpiration)           
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comments)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Comments)        
+        </div>      
+    </fieldset>
+}

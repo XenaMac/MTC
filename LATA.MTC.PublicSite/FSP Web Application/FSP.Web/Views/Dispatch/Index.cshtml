@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Dispatch";
+}
+
+<script src="@Url.Content("~/Scripts/knockout-2.1.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.signalR-0.5.3.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/MyScripts/fsp.constructor.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/MyScripts/fsp.dispatchViewModel.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/MyScripts/fsp.truckCollection.js")" type="text/javascript"></script>
+
+
+<div class="span12">
+    <div class="row">
+        <div class="span8">
+            <form>
+                <legend>New Dispatch</legend>
+                <div class="span4">
+                    <div class="row">
+                        <div>
+                            <input id="fspDirection" class="span4" tabindex="1" type="text" data-bind="value: fspDirection" placeholder="direction" />
+                        </div>
+                        <div>
+                            <input id="fspFreeway" class="span4" tabindex="2" type="text" data-bind="value: fspFreeway" placeholder="freeway" />
+                        </div>
+                        <div>
+                            <input id="fspLocation" class="span4" tabindex="3" type="text" data-bind="value: fspLocation" placeholder="location" />
+                        </div>
+                        <div>
+                            <input id="fspCrossStreet" class="span4" tabindex="4" type="text" data-bind="value: fspCrossStreet" placeholder="cross street" />
+                        </div>
+                        <div data-bind="visible: fspLocation() === 'Between'">
+                            <input id="fspCrossStreet2" class="span4" tabindex="4" type="text" data-bind="value: fspCrossStreet2" placeholder="cross street" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div>
+                            <textarea id="comments" tabindex="5" class="span4" data-bind="value: comments"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="span3" data-bind="visible: resultingBeats().length>0" style="display: none">
+                    <div class="row">
+                        <span class="span3"><b>Beat</b></span>
+                    </div>
+                    <div class="row">
+                        <ul class="span3 unstyled" data-bind="foreach: resultingBeats">
+                            <li><span class="span3" data-bind="text: $data"></span></li>
+                        </ul>
+                    </div>
+                    <div style="float: left">
+                        <input type="button" value="Clear" data-bind="click: clearBeats" class="btn btn-info" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="span4" data-bind="visible: selectedTrucks().length > 0" style="display: none">
+            <legend>Selected Trucks</legend>
+            <table class="table table-condensed table-bordered table-striped tablesorter">
+                <tbody data-bind="foreach: selectedTrucks">
+                    <tr>
+                        <td style="vertical-align:central">
+                            <span data-bind="text: beatNumber()"></span>
+                        </td>
+                        <td style="vertical-align:central">
+                            <span data-bind="text: truckNumber"></span>
+                        </td>
+                        <td>
+                            <input data-bind="click: unSelectTruck" value="remove" type="button" class="btn btn-info" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <div class="alert alert-block" data-bind="visible: canSendTrucks()">
+                    <div>Dispatch Summary: </div>
+                    <div>
+                        <span>Heading</span>
+                        <b><span data-bind="text: fspDirection()"></span></b>
+                        <span>on</span>
+                        <b><span data-bind="text: fspFreeway()"></span></b>
+                        <b><span data-bind="text: fspLocation()"></span></b>
+                        <b><span data-bind="text: fspCrossStreet()"></span></b>
+                        <b><span data-bind="text: 'and ' + fspCrossStreet2(), visible: fspCrossStreet2().length>0"></span></b>
+                        <i>"<span data-bind="text: comments()"></span>"</i>
+                    </div>
+
+                </div>
+                <input type="button" tabindex="5" class="btn btn-danger" value="Send Trucks" data-bind="enable: canSendTrucks(), click: dispatchTrucks" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <br />
+    </div>
+    <div class="row">
+        <div class="span12">
+            <legend>Available Trucks</legend>
+            <div class="alert alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <p>Click on row to select truck for dispatch</p>
+
+            </div>
+            <table id="towTruckGrid" class="table table-condensed table-bordered table-striped tablesorter">
+                <thead>
+                    <tr data-bind="foreach: columns">
+                        <th>
+                            <span data-bind="click: sort, text: name()"></span>
+                            <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                            <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                        </th>
+                    </tr>
+                </thead>
+
+
+
+                <tbody data-bind="foreach: trucks" style="cursor: pointer">
+                    <tr class="gridRow" data-bind="click: toggleTruckSelection, style:{ backgroundColor: background}">
+                        <td>
+                            <span data-bind="text: truckNumber"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: beatNumber"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: driverName"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: contractorName"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: location"></span>
+                        </td>
+                        <td>
+                            <img data-bind="attr:{ src: vehicleStateIconUrl}" height="15px" />
+                            <span data-bind="text: vehicleState"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: speed"></span>
+                        </td>
+                        <td>
+                            <span data-bind="text: lastUpdate"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

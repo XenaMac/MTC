@@ -1,0 +1,177 @@
+﻿<div ng-show="!isAdding">
+    <div class="form-group"
+        ng-hide="beats.length > 0">
+        Loading Beats...<i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div class="form-group">
+        <select class="form-control"
+            ng-model="selectedBeat"
+            ng-options="a as a.BeatID for a in beats"
+            ng-change="setSelectedBeat()"
+            ng-disabled="beats.length === 0 || isEditing">
+            <option value="">
+                --Select Beat--
+            </option>
+        </select>
+    </div>
+</div>
+
+
+<div ng-show="selectedBeat">
+    <div class="form-group">
+        ID
+        <input ng-model="selectedBeat.BeatID"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Name
+        <input ng-model="selectedBeat.BeatName"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Description
+        <textarea ng-model="selectedBeat.notes"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding"></textarea>
+    </div>
+    <div class="form-group">
+        Color
+        <input type="text"
+            minicolors="colorPickerSettings"
+            ng-model="selectedBeat.Color"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Segments <i class="fa fa-refresh fa-spin"
+            ng-show="isBusyGettingBeatSegments"></i>
+        <span ng-show="!isBusyGettingBeatSegments && beatSegments.length > 0">({{beatSegments.length}})</span>
+        <div class="beatSegmentsContainer"
+            ng-show="beatSegments.length > 0">
+            <div ng-repeat="segment in beatSegments"
+                class="beatSegment">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{segment.segmentID}}
+                    </div>
+                    <div class="col-xs-6">
+                        <button class="btn btn-danger btn-xs pull-right"
+                            ng-click="beatSegments.splice($index,1)"
+                            ng-show="isEditing">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="beatSegments.length === 0 && !isBusyGettingBeatSegments"
+            class="alert alert-danger">
+            Beat has no segments
+        </div>
+        <div class="row"
+            ng-show="isBusyGettingSegments">
+            <div class="col-xs-12">
+                Getting All Segments ...<i class="fa fa-refresh fa-spin"></i>
+            </div>
+        </div>
+        <div class="row"
+            style="margin-top:5px;"
+            ng-hide="isBusyGettingSegments || !isEditing">
+            <div class="col-xs-8">
+                <select class="form-control"
+                    ng-model="selectedSegment"
+                    ng-disabled="isBusyGettingSegments || !isEditing"
+                    ng-options="a as a.segmentID for a in segments">
+                    <option value="">
+                        --Add Segment--
+                    </option>        
+                </select>
+            </div>
+            <div class="col-xs-4">
+                <button class="btn btn-primary pull-left"
+                    ng-hide="isBusyGettingSegments"
+                    ng-disabled="!selectedSegment"
+                    title="add selected segment to beat"
+                    ng-click="addSegment()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="form-group"
+    ng-show="selectedBeat && !isAdding">
+    <button ng-show="!isEditing"
+        ng-click="setEdit()"
+        class="btn btn-primary btn-sm">
+        <i class="fa fa-pencil">
+        </i> Edit Beat
+    </button>
+    <button ng-show="isEditing"
+        ng-click="save()"
+        ng-disabled="isBusySaving || isBusyDeleting"
+        class="btn btn-primary btn-sm">
+        <i class="fa fa-check"
+           ng-hide="isBusySaving">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+           ng-show="isBusySaving">
+        </i>
+        Save
+    </button>
+    <button ng-show="isEditing"
+        ng-disabled="isBusySaving || isBusyDeleting"
+        ng-click="delete()"
+        class="btn btn-danger btn-sm">
+        <i class="fa fa-trash"
+           ng-hide="isBusyDeleting">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+           ng-show="isBusyDeleting">
+        </i>
+        Delete
+    </button>
+    <button ng-show="isEditing"
+        ng-click="cancelEdit()"
+        class="btn btn-default btn-sm">
+        Cancel
+    </button>
+    <!-- <button ng-show="isEditing"
+        ng-click="reduceBeatPolygonPoints()"
+        class="btn btn-default btn-sm"
+        title="Will remove every other vertex">
+        <i class="fa fa-eraser"></i>
+    </button> -->
+</div>
+
+<div class="form-group"
+    ng-show="!isEditing">
+    <button ng-show="!selectedBeat"
+        ng-click="prepareNew()"
+        class="btn btn-success btn-sm">
+        <i class="fa fa-plus"></i> New Beat
+    </button>
+    <button ng-show="!isEditing && isAdding"
+        ng-click="add()"
+        ng-disabled="isBusyAdding"
+        class="btn btn-success btn-sm">
+        <i class="fa fa-check"
+        ng-hide="isBusyAdding">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+        ng-show="isBusyAdding">
+        </i>
+        Save
+    </button>
+    <button ng-show="!isEditing && isAdding"
+        ng-click="cancelAdd()"
+        class="btn btn-default btn-sm">
+        Cancel
+    </button>
+</div>

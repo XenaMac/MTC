@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.BeatsFreeway>
+
+@{
+    ViewBag.Title = "Beats to Highways";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<h2>@ViewBag.Title</h2>
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover footable" data-page-size="20" data-limit-navigation="10">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Beat Number")
+            </th>          
+            <th>
+                @Html.DisplayName("Highway ID")
+            </th>
+            <th>
+                @Html.DisplayName("Highway Name")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeatData.BeatName)
+                </td>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Freeway.FreewayID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Freeway.FreewayName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.BeatFreewayID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.BeatFreewayID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BeatFreewayID })
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12" class="text-center">
+                <div class="paging">
+                    <ul class="pagination pagination-sm"></ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

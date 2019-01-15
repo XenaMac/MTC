@@ -1,0 +1,149 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.DriverInteraction>
+
+@{
+    ViewBag.Title = "Driver Interactions";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="interactionsController" ng-cloak>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Driver Contacts <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingInteractions"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right form-inline">
+                    <input type="text" class="form-control" id="filter" placeholder="search" />
+                    <a class="btn btn-success" href="~/DriverInteractions/Create" title="add interaction"><i class="fa fa-plus"></i> Interaction</a>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" data-filter="#filter" data-filter-text-only="true" data-page-size="20" data-limit-navigation="10">
+                    <thead>
+                        <tr>
+                            <th data-toggle="true" data-sort-initial="true">
+                                Driver
+                            </th>
+                            <th>
+                                Contractor
+                            </th>
+                            <th>
+                                Contact Type
+                            </th>
+                            <th>
+                                Pass/Fail
+                            </th>
+                            <th>
+                                Contact Location
+                            </th>
+                            <th>
+                                Notes
+                            </th>
+                            <th data-hide="all">
+                                Accident Preventable
+                            </th>
+                            <th data-hide="all">
+                                Follow-up Required
+                            </th>
+                            <th data-hide="all">
+                                Follow-up Description
+                            </th>
+                            <th data-hide="all">
+                                Follow-up Date
+                            </th>
+                            <th data-hide="all">
+                                Follow-up Completion Date
+                            </th>
+                            <th data-hide="all">
+                                Follow-up Comments
+                            </th>
+                            <th data-hide="all">
+                                Close Date
+                            </th>
+                            <th data-hide="all">
+                                Badge ID
+                            </th>
+                            <th data-hide="all">
+                                Contact Date
+                            </th>
+                            <th>
+                                Truck #
+                            </th>
+                            <th>
+                                Beat #
+                            </th>
+                            <th data-sort-ignore="true"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="interaction in interactions">
+                            <td>{{interaction.Driver}}</td>
+                            <td>{{interaction.Contractor}}</td>
+                            <td>{{interaction.InteractionType}}</td>
+                            <td>
+                                <label class="label label-success" ng-show="interaction.InspectionPassFail">Pass</label>
+                                <label class="label label-danger" ng-show="!interaction.InspectionPassFail">Fail</label>
+                            </td>
+                            <td>{{interaction.InteractionArea}}</td>
+                            <td>{{interaction.InteractionDescription}}</td>
+                            <td>
+                                <label class="label label-success" ng-show="interaction.AccidentPreventable">Yes</label>
+                                <label class="label label-danger" ng-show="!interaction.AccidentPreventable">No</label>
+                            </td>
+                            <td>
+                                <label class="label label-success" ng-show="interaction.FollowupRequired">Yes</label>
+                                <label class="label label-danger" ng-show="!interaction.FollowupRequired">No</label>
+                            </td>
+                            <td>{{interaction.FollowupDescription}}</td>
+                            <td>{{interaction.FollowupDate}}</td>
+                            <td>{{interaction.FollowupCompletionDate}}</td>
+                            <td>{{interaction.FollowupComments}}</td>
+                            <td>{{interaction.CloseDate}}</td>
+                            <td>{{interaction.BadgeID}}</td>
+                            <td>{{interaction.InteractionDate}}</td>
+                            <td>{{interaction.VehicleNumber}}</td>
+                            <td>{{interaction.BeatNumber}}</td>
+                            <td>
+                                <div class="pull-right">
+                                    <a ng-href='@Url.Content("~/DriverInteractions/Edit/"){{interaction.InteractionID}}' class="btn btn-primary" title="edit"><i class="fa fa-pencil"></i></a>
+                                    <a ng-href='@Url.Content("~/DriverInteractions/Delete/"){{interaction.InteractionID}}' class="btn btn-danger" title="delete"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="18" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/interactionsController.js"></script>
+    <script src="~/app/services/interactionsService.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

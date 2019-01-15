@@ -1,0 +1,426 @@
+#!/bin/bash
+###############################################################
+# This script performs software updates
+###############################################################
+buildlist='/lata/config/buildlist.txt'
+builds='/lata/builds'
+buildsremote='builds'
+century="20";
+configFile='/lata/config/fterm.config'
+dlbuildlist='/lata/config/dlbuildlist.txt'
+dlbuilds='/lata/config/dlbuilds'
+dlfilepath=''
+errorremote='error'
+fileupdate='/lata/fileupdate'
+getbuilds='/lata/config/getbuild.txt'
+history='/lata/history'
+identFile='/etc/ssh/ssh_host_rsa_key'
+lmtuser='mtclmt'
+manifestoff='/lata/config/manifestOFF'
+manifeston='/lata/config/manifestON'
+ppp0reboots='/lata/config/ppp0reboots.log'
+propsFile='/lata/config/fterm.props'
+rebootcount='/lata/config/rebootcount.log'
+serverbuilds='/lata/config/serverbuilds'
+sftpbatch='/lata/config/sftpbatch.txt'
+sftplog='/lata/config/sftp.log'
+sleeparg=$1
+update=0
+updatebuild=0
+updateerror='/lata/config/installerror.log'
+updateout='/dev/null'
+warmupout='/tmp/WarmUp.out'
+watchdogoff='/lata/config/watchdogOFF'
+watchdogon='/lata/config/watchdogON'
+
+# check if logging enabled
+if [ -e $propsFile ]; then
+  logSetting=$(cat $propsFile | grep -i "Log=" | grep -i "T");
+  if [ "x$logSetting" != "x" ]; then
+    updateout='/lata/logs/update.log'
+  fi
+fi
+
+echo "**************************" >> $updateout
+echo "Starting AutoUpdate" $(date) >> $updateout
+
+# verify error directory
+errordir='/lata/config/error'
+if [ ! -e $errordir ]; then
+  mkdir $errordir;
+fi
+
+function log_error()
+{
+  local level=$1;
+  local type=$2;
+  local number=$3;
+  local description=$4;
+  local ext='.err';
+  local script='au';
+  local timestamp=$(date '+%s');
+  local filename=$errordir/$level-$type-$script-$number-$timestamp$ext;
+  echo $description" "$(date) > $filename;
+}
+
+# wait until WarmUp finished
+warmupdone=$(cat $warmupout | grep "WarmUp Done");
+COUNT=0;
+while [ "x$warmupdone" == "x" ]
+do
+  sleep 10;
+  COUNT=`expr $COUNT + 1`;
+  echo "Count at" $COUNT $(date) >> $updateout;
+  if [ $COUNT -gt 30 ]; then
+    echo "WarmUp didn't end properly, checking reboot count" $COUNT $(date) >> $updateout;
+    echo "WarmUp didn't end properly, checking reboot count" $COUNT $(date) >> $updateerror;
+    log_error "2" "install" "01" "WarmUp didn't end properly, checking reboot count "$COUNT;
+    if [ ! -e $rebootcount ]; then
+      echo "0" > $rebootcount;
+    fi
+    reboots=$(cat $rebootcount | sed 's/.*\([0-9]\).*/\1/'); 
+    reboots=`expr $reboots + 1`;
+    echo $reboots > $rebootcount;
+    echo "Reboot count at" $reboots >> $updateout;
+    # check for excessive reboots
+    if [ "$reboots" = "3" ]; then
+      echo "Too many consecutive reboots, not rebooting. Reboots = " $reboots >> $updateout;
+      echo "Too many consecutive reboots, not rebooting. Reboots = " $reboots >> $updateerror;
+      log_error "1" "install" "02" "Too many consecutive reboots, not rebooting. Reboots = "$reboots;
+      break;
+    else
+      echo "Rebooting" $(date) >> $updateout
+      reboot;
+      exit;
+    fi
+  else
+    warmupdone=$(cat $warmupout | grep "WarmUp Done");
+  fi
+done
+
+echo "WarmUp done, okay to continue" $(date) >> $updateout
+
+# check if another AutoUpdate process exists
+processcount=$(ps -A | grep "AutoUpdate" | wc -l | sed 's/.*\([0-9]\).*/\1/');
+processcount=`expr $processcount - 1`;
+if [ $processcount -gt 1 ]; then
+  echo "Other AutoUpdate process running, exiting" $(date) >> $updateout;
+  echo "Ending AutoUpdate" $(date) >> $updateout
+  exit;
+fi
+
+# enable watchdog by removing watchdog off file
+tempdisabled2=$(cat $watchdogoff | grep -i "TempDisabled");
+if [[ "x$tempdisabled2" != "x" || -e $watchdogon ]]; then
+  echo "Enabling watchdog" >> $updateout
+  rm $watchdogoff;
+  rm $watchdogon;
+fi
+
+# enable manifest checker by removing manifest off file
+tempdisabled=$(cat $manifestoff | grep -i "TempDisabled");
+if [[ "x$tempdisabled" != "x" || -e $manifeston ]]; then
+  echo "Enabling manifest checker" >> $updateout
+  rm $manifestoff;
+  rm $manifeston;
+fi
+
+# make sure wifi client logger is running
+wifichk=$(ps -A | grep WifiClients);
+if [ "x$wifichk" == "x" ]; then
+  echo "WifiClients not running, starting" $(date) >> $updateout;
+  nohup sh -c '/etc/rc.d/init.d/WifiClients' &> /tmp/WifiClients.log &
+fi
+
+# make sure manifest checker is running
+manichk=$(ps -A | grep ManifestCheck);
+if [ "x$manichk" == "x" ]; then
+  echo "ManifestCheck not running, starting" $(date) >> $updateout;
+  nohup sh -c '/etc/rc.d/init.d/ManifestCheck' &> /tmp/ManifestCheck.log &
+fi
+
+# make missing directories, if any
+if [ ! -e $fileupdate ]; then
+  echo "Directory not found, making it" $fileupdate $(date) >> $updateerror;
+  echo "Directory not found, making it" $fileupdate $(date) >> $updateout;
+  log_error "3" "install" "03" "Directory not found, making it "$fileupdate;
+  mkdir $fileupdate;
+fi
+
+###############################################################
+# Sleep for $1 seconds
+###############################################################
+value=$(($RANDOM%$sleeparg))
+echo "Sleeping for" $value "seconds">> $updateout
+sleep $value
+echo "Waking up" $(date) >> $updateout
+
+###############################################################
+###############################################################
+function ord() {
+  ordout=$(printf '%d' "'$1")
+}
+###############################################################
+###############################################################
+function check_for_builds()
+{
+  if [ ! -e $1 ]; then
+    echo "Directory doesn't exist" $1 $(date) >> $updateerror;
+    echo "Directory doesn't exist" $1 $(date) >> $updateout;
+    log_error "3" "install" "04" "Directory doesn't exist "$1;
+    return;
+  fi
+  cd $1
+  for i in $(find . -type f);
+  do
+    filesubpath=$(echo $i | sed 's/\.\/\(.*\)/\1/');
+    if [ $filesubpath = "." ]; then
+      filesubpath="";
+    else
+      getfile=$filesubpath;
+      filesubpath=/$filesubpath;
+    fi
+    srcfilepath=$1$filesubpath; 
+    dstfilepath=$2$filesubpath; 
+    # If update file doesn't exist, get from sftp server
+    if [ ! -e $dstfilepath ]; then
+      update=1
+      updatebuild=1
+      dlfilepath=$fileupdate$filesubpath;
+      echo "ls -l" $getfile >> $getbuilds;
+      echo "get" $getfile >> $getbuilds;
+      echo "Will download" $getfile >> $updateout;
+      # download only one build per session
+      break;
+    fi
+  done
+}
+###############################################################
+###############################################################
+function add_error_files()
+{
+  local found=0
+  local ext='.txt'
+  if [ -e $errordir ]; then
+    carid=$(cat $propsFile | grep -i "CarID=" | sed 's/CarID=\([0-9].*\)/\1/');
+    if [ "x$carid" == "x" ]; then
+      carid='9999';
+    fi
+    cd $errordir;
+    for i in $(find . -type f | grep err);
+    do
+      filesubpath=$(echo $i | sed 's/\.\/\(.*\)/\1/');
+      if [[ $found -eq 0 ]]; then
+        echo "cd .." >> $sftpbatch;
+        echo "cd" $errorremote >> $sftpbatch;
+        echo "lcd" $errordir >> $sftpbatch;
+        found=1
+      fi
+      filename=$(echo $filesubpath | sed 's/\([0-9].*\).err/\1/');
+      fullfilename=$lmtip-$carid-$filename$ext;
+      mv $filesubpath $fullfilename;
+      echo "put" $fullfilename >> $sftpbatch;
+    done
+  fi
+}
+###############################################################
+###############################################################
+
+###############################################################
+# Check for modem connection and existing SFTP process
+###############################################################
+# wait up to 10 minutes for modem connection
+COUNT=0;
+connection=0
+while :
+do
+  # get lmt ppp ip address
+  lmtip=$(ifconfig | grep "P-t-P" | sed 's/.*:\([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\).*P.*/\1/');
+
+  # test for modem connection
+  if [ "x$lmtip" != "x" ]; then
+    echo "Have modem connection at" $lmtip $(date) >> $updateout;
+    connection=1
+    break;
+  else
+    COUNT=`expr $COUNT + 1`;
+    echo "Count at" $COUNT $(date) >> $updateout;
+    if [ $COUNT -gt 10 ]; then
+      echo "Unable to connect, checking reboot count " $(date) >> $updateout;
+      if [ ! -e $ppp0reboots ]; then
+        echo "0" > $ppp0reboots;
+      fi
+      reboots=$(cat $ppp0reboots | sed 's/.*\([0-9]\).*/\1/'); 
+      reboots=`expr $reboots + 1`;
+      echo $reboots > $ppp0reboots;
+      echo "PPP0 reboot count at" $reboots >> $updateout;
+      # check for excessive reboots
+      if [ "$reboots" = "3" ]; then
+        echo "Too many consecutive ppp0 reboots, not rebooting. Reboots = " $reboots >> $updateout;
+        log_error "1" "ppp0" "05" "Too many consecutive ppp0 reboots, not rebooting. Reboots = "$reboots;
+        break;
+      else
+        echo "Error! No cellular connection, Rebooting" $(date) >> $updateout;
+        log_error "2" "ppp0" "06" "Error! No cellular connection, Rebooting ";
+        reboot;
+        exit;
+      fi
+    fi
+    sleep 60;
+  fi
+done
+
+if [ $connection -eq 1 ]; then
+
+  if [ -e $ppp0reboots ]; then
+    rm $ppp0reboots;
+  fi
+
+  # check if old sftp process exists
+  oldsftp=$(ps | grep sftp | grep IdentityFile);
+
+  if [ "x$oldsftp" != "x" ]; then
+    echo "Other sftp session running, exiting" $(date) >> $updateout;
+    echo "Ending AutoUpdate" $(date) >> $updateout
+    exit;
+  fi
+
+  # get current sftp server IP
+  sftpserver=$(cat /lata/config/fterm.config | grep "SFTPServerIP" | sed 's/.*>\([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\)<.*/\1/');
+
+  if [ "x$sftpserver" = "x" ]; then
+    echo "SFTP Server IP missing in fterm.config, exiting" $(date) >> $updateout;
+    echo "SFTP Server IP missing in fterm.config, exiting" $(date) >> $updateerror;
+    log_error "2" "install" "07" "SFTP Server IP missing in fterm.config, exiting";
+    echo "Ending AutoUpdate" $(date) >> $updateout
+    exit;
+  else
+    echo "Using SFTP Server IP" $sftpserver $(date) >> $updateout;
+  fi
+
+  ###############################################################
+  # Create SFTP script commands to check for available builds
+  ###############################################################
+  echo "cd" $buildsremote > $sftpbatch;
+  echo "ls" >> $sftpbatch;
+
+  ###############################################################
+  # Also, upload all error files
+  ###############################################################
+  add_error_files;
+
+  # SFTP script command to exit sftp session
+  echo "exit" >> $sftpbatch;
+
+  COUNT=0;
+  while :
+  do
+    # get manifest and list of available builds on the server
+    echo "Checking sftp server for available builds" $(date) >> $updateout;
+    sftp -o IdentityFile=/lata/config/fterm.id -o ConnectTimeout=120 -b $sftpbatch $lmtuser@$sftpserver > $sftplog 2>&1
+    # login and timeout error checks
+    loginerror=$(cat $sftplog | grep "Permission denied");
+    timeout=$(cat $sftplog | grep "Connection timed out");
+    peerreset=$(cat $sftplog | grep "Connection reset by peer");
+    if [ "x$loginerror" != "x" ]; then
+      echo "Login denied" $(date) >> $updateout;
+    elif [ "x$timeout" != "x" ]; then
+      echo "Connection timed out" $(date) >> $updateout;
+    elif [ "x$peerreset" != "x" ]; then
+      echo "Connection reset by peer" $(date) >> $updateout;
+    else
+      break;
+    fi
+    COUNT=`expr $COUNT + 1`;
+    echo "Count at" $COUNT $(date) >> $updateout;
+    if [ $COUNT -gt 3 ]; then
+      echo "Unable to connect, exiting" $(date) >> $updateout;
+      exit;
+    fi
+    sleep 15;
+  done
+
+  # get list of available builds from the sftp log
+  grep tgz $sftplog > $buildlist
+  grep '\.sh' $sftplog >> $buildlist
+
+  # create server build directory if necessary
+  if [ ! -e $serverbuilds ]; then
+    mkdir $serverbuilds
+  else
+    # delete old server build file list
+    rm $serverbuilds/*
+  fi
+
+  # create new server build file list
+  cd $serverbuilds
+  while read LINE
+  do
+    touch $LINE
+  done < $buildlist
+
+  # delete error files
+  rm $errordir/* 2>/dev/null;
+
+  ###############################################################
+  # Download build
+  ###############################################################
+  # get list of downloaded builds
+  ls $history | grep tgz > $dlbuildlist
+  ls $history | grep '\.sh' >> $dlbuildlist
+  ls $builds | grep tgz >> $dlbuildlist
+  ls $builds | grep '\.sh' >> $dlbuildlist
+
+  # create downloaded build directory if necessary
+  if [ ! -e $dlbuilds ]; then
+    mkdir $dlbuilds
+  else
+    # delete old server build file list
+    rm $dlbuilds/*
+  fi
+
+  # create new downloaded build file list
+  cd $dlbuilds
+  while read LINE
+  do
+    touch $LINE
+  done < $dlbuildlist
+
+  # create sftp batch file to get builds and change to local directory
+  # change to local fileupdate directory
+  echo "lcd" $fileupdate > $getbuilds;
+  echo "cd" $buildsremote >> $getbuilds;
+  check_for_builds $serverbuilds $dlbuilds;
+
+  # command to exit sftp
+  echo "exit" >> $getbuilds;
+
+  # if udpate available, get it
+  if [ $update -eq 1 ]; then
+
+    echo "Downloading files from sftp server" $(date) >> $updateout;
+    sftp -o IdentityFile=/lata/config/fterm.id -o ConnectTimeout=120 -b $getbuilds $lmtuser@$sftpserver > $sftplog
+
+    # check server vs downloaded file sizes
+
+    # check build server vs downloaded file sizes
+    if [ $updatebuild -eq 1 ]; then
+      serversize=$(cat $sftplog | grep $getfile | grep 'rwx' | sed 's/.* \([0-9][0-9][0-9]*\) [A-Z].*/\1/');
+      dlsize=$(ls -l $dlfilepath | grep 'rwx' | sed 's/.* \([0-9][0-9][0-9]*\) [A-Z].*/\1/');
+      if [ $serversize -eq $dlsize ]; then
+        echo "File sizes match" $serversize $dlsize $(date) >> $updateout;
+        echo "Moving build from fileupdate to builds" $(date) >> $updateout;
+        mv $dlfilepath $builds;
+      else
+        echo "Transfer error, file sizes don't match" $dlfilepath "server" $serversize "downloaded "$dlsize $(date) >> $updateout;
+        echo "Transfer error, file sizes don't match" $dlfilepath "server" $serversize "downloaded "$dlsize $(date) >> $updateerror;
+        log_error "4" "sftp" "08" "Transfer error, file sizes don't match "$dlfilepath" server "$serversize" downloaded "$dlsize;
+        echo "Removing downloaded file" $dlfilepath $(date) >> $updateout;
+        rm $dlfilepath;
+      fi
+    fi
+  else
+    echo "No new downloads available" $(date) >> $updateout;
+  fi
+fi
+echo "Ending AutoUpdate" $(date) >> $updateout;

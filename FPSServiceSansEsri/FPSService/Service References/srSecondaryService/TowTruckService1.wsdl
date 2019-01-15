@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TowTruckService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://octa-acceptance:9007/TowTruckService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://octa-acceptance:9007/TowTruckService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://octa-acceptance:9007/TowTruckService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FPSService" />
+      <xsd:import schemaLocation="http://octa-acceptance:9007/TowTruckService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITowTruckService_CurrentTrucks_InputMessage">
+    <wsdl:part name="parameters" element="tns:CurrentTrucks" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_CurrentTrucks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CurrentTrucksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_SingleTruckDump_InputMessage">
+    <wsdl:part name="parameters" element="tns:SingleTruckDump" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_SingleTruckDump_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SingleTruckDumpResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_TruckDump_InputMessage">
+    <wsdl:part name="parameters" element="tns:TruckDump" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_TruckDump_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TruckDumpResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ExcuseAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExcuseAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ExcuseAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExcuseAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetPreloadedData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPreloadedData" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetPreloadedData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPreloadedDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AddIncident_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddIncident" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AddIncident_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddIncidentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllIncidents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIncidents" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllIncidents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIncidentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_FindIncidentByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindIncidentByID" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_FindIncidentByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindIncidentByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearIncident_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearIncident" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearIncident_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearIncidentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AddAssist_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAssist" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AddAssist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAssistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllAssists_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAssists" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllAssists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAssistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAssistTrucks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssistTrucks" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAssistTrucks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssistTrucksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetUsedBreakTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsedBreakTime" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetUsedBreakTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsedBreakTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetTruckDrivers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTruckDrivers" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetTruckDrivers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTruckDriversResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_LogOffDriver_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOffDriver" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_LogOffDriver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOffDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllAlarms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAlarms" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllAlarms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAlarmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AlarmByTruck_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlarmByTruck" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AlarmByTruck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlarmByTruckResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getIncidentData_InputMessage">
+    <wsdl:part name="parameters" element="tns:getIncidentData" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getIncidentData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getIncidentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ResetAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ResetAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetAlarmResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITowTruckService">
+    <wsdl:operation name="CurrentTrucks">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/CurrentTrucks" message="tns:ITowTruckService_CurrentTrucks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/CurrentTrucksResponse" message="tns:ITowTruckService_CurrentTrucks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SingleTruckDump">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/SingleTruckDump" message="tns:ITowTruckService_SingleTruckDump_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/SingleTruckDumpResponse" message="tns:ITowTruckService_SingleTruckDump_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TruckDump">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/TruckDump" message="tns:ITowTruckService_TruckDump_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/TruckDumpResponse" message="tns:ITowTruckService_TruckDump_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ClearAlarm" message="tns:ITowTruckService_ClearAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ClearAlarmResponse" message="tns:ITowTruckService_ClearAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcuseAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ExcuseAlarm" message="tns:ITowTruckService_ExcuseAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ExcuseAlarmResponse" message="tns:ITowTruckService_ExcuseAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPreloadedData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetPreloadedData" message="tns:ITowTruckService_GetPreloadedData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetPreloadedDataResponse" message="tns:ITowTruckService_GetPreloadedData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddIncident">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/AddIncident" message="tns:ITowTruckService_AddIncident_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/AddIncidentResponse" message="tns:ITowTruckService_AddIncident_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllIncidents">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetAllIncidents" message="tns:ITowTruckService_GetAllIncidents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetAllIncidentsResponse" message="tns:ITowTruckService_GetAllIncidents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindIncidentByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/FindIncidentByID" message="tns:ITowTruckService_FindIncidentByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/FindIncidentByIDResponse" message="tns:ITowTruckService_FindIncidentByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearIncident">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ClearIncident" message="tns:ITowTruckService_ClearIncident_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ClearIncidentResponse" message="tns:ITowTruckService_ClearIncident_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAssist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/AddAssist" message="tns:ITowTruckService_AddAssist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/AddAssistResponse" message="tns:ITowTruckService_AddAssist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAssists">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetAllAssists" message="tns:ITowTruckService_GetAllAssists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetAllAssistsResponse" message="tns:ITowTruckService_GetAllAssists_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssistTrucks">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetAssistTrucks" message="tns:ITowTruckService_GetAssistTrucks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetAssistTrucksResponse" message="tns:ITowTruckService_GetAssistTrucks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedBreakTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetUsedBreakTime" message="tns:ITowTruckService_GetUsedBreakTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetUsedBreakTimeResponse" message="tns:ITowTruckService_GetUsedBreakTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTruckDrivers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetTruckDrivers" message="tns:ITowTruckService_GetTruckDrivers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetTruckDriversResponse" message="tns:ITowTruckService_GetTruckDrivers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOffDriver">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/LogOffDriver" message="tns:ITowTruckService_LogOffDriver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/LogOffDriverResponse" message="tns:ITowTruckService_LogOffDriver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAlarms">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetAllAlarms" message="tns:ITowTruckService_GetAllAlarms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetAllAlarmsResponse" message="tns:ITowTruckService_GetAllAlarms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlarmByTruck">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/AlarmByTruck" message="tns:ITowTruckService_AlarmByTruck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/AlarmByTruckResponse" message="tns:ITowTruckService_AlarmByTruck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/SendMessage" message="tns:ITowTruckService_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/SendMessageResponse" message="tns:ITowTruckService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getIncidentData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getIncidentData" message="tns:ITowTruckService_getIncidentData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getIncidentDataResponse" message="tns:ITowTruckService_getIncidentData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ResetAlarm" message="tns:ITowTruckService_ResetAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ResetAlarmResponse" message="tns:ITowTruckService_ResetAlarm_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ITowTruckService" type="tns:ITowTruckService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CurrentTrucks">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/CurrentTrucks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SingleTruckDump">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/SingleTruckDump" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TruckDump">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/TruckDump" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearAlarm">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ClearAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcuseAlarm">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ExcuseAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPreloadedData">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetPreloadedData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddIncident">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/AddIncident" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllIncidents">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetAllIncidents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindIncidentByID">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/FindIncidentByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearIncident">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ClearIncident" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAssist">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/AddAssist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAssists">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetAllAssists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssistTrucks">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetAssistTrucks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedBreakTime">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetUsedBreakTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTruckDrivers">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetTruckDrivers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOffDriver">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/LogOffDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAlarms">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetAllAlarms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlarmByTruck">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/AlarmByTruck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIncidentData">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getIncidentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetAlarm">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ResetAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TowTruckService">
+    <wsdl:port name="BasicHttpBinding_ITowTruckService" binding="tns:BasicHttpBinding_ITowTruckService">
+      <soap:address location="http://octa-acceptance:9007/TowTruckService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

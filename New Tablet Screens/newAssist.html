@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MTC Incident/Assist Information</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/ClientCSS.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-fallr-1.3.css" />
+		<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="js/newAssist.js" type="text/javascript"></script>
+		<script src="js/GlobalData.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div class="head1">
+			<p>Enter Incident and Assist Information</p>
+		</div>
+		
+		<!-- PROBLEMS -->
+		<div id="problems">
+			<div><h1><b>MTC Problem Type</b>&nbsp;(Select all that apply)</h1></div>
+			<!-- traffic collision -->
+			<div class="paddedDiv"><span class="label">Traffic Collision:</span>
+					<span class="value">
+						<select id="selTrafficCollision" class="bigSel">
+							<option>Select</option>
+							<option>1 vehicle involved (1VEH)</option>
+							<option>2 vehicles involved (2VEH)</option>
+							<option>+2 vehicles involved (3VEH)</option>
+						</select>
+					</span>
+			</div>
+			<div class="clear"></div>
+			<!-- breakdown -->
+			<div class="paddedDiv"><span class="label">Breakdown:</span>
+					<span class="value">
+						<select id="selBreakdown" class="bigSel">
+							<option>Select</option>
+							<option>Dead Battery (BATT)</option>
+							<option>Flat Tire (TIRE)</option>
+							<option>Out of Gas (GAS)</option>
+							<option>Abandoned Vehicle (ABAN)</option>
+							<option>Overheat (HEAT)</option>
+							<option>Mechanical Problem (MECH)</option>
+						</select>
+					</span>
+			</div>
+			<div class="clear"></div>
+			<!-- debris -->
+			<div class="paddedDiv"><span class="label">Debris:</span>
+					<span class="value">
+						<select id="selDebris" class="bigSel">
+							<option>Select</option>
+							<option>Debris in Lane (DIL)</option>
+							<option>All Debris on Shoulder (DOS)</option>
+						</select>
+					</span>
+			</div>
+			<div class="clear"></div>
+			<!-- other -->
+			<div class="paddedDiv"><span class="label">Other:</span>
+					<span class="value">
+						<select id="selOther" class="bigSel">
+							<option>Select</option>
+							<option>Stopped Motorist - No Assist</option>
+							<option>Other (note required)</option>
+						</select>
+					</span>
+			</div>
+			<div class="clear"></div>
+			<div class="paddedDiv">
+            <p>In the event of mutiple problems of the "breakdown" type, please select the most serious problem first and enter the other(s) below.</p>
+			<textarea id="txtProblemNotes" class="assistArea">Further notes</textarea>
+		</div>
+		<div class="clear"></div>
+		<hr/>
+		<!-- END PROBLEMS -->
+		<!-- ACTION TAKEN -->
+		<div id="problems">
+			<div><h1><b>Select the best descriptions of your assist in each column</b></h1></div>
+			<div class="paddedDiv">
+            <div style="margin-bottom: 10px;">
+                <input type="radio" name="action" id="chkPerformedAssist" />
+                <label for="chkPerformedAssist">Performed Assist as primary/solo provider (ASST)</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="radio" name="action" id="chkAssistedBeatPartner" />
+                <label for="chkAssistedBeatPartner">Assisted Beat Partner (PART)</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="radio" name="action" id="chkAssistedPeaceOfficer" />
+                <label for="chkAssistedPeaceOfficer">Assisted Peace Officer (OFCR)</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="radio" name="action" id="chkRefusedService" />
+                <label for="chkRefusedService">Refused Service (RFSD)</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="radio" name="action" id="chkHelpEnroute" />
+                <label for="chkHelpEnroute">Help Enroute – Waited (HLPW)</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="radio" name="action" id="chkHelpEnrouteNoWait" />
+                <label for="chkHelpEnroute">Help Enroute – Not Waited (HLPN)</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="radio" name="action" id="chkMotoristDroveOff" />
+                <label for="chkMotoristDroveOff">Motorist Drove Off (DOFF)</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <input type="radio" name="action" id="chkOther" />
+                <label for="chkOther">Other (note required) (OTHR)</label>
+            </div>
+			</div>
+			<div class="clear"></div>
+			<div class="paddedDiv">
+				<textarea id="txtActionNotes" class="assistArea">Further notes</textarea>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<hr/>
+		<!-- END ACTION TAKEN -->
+		<!-- TRANSPORT -->
+		<div><h2>Enter all that apply</h2></div>
+			<div class="paddedDiv">
+				<div>
+					<input type="checkbox" name="transport" id="chkTransportedFemale"/>
+					<label for="chkTransportedFemale">Provided Transportation to Female (11-48X) (FPAS)</label>
+				</div>
+                <div>
+                    <input type="checkbox" name="transport" id="chkTransportedFemaleJuvenile" />
+                    <label for="chkTransportedFemaleJuvenile">Provided Transportation to Female Juvenile (11-48X) (FJUV)</label>
+                </div>
+				<div>
+					<input type="checkbox" name="transport" id="chkTransportedMale"/>
+                    <label for="chkTransportedMale">Provided Transportation to Male (11-48) (MPAS)</label>
+				</div>
+                <div>
+                    <input type="checkbox" name="transport" id="chkTransportedMaleJuvenile" />
+                    <label for="chkTransportedMaleJuvenile">Provided Transportation to Male Juvenile(11-48) (MJUV)</label>
+                </div>
+				<div>
+					<input type="checkbox" name="transport" id="chkTransportedPush"/>
+					<label for="chkTransportedPush">Provided Push (P)</label>
+				</div>
+				<div>
+					<input type="checkbox" name="transport" id="chkTransportedTow"/>
+					<label for="chkTransportedTow">Provided Tow (T)</label>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="paddedDiv">
+				<span class="label">
+					<label for="txtStartOdo">Start Odometer</label>
+				</span>
+				<span class="value">
+					<input id="txtStartODO" class="txtLogon" type="text"/>
+				</span>
+			</div>
+			<div class="clear"></div>
+			<div class="paddedDiv">
+				<span class="label">
+					<label for="txtStartOdo">End Odometer</label>
+				</span>
+				<span class="value">
+					<input id="txtEndODO" class="txtLogon" type="text"/>
+				</span>
+			</div>
+			<div class="clear"></div>
+		
+		<div><h2>Complete if vehicle was taken to a drop site</h2></div>
+		<div>
+			<!-- not sure we need this anymore
+			<div class="paddedDiv">
+				<span class="label">Select Beat</span>
+				<span class="value">
+					<select id="selBeat" class="bigSel">
+						<option>Select</option>
+					</select>
+				</span>
+			</div>
+			<div class="clear"></div>
+			-->
+			<div class="paddedDiv">
+				<span class="label">Select Drop Site</span>
+				<span class="value">
+					<select id="selDrop" class="bigSel">
+						<option>Select</option>
+					</select>
+				</span>
+			</div>
+			<div class="paddedDiv">
+				<span class="label">If Other:</span>
+				<span class="value">
+					<input type="text" id="txtOtherDrop" name="txtOtherDrop" class="txtLogon"/>
+				</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<hr/>
+		<!-- END TRANSPORT -->
+		<!-- DETAILS -->
+		<div>
+			<h2>Enter the following vehicle information</h2>
+		</div>
+		<div class="paddedDiv">
+			<span class="label">
+				<label for="txtState">State</label>
+			</span>
+			<span class="value">
+				<!--<input type="text" class="txtLogon" id="txtState" />-->
+                <select class="form-control" id="selState">
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA" selected="selected">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                    <option value="O">Other ( Add details in notes )</option>
+                </select>	
+			</span>
+		</div>
+		<div class="clear"></div>
+		<div class="paddedDiv">
+			<span class="label">
+				<label for="txtLicensePlate">License Plate Number</label>
+			</span>
+			<span class="value">
+				<input type="text" class="txtLogon" id="txtLicensePlate" />
+			</span>
+		</div>
+		<div class="clear"></div>
+		<div class="paddedDiv">
+			<span class="label">Select Vehicle Type</span>
+			<span class="value">
+				<select id="selVehicleType" class="bigSel">
+					<option>Select</option>
+					<option>Auto/Van (AUTO)</option>
+					<option>Pickup (PKUP)</option>
+					<option>Truck > 1 Ton (BIGT)</option>
+					<option>Truck < 1 Ton (SMLT)</option>
+					<option>Motorcycle (MC)</option>
+					<option>Big Rig (BGRG)</option>
+                    <option>Motor Home (MTHM)</option>
+				</select>
+			</span>
+		</div>
+		<div class="clear"></div>
+		<div class="paddedDiv">
+			<span class="label">
+				<label for="txtOvertime">OT Authorization #&nbsp;</label>
+			</span>
+			<span class="value">
+				<input type="text" class="txtLogon" id="txtOvertime"/>
+			</span>
+		</div>
+		<div class="clear"></div>
+		<div class="paddedDiv">
+			<textarea id="txtDetailNotes" class="assistArea">Further notes</textarea>
+		</div>
+		<div class="clear"></div>
+		<!-- END DETAILS -->
+		<!-- BUTTONS BEGIN -->
+		<div class="paddedDiv">
+			<button type="button" id="btnSubmitFinal" class="wideButtonGreen">Submit Final Assist</button>
+			<button type="button" id="btnSubmitAnother" class="wideButtonRed">Submit And Add Another Assist</button>
+		</div>
+		<div class="clear"></div>
+		<!-- BUTTONS END -->
+	</body>
+</html>

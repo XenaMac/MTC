@@ -1,0 +1,95 @@
+﻿@model MTC.FSP.Web.Models.OvertimeActivity
+
+@{
+    ViewBag.Title = "Edit Overtime Activity";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.timeStamp, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.timeStamp, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.timeStamp, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Shift, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @*@Html.EditorFor(model => model.Shift, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("Shifts", null, htmlAttributes: new { @class = "form-control", id = "ShiftsDD" })
+                @Html.ValidationMessageFor(model => model.Shift, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CallSign, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+                @Html.DropDownList("Callsign", null, htmlAttributes: new { @class = "form-control", id = "CallSignDD" })
+                @Html.ValidationMessageFor(model => model.CallSign, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OverTimeCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.OverTimeCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OverTimeCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BlocksApproved, htmlAttributes: new { @class = "control-label col-md-2"})
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.BlocksApproved, new { htmlAttributes = new { @class = "form-control", @type = "number", @min="1", @max="15" } })
+                @Html.ValidationMessageFor(model => model.BlocksApproved, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Beat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("Beat", null, htmlAttributes: new { @class = "form-control", id = "BeatDD" })
+                @Html.ValidationMessageFor(model => model.Beat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contractor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("Contractor", null, htmlAttributes: new { @class = "form-control", id = "BeatDD" })
+                @Html.ValidationMessageFor(model => model.Contractor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Confirmed, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Confirmed)
+                    @Html.ValidationMessageFor(model => model.Confirmed, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

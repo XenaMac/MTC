@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Truck List";
+}
+
+<script src="@Url.Content("~/Scripts/knockout-2.1.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.signalR-0.5.3.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/MyScripts/fsp.constructor.js")"></script>
+<script src="@Url.Content("~/MyScripts/fsp.gridViewModel.js")"></script>
+<script src="@Url.Content("~/MyScripts/fsp.truckCollection.js")"></script>
+
+@*grid*@
+<section data-bind="visible: trucks().length === 0" style="display: none">
+    Loading Tow Truck Grid...
+</section>
+<section data-bind="visible: trucks().length > 0" style="display: none">
+    <table id="towTruckGrid" class="table table-condensed table-bordered table-striped tablesorter">
+        <thead>
+            <tr data-bind="foreach: columns">
+                <th>
+                    <span data-bind="click: sort, text: name()"></span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                </th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: trucks">
+            <tr data-bind="click: showDetails" class="gridRow">
+                <td>
+                    <span data-bind="text: truckNumber"></span>
+                </td>
+                <td>
+                    <span data-bind="text: beatNumber"></span>
+                </td>
+                <td>
+                    <span data-bind="text: driverName"></span>
+                </td>
+                <td>
+                    <span data-bind="text: contractorName"></span>
+                </td>
+                <td>
+                    <span data-bind="text: location"></span>
+                </td>
+                <td>
+                    <img data-bind="attr:{ src: vehicleStateIconUrl}" height="15px" />
+                    <span data-bind="text: vehicleState"></span>
+                </td>
+                <td>
+                    <span data-bind="text: speed"></span>
+                </td>
+                <td>
+                    <span data-bind="text: lastUpdate"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+@*details*@
+<div class="modal hide fade" id="truckDetails">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">
+            ×</button>
+        <h3>Details</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row-fluid">
+            <table data-bind="with: selectedTruck()" style="display: none">
+                <tr>
+                    <td>
+                        <span style="font-size: 25px; font-weight: bold" data-bind="text: truckId"></span>
+                        <span>
+                            <img data-bind="attr:{ src: vehicleStateIconUrl()}" height="15px" alt="" /></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Speed: </td>
+                    <td><b><span data-bind="text: speed()"></span></b></td>
+                </tr>
+
+                <tr>
+                    <td>State: </td>
+                    <td><b><span data-bind="text: vehicleState()"></span></b></td>
+                </tr>
+
+                <tr>
+                    <td>Last Update: </td>
+                    <td><b><span data-bind="text: lastUpdate()"></span></b></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a id="btnSaveFilter" href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
+    </div>
+</div>
+
+

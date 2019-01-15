@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Manage";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="chpOfficerController" ng-init="init('@ViewBag.CHPOfficerId')" ng-cloak>
+        <h3>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingCHPOfficer"></i></h3>
+        @Html.ActionLink("Back To CHP Officers", "Index", "CHPOfficers")
+        <br />
+        <hr />
+        <form name="inputForm" role="form" class="form-horizontal">
+            <div class="form-group" ng-class="{'has-error': inputForm.BadgeId.$invalid}">
+                <label for="BadgeId" class="col-sm-2 control-label">Badge ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="BadgeId" ng-model="chpOfficer.BadgeId" required>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error has-feedback': inputForm.OfficerFirstName.$invalid}">
+                <label for="OfficerFirstName" class="col-sm-2 control-label">Officer First Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="OfficerFirstName" ng-model="chpOfficer.OfficerFirstName" required>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error has-feedback': inputForm.OfficerLastName.$invalid}">
+                <label for="OfficerLastName" class="col-sm-2 control-label">Officer Last Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="OfficerLastName" ng-model="chpOfficer.OfficerLastName" required>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error has-feedback': inputForm.Email.$invalid}">
+                <label for="Email" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="Email" ng-model="chpOfficer.Email">
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error has-feedback': inputForm.Phone.$invalid}">
+                <label for="Phone" class="col-sm-2 control-label">Phone</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="Phone" ng-model="chpOfficer.Phone">
+                </div>
+            </div>
+            <hr />
+            <div class="form-group">
+                <label for="selectedBeatId" class="col-sm-2 control-label">Available Beats</label>
+                <div class="col-sm-2">
+                    <select class="form-control" name="selectedBeatId" ng-model="selectedBeat" ng-options="a as a.Text for a in beatNumbers" ng-disabled="busyGettingBeatNumbers">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-sm-8">
+                    <button title="add beat" class="btn btn-primary" ng-click="addBeat()" ng-disabled="!selectedBeat"><i class="fa fa-plus"></i> Add</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="selectedBeatId" class="col-sm-2 control-label">Assigned Beats</label>
+                <div class="col-sm-2">
+                    <div ng-repeat="assignedBeat in assignedBeats">
+                        <button ng-click="removeAssignedBeat(assignedBeat)" title="remove beat" class="btn btn-block"><i class="fa fa-trash-o"></i> {{assignedBeat.BeatNumber}}</button><br />
+                    </div>
+
+                </div>
+            </div>
+            <br />
+            <hr />
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button class="btn btn-success" ng-disabled="inputForm.$invalid" ng-click="save()"><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i><i class="fa fa-save" ng-hide="isBusy"></i> Save</button>
+                    <a href="~/CHPOfficers/Index" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/chpOfficerController.js"></script>
+    <script src="~/app/services/chpOfficerService.js"></script>        
+}
+
+

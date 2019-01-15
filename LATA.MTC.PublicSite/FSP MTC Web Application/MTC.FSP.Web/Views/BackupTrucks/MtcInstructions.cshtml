@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "MTC Instructions";
+}
+
+<br />
+
+<div class="btn-group">
+    <a href="~/BackupTrucks/MtcInstructions" class="btn btn-primary btn-lg">MTC Instructions</a>
+    <a href="~/BackupTrucks/BackupResources" class="btn btn-default btn-lg">Back-up Resources</a>
+    <a href="~/BackupTrucks/RequestBackup" class="btn btn-default btn-lg">Request a Back-up</a>
+    <a href="~/BackupTrucks/ResponseBackup" class="btn btn-default btn-lg">Respond to Request</a>
+    <a href="~/BackupTrucks/Status" class="btn btn-default btn-lg">Back-up Request Status</a>
+</div>
+
+
+<br />
+<br />
+
+<div ng-app="mtcApp">
+    <div ng-controller="mtcInstructionsController" ng-cloak>
+
+
+        <h3>MTC Instructions</h3>
+        <br />
+
+        <h3>Back-Up Service Requests and Responses in LATATrax</h3>
+
+        <p>MTC requires that all tow contractors document all back up requests and responses to those requests, regardless of any additional contact with back up contractors, through the LATATrax system. Tow contractors are to make their back up requests through LATATrax promptly so that back up contractors may, as much as possible, respond during normal service hours.</p>
+
+        <p>MTC continues to encourage tow contractors to call back up contractors for up to date information before submitting requests, particularly if back up service is needed for a shift coming up soon. Using LATATrax is a supplementary, but mandatory step in the process.</p>
+
+        <p>Contractors requesting a back up (the ‘requestor’) should preferably call the appropriate contractors to confirm their truck availability. When entering the Back Up Truck Request into the LATATrax system the contractor may select a specific contractor. They should select the highest ranked of their back up contractors (eg – primary over secondary and tertiary) unless they know that truck is not available. If the requestor does not do this the system will automatically email the primary back up contractor.  If the primary declines or fails to accept the request in the system by the ‘Time to Respond’  (see below) the system will email the secondary back up contractor . If the secondary back up contractor declines or fails to respond by that same time the system will email the tertiary contractor. If the tertiary contractor has declined or fails to respond by the indicated time back up request goes out to the entire back-up contractor pool. At this point back up assignment will go to the first contractor who accepts through LATATrax. Back Up Contractors may Partially Accept a request and select only the shifts they are able to cover.</p>
+            
+        <p>Although the system uses email notifications contractors must log on to the system to request or accept/partially accept/decline a request.
+</p>
+
+        <br />
+        <br />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Type of Back-up Request</th>
+                    <th>Description</th>
+                    <th>Time to Respond</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        URGENT
+                    </td>
+                    <td>
+                        Back-up needed within 24 hours
+                    </td>
+                    <td>
+                        {{urgentPriorityInHours}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        STANDARD
+                    </td>
+                    <td>
+                        Back-up needed more than 24 hours from now
+                    </td>
+                    <td>
+                        {{standardPriorityInHours}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+        <br />
+
+        <p>FSP program rules concerning the acceptable reasons to deny back up requests still apply in all cases. The LATATrax system is designed to track back up service and better enable MTC to determine if back up contractors have a pattern of evading requests.</p>
+
+
+    </div>
+</div>
+
+@section scripts{
+    
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/mtcInstructionsController.js"></script>
+    <script src="~/app/services/backupTruckService.js"></script>
+        
+}
+
+

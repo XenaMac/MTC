@@ -1,0 +1,12 @@
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+HOME=/
+
+# run-parts
+* * * * * root /etc/init.d/IpLogger
+* * * * * root /etc/init.d/LmtWatchDog
+*/30 * * * * root /etc/init.d/AutoUpdate 1740
+00 3 * * * root /sbin/reboot
+02 4 * * * root run-parts /etc/cron.daily
+22 4 * * 0 root run-parts /etc/cron.weekly
+42 4 1 * * root run-parts /etc/cron.monthly

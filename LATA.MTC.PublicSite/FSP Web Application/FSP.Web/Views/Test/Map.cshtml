@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Map";
+}
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDVGMBMCxemD0_VM3UjKVKNxfC1lstlTW4&sensor=false" type="text/javascript"></script>
+<script src="~/MyScripts/fsp.map.Label.js"></script>
+<script src="~/MyScripts/junk/Label.js"></script>
+<script src="~/MyScripts/junk/junk.js"></script>
+<style type="text/css">
+    #map
+    {
+        height: 100%;
+    }
+
+        #map img
+        {
+            max-width: none;
+        }
+
+    div#infoWindow
+    {
+        height: 180px;
+        width: 250px;
+    }
+
+    .gridRow
+    {
+        cursor: pointer;
+    }
+</style>
+
+
+
+<div id="map" style="width: 100%; height: 500px; overflow: hidden;"></div>
+
+

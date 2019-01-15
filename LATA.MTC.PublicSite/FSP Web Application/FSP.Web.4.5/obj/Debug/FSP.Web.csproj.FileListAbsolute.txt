@@ -1,0 +1,2 @@
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP.Web.4.5\obj\Debug\FSP.Web.csprojResolveAssemblyReference.cache
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP Web Application\FSP.Web.4.5\obj\Debug\FSP.Web.csprojResolveAssemblyReference.cache

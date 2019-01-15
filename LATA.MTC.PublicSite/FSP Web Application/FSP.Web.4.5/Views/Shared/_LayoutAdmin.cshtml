@@ -1,0 +1,115 @@
+﻿@using FSP.Web.Helpers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @*This meta tag will make IE browsers feel like Chrome*@
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href="~/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/jqueryUI")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="brand" href='@Url.Content("~/Home/Index")'>
+                    <img src='@Url.Content("~/Images/latatraxopswhite.png")' />
+                </a>
+                <div class="nav-collapse collapse">
+                      <ul class="nav">
+                        @Html.MenuItem("Home", "Index", "Home", "")
+                        <li class="dropdown">
+                            <a class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                href="#">
+                                Base System
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @Html.MenuItem("Mapping", "Map", "Truck", "")
+                                @Html.MenuItem("Database", "Index", "Admin", "")
+                                @Html.MenuItem("CHP", "Index", "CHPInformation", "")
+                                <li><a href="http://38.124.164.211:9007/admin/Logon.aspx" target="_blank">Dashboard</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                href="#">
+                                Communication
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @Html.MenuItem("Dispatch", "Index", "Dispatch", "")
+                                @Html.MenuItem("Incident", "Index", "Incident", "")
+                                @Html.MenuItem("Driver Alert Messaging", "Index", "AlertMessages", "")
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                href="#">
+                                Monitoring
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @Html.MenuItem("Scheduling", "Index", "Schedule", "AdminArea")                              
+                                @Html.MenuItem("Alert & Alarms", "Index", "AlertMessages", "")
+                            </ul>
+                        </li>
+                         <li class="dropdown">
+                            <a class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                href="#">
+                                Analysis
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @Html.MenuItem("Assist Entry", "Create", "AssistAdmin", "")
+                                @Html.MenuItem("Reports", "Index", "Report", "")
+                                @Html.MenuItem("Survey", "Index", "Survey", "")
+                            </ul>
+                        </li>                                             
+                    </ul>                  
+                </div>
+
+                 <div class="welcomeDisplay">
+                     @Html.Partial("_LoginPartial")        
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div id="websitePath" data-websitePath="@Request.ApplicationPath">
+            </div>
+            @RenderSection("featured", required: false)
+            @RenderBody()
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="content">
+                <p>&copy; @DateTime.Now.Year - LATA</p>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

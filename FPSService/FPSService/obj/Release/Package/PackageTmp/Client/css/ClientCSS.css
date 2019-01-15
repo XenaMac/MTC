@@ -1,0 +1,292 @@
+.lrgButton{
+	height: 80px;
+	width: 200px;
+	font-size:32px;
+	font-weight:bold;
+	padding:10px;
+	border: 1px solid #600000;
+	border-radius: 10px;
+}
+
+.astButton{
+	height: 40px;
+	width: 150px;
+	font-size:24px;
+	font-weight:bold;
+	padding:5px;
+	border: 1px solid #600000;
+	border-radius: 10px;
+	color:red;
+}
+
+.assistButton{
+	height: 70px;
+	width: 300px;
+	font-size: 32px;
+	font-weight: bold;
+	padding:10px;
+	background-color: #ff0000;
+	border: 1px solid #600000;
+	display: in-line;
+	border-radius: 10px;
+	text-shadow: 1px 1px 1px black;
+	color:white;
+	border-top:1px #380000;
+}
+
+.responseButton{
+	background-color:#ff0000;
+	color:white;
+	font-weight:bold;
+	border-radius:5px;
+}
+
+.responseButton:active{
+	-webkit-box-shadow: 0 2px 6px black;
+	color: #380000;
+}
+
+.assistButton:active{
+	-webkit-box-shadow: 0 2px 6px black;
+	color: #380000;
+	}
+
+body{
+	font-family:Arial, sans-serif;
+	font-size:large;
+}
+
+.box
+{
+    background:#fefefe;
+    border: 1px solid #C3D4DB;
+	border-top:1px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    -moz-box-shadow:rgba(0,0,0,0.15) 0 0 1px;
+    -webkit-box-shadow:rgba(0,0,0,0.15) 0 0 1px;
+    box-shadow:rgba(0,0,0,0.15) 0 0 1px;
+    color:#444;
+    font:normal 12px/14px Arial, Helvetica, Sans-serif;
+    margin:0 auto 30px;
+	overflow:hidden;
+}
+.box.login
+{
+	height:280px;
+    width:450px;
+	position:absolute;
+	left:45%;
+	top:50%;
+	margin:-130px 0 0 -166px;
+}
+.boxBody
+{
+    background:#fefefe;
+    border-top:1px solid #dde0e8;
+    border-bottom:1px solid #dde0e8;
+    padding:10px 20px;
+	font-size:28px;
+}
+
+.box footer
+{
+    background:#eff4f6;
+    border-top:1px solid #fff;
+    padding:22px 26px;
+    overflow:hidden;
+	height:32px;
+}
+.box label
+{
+    display:block;
+    font:28px Arial, Helvetica, Sans-serif;
+	font-weight:bold;
+    margin:10px 0 0 6px;
+}
+.box footer label{
+	float:left;
+	margin:4px 0 0;
+}
+
+.LATALogo{
+	padding:10px;
+}
+
+.txtLogon{
+	height:40px;
+	width:400px;
+	font-size:28px;
+}
+
+#buttonSet{
+	text-align:center;
+}
+
+#assistDiv{
+	height:100px;
+	background-color:#ccff99;
+	padding: 10px;
+}
+
+
+
+.sectionHead{
+	font-size:24px;
+	font-weight:bold;
+}
+
+#statusDiv{
+	height:120px;
+	background-color:#c0c0c0;
+	padding: 10px;
+}
+
+#truckStatus{
+	float:left;
+	width:50%;
+}
+
+#assistData{
+	float:right:
+	width:50%;
+}
+
+.customerData1{
+	float:left;
+	width:33%;
+}
+
+.customerData2{
+	float:left;
+	width:33%;
+}
+
+.customerData3{
+	float:left;
+	width:33%;
+}
+
+.towData1{
+	float:left;
+	width:25%;
+	
+}
+
+.towData2{
+	float:left;
+	width:25%;
+	
+}
+
+.towData3{
+	float:left;
+	width:25%;
+	
+}
+
+.towData4{
+	float:left;
+	width:25%;
+	
+}
+
+.vehicles1{
+	float:left;
+	width:20%;
+	
+}
+.vehicles2{
+	float:left;
+	width:20%;
+	
+}
+.vehicles3{
+	float:left;
+	width:20%;
+	
+}
+.vehicles4{
+	float:left;
+	width:20%;
+	;
+}
+.vehicles5{
+	float:left;
+	width:20%;
+	
+}
+
+.assistRight{
+	float:left;
+	width:33%;
+	
+}
+
+.assistLeft{
+	float:left;
+	width:33%;
+	
+}
+
+.assistMiddle{
+	float:left;
+	width:33%;
+	
+}
+
+.padDiv{
+	padding:10px;
+}
+
+.subHead{
+	background-color:#c0c0c0;
+	text-align:center;
+	border:1px black;
+	font-weight:bold;
+	font-size:22px;
+}
+
+#comments{padding:5px;}
+
+#error{
+	font-size:32px;
+	text-align:center;
+	color: #ff0000;
+	text-align:center;
+}
+
+footer{
+	position:fixed;
+	left:0;
+	bottom:10px;
+	text-align:center;
+	font:normal 11px/16px Arial, Helvetica, sans-serif;
+	width:100%;
+}
+
+header{
+	display:block;
+	background-color:#000000;
+	color:#ffffff;
+	text-align:center;
+	font-size:22px;
+	font-weight:bold;
+	height:24px;
+	padding:5px;
+}
+
+.commentArea{
+	width:80%;
+	height:200px;
+}
+
+.txtDescription{
+	font-size:28px;
+	font-weight:bold;
+}
+
+.even{
+	background-color:gray;
+}

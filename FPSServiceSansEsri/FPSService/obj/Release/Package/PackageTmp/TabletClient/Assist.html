@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>LATATrax Assist Response</title>
+		<!--<link rel="stylesheet" type="text/css" href="css/reset.css"/>-->
+        <link rel="stylesheet" type="text/css" href="css/ClientCSS.css"/>
+        <!--<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.min.css"/>-->
+		<link rel="stylesheet" type="text/css" href="css/jquery.ptTimeSelect.css"/>
+        <link rel="stylesheet" type="text/css" href="css/jquery-fallr-1.3.css" />
+		<script src="scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script src="scripts/jquery-ui-1.9.1.custom.min.js"></script>
+        <script src="scripts/jquery.ptTimeSelect.js"></script>
+		<script src="scripts/GlobalData.js" type="text/javascript"></script>
+		<script src="scripts/AssistScript.js" type="text/javascript"></script>
+        <script src="scripts/jquery-fallr-1.3.min.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<header>LATATrax Incident Report&nbsp;&nbsp;<label id="driverNameVal"></label>&nbsp;&nbsp;<label id="truckIdVal"></label></header>
+		<div class="padDiv">
+            <label id="lblIncidentTime">Time on current incident:</label>&nbsp<label id="lblTimeCount">0</label>&nbsp<label id="lblMinNum">minutes</label>
+        </div>
+	    <div class="padDiv">
+			<label id="selectedAssist">Selected Incident:</label><label id="selectedAssistVal"></label>
+		</div>
+        <div class="padDiv">
+            <label id="makeSurveyNum">Make a survey number</label>
+            <input type="text" id="txtSurveyNum" value="NA" />
+            <input type="button" id="btnSurveyNum" value="Make Survey Num" />
+        </div>
+		<div class="padDiv"><!--incident-->
+			<div class="subHead">Incident Information</div>
+				<div class="deepPad">
+				<div>
+					<label for="ddlIncidentTypes">Incident Type</label>
+					<select name="ddlIncidentTypes" id="ddlIncidentTypes" class="bigSel"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				</div>
+				<div>
+					<label for="ddlTrafficSpeeds">Traffic Speed</label>
+					<select name="ddlTrafficSpeeds" id="ddlTrafficSpeeds" class="bigSel"></select>
+				</div>
+				<!--<div>
+					<label for="ddlServiceTypes">Service Type</label>
+					<select name="ddlServiceTypes" id="ddlServiceTypes" class="bigSel"></select>
+				</div> Replaced with accordion below to support multiple service types-->
+                <div id="accordion" style="Height:300px">
+                    <h4>Select Services Rendered</h4>
+                    <div id="services">
+                    
+                    </div>
+                </div>
+                <div>
+					<label for="txtCustomerWaitTime">Customer Wait Time</label>
+					<input type="text" name="txtCustomerWaitTime" id="txtCustomerWaitTime" value="0"/>
+				</div>
+			</div>
+		</div>
+		<!--
+		<div class="padDiv">
+			<div class="subHead">Dispatch Information</div>
+				<div class="deepPad">
+				<div>
+					<label for="txtx1097">x1097</label>
+					<input id="txtx1097" type="text" />
+				</div>
+				<div>
+					<label for="txtx1098">x1098</label>
+					<input type="text" id="txtx1098" value="Populated on post"/>
+				</div>
+
+				</div>
+		</div>-->
+	
+		<div class="padDiv"><!--location-->
+			<div class="subHead">Location Information</div>
+				<div class="deepPad">
+				<div>
+					<label for="ddlFreeways">Freeway</label>
+					<select name="ddlFreeways" id="ddlFreeways" class="bigSel"></select><!--auto loaded through AJAX, see LogAssist.js-->
+                                        <label>Freeway Direction</label>
+                    <select id="ddlFreewayDirection" class="bigSel">
+                        <option>N</option>
+                        <option>S</option>
+                        <option>E</option>
+                        <option>W</option>
+                    </select>
+					<label for="ddlVehiclePositions">Vehicle Position</label>
+					<select name="ddlVehiclePositions" id="ddlVehiclePositions" class="bigSel"></select>
+				</div>
+				<div>
+                    <!--
+					<label for="ddlLocations">Location</label>
+					<select name="ddlLocations" id="ddlLocations" class="bigSel"></select>
+                    
+					<label for="txtDirection">Direction</label>
+					<input type="text" id="txtDirection" name="txtDirection"/>
+                    -->
+                    <label>Location</label>
+                    <select id="ddlDirection" class="bigSel">
+                        <option>AT</option>
+                        <option>JNO</option>
+                        <option>JSO</option>
+                        <option>JEO</option>
+                        <option>JWO</option>
+                    </select>&nbsp;
+                    <label>Cross Street</label>
+
+                    <input type="text" id="txtStreet" name="txtStreet" />
+				</div>
+				</div>
+		</div>
+		
+		<div class="padDiv"><!--vehicle-->
+			<div class="subHead">Vehicle Information</div>
+			<div class="deepPad">
+			<div>
+				<label for="txtVehicleMake">Make</label>
+				<input type="text" id="txtVehicleMake" />
+				<label for="ddlVehicleTypes">Type</label>
+				<select name="ddlVehicleTypes" id="ddlVehicleTypes" class="bigSel"></select>
+            </div>
+            <div>
+				<label for="txtVehicleColor">Color</label>
+				<input type="text" id="txtVehicleColor"/>
+			</div>
+			<div>
+				<label for="txtLicensePlate">Plate</label>
+				<input type="text" id="txtLicensePlate"/>
+				<label for="txtState">State</label>
+				<select id="selState" class="bigSel">
+                	<option>AL</option>
+	                <option>AK</option>
+	                <option>AS</option>
+	                <option>AZ</option>
+	                <option>AR</option>
+	                <option selected>CA</option>
+	                <option>CD</option>
+	                <option>CO</option>
+	                <option>CT</option>
+	                <option>DE</option>
+	                <option>DC</option>
+	                <option>FL</option>
+	                <option>GA</option>
+	                <option>GU</option>
+	                <option>HI</option>
+	                <option>ID</option>
+	                <option>IL</option>
+	                <option>IN</option>
+	                <option>IA</option>
+	                <option>KS</option>
+	                <option>KY</option>
+	                <option>LA</option>
+	                <option>ME</option>
+	                <option>MD</option>
+	                <option>MH</option>
+	                <option>MA</option>
+	                <option>MI</option>
+	                <option>FM</option>
+	                <option>MN</option>
+	                <option>MS</option>
+	                <option>MO</option>
+	                <option>MT</option>
+	                <option>MX</option>
+	                <option>NE</option>
+	                <option>NV</option>
+	                <option>NH</option>
+	                <option>NJ</option>
+	                <option>NM</option>
+	                <option>NY</option>
+	                <option>NC</option>
+	                <option>ND</option>
+	                <option>MP</option>
+	                <option>OH</option>
+	                <option>OK</option>
+	                <option>OR</option>
+	                <option>PW</option>
+	                <option>PA</option>
+	                <option>PR</option>
+	                <option>RI</option>
+	                <option>SC</option>
+	                <option>SD</option>
+	                <option>TN</option>
+	                <option>TX</option>
+	                <option>UT</option>
+	                <option>VT</option>
+	                <option>VA</option>
+	                <option>VI</option>
+	                <option>WA</option>
+	                <option>WV</option>
+	                <option>WI</option>
+	                <option>WY</option>
+                </select>
+			</div>
+            </div>
+		</div>
+		
+		<div class="padDiv"><!--Tow-->
+			<div class="subHead">Tow Information</div>
+			<div class="deepPad">
+			<div>
+				<div>
+                    <label for="txtStartOD">StartOD</label>
+				    <input type="text" name="txtStartOD" id="txtStartOD" value="0.0"/>
+                </div>
+                <div>
+				    <label for="txtEndOD">EndOD</label>
+				    <input type="text" name="txtEndOD" id="txtEndOD" value="0.0"/>
+                </div>
+			</div>
+			<div>
+				<label for="ddlTowLocations">Tow Location</label>
+				<select name="ddlTowLocations" id="ddlTowLocations" class="bigSel"></select><!--auto loaded through AJAX, see LogAssist.js-->
+			</div>
+			<div>
+				<label for="txtDropZone">Drop Zone</label>
+				<input type="text" id="txtDropZone" />
+			</div>
+			</div>
+		</div>
+		
+		<div class="padDiv"><!--Customer-->
+			<div class="subHead">Customer Information</div>
+			<div class="deepPad">
+			<div>
+				<label for="txtTip">Tip</label>
+				<input type="text" name="txtTip" id="txtTip" style="width:150px"/>
+				<label for="txtTipDetail">Tip Detail</label>
+				<input type="text" name="txtTipDetail" id="txtTipDetail"/>
+			</div>
+			<div>
+				<label for="CustLastName">Customer Last Name</label>
+				<input type="text" name="txtCustomerLastName" id="txtCustomerLastName"/>
+			</div>
+			</div>
+		</div>
+		
+		<div class="padDiv"><!--Other-->
+			<div class="subHead">Other</div>
+				<div class="deepPad">
+				<div>
+					<!--<label for="isMDC">MDC</label>
+					<input type="checkbox" name="isMDC" id="isMDC"/>-->
+                    <!--
+					<label for="ddlContractors">Contractor</label>
+					<select name="ddlContractors" id="ddlContractors" class="bigSel"></select><!--auto loaded through AJAX, see LogAssist.js-->
+					<label for="txtLogNumber">Log Number</label>
+					<input type="text" name="txtLogNumber" id="txtLogNumber"/>
+				</div>
+                <div>
+                	<label for="txtDispatchTime">Dispatch Date/Time (MM/DD/YYYY HH:MM am/pm)</label>
+                    <input type="text" name="txtDispatchTime" id="txtDispatchTime" />
+                </div>
+				<div>
+					<label>Comments</label>
+				<div>
+				<div>
+					<textarea class="commentArea" id="txtComments"></textarea>
+				</div>
+				</div>
+			</div>
+		</div>
+		
+		<input type="button" id="btnPost" value="Save" class="astButton"/>
+		<input type="button" id="btnStatus" value="Cancel" class="astButton"/>
+	</body>
+</html>

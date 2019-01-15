@@ -1,0 +1,178 @@
+﻿@model MTC.FSP.Web.Models.TroubleTicket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TroubleTicket</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TroubleTicketType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TroubleTicketType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TroubleTicketStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TroubleTicketStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedTowContractorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedTowContractorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedInVehicleContractorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedInVehicleContractorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssociatedInVehicleLATATraxContractorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssociatedInVehicleLATATraxContractorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProblemStartedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProblemStartedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShiftsMissed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShiftsMissed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTruckOutOfService)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTruckOutOfService)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTruckBackInService)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTruckBackInService)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BackupRequestSubmitted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BackupRequestSubmitted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReliaGateOEMSerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReliaGateOEMSerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MTCNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MTCNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractorNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractorNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InVehicleContractorNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InVehicleContractorNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LATANotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LATANotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

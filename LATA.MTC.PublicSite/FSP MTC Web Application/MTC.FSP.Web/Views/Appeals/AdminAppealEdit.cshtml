@@ -1,0 +1,248 @@
+﻿@model MTC.FSP.Web.Models.Appeal
+
+@{
+    ViewBag.Title = "Edit " + @Model.AppealType + " Appeal";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AdminAppealEdit", "Appeals", FormMethod.Post, new { id = "AdminAppealEditForm" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.AppealType)
+    @Html.HiddenFor(model => model.AppealID)
+    @Html.HiddenFor(model => model.AppealStatu.AppealStatus)
+    @Html.HiddenFor(model => model.AppealStatu.AppealStatusID)
+    @Html.HiddenFor(model => model.AppealStatu.Appeals)
+    @Html.HiddenFor(model => model.Contractor.ContractorID)
+    @Html.HiddenFor(model => model.ContactName)
+    @Html.HiddenFor(model => model.ContactPhone)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.Beatid)
+    @Html.HiddenFor(model => model.CreatedDate)
+    @Html.HiddenFor(model => model.Driver.DriverID)
+    @Html.HiddenFor(model => model.V_ViolationId)
+    @Html.HiddenFor(model => model.V_ReasonForAppeal)
+    @Html.HiddenFor(model => model.V_BlocksGranted)
+    @Html.HiddenFor(model => model.V_BlocksClaimed)
+    @Html.HiddenFor(model => model.V_AppropriateCharge)
+    @Html.HiddenFor(model => model.O_BlocksInitGranted)
+    @Html.HiddenFor(model => model.O_CallSign)
+    @Html.HiddenFor(model => model.O_CHPOTNumber)
+    @Html.HiddenFor(model => model.O_Datetime)
+    @Html.HiddenFor(model => model.O_Detail)
+    @Html.HiddenFor(model => model.O_NumOfBlocks)
+    @Html.HiddenFor(model => model.I_AppealDeduction)
+    @Html.HiddenFor(model => model.I_AppealReason)
+    @Html.HiddenFor(model => model.I_EventDate)
+    @Html.HiddenFor(model => model.I_InvoiceDeduction)
+    @Html.HiddenFor(model => model.I_InvoiceReason)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AppealType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.AppealType, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AppealStatu.AppealStatusID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.DropDownList("AppealStatusID", null, htmlAttributes: new { @class = "form-control", id = "AppealStatusID" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MTCNote, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextAreaFor(model => model.MTCNote, new { @class = "form-control", @rows = "5", @cols = "10", @style = "resize:none" })
+            @Html.ValidationMessageFor(model => model.MTCNote, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Back to Appeals", "AdministratorAppeals", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contractor.ContractorID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Contractor.ContractCompanyName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ContactName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.ContactPhone, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            @Html.ValidationMessageFor(model => model.ContactPhone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @if (Model.AppealType == "Violation")
+    {
+        <div class="form-group">
+            @Html.Label("Violation", new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <div id="ViolationInfoDiv" style="background-color: #ececec; padding: 3px;">@Html.Raw(@ViewBag.Violation)</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.V_ReasonForAppeal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.V_ReasonForAppeal, new { @class = "form-control", @rows = "5", @cols = "10", @style = "resize:none", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.V_ReasonForAppeal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.V_AppropriateCharge, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.V_AppropriateCharge, new { htmlAttributes = new { @class = "form-control", onkeypress = "return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46", @type = "number", @disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.V_AppropriateCharge, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+    else if (Model.AppealType == "Overtime")
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.O_Datetime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.O_Datetime, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Driver", new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("Drivers", null, htmlAttributes: new { @class = "form-control", id = "DriversDD", @disabled = "disabled" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BeatData, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("Beat", null, htmlAttributes: new { @class = "form-control", id = "BeatDD", @disabled = "disabled" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.O_CallSign, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("Callsign", null, htmlAttributes: new { @class = "form-control", id = "CalsignDD", @disabled = "disabled" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.O_BlocksInitGranted, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("BlocksInvoiced", null, htmlAttributes: new { @class = "form-control", id = "BlocksInvoiced", @disabled = "disabled" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.O_NumOfBlocks, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.DropDownList("BlocksAppealed", null, htmlAttributes: new { @class = "form-control", id = "BlocksAppealed", @disabled = "disabled" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.O_CHPOTNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.O_CHPOTNumber, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.O_Detail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.O_Detail, new { @class = "form-control", @rows = "6", @cols = "10", @style = "resize:none", @disabled = "disabled" })
+            </div>
+        </div>
+    }
+    else if (Model.AppealType == "Invoice")
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.I_EventDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.I_EventDate, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.I_InvoiceReason, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.I_InvoiceReason, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.I_AppealReason, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.I_AppealReason, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.I_InvoiceDeduction, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.I_InvoiceDeduction, new { htmlAttributes = new { @class = "form-control", onkeypress = "return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46", @type = "number", @disabled = "disabled" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.I_AppealDeduction, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.I_AppealDeduction, new { htmlAttributes = new { @class = "form-control", onkeypress = "return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46", @type = "number", @disabled = "disabled" } })
+            </div>
+        </div>
+    }
+ 
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#AppealStatus').change(function (e) {
+                $('#AppealStatu_AppealStatusID').val($('#AppealStatus').find(':selected').val());
+                $('#AppealStatu_AppealStatus').val($('#AppealStatus').find(':selected').text());               
+            });
+        });
+    </script>
+}

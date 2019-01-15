@@ -1,0 +1,39 @@
+﻿@model IEnumerable<FSP.Web.Junk.Models.IncidentType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IncidentTypeCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IncidentType1)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncidentTypeCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncidentType1)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IncidentTypeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IncidentTypeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IncidentTypeID })
+        </td>
+    </tr>
+}
+
+</table>

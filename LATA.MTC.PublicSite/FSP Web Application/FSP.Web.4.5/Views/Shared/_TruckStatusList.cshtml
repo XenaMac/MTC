@@ -1,0 +1,108 @@
+﻿<div class="row">
+    <div class="span12">
+        <legend>Available Trucks (<span data-bind="text: availableTrucks().length"></span>)</legend>
+        <table id="availableTable" class="table table-condensed table-bordered table-striped tablesorter">
+            <thead>
+                <tr data-bind="foreach: columns">
+                    <th data-bind="visible: isVisible">
+                        <span data-bind="click: sort, text: name()"></span>
+                        <img src='@Url.Content("~/Images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                        <img src='@Url.Content("~/Images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: availableTrucks" style="cursor: pointer">
+                <tr data-bind="foreach: columns, click: toggleTruckSelection1, attr: { id: 'avail' + id }" class="gridRow">
+                    <td data-bind="visible: isVisible" class="span2">
+                        <span data-bind="visible: value() === 'beatNumber', text: $parent.beatNumber"></span>
+                        <span data-bind="visible: value() === 'truckNumber', text: $parent.truckNumber"></span>
+                        <span data-bind="visible: value() === 'driverName', text: $parent.driverName"></span>
+                        <span data-bind="visible: value() === 'headingText', text: $parent.headingText"></span>
+                        <span data-bind="visible: value() === 'location', text: $parent.location"></span>
+                        <img data-bind="visible: value() === 'status', attr: { src: $parent.vehicleStateIconUrl }" alt="" />
+                        <span data-bind="visible: value() === 'status', text: $parent.vehicleState"></span>
+                        <span data-bind="visible: value() === 'lastStatusChanged', text: $parent.lastStatusChanged"></span>
+                        <span data-bind="visible: value() === 'speed', text: $parent.speed"></span>
+                        <span data-bind="visible: value() === 'speedingValue', text: $parent.speedingValue"></span>
+                        <span data-bind="visible: value() === 'speedingTime', text: $parent.speedingTime"></span>
+                        <span data-bind="visible: value() === 'contractorName', text: $parent.contractorName"></span>
+                        <span data-bind="visible: value() === 'outOfBoundsMessage', text: $parent.outOfBoundsMessage"></span>
+                        <span data-bind="visible: value() === 'outOfBoundsTime', text: $parent.outOfBoundsTime"></span>
+                        <span data-bind="visible: value() === 'lastMessage', text: $parent.lastMessage"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="span12">
+        <legend>Logged On (<span data-bind="text: loggedOnTrucks().length"></span>)</legend>
+        <table id="loggedOnTable" class="table table-condensed table-bordered table-striped tablesorter">
+            <thead>
+                <tr data-bind="foreach: columns">
+                    <th data-bind="visible: isVisible">
+                        <span data-bind="click: sort, text: name()"></span>
+                        <img src='@Url.Content("~/Images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                        <img src='@Url.Content("~/Images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: loggedOnTrucks" style="cursor: pointer">
+                <tr data-bind="foreach: columns, click: toggleTruckSelection2, attr: { id: 'loggedOn' + id }" class="gridRow">
+                    <td data-bind="visible: isVisible" class="span2">
+                        <span data-bind="visible: value() === 'beatNumber', text: $parent.beatNumber"></span>
+                        <span data-bind="visible: value() === 'truckNumber', text: $parent.truckNumber"></span>
+                        <span data-bind="visible: value() === 'driverName', text: $parent.driverName"></span>
+                        <span data-bind="visible: value() === 'headingText', text: $parent.headingText"></span>
+                        <span data-bind="visible: value() === 'location', text: $parent.location"></span>
+                        <img data-bind="visible: value() === 'status', attr: { src: $parent.vehicleStateIconUrl }" alt="" />
+                        <span data-bind="visible: value() === 'status', text: $parent.vehicleState"></span>
+                        <span data-bind="visible: value() === 'lastStatusChanged', text: $parent.lastStatusChanged"></span>
+                        <span data-bind="visible: value() === 'speed', text: $parent.speed"></span>
+                        <span data-bind="visible: value() === 'speedingValue', text: $parent.speedingValue"></span>
+                        <span data-bind="visible: value() === 'speedingTime', text: $parent.speedingTime"></span>
+                        <span data-bind="visible: value() === 'contractorName', text: $parent.contractorName"></span>
+                        <span data-bind="visible: value() === 'outOfBoundsMessage', text: $parent.outOfBoundsMessage"></span>
+                        <span data-bind="visible: value() === 'outOfBoundsTime', text: $parent.outOfBoundsTime"></span>
+                        <span data-bind="visible: value() === 'lastMessage', text: $parent.lastMessage"></span>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="span12">
+        <legend>Not Logged On (<span data-bind="text: notLoggedOnTrucks().length"></span>)</legend>
+        <table id="notLoggedOnTable" class="table table-condensed table-bordered table-striped tablesorter">
+            <thead>
+                <tr data-bind="foreach: columns">
+                    <th data-bind="visible: isVisible">
+                        <span data-bind="click: sort, text: name()"></span>
+                        <img src='@Url.Content("~/Images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                        <img src='@Url.Content("~/Images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: notLoggedOnTrucks" style="cursor: pointer">
+                <tr data-bind="foreach: columns, attr: { id: 'notLoggedOn' + id }" class="gridRow">
+                    <td data-bind="visible: isVisible" class="span2">
+                        <span data-bind="visible: value() === 'beatNumber', text: $parent.beatNumber"></span>
+                        <span data-bind="visible: value() === 'truckNumber', text: $parent.truckNumber"></span>
+                        <span data-bind="visible: value() === 'driverName', text: $parent.driverName"></span>
+                        <span data-bind="visible: value() === 'headingText', text: $parent.headingText"></span>
+                        <span data-bind="visible: value() === 'location', text: $parent.location"></span>
+                        <img data-bind="visible: value() === 'status', attr: { src: $parent.vehicleStateIconUrl }" alt="" />
+                        <span data-bind="visible: value() === 'status', text: $parent.vehicleState"></span>
+                        <span data-bind="visible: value() === 'lastStatusChanged', text: $parent.lastStatusChanged"></span>
+                        <span data-bind="visible: value() === 'speed', text: $parent.speed"></span>
+                        <span data-bind="visible: value() === 'speedingValue', text: $parent.speedingValue"></span>
+                        <span data-bind="visible: value() === 'speedingTime', text: $parent.speedingTime"></span>
+                        <span data-bind="visible: value() === 'contractorName', text: $parent.contractorName"></span>
+                        <span data-bind="visible: value() === 'outOfBoundsMessage', text: $parent.outOfBoundsMessage"></span>
+                        <span data-bind="visible: value() === 'outOfBoundsTime', text: $parent.outOfBoundsTime"></span>
+                        <span data-bind="visible: value() === 'lastMessage', text: $parent.lastMessage"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

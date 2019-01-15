@@ -1,0 +1,35 @@
+﻿@model FSP.Domain.Model.YearlyCalendar
+@{
+    ViewBag.Title = "Create";
+    
+}
+<div>
+    @Html.ActionLink("Back to Yearly Calendar", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Day Name</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dayName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dayName)
+            @Html.ValidationMessageFor(model => model.dayName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,20 @@
+﻿@model FSP.Domain.Model.Contract
+
+@{
+    ViewBag.Title = "Delete " + @Model.AgreementNumber;
+    
+}
+
+<h2>Delete "@Model.AgreementNumber"</h2>
+
+<h3>Are you sure you want to delete this contract?</h3>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">
+                Delete</button>
+        </div>
+    </p>
+}

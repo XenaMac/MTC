@@ -1,0 +1,29 @@
+﻿@model FSP.Domain.Model.Freeway
+@{
+    ViewBag.Title = "Edit " + @Model.FreewayName;
+    
+}
+<div>
+    @Html.ActionLink("Back to Freeways", "Index")
+</div>
+<h2>Edit "@Model.FreewayName"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        @Html.HiddenFor(model => model.FreewayID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FreewayName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FreewayName)
+            @Html.ValidationMessageFor(model => model.FreewayName)
+        </div>        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

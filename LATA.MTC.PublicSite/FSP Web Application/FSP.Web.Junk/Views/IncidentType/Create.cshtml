@@ -1,0 +1,41 @@
+﻿@model FSP.Web.Junk.Models.IncidentType
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>IncidentType</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IncidentTypeCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IncidentTypeCode)
+            @Html.ValidationMessageFor(model => model.IncidentTypeCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IncidentType1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IncidentType1)
+            @Html.ValidationMessageFor(model => model.IncidentType1)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

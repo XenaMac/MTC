@@ -1,0 +1,134 @@
+﻿@model MTC.FSP.Web.Models.Contractor
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Contractor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contractor Company Name <i class="fa fa-exclamation" title="required"></i></label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ContractCompanyName, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.ContractCompanyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contact Name <i class="fa fa-exclamation" title="required"></i></label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contractor Type <i class="fa fa-exclamation" title="required"></i></label>
+            <div class="col-md-10">
+                @Html.DropDownList("ContractorTypeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ContractCompanyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Email <i class="fa fa-exclamation" title="required"></i></label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">MCP Number <i class="fa fa-exclamation" title="required"></i></label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.MCPNumber, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.MCPNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">MCP Expiration <i class="fa fa-exclamation" title="required"></i></label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.MCPExpiration, new { @class = "form-control datepicker", required = "required" })
+                @Html.ValidationMessageFor(model => model.MCPExpiration, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Office Phone <i class="fa fa-exclamation" title="required"></i></label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.OfficeTelephone, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.OfficeTelephone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Address <i class="fa fa-exclamation" title="required"></i></label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Address, new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Zip, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+                     
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Comments, new { @class = "form-control", rows = "5" })
+                @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a href="~/Contractors/Index" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+
+    <script>
+        $(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
+
+}

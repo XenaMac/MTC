@@ -1,0 +1,86 @@
+#!/bin/sh
+# IPTables Firewall script
+
+
+#Clear all Built-in Chains
+iptables -F INPUT
+iptables -F OUTPUT
+iptables -F FORWARD
+iptables -t nat -F
+
+
+#Block all ports for input traffic
+iptables -P INPUT DROP
+#block Output Traffic
+iptables -P OUTPUT ACCEPT
+#block forward Traffic
+iptables -P FORWARD DROP
+
+#Allow all traffic to the loop back interface
+iptables -A INPUT -i lo -j ACCEPT
+
+#Allow Only incoming connection related to Outgoing connection
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+#allow inbound ICMP requests
+iptables -A INPUT -p icmp --icmp-type 8 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -p icmp --icmp-type 0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+#custom local service rules
+iptables -I INPUT -p tcp -s 0.0.0.0/0 --dport 22 -j ACCEPT
+iptables -I INPUT -p tcp -s 0.0.0.0/0 -i eth0 --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp -s 0.0.0.0/0 -i eth1 --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp -s 0.0.0.0/0 -i wlan0 --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp -s 0.0.0.0/0 -i ppp0 --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp -s 10.234.0.0/16 --dport 80 -j ACCEPT
+iptables -I INPUT -p tcp -s 0.0.0.0/0 -i eth0 --dport 1450 -j ACCEPT
+iptables -I INPUT -p tcp -s 0.0.0.0/0 -i eth1 --dport 1450 -j ACCEPT
+iptables -I INPUT -p tcp -s 0.0.0.0/0 -i wlan0 --dport 1450 -j ACCEPT
+iptables -I INPUT -p tcp -s 127.0.0.1/32 --dport 5002 -j ACCEPT
+iptables -I INPUT -p udp -s 0.0.0.0/0 -i eth0 --dport 53 -j ACCEPT
+iptables -I INPUT -p udp -s 0.0.0.0/0 -i eth1 --dport 53 -j ACCEPT
+iptables -I INPUT -p udp -s 0.0.0.0/0 -i wlan0 --dport 53 -j ACCEPT
+iptables -I INPUT -p udp -s 0.0.0.0/0 -i eth0 --dport 67 -j ACCEPT
+iptables -I INPUT -p udp -s 0.0.0.0/0 -i eth1 --dport 67 -j ACCEPT
+iptables -I INPUT -p udp -s 0.0.0.0/0 -i wlan0 --dport 67 -j ACCEPT
+iptables -I INPUT -p udp -s 0.0.0.0/0 -i ppp0 --dport 9018 -j ACCEPT
+
+#custom port forward service rules
+
+#custom automatic NAT service rules (if NAT option is enabled for LAN interface)
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE; iptables -A FORWARD -i eth1 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -i wlan0 -o eth1 -j ACCEPT
+iptables -t nat -A POSTROUTING -o ppp0 -j MASQUERADE; iptables -A FORWARD -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE; iptables -A FORWARD -i eth1 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -i eth0 -o eth1 -j ACCEPT
+iptables -t nat -A POSTROUTING -o ppp0 -j MASQUERADE; iptables -A FORWARD -i ppp0 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -i eth0 -o ppp0 -j ACCEPT
+
+#custom NAT service rules
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 38.124.164.211/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 38.124.164.211/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 38.124.164.211/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 38.122.0.60/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 38.122.0.60/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 38.122.0.60/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 198.102.45.2/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 198.102.45.2/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 198.102.45.2/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 172.56.8.34/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 172.56.8.34/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 172.56.8.34/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 216.137.43.18/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 216.137.43.18/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 216.137.43.18/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 67.192.39.83/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 67.192.39.83/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 67.192.39.83/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 127.0.0.1/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 127.0.0.1/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 127.0.0.1/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 173.194.64.139/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 173.194.64.139/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 173.194.64.139/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 174.47.234.52/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 174.47.234.52/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 174.47.234.52/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 198.41.208.26/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 198.41.208.26/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 198.41.208.26/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 204.0.5.18/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 204.0.5.18/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 204.0.5.18/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 54.192.204.205/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 54.192.204.205/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 54.192.204.205/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 54.88.79.245/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 54.88.79.245/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 54.88.79.245/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 173.194.77.103/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 173.194.77.103/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 173.194.77.103/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 54.192.205.174/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 54.192.205.174/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 54.192.205.174/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 64.233.169.106/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 64.233.169.106/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 64.233.169.106/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 54.230.207.246/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 54.230.207.246/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 54.230.207.246/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 174.47.234.50/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 174.47.234.50/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 174.47.234.50/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 50.18.109.000/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 50.18.109.000/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 50.18.109.000/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 66.220.156.0/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 66.220.156.0/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 66.220.156.0/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 168.145.114.0/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 168.145.114.0/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 168.145.114.0/24 -i wlan0 -o ppp0 -j ACCEPT
+iptables -t nat -A POSTROUTING -p all -s 0.0.0.0/0 -d 173.194.115.0/24 -o ppp0 -j MASQUERADE; iptables -A FORWARD -p all -s 173.194.115.0/24 -d 0.0.0.0/0 -i ppp0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT; iptables -A FORWARD -p all -s 0.0.0.0/0 -d 173.194.115.0/24 -i wlan0 -o ppp0 -j ACCEPT
+
+#custom rules
+
+#allow fowarding if any masquerade is defined
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+#source a custom firewall script
+source /etc/init.d/firewall_cust 2> /dev/null

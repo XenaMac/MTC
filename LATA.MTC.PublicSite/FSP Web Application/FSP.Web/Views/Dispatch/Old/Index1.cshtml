@@ -1,0 +1,337 @@
+﻿@model FSP.Web.ViewModels.DispatchViewModel
+
+@{
+    ViewBag.Title = "LATATrax | Dispatch";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.dataTables.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/knockout-2.1.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/knockout.mapping-latest.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $.extend($.fn.dataTableExt.oStdClasses, {
+            "sWrapper": "dataTables_wrapper form-inline"
+        });
+     
+        var dispatchTable = $('#dispatchTable').dataTable({
+            "sDom": '<"clear"><"top"fi>rt<"bottom"plR><"clear">',          
+            "oLanguage": {
+                "oPaginate": {
+                    "sPrevious": "‹",
+                    "sNext": "›"
+                }
+            },
+            "aaSorting": [[0, "desc"]],
+            "sPaginationType": "full_numbers",
+            //"sPaginationType": "bootstrap",
+            "iDisplayLength": 15,
+            "bStateSave": true
+        });
+
+        //knockoutjs
+
+        try {
+            //get the MVC model
+            var html =  @(Html.Raw(Json.Encode(Model)));
+             
+            //use ko plugin mapping to map to mvc model
+            var viewModel = ko.mapping.fromJS(html);
+
+            //selected
+            viewModel.selectedDispatch = ko.observable(html.Dispatchs[0]);
+
+            viewModel.setSelectedDispatch = function(dispatch){
+
+                //alert(dispatch);
+                viewModel.selectedDispatch(dispatch);
+                $("#detailsModal").modal('show');
+            };
+
+       
+            ko.applyBindings(viewModel);
+
+        } catch (e) {
+            alert('Knockoutjs mapping unsuccessful: ' + e);
+        }
+
+    });
+
+
+
+</script>
+
+<h2>Dispatch</h2>
+
+<div class="table-wrapper">
+    @*class="table table-condensed table-bordered table-striped tablesorter"*@
+    <table id="dispatchTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().BeatNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().TruckNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().ContractorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().DriverName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().ServiceDate)
+                </th>
+                 <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().BeatStartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().LastUpdateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().Alarms)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().Freeway)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().Direction)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().LastLocation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().AssitDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().IncidentCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().ServiceCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().VehicleDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().VehicleLicensePlateNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dispatchs.FirstOrDefault().TowLocation)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Dispatchs)
+            {
+                <tr data-bind="click: $root.setSelectedDispatch">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BeatNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TruckNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContractorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DriverName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServiceDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BeatStartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.LastUpdateTime)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Alarms)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Freeway)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direction)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssitDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IncidentCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServiceCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VehicleDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VehicleLicensePlateNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TowLocation)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@*details*@
+<div class="modal hide fade" id="detailsModal">
+
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">
+            ×</button>
+        <h1>
+            <span data-bind="text: selectedDispatch().BeatNumber"></span></h1>
+    </div>
+    <div class="modal-body">
+        @* <div class="row-fluid">
+            <div class="span9">
+                <table width="100%">
+                    <tr>
+                        <td>Mile Marker: </td>
+                        <td><b><span data-bind="text: selectedLmt().mileMarker()"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td>Speed: </td>
+                        <td><b><span data-bind="text: selectedLmt().speed()"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td>Next Station: </td>
+                        <td><b><span data-bind="text: selectedLmt().nextStation()"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td>Delay: </td>
+                        <td><b><span data-bind="text: selectedLmt().delay()"></span>&nbsp;<span style="color: red" data-bind="text: selectedLmt().delayReason()"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number: </td>
+                        <td><b><span data-bind="text: selectedLmt().phoneNumber()"></span></b></td>
+                    </tr>
+                </table>
+                <hr />
+                <h3>Set New Train Number</h3>
+                <form data-bind="submit: setNewTrainNumber ">
+                    <table width="100%">
+                        <tr>
+                            <td>Select Coridor</td>
+                            <td>
+                                <select data-bind="options: corridors, optionsValue: 'corridorId', optionsText:'corridorName', optionsCaption: 'Select...', value: newTrainNumberCorridorId"></select></td>
+                        </tr>
+                        <tr>
+                            <td>Train Number</td>
+                            <td>
+                                <input type="text" data-bind="value: newTrainNumber, valueUpdate:'afterkeydown'" /></td>
+                        </tr>
+                        <tr>
+                            <td>Train Type</td>
+                            <td>
+                                <select data-bind="options: trainTypes, value: newTrainNumberTrainType"></select></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" class="btn btn-info" value="Update" data-bind="enable: newTrainNumber().length" />
+                            </td>
+                        </tr>
+                    </table>
+
+                </form>
+
+            </div>
+        </div>*@
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+
+</div>
+
+
+@*details*@
+<div class="modal hide fade" id="detailsModal">
+
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">
+            ×</button>
+        <h1>
+            <span data-bind="text: selectedDispatch().BeatNumber"></span></h1>
+    </div>
+    <div class="modal-body">
+        @* <div class="row-fluid">
+            <div class="span9">
+                <table width="100%">
+                    <tr>
+                        <td>Mile Marker: </td>
+                        <td><b><span data-bind="text: selectedLmt().mileMarker()"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td>Speed: </td>
+                        <td><b><span data-bind="text: selectedLmt().speed()"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td>Next Station: </td>
+                        <td><b><span data-bind="text: selectedLmt().nextStation()"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td>Delay: </td>
+                        <td><b><span data-bind="text: selectedLmt().delay()"></span>&nbsp;<span style="color: red" data-bind="text: selectedLmt().delayReason()"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number: </td>
+                        <td><b><span data-bind="text: selectedLmt().phoneNumber()"></span></b></td>
+                    </tr>
+                </table>
+                <hr />
+                <h3>Set New Train Number</h3>
+                <form data-bind="submit: setNewTrainNumber ">
+                    <table width="100%">
+                        <tr>
+                            <td>Select Coridor</td>
+                            <td>
+                                <select data-bind="options: corridors, optionsValue: 'corridorId', optionsText:'corridorName', optionsCaption: 'Select...', value: newTrainNumberCorridorId"></select></td>
+                        </tr>
+                        <tr>
+                            <td>Train Number</td>
+                            <td>
+                                <input type="text" data-bind="value: newTrainNumber, valueUpdate:'afterkeydown'" /></td>
+                        </tr>
+                        <tr>
+                            <td>Train Type</td>
+                            <td>
+                                <select data-bind="options: trainTypes, value: newTrainNumberTrainType"></select></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" class="btn btn-info" value="Update" data-bind="enable: newTrainNumber().length" />
+                            </td>
+                        </tr>
+                    </table>
+
+                </form>
+
+            </div>
+        </div>*@
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+
+
+</div>

@@ -1,0 +1,78 @@
+﻿@model FSP.Domain.Model.vDropZone
+@{
+    ViewBag.Title = "Edit " + @Model.DropZoneNumber;
+    
+}
+<div>
+    @Html.ActionLink("Back to Freeways", "Index")
+</div>
+<h2>Edit "@Model.DropZoneNumber"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        @Html.HiddenFor(model => model.DropZoneID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DropZoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DropZoneNumber)
+            @Html.ValidationMessageFor(model => model.DropZoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Location)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Location)
+            @Html.ValidationMessageFor(model => model.Location)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DropZoneDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DropZoneDescription)
+            @Html.ValidationMessageFor(model => model.DropZoneDescription)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PDPhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PDPhoneNumber)
+            @Html.ValidationMessageFor(model => model.PDPhoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Capacity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Capacity)
+            @Html.ValidationMessageFor(model => model.Capacity)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comments)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comments)
+            @Html.ValidationMessageFor(model => model.Comments)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Restrictions)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Restrictions)
+            @Html.ValidationMessageFor(model => model.Restrictions)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

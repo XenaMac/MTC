@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="fsp" Class="FSPDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=38.124.164.211\octa,5815;Initial Catalog=fsp;User ID=sa" SettingsObjectName="FSP.Domain.Properties.Settings" SettingsPropertyName="fspConnectionString3" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Assists" Member="Assists">
+    <Type Name="Assist">
+      <Column Name="AssistID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AssistType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IncidentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceTypeID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DropZoneID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Make" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Color" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="LicensePlate" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StartOD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EndOD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TowLocationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Tip" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TipDetail" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerLastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="IsMDC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="[1097]" Member="_1097" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[1098]" Member="_1098" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LogNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BeatSegmentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="ServiceType_Assist" Member="ServiceType" ThisKey="ServiceTypeID" OtherKey="ServiceTypeID" Type="ServiceType" IsForeignKey="true" />
+      <Association Name="TowLocation_Assist" Member="TowLocation" ThisKey="TowLocationID" OtherKey="TowLocationID" Type="TowLocation" IsForeignKey="true" />
+      <Association Name="VehicleType_Assist" Member="VehicleType" ThisKey="VehicleTypeID" OtherKey="VehicleTypeID" Type="VehicleType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Weblinks" Member="Weblinks">
+    <Type Name="Weblink">
+      <Column Name="WeblinkID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="URL" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BeatAlarms" Member="BeatAlarms">
+    <Type Name="BeatAlarm">
+      <Column Name="BeatAlarmsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BeatScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="MaxDistanceFromBeat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MaxTimeOffBeat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BeatBeatSegments" Member="BeatBeatSegments">
+    <Type Name="BeatBeatSegment">
+      <Column Name="BeatBeatSegmentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BeatSegmentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BeatsFreeways" Member="BeatsFreeways">
+    <Type Name="BeatsFreeway">
+      <Column Name="BeatFreewayID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FreewayID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Freeway_BeatsFreeway" Member="Freeway" ThisKey="FreewayID" OtherKey="FreewayID" Type="Freeway" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Calendars" Member="Calendars">
+    <Type Name="Calendar">
+      <Column Name="CalendarID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CalendarName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CalendarDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="BeatScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DriverDailySchedule" Member="DriverDailySchedules">
+    <Type Name="DriverDailySchedule">
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeatScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Driver_DriverDailySchedule" Member="Driver" ThisKey="DriverID" OtherKey="DriverID" Type="Driver" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DriverHistory" Member="DriverHistories">
+    <Type Name="DriverHistory">
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FSPIDNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProgramStartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TrainingCompletionDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DOB" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LicenseNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="LicenseExpirationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DL64ExpirationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="MedicalCardExpirationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LassPullNoticeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DateAdded" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="UDF" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ContractorEndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ProgramEndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DriverStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Freeways" Member="Freeways">
+    <Type Name="Freeway">
+      <Column Name="FreewayID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FreewayName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Freeway_BeatsFreeway" Member="BeatsFreeways" ThisKey="FreewayID" OtherKey="FreewayID" Type="BeatsFreeway" />
+      <Association Name="Freeway_Incident" Member="Incidents" ThisKey="FreewayID" OtherKey="FreewayID" Type="Incident" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Incidents" Member="Incidents">
+    <Type Name="Incident">
+      <Column Name="IncidentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FleetVehicleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BeatSegmentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="DateStamp" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="IncidentNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DispatchTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerWaitTime" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Direction" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="VehiclePositionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IncidentTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TrafficSpeedID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FreewayID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Freeway_Incident" Member="Freeway" ThisKey="FreewayID" OtherKey="FreewayID" Type="Freeway" IsForeignKey="true" />
+      <Association Name="IncidentType_Incident" Member="IncidentType" ThisKey="IncidentTypeID" OtherKey="IncidentTypeID" Type="IncidentType" IsForeignKey="true" />
+      <Association Name="Location_Incident" Member="Location" ThisKey="LocationID" OtherKey="LocationID" Type="Location" IsForeignKey="true" />
+      <Association Name="TrafficSpeed_Incident" Member="TrafficSpeed" ThisKey="TrafficSpeedID" OtherKey="TrafficSpeedID" Type="TrafficSpeed" IsForeignKey="true" />
+      <Association Name="VehiclePosition_Incident" Member="VehiclePosition" ThisKey="VehiclePositionID" OtherKey="VehiclePositionID" Type="VehiclePosition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IncidentTypes" Member="IncidentTypes">
+    <Type Name="IncidentType">
+      <Column Name="IncidentTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IncidentTypeCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IncidentType" Member="IncidentType1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="IncidentType_Incident" Member="Incidents" ThisKey="IncidentTypeID" OtherKey="IncidentTypeID" Type="Incident" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InsuranceCarriers" Member="InsuranceCarriers">
+    <Type Name="InsuranceCarrier">
+      <Column Name="InsuranceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CarrierName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="InsurancePolicyNumber" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpirationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="PolicyName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Fax" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="InsuranceCarrier_ContractorInsurance" Member="ContractorInsurances" ThisKey="InsuranceID" OtherKey="InsuranceID" Type="ContractorInsurance" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InteractionTypes" Member="InteractionTypes">
+    <Type Name="InteractionType">
+      <Column Name="InteractionTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="InteractionType" Member="InteractionType1" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Association Name="InteractionType_DriverInteraction" Member="DriverInteractions" ThisKey="InteractionTypeID" OtherKey="InteractionTypeID" Type="DriverInteraction" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Locations" Member="Locations">
+    <Type Name="Location">
+      <Column Name="LocationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LocationCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Location" Member="Location1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Location_Incident" Member="Incidents" ThisKey="LocationID" OtherKey="LocationID" Type="Incident" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ServiceTypes" Member="ServiceTypes">
+    <Type Name="ServiceType">
+      <Column Name="ServiceTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ServiceTypeCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceType" Member="ServiceType1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="ServiceType_Assist" Member="Assists" ThisKey="ServiceTypeID" OtherKey="ServiceTypeID" Type="Assist" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ShiftSchedules" Member="ShiftSchedules">
+    <Type Name="ShiftSchedule">
+      <Column Name="BeatScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TowLocations" Member="TowLocations">
+    <Type Name="TowLocation">
+      <Column Name="TowLocationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TowLocationCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TowLocation" Member="TowLocation1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="TowLocation_Assist" Member="Assists" ThisKey="TowLocationID" OtherKey="TowLocationID" Type="Assist" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrafficSpeeds" Member="TrafficSpeeds">
+    <Type Name="TrafficSpeed">
+      <Column Name="TrafficSpeedID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrafficSpeedCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TrafficSpeed" Member="TrafficSpeed1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="TrafficSpeed_Incident" Member="Incidents" ThisKey="TrafficSpeedID" OtherKey="TrafficSpeedID" Type="Incident" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VehiclePositions" Member="VehiclePositions">
+    <Type Name="VehiclePosition">
+      <Column Name="VehiclePositionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VehiclePositionCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="VehiclePosition" Member="VehiclePosition1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="VehiclePosition_Incident" Member="Incidents" ThisKey="VehiclePositionID" OtherKey="VehiclePositionID" Type="Incident" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VehicleTypes" Member="VehicleTypes">
+    <Type Name="VehicleType">
+      <Column Name="VehicleTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VehicleTypeCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleType" Member="VehicleType1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="VehicleType_Assist" Member="Assists" ThisKey="VehicleTypeID" OtherKey="VehicleTypeID" Type="Assist" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vGPSTrackingLog" Member="vGPSTrackingLogs">
+    <Type Name="vGPSTrackingLog">
+      <Column Name="GPSID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Direction" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleStatus" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="timeStamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BeatSegmentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Speed" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Alarms" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SpeedingAlarm" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SpeedingValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SpeedingTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SpeedingLocation" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OutOfBoundsAlarm" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OutOfBoundsMessage" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vBeatSegments" Member="vBeatSegments">
+    <Type Name="vBeatSegment">
+      <Column Name="BeatSegmentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BeatSegmentDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CHPDescription" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="PIMSID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BeatSegmentExtent" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BeatSegmentNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vGPSTracking" Member="vGPSTrackings">
+    <Type Name="vGPSTracking">
+      <Column Name="GPSID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Direction" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleStatus" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="timeStamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BeatSegmentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Speed" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Alarms" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SpeedingAlarm" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SpeedingValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SpeedingTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SpeedingLocation" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OutOfBoundsAlarm" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="OutOfBoundsMessage" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles" Member="Roles">
+    <Type Name="Role">
+      <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoleName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="RoleDescription" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="Role_User" Member="Users" ThisKey="RoleID" OtherKey="RoleID" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Groups" Member="Groups">
+    <Type Name="Group">
+      <Column Name="GroupID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GroupName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GroupCity" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GroupState" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="GroupAddress" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="GroupZip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="GroupPhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="GroupContactName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ContractorInsurance" Member="ContractorInsurances">
+    <Type Name="ContractorInsurance">
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="InsuranceID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="InsuranceCarrier_ContractorInsurance" Member="InsuranceCarrier" ThisKey="InsuranceID" OtherKey="InsuranceID" Type="InsuranceCarrier" IsForeignKey="true" />
+      <Association Name="Contractor_ContractorInsurance" Member="Contractor" ThisKey="ContractorID" OtherKey="ContractorID" Type="Contractor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InspectionTypes" Member="InspectionTypes">
+    <Type Name="InspectionType">
+      <Column Name="InspectionTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="InspectionType" Member="InspectionType1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InspectionTypeCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="InspectionType_CHPInspection" Member="CHPInspections" ThisKey="InspectionTypeID" OtherKey="InspectionTypeID" Type="CHPInspection" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHPOfficer" Member="CHPOfficers">
+    <Type Name="CHPOfficer">
+      <Column Name="BadgeID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OfficerLastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OfficerFirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="CHPOfficer_CHPInspection" Member="CHPInspections" ThisKey="BadgeID" OtherKey="BadgeID" Type="CHPInspection" />
+      <Association Name="CHPOfficer_CHPInspection1" Member="CHPInspections1" ThisKey="BadgeID" OtherKey="BadgeID" Type="CHPInspection" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHPInspections" Member="CHPInspections">
+    <Type Name="CHPInspection">
+      <Column Name="InspectionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FleetVehicleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BadgeID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InspectionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="InspectionTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="InspectionNotes" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="CHPOfficer_CHPInspection" Member="CHPOfficer" ThisKey="BadgeID" OtherKey="BadgeID" Type="CHPOfficer" IsForeignKey="true" />
+      <Association Name="CHPOfficer_CHPInspection1" Member="CHPOfficer1" ThisKey="BadgeID" OtherKey="BadgeID" Type="CHPOfficer" IsForeignKey="true" />
+      <Association Name="InspectionType_CHPInspection" Member="InspectionType" ThisKey="InspectionTypeID" OtherKey="InspectionTypeID" Type="InspectionType" IsForeignKey="true" />
+      <Association Name="Contractor_CHPInspection" Member="Contractor" ThisKey="ContractorID" OtherKey="ContractorID" Type="Contractor" IsForeignKey="true" />
+      <Association Name="FleetVehicle_CHPInspection" Member="FleetVehicle" ThisKey="FleetVehicleID" OtherKey="FleetVehicleID" Type="FleetVehicle" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vCallBoxes" Member="vCallBoxes">
+    <Type Name="vCallBox">
+      <Column Name="CallBoxID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TelephoneNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Location" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FreewayID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SiteType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SignNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ContractorManagers" Member="ContractorManagers">
+    <Type Name="ContractorManager">
+      <Column Name="ContractorManagerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CellPhone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(75) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Contractor_ContractorManager" Member="Contractor" ThisKey="ContractorID" OtherKey="ContractorID" Type="Contractor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contractors" Member="Contractors">
+    <Type Name="Contractor">
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="OfficeTelephone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="MCPNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MCPExpiration" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ContractCompanyName" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Contractor_ContractorInsurance" Member="ContractorInsurances" ThisKey="ContractorID" OtherKey="ContractorID" Type="ContractorInsurance" />
+      <Association Name="Contractor_CHPInspection" Member="CHPInspections" ThisKey="ContractorID" OtherKey="ContractorID" Type="CHPInspection" />
+      <Association Name="Contractor_ContractorManager" Member="ContractorManagers" ThisKey="ContractorID" OtherKey="ContractorID" Type="ContractorManager" />
+      <Association Name="Contractor_Contract" Member="Contracts" ThisKey="ContractorID" OtherKey="ContractorID" Type="Contract" />
+      <Association Name="Contractor_Driver" Member="Drivers" ThisKey="ContractorID" OtherKey="ContractorID" Type="Driver" />
+      <Association Name="Contractor_FleetVehicle" Member="FleetVehicles" ThisKey="ContractorID" OtherKey="ContractorID" Type="FleetVehicle" />
+      <Association Name="Contractor_DriverInteraction" Member="DriverInteractions" ThisKey="ContractorID" OtherKey="ContractorID" Type="DriverInteraction" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vBeats" Member="vBeats">
+    <Type Name="vBeat">
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeatDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="BeatExtent" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FreewayID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BeatNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BeatColor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IsTemporary" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LastUpdateBy" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="vBeat_ContractsBeat" Member="ContractsBeats" ThisKey="BeatID" OtherKey="BeatID" Type="ContractsBeat" />
+      <Association Name="BeatBeatSchedule_vBeat" Member="BeatBeatSchedule" ThisKey="BeatID" OtherKey="BeatID" Type="BeatBeatSchedule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vDropZones" Member="vDropZones">
+    <Type Name="vDropZone">
+      <Column Name="DropZoneID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Location" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Restrictions" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="DropZoneNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DropZoneDescription" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PDPhoneNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Capacity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WantsNotification" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="HourlyCost" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastLoginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsApproved" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RoleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Role_User" Member="Role" ThisKey="RoleID" OtherKey="RoleID" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TruckStates" Member="TruckStates">
+    <Type Name="TruckState">
+      <Column Name="TruckStateID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TruckState" Member="TruckState1" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TruckIcon" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ContractsBeats" Member="ContractsBeats">
+    <Type Name="ContractsBeat">
+      <Column Name="ContractID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Contract_ContractsBeat" Member="Contract" ThisKey="ContractID" OtherKey="ContractID" Type="Contract" IsForeignKey="true" />
+      <Association Name="vBeat_ContractsBeat" Member="vBeat" ThisKey="BeatID" OtherKey="BeatID" Type="vBeat" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contracts" Member="Contracts">
+    <Type Name="Contract">
+      <Column Name="ContractID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="MaxObligation" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="AgreementNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Contract_ContractsBeat" Member="ContractsBeats" ThisKey="ContractID" OtherKey="ContractID" Type="ContractsBeat" />
+      <Association Name="Contractor_Contract" Member="Contractor" ThisKey="ContractorID" OtherKey="ContractorID" Type="Contractor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Drivers" Member="Drivers">
+    <Type Name="Driver">
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FSPIDNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProgramStartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TrainingCompletionDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DOB" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LicenseExpirationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DL64ExpirationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="MedicalCardExpirationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LastPullNoticeDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DateAdded" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="UDF" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ContractorEndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ProgramEndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ContractorStartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DL64Number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DriversLicenseNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AddedtoC3Database" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Driver_DriverDailySchedule" Member="DriverDailySchedules" ThisKey="DriverID" OtherKey="DriverID" Type="DriverDailySchedule" />
+      <Association Name="Driver_DriverInteraction" Member="DriverInteractions" ThisKey="DriverID" OtherKey="DriverID" Type="DriverInteraction" />
+      <Association Name="Contractor_Driver" Member="Contractor" ThisKey="ContractorID" OtherKey="ContractorID" Type="Contractor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FleetVehicles" Member="FleetVehicles">
+    <Type Name="FleetVehicle">
+      <Column Name="FleetVehicleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ProgramStartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FleetNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleType" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleYear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleMake" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleModel" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VIN" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LicensePlate" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationExpireDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="InsuranceExpireDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="LastCHPInspection" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="ProgramEndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FAW" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RAW" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RAWR" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GVW" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GVWR" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Wheelbase" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Overhang" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MAXTW" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MAXTWCALCDATE" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FuelType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleNumber" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="IPAddress" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="AgreementNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="FleetVehicle_CHPInspection" Member="CHPInspections" ThisKey="FleetVehicleID" OtherKey="FleetVehicleID" Type="CHPInspection" />
+      <Association Name="Contractor_FleetVehicle" Member="Contractor" ThisKey="ContractorID" OtherKey="ContractorID" Type="Contractor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DriverInteractions" Member="DriverInteractions">
+    <Type Name="DriverInteraction">
+      <Column Name="InteractionID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ContractorID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DriverID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="InteractionTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="InteractionArea" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="InteractionDescription" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="InspectionPassFail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AccidentPreventable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FollowupRequired" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FollowupDescription" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="FollowupDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FollowupCompletionDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FollowupComments" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="CloseDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BadgeID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="InteractionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="VehicleNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="BeatNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Contractor_DriverInteraction" Member="Contractor" ThisKey="ContractorID" OtherKey="ContractorID" Type="Contractor" IsForeignKey="true" />
+      <Association Name="Driver_DriverInteraction" Member="Driver" ThisKey="DriverID" OtherKey="DriverID" Type="Driver" IsForeignKey="true" />
+      <Association Name="InteractionType_DriverInteraction" Member="InteractionType" ThisKey="InteractionTypeID" OtherKey="InteractionTypeID" Type="InteractionType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.YearlyCalendar" Member="YearlyCalendars">
+    <Type Name="YearlyCalendar">
+      <Column Name="DateID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="dayName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vars" Member="Vars">
+    <Type Name="Var">
+      <Column Name="VarID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VarName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VarValue" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BeatBeatSchedules" Member="BeatBeatSchedules">
+    <Type Name="BeatBeatSchedule">
+      <Column Name="BeatBeatScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeatID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BeatScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="BeatBeatSchedule_vBeat" Member="vBeats" ThisKey="BeatID" OtherKey="BeatID" Type="vBeat" />
+      <Association Name="BeatSchedule_BeatBeatSchedule" Member="BeatSchedule" ThisKey="BeatScheduleID" OtherKey="BeatScheduleID" Type="BeatSchedule" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DailyBeatSchedules" Member="DailyBeatSchedules">
+    <Type Name="DailyBeatSchedule">
+      <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RunDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="BeatNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ScheduleName" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="OfficePhone" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CellPhone" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ContractorCompany" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Weekday" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BeatSchedules" Member="BeatSchedules">
+    <Type Name="BeatSchedule">
+      <Column Name="BeatScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ScheduleName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Weekday" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Logon" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="RollOut" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="OnPatrol" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="RollIn" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="LogOff" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BreakDuration" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="BeatSchedule_BeatBeatSchedule" Member="BeatBeatSchedules" ThisKey="BeatScheduleID" OtherKey="BeatScheduleID" Type="BeatBeatSchedule" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AEFrequencies" Member="AEFrequencies">
+    <Type Name="AEFrequency">
+      <Column Name="AEFrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AEFrequencyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AEFrequencyDescription" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="AEFrequency_AERecipient" Member="AERecipients" ThisKey="AEFrequencyID" OtherKey="AEFrequencyID" Type="AERecipient" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AERecipients" Member="AERecipients">
+    <Type Name="AERecipient">
+      <Column Name="AERecipientID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AERecipientEmail" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="AEIsContractor" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AEReportID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AEFrequencyID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="AEContractorID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="AEReportTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="AEFrequency_AERecipient" Member="AEFrequency" ThisKey="AEFrequencyID" OtherKey="AEFrequencyID" Type="AEFrequency" IsForeignKey="true" />
+      <Association Name="AEReport_AERecipient" Member="AEReport" ThisKey="AEReportID" OtherKey="AEReportID" Type="AEReport" IsForeignKey="true" />
+      <Association Name="AEReportType_AERecipient" Member="AEReportType" ThisKey="AEReportTypeID" OtherKey="AEReportTypeID" Type="AEReportType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AEReports" Member="AEReports">
+    <Type Name="AEReport">
+      <Column Name="AEReportID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AEReportName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AEReportDescription" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Association Name="AEReport_AERecipient" Member="AERecipients" ThisKey="AEReportID" OtherKey="AEReportID" Type="AERecipient" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AEReportTypes" Member="AEReportTypes">
+    <Type Name="AEReportType">
+      <Column Name="AEReportTypeID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AEReportTypeName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="AEReportType_AERecipient" Member="AERecipients" ThisKey="AEReportTypeID" OtherKey="AEReportTypeID" Type="AERecipient" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetDailySchedules" Method="GetDailySchedules">
+    <ElementType Name="GetDailySchedulesResult">
+      <Column Name="beatnumber" Type="System.String" DbType="VarChar(51) NOT NULL" CanBeNull="false" />
+      <Column Name="ScheduleName" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ScheduleTimeTable" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Supervisor" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="CellPhone" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ContractCompanyName" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Weekday" Type="System.String" DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetAlarmHistory" Method="GetAlarmHistory" IsComposable="true">
+    <Parameter Name="StartTime" Parameter="startTime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndTime" Parameter="endTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.UpdateExcuse" Method="UpdateExcuse">
+    <Parameter Name="StartTime" Parameter="startTime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="EndTime" Parameter="endTime" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="AlarmType" Parameter="alarmType" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="VehicleID" Parameter="vehicleID" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Comment" Parameter="comment" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="DriverName" Parameter="driverName" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ExcuseTime" Parameter="excuseTime" Type="System.DateTime" DbType="DateTime" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetEarlyRollInReport" Method="GetEarlyRollInReport">
+    <Parameter Name="DateStart" Parameter="dateStart" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DateEnd" Parameter="dateEnd" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="BeatNumber" Parameter="beatNumber" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="DriverLastName" Parameter="driverLastName" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="DriverFirstName" Parameter="driverFirstName" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ContractorID" Parameter="contractorID" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="GetEarlyRollInReportResult">
+      <Column Name="BeatNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[Truck Number]" Member="Truck_Number" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DateStamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Explanation" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="CHPLogNumber" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[Exception Type]" Member="Exception_Type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

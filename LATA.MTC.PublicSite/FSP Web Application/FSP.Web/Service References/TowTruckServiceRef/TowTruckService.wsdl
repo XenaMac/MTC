@@ -1,0 +1,232 @@
+<<<<<<< .mine
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TowTruckService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FPSService" />
+      <xsd:import schemaLocation="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITowTruckService_CurrentTrucks_InputMessage">
+    <wsdl:part name="parameters" element="tns:CurrentTrucks" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_CurrentTrucks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CurrentTrucksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AddTruckAssistRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddTruckAssistRequest" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AddTruckAssistRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddTruckAssistRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearTruckAssistRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearTruckAssistRequest" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearTruckAssistRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearTruckAssistRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetPreloadedData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPreloadedData" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetPreloadedData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPreloadedDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AddIncident_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddIncident" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AddIncident_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddIncidentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetIncidents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIncidents" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetIncidents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIncidentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_FindIncidentByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindIncidentByID" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_FindIncidentByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindIncidentByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearIncident_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearIncident" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearIncident_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearIncidentResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITowTruckService">
+    <wsdl:operation name="CurrentTrucks">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/CurrentTrucks" message="tns:ITowTruckService_CurrentTrucks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/CurrentTrucksResponse" message="tns:ITowTruckService_CurrentTrucks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTruckAssistRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/AddTruckAssistRequest" message="tns:ITowTruckService_AddTruckAssistRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/AddTruckAssistRequestResponse" message="tns:ITowTruckService_AddTruckAssistRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearTruckAssistRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ClearTruckAssistRequest" message="tns:ITowTruckService_ClearTruckAssistRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ClearTruckAssistRequestResponse" message="tns:ITowTruckService_ClearTruckAssistRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPreloadedData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetPreloadedData" message="tns:ITowTruckService_GetPreloadedData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetPreloadedDataResponse" message="tns:ITowTruckService_GetPreloadedData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddIncident">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/AddIncident" message="tns:ITowTruckService_AddIncident_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/AddIncidentResponse" message="tns:ITowTruckService_AddIncident_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIncidents">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetIncidents" message="tns:ITowTruckService_GetIncidents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetIncidentsResponse" message="tns:ITowTruckService_GetIncidents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindIncidentByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/FindIncidentByID" message="tns:ITowTruckService_FindIncidentByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/FindIncidentByIDResponse" message="tns:ITowTruckService_FindIncidentByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearIncident">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ClearIncident" message="tns:ITowTruckService_ClearIncident_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ClearIncidentResponse" message="tns:ITowTruckService_ClearIncident_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ITowTruckService" type="tns:ITowTruckService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CurrentTrucks">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/CurrentTrucks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTruckAssistRequest">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/AddTruckAssistRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearTruckAssistRequest">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ClearTruckAssistRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPreloadedData">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetPreloadedData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddIncident">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/AddIncident" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIncidents">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetIncidents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindIncidentByID">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/FindIncidentByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearIncident">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ClearIncident" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TowTruckService">
+    <wsdl:port name="BasicHttpBinding_ITowTruckService" binding="tns:BasicHttpBinding_ITowTruckService">
+      <soap:address location="http://38.124.164.211:9007/TowTruckService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>=======
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TowTruckService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://amyanderic.no-ip.org:801/TowTruckService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://amyanderic.no-ip.org:801/TowTruckService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://amyanderic.no-ip.org:801/TowTruckService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FPSService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITowTruckService_DoWork_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoWork" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_DoWork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_CurrentTrucks_InputMessage">
+    <wsdl:part name="parameters" element="tns:CurrentTrucks" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_CurrentTrucks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CurrentTrucksResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITowTruckService">
+    <wsdl:operation name="DoWork">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/DoWork" message="tns:ITowTruckService_DoWork_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/DoWorkResponse" message="tns:ITowTruckService_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CurrentTrucks">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/CurrentTrucks" message="tns:ITowTruckService_CurrentTrucks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/CurrentTrucksResponse" message="tns:ITowTruckService_CurrentTrucks_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ITowTruckService" type="tns:ITowTruckService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoWork">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/DoWork" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CurrentTrucks">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/CurrentTrucks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TowTruckService">
+    <wsdl:port name="BasicHttpBinding_ITowTruckService" binding="tns:BasicHttpBinding_ITowTruckService">
+      <soap:address location="http://amyanderic.no-ip.org:801/TowTruckService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>>>>>>>> .r668

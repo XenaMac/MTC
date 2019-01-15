@@ -1,0 +1,31 @@
+﻿@model IEnumerable<FSP.Domain.Model.Freeway>
+@{
+    ViewBag.Title = "Freeways";
+}
+
+<p>
+    @Html.ActionLink("Add Freeway", "Create")
+</p>
+<h2>Freeways</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Freeway Name
+            </th>            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.FreewayName, "Edit", new { id = item.FreewayID })
+                </td>               
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FreewayID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

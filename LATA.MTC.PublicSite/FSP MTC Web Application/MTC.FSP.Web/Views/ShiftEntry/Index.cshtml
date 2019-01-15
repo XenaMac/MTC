@@ -1,0 +1,617 @@
+﻿@{
+    ViewBag.Title = "Shift Entry";
+}
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="shiftEntryController" ng-cloak>
+        <h2>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h2>
+        <br />
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <fieldset class="col-lg-6">
+                    <legend>Driver Information</legend>
+                    <div class="form-group col-lg-4">
+                        <label id="lblDate">Date:</label>
+                        <input type="text" class="form-control" id="Date">
+                    </div>
+                    <div class="form-group col-lg-8">
+                        <label id="lblDriver">Driver:</label>
+                        <select id="Driver"
+                                class="form-control"
+                                ng-model="contractorDriverID"
+                                ng-options="a.Text for a in contractorDrivers track by a.Id"
+                                ng-disabled="isBusyGettingDrivers">
+                            <option value="">-- Select Driver--</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label id="lblBeat">Beat:</label>
+                        <select id="Beats"
+                                class="form-control"
+                                ng-click="getCallSigns(); getFreeways();"
+                                ng-model="beatid"
+                                ng-disabled="isBusyGettingBeats">
+                            <option value="">-- Select  Beat--</option>
+                            <option ng-repeat="obj in Beats" value="{{obj.Id}}">{{obj.Text}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label id="lblCallSign">Call Sign #:</label>
+                        <select id="CallSign" class="form-control" disabled>
+                            <option value="">-- Select  Beat--</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label id="lblTruckNum">Truck Number:</label>
+                        <select id="TruckNum"
+                                class="form-control"
+                                ng-model="truckNum"
+                                ng-options="a.Id as a.Text for a in contractorTrucks"
+                                ng-disabled="isBusyGettingVehicles"
+                                required>
+                            <option value="">-- Select Vehicle--</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset class="col-lg-6">
+                    <legend>Shift Information</legend>
+                    <div class="form-group col-lg-4">
+                        <label id="lbl10-8">10-8 (On Patrol):</label>
+                        <input type="time" class="form-control time_element" id="OnPatrol" placeholder="hh:mm AM/PM" />
+                    </div>
+                    <div class="form-group col-lg-5">
+                        <label id="lblLogOnOd">Log On Odometer:</label>
+                        <input type="number" class="form-control time_element" id="LogOnOd" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label id="lbl10-10">10-10 (Roll In):</label>
+                        <input type="time" class="form-control" id="RollIn" placeholder="hh:mm AM/PM">
+                    </div>
+                    <div class="form-group col-lg-5">
+                        <label id="lblLogOffOd">Log Off Odometer:</label>
+                        <input type="number" class="form-control" id="LogOffOd" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    </div>
+                </fieldset>
+                <div>
+                    <strong>Instructions:</strong> Enter the shift information on a Daily Shift Record (DSR) above. Enter the incident-level information for any assist not logged in LATATrax below, just once. Then click the <img src="~/Content/Images/add.png" width="20" /> button below to add information about an assist for that incident. Repeat until all  assists within the incident have been entered. Hit 'Sumbit Incident' button <em>only</em> once all the information on the incident and assists have been enetered and double checked. All submissions are final. Repeat for all incidents in the DSR form <em>that were not logged in LATATrax</em> before leaving this page.<br /><br />
+                    You may check the record of what you have entered here by using the Daily Shift Record (DSR) report on the 'Reports' screen under the 'Data' Menu. The 'Assists Logged' report will show entries from the tablets.
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <fieldset class="col-lg-12">
+                    <legend>Incident Information</legend>
+                    <div class="form-group col-lg-2">
+                        <label>10-97 Time:</label>
+                        <input type="time" class="form-control time_element" id="TimeOnInc" placeholder="hh:mm AM/PM" />
+                    </div>
+                    <div class="form-group col-lg-2">
+                        <label>10-98 Time:</label>
+                        <input type="time" class="form-control time_element" id="TimeOffInc" placeholder="hh:mm AM/PM" />
+                    </div>
+                    <div class="form-group col-lg-8">
+                        <label>CHP Incident Code:</label><br />
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default" id="lblIC_11-83">
+                                <input type="radio" name="IC" id="IC_11-83" value="Accident: No Details" ng-model="assist.IC"> 11-83
+                            </label>
+                            <label class="btn btn-default" id="lblIC_11-82">
+                                <input type="radio" name="IC" id="IC_11-82" value="Accident: Property Damage" ng-model="assist.IC"> 11-82
+                            </label>
+                            <label class="btn btn-default" id="lblIC_11-24">
+                                <input type="radio" name="IC" id="IC_11-24" value="Abandoned Vehicle" ng-model="assist.IC"> 11-24
+                            </label>
+                            <label class="btn btn-default" id="lblIC_11-26">
+                                <input type="radio" name="IC" id="IC_11-26" value="Disabled Vehicle: Occupied" ng-model="assist.IC"> 11-26
+                            </label>
+                            <label class="btn btn-default" id="lblIC_11-25">
+                                <input type="radio" name="IC" id="IC_11-25" value="Traffic Hazard" ng-model="assist.IC"> 11-25
+                            </label>
+                            <label class="btn btn-default active" id="ICNone">
+                                <input type="radio" name="IC" id="IC_NA" value="" ng-model="assist.IC"> None
+                            </label>
+                            <label class="btn btn-default" id="lblIC_11-25">
+                                <input type="radio" name="IC" id="IC_Other" value="Other" ng-model="assist.IC"> Other
+                            </label>
+                        </div>
+                        <label class="col-sm-8 text-left" id="lblIC"></label>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label id="CHPInciNum">Direction:</label><br />
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="DIR" id="NB" value="NB" autocomplete="off" checked="checked"> NB
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="DIR" id="SB" value="SB" autocomplete="off"> SB
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="DIR" id="EB" value="EB" autocomplete="off"> EB
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="DIR" id="WB" value="WB" autocomplete="off"> WB
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-2">
+                        <label id="CHPInciNum">Area:</label>
+                        <input type="text" class="form-control time_element" id="Area" />
+                    </div>
+                    <div class ="form-group col-lg-7">
+                        &nbsp;&nbsp;<br /><br /><br /><br />
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label id="CHPInciNum">Highway:</label>
+                        <select id="Highway" class="form-control" ng-model="freeway" ng-options="a.Id as a.Text for a in HWYS" disabled ng-required="!assist.freeway">
+                            <option value="">-- Select Highway --</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label id="CHPInciNum">Position:</label><br />
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default">
+                                <input type="radio" name="POS" id="RS" value="RS" autocomplete="off"> RS
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="POS" id="CD" value="CD" autocomplete="off"> CD
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="POS" id="RAMP" value="RAMP" autocomplete="off"> RAMP
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="POS" id="INLANE" value="INLANE" autocomplete="off"> IN LANE
+                            </label>
+                            <label class="btn btn-default active" id="lblPOSNONE">
+                                <input type="radio" name="POS" id="POSNONE" value="" autocomplete="off"> None
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        &nbsp;&nbsp;<br /><br /><br /><br />
+                    </div>
+
+                    <div class="form-group col-lg-2">
+                        <label id="CHPInciNum">CHP Incident Log #:</label>
+                        <input type="number" class="form-control" id="CHPIncLogNum" /> @*ng-required="!assist.chpIncidentLogNum"*@
+                    </div>
+                    <div class="form-group col-lg-2">
+                        <label id="lblCHPOTLogNum">CHP OT Log # (If Applicable):</label>
+                        <input type="number" class="form-control time_element" id="OTLogNum" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label id="lblINcSurveyNum">Incident Survey # (If Applicable):</label>
+                        <input type="text" class="form-control time_element" id="IncSurveyNum">
+                    </div>
+                </fieldset>
+                <div>
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <br />&nbsp;
+        <fieldset class="col-lg-12">
+            <legend>Assist(s) Data</legend>
+            <div class="row">
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-sm btn-primary" aria-label="Left Align" id="btnInstr" data-toggle="tooltip" data-placement="bottom" title="Open Instructions">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" aria-label="Left Align" id="btnAddAssist" data-toggle="tooltip" data-placement="bottom" title="Add Assist" ng-click="addAssist()">
+                        <span class=" glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                    </button><br />&nbsp;
+                </div>
+                <div id="instructions" class="col-sm-10">
+                    <strong>Instructions:</strong><br />
+                    Fill out one line per assist (vehicle or debris field), then enter the notes for that assist and save it. You may select multiple Problem and Action codes for a single assist line. Click ‘Enter Another Incident’ to submit data on an assist that occurred during another incident. Incident location is show by filling in “Area”, which is the letter designating the next Drop Site Cross Street<br />&nbsp;<br />&nbsp;
+                </div>
+            </div>
+            <div class="row col-lg-12" id="assistsDiv"></div>
+            <table class="footable table table-hover toggle-circle" id="tblAssists">
+                <thead>
+                    <tr>
+                        <th data-hide ="all">CHP Incident Code</th>
+                        <th data-toggle ="true" data-sort-initial="true">Problem Code(s)</th>
+                        <th>Action Code(s)</th>
+                        <th data-hide="all">Dir.</th>
+                        <th data-hide="all">Hwy</th>
+                        <th data-hide="all">Area</th>
+                        <th data-hide="all">Edit</th>
+                        <th data-hide="all">Time On Incident</th>
+                        <th data-hide="all">Time Off Incident</th>
+                        <th data-hide="all">Position</th>
+                        <th>P/T/N</th>
+                        <th>Transport Code</th>
+                        <th data-hide="all">Vehicle Type</th>
+                        <th data-hide="all">License Plate State</th>
+                        <th data-hide="all">License Plate #</th>
+                        <th data-hide="all">CHP Incident Log #</th>
+                        <th data-hide="all">Assist Notes</th>
+                    </tr>
+                </thead>
+            </table>
+        </fieldset>
+        <br />&nbsp;
+        <fieldset class="col-lg-12">
+            <legend>&nbsp;</legend>
+            <div class="row text-right col-lg-11">
+                <button type="button" class="btn btn-primary" id="addIncident" ng-click="addIncident()"><i class="fa fa-save"></i> Save This Incident</button>
+                <button type="button" class="btn btn-default" id="print" ng-click="print()"><i class="fa fa-print"></i> Print</button>
+            </div>
+        </fieldset>
+
+        @*Div for adding assists*@
+        <div id="addEditAssist" class="modal fade bs-example-modal-lg">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                    </div>
+                    <form role="form" name="addEditAssistForm" id="addEditAssistForm" class="form-horizontal" ng-submit="AddThisAssist()" ng-controller="shiftEntryController">
+                        <input type="hidden" id="edit" value="-1" />
+                        <div class="modal-body">
+                            @*<div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Assist Start Time:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control time_element" id="TimeOnInc" placeholder="hh:mm AM/PM" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Assist Completed Time:</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control time_element" id="TimeOffInc" placeholder="hh:mm AM/PM" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">CHP Incident Code:</label>
+                                <div class="col-sm-8">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default" id="lblIC_11-83">
+                                            <input type="radio" name="IC" id="IC_11-83" value="Accident: No Details" ng-model="assist.IC"> 11-83
+                                        </label>
+                                        <label class="btn btn-default" id="lblIC_11-82">
+                                            <input type="radio" name="IC" id="IC_11-82" value="Accident: Property Damage" ng-model="assist.IC"> 11-82
+                                        </label>
+                                        <label class="btn btn-default" id="lblIC_11-24">
+                                            <input type="radio" name="IC" id="IC_11-24" value="Abandoned Vehicle" ng-model="assist.IC"> 11-24
+                                        </label>
+                                        <label class="btn btn-default" id="lblIC_11-26">
+                                            <input type="radio" name="IC" id="IC_11-26" value="Disabled Vehicle: Occupied" ng-model="assist.IC"> 11-26
+                                        </label>
+                                        <label class="btn btn-default" id="lblIC_11-25">
+                                            <input type="radio" name="IC" id="IC_11-25" value="Traffic Hazard" ng-model="assist.IC"> 11-25
+                                        </label>
+                                        <label class="btn btn-default active" id="ICNone">
+                                            <input type="radio" name="IC" id="IC_NA" value="" ng-model="assist.IC"> None
+                                        </label>
+                                        <label class="btn btn-default" id="lblIC_11-25">
+                                            <input type="radio" name="IC" id="IC_Other" value="Other" ng-model="assist.IC"> Other
+                                        </label>
+                                    </div>
+                                    <label class="col-sm-8 text-left" id="lblIC"></label>
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Problem Code:</label>
+                                <div class="col-sm-8">
+                                    Traffic Collision:<br />
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="TC" id="1VEH" value="1VEH" autocomplete="off"> 1VEH
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="TC" id="2VEH" value="2VEH" autocomplete="off"> 2VEH
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="TC" id="3VEH" value="3VEH" autocomplete="off"> 3VEH
+                                        </label>
+                                        <label class="btn btn-default active" id="0VehLbl">
+                                            <input type="radio" name="TC" id="0Veh" value="" autocomplete="off"> None
+                                        </label>
+                                    </div><br />
+                                    Breakdown:<br />
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn  btn-default">
+                                            <input type="radio" name="BD" id="BATT" value="BATT" autocomplete="off"> BATT
+                                        </label>
+                                        <label class="btn  btn-default">
+                                            <input type="radio" name="BD" id="TIRE" value="TIRE" autocomplete="off"> TIRE
+                                        </label>
+                                        <label class="btn  btn-default">
+                                            <input type="radio" name="BD" id="GAS" value="GAS" autocomplete="off"> GAS
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="BD" id="ABAN" value="ABAN" autocomplete="off"> ABAN
+                                        </label>
+                                        <label class="btn  btn-default">
+                                            <input type="radio" name="BD" id="HEAT" value="HEAT" autocomplete="off">  HEAT
+                                        </label>
+                                        <label class="btn  btn-default">
+                                            <input type="radio" name="BD" id="MECH" value="MECH" autocomplete="off"> MECH
+                                        </label>
+                                        <label class="btn btn-default active" id="lblMECH">
+                                            <input type="radio" name="BD" id="NONEMECH" value="" autocomplete="off"> None
+                                        </label>
+                                    </div><br />
+                                    Debris Only:<br />
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn  btn-default">
+                                            <input type="radio" name="DO" id="DIL" value="DIL" autocomplete="off"> DIL
+                                        </label>
+                                        <label class="btn  btn-default">
+                                            <input type="radio" name="DO" id="DOS" value="DOS" autocomplete="off"> DOS
+                                        </label>
+                                        <label class="btn  btn-default active">
+                                            <input type="radio" name="DO" id="DOS" value="" autocomplete="off"> None
+                                        </label>
+                                    </div>
+                                    <br />
+                                    Other:<br />
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="O" id="SMNA" value="SMNA" autocomplete="off"> Stopped Motorist - No Assist
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="O" id="Other" value=" " autocomplete="off"> Other (Note Req.)
+                                        </label>
+                                        <label class="btn  btn-default active" id="lblO">
+                                            <input type="radio" name="O" id="ONone" value="" autocomplete="off"> None
+                                        </label>
+                                    </div><br />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Action Codes:</label>
+                                <div class="col-sm-8">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default Acode">
+                                            <input type="checkbox" name="AP" id="ASST" value="ASST" autocomplete="off"> ASST
+                                        </label>
+                                        <label class="btn btn-default Acode">
+                                            <input type="checkbox" name="AP" id="PART" value="PART" autocomplete="off"> PART
+                                        </label>
+                                        <label class="btn btn-default Acode">
+                                            <input type="checkbox" name="AP" id="OFCR" value="OFCR" autocomplete="off"> OFCR
+                                        </label>
+                                        <label class="btn btn-default Acode">
+                                            <input type="checkbox" name="AP" id="RFSD" value="RFSD" autocomplete="off"> RFSD
+                                        </label><br /><br />
+                                        <label class="btn btn-default Acode">
+                                            <input type="checkbox" name="AP" id="HLPW" value="HLPW" autocomplete="off"> HLPW
+                                        </label>
+                                        <label class="btn btn-default Acode">
+                                            <input type="checkbox" name="AP" id="HLPN" value="HLPN" autocomplete="off"> HLPN
+                                        </label>
+                                        <label class="btn btn-default Acode">
+                                            <input type="checkbox" name="AP" id="DOFF" value="DOFF" autocomplete="off"> DOFF
+                                        </label>
+                                        <label class="btn btn-default Acode">
+                                            <input type="checkbox" name="AP" id="OTHER" value="OTHER" aautocomplete="off"> OTHER
+                                        </label>
+                                        <label class="btn btn-default active" id="lblAPNONE">
+                                            <input type="checkbox" name="AP" id="APNONE" value="" aautocomplete="off"> None
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Direction:</label>
+                                <div class="col-sm-8">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default active">
+                                            <input type="radio" name="DIR" id="NB" value="NB" autocomplete="off" checked="checked"> NB
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="DIR" id="SB" value="SB" autocomplete="off"> SB
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="DIR" id="EB" value="EB" autocomplete="off"> EB
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="DIR" id="WB" value="WB" autocomplete="off"> WB
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>*@
+                            @*<div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Highway:</label>
+                                <div class="col-sm-6">
+                                    <select id="Highway" class="form-control" ng-model="freeway" ng-options="a.Id as a.Text for a in HWYS" disabled ng-required="!assist.freeway">
+                                        <option value="">-- Select Highway --</option>
+                                    </select>
+                                </div>
+                            </div>*@
+                            @*<div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Area:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control time_element" id="Area" />
+                                </div>
+                            </div>*@
+                            @*<div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Position:</label>
+                                <div class="col-sm-8">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="POS" id="RS" value="RS" autocomplete="off"> RS
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="POS" id="CD" value="CD" autocomplete="off"> CD
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="POS" id="RAMP" value="RAMP" autocomplete="off"> RAMP
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="POS" id="INLANE" value="INLANE" autocomplete="off"> IN LANE
+                                        </label>
+                                        <label class="btn btn-default active" id="lblPOSNONE">
+                                            <input type="radio" name="POS" id="POSNONE" value="" autocomplete="off"> None
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">P/T/N:</label>
+                                <div class="col-sm-8">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="PTN" id="P" value="P" autocomplete="off"> Push
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="PTN" id="T" value="T" autocomplete="off"> Tow
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="PTN" id="N" value="N" autocomplete="off"> Neither
+                                        </label>
+                                        <label class="btn btn-default active" id="lblPTNNONE">
+                                            <input type="radio" name="PTN" id="PTNNONE" value="" autocomplete="off"> None
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Transport Code:</label>
+                                <div class="col-sm-6">
+                                    <select id="selTransCode" class="form-control">
+                                        <option value="">-- Select Transport Code --</option>
+                                        <option class="form-control" value="chkTransportedFemale">Provided Transportation to Female (11-48X) (FPAS)</option>
+                                        <option class="form-control" value="chkTransportedFemaleJuvenile">Provided Transportation to Female Juvenile (11-48X) (FJUV)</option>
+                                        <option class="form-control" value="chkTransportedMale">Provided Transportation to Male (11-48) (MPAS)</option>
+                                        <option class="form-control" value="chkTransportedMaleJuvenile">Provided Transportation to Male Juvenile(11-48) (MJUV)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">Vehicle Type:</label>
+                                <div class="col-sm-6">
+                                    <select id="VehType" class="form-control"
+                                            ng-model="vehicleType"
+                                            ng-options="a.Text for a in vehicleTypes"
+                                            ng-disabled="isBusyGettingVehicleTypes">
+                                        <option value="NA">-- Select Vehicle Type --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">License Plate State:</label>
+                                <div class="col-sm-6">
+                                    @*<input type="text" class="form-control" id="LicPlateState" ng-required="!assist.licensePlateState" />*@
+                                    <select class="form-control" id="LicPlateState">
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA" selected>California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                        <option value="O">Other - Please Details in # Field</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-4 control-label">License Plate #:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control time_element" id="LicPlateNum" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" id="lblDSNum">Drop Site # (If Applicable):</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control time_element" id="DSNum">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" id="lblGenNotes">Assist Notes (Req. for 'Other' or 'Stopped Motorist'):</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" rows="5" id="GenNotes" wrap="hard" style="resize:none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="addThisAssist"><i class="fa fa-save"></i> Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/shiftEntryController.js"></script>
+    <script src="~/app/services/shiftEntryService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+    <script src="~/app/services/dispatchingService.js"></script>
+    <script src="~/Scripts/footable.all.min.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+    <script>
+        $(function () {
+            var d = new Date();
+            $('.footable').footable();
+            $('#Date').datepicker({
+                "setDate": new Date()
+            });
+            $('#Date').val(d.toLocaleDateString());
+            $('#instructions').hide();
+            $('#btnInstr').click(function () {
+                if ($('#instructions').is(":visible")) {
+                    $('#instructions').hide('slideUp');
+                } else {
+                    $('#instructions').show('slideDown');
+                }
+            });
+        });
+    </script>
+
+}

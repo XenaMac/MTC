@@ -1,0 +1,1197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Acceptance</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>e:\junk\publications\fsp\acceptance</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/AdminArea/Views/AssistAdmin/Create2.cshtml">
+      <publishTime>08/19/2013 09:56:58</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Beats/Index.cshtml">
+      <publishTime>09/10/2012 12:07:14</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/BeatSchedule/Create.cshtml">
+      <publishTime>11/26/2013 14:39:29</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/BeatSchedule/Edit.cshtml">
+      <publishTime>09/26/2013 11:56:41</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/BeatSchedule/Index.cshtml">
+      <publishTime>03/06/2014 11:22:03</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/CHPInspection/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/CHPInspection/Delete.cshtml">
+      <publishTime>09/26/2013 11:56:53</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/CHPInspection/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/CHPInspection/Index.cshtml">
+      <publishTime>09/26/2013 11:53:34</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/CHPOfficer/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/CHPOfficer/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/CHPOfficer/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/CHPOfficer/Index.cshtml">
+      <publishTime>09/26/2013 11:53:25</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contract/Create.cshtml">
+      <publishTime>03/04/2014 11:36:54</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contract/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contract/Edit.cshtml">
+      <publishTime>03/04/2014 11:37:48</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contract/Index.cshtml">
+      <publishTime>09/26/2013 11:55:30</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contractor/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contractor/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contractor/Details.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contractor/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Contractor/Index.cshtml">
+      <publishTime>09/26/2013 11:53:05</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/ContractorManager/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/ContractorManager/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/ContractorManager/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/ContractorManager/Index.cshtml">
+      <publishTime>09/26/2013 11:52:56</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Driver/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Driver/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Driver/Details.cshtml">
+      <publishTime>10/16/2012 19:02:54</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Driver/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Driver/Index.cshtml">
+      <publishTime>09/26/2013 11:52:48</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DriverInteraction/Create.cshtml">
+      <publishTime>07/10/2014 12:46:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DriverInteraction/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DriverInteraction/Details.cshtml">
+      <publishTime>10/17/2012 08:27:00</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DriverInteraction/Edit.cshtml">
+      <publishTime>07/10/2014 12:48:31</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DriverInteraction/Index.cshtml">
+      <publishTime>07/10/2014 12:54:22</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DropZone/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DropZone/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DropZone/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/DropZone/Index.cshtml">
+      <publishTime>09/26/2013 11:52:32</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/FleetVehicle/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/FleetVehicle/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/FleetVehicle/Details.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/FleetVehicle/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/FleetVehicle/Index.cshtml">
+      <publishTime>09/26/2013 11:52:23</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Freeway/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Freeway/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Freeway/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Freeway/Index.cshtml">
+      <publishTime>09/26/2013 11:52:16</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/IncidentType/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/IncidentType/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/IncidentType/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/IncidentType/Index.cshtml">
+      <publishTime>09/26/2013 11:52:07</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InspectionType/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InspectionType/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InspectionType/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InspectionType/Index.cshtml">
+      <publishTime>09/26/2013 11:51:56</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InsuranceCarrier/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InsuranceCarrier/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InsuranceCarrier/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InsuranceCarrier/Index.cshtml">
+      <publishTime>09/26/2013 11:51:47</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InteractionType/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InteractionType/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InteractionType/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/InteractionType/Index.cshtml">
+      <publishTime>09/26/2013 11:51:38</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Location/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Location/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Location/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Location/Index.cshtml">
+      <publishTime>09/26/2013 11:51:27</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Roles/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Roles/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Roles/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Roles/Index.cshtml">
+      <publishTime>09/26/2013 11:51:19</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Schedule/Create.cshtml">
+      <publishTime>03/06/2014 10:47:38</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Schedule/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Schedule/Edit.cshtml">
+      <publishTime>03/06/2014 10:48:03</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Schedule/Index.cshtml">
+      <publishTime>03/06/2014 10:44:23</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Schedule/IndexNew.cshtml">
+      <publishTime>03/06/2014 12:09:29</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/ServiceType/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/ServiceType/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/ServiceType/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/ServiceType/Index.cshtml">
+      <publishTime>09/26/2013 11:50:56</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/TowLocation/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/TowLocation/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/TowLocation/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/TowLocation/Index.cshtml">
+      <publishTime>09/26/2013 11:50:45</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/TrafficSpeed/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/TrafficSpeed/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/TrafficSpeed/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/TrafficSpeed/Index.cshtml">
+      <publishTime>09/26/2013 11:50:36</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Users/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Users/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Users/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Users/Index.cshtml">
+      <publishTime>09/26/2013 11:50:03</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Vars/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Vars/Index.cshtml">
+      <publishTime>09/26/2013 11:54:04</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/VehiclePosition/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/VehiclePosition/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/VehiclePosition/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/VehiclePosition/Index.cshtml">
+      <publishTime>09/26/2013 11:54:14</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/VehicleType/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/VehicleType/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/VehicleType/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/VehicleType/Index.cshtml">
+      <publishTime>09/26/2013 11:54:23</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/Web.config">
+      <publishTime>08/15/2012 15:18:22</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/YearlyCalendar/Create.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/YearlyCalendar/Delete.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/YearlyCalendar/Edit.cshtml">
+      <publishTime>09/26/2013 11:58:46</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/YearlyCalendar/Index.cshtml">
+      <publishTime>09/26/2013 11:54:29</publishTime>
+    </File>
+    <File Include="Areas/AdminArea/Views/_ViewStart.cshtml">
+      <publishTime>01/28/2014 07:50:27</publishTime>
+    </File>
+    <File Include="Assemblies/Microsoft.SqlServer.Types.dll">
+      <publishTime>11/15/2012 20:44:15</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>11/15/2012 16:57:33</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.AspNet.dll">
+      <publishTime>12/05/2012 22:27:28</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.Core.dll">
+      <publishTime>12/05/2012 22:27:10</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OAuth.Consumer.dll">
+      <publishTime>12/05/2012 22:27:26</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OAuth.dll">
+      <publishTime>12/05/2012 22:27:25</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OpenId.dll">
+      <publishTime>12/05/2012 22:27:11</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
+      <publishTime>12/05/2012 22:27:29</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>11/08/2012 13:51:56</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/28/2013 09:44:09</publishTime>
+    </File>
+    <File Include="bin/FSP.Common.dll">
+      <publishTime>07/15/2014 11:00:29</publishTime>
+    </File>
+    <File Include="bin/FSP.Common.pdb">
+      <publishTime>07/15/2014 11:00:29</publishTime>
+    </File>
+    <File Include="bin/FSP.Domain.dll">
+      <publishTime>07/15/2014 11:00:29</publishTime>
+    </File>
+    <File Include="bin/FSP.Domain.pdb">
+      <publishTime>07/15/2014 11:00:29</publishTime>
+    </File>
+    <File Include="bin/FSP.Web.4.5.dll">
+      <publishTime>08/27/2013 22:49:41</publishTime>
+    </File>
+    <File Include="bin/FSP.Web.4.5.pdb">
+      <publishTime>08/27/2013 22:49:41</publishTime>
+    </File>
+    <File Include="bin/FSP.Web.dll">
+      <publishTime>07/15/2014 11:00:31</publishTime>
+    </File>
+    <File Include="bin/FSP.Web.pdb">
+      <publishTime>07/15/2014 11:00:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
+      <publishTime>04/16/2013 10:37:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Owin.dll">
+      <publishTime>04/16/2013 10:37:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
+      <publishTime>04/16/2013 10:37:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>04/16/2013 10:37:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>08/15/2012 10:36:09</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.WebPages.OAuth.dll">
+      <publishTime>11/15/2012 10:54:41</publishTime>
+    </File>
+    <File Include="bin/Mono.Math.dll">
+      <publishTime>12/05/2012 22:27:11</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>12/05/2012 22:26:37</publishTime>
+    </File>
+    <File Include="bin/Org.Mentalis.Security.Cryptography.dll">
+      <publishTime>12/05/2012 22:27:11</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>04/16/2013 10:37:58</publishTime>
+    </File>
+    <File Include="bin/SignalR.dll">
+      <publishTime>09/24/2012 09:07:19</publishTime>
+    </File>
+    <File Include="bin/SignalR.Hosting.AspNet.dll">
+      <publishTime>09/24/2012 09:07:20</publishTime>
+    </File>
+    <File Include="bin/SignalR.Hosting.Common.dll">
+      <publishTime>09/24/2012 09:07:20</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>03/28/2013 09:45:08</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>11/15/2012 10:54:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>11/15/2012 10:54:38</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>11/15/2012 10:54:38</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>11/15/2012 10:54:36</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>03/28/2013 09:45:13</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>11/15/2012 16:56:45</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>11/15/2012 10:54:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>11/15/2012 10:54:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>11/15/2012 10:54:35</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>11/15/2012 16:57:33</publishTime>
+    </File>
+    <File Include="bin/WebMatrix.Data.dll">
+      <publishTime>11/15/2012 10:54:41</publishTime>
+    </File>
+    <File Include="bin/WebMatrix.WebData.dll">
+      <publishTime>11/15/2012 10:54:42</publishTime>
+    </File>
+    <File Include="Content/AssistEntry/ClientCSS.css">
+      <publishTime>08/01/2013 19:54:46</publishTime>
+    </File>
+    <File Include="Content/AssistEntry/jquery-fallr-1.3.css">
+      <publishTime>08/01/2013 19:54:46</publishTime>
+    </File>
+    <File Include="Content/bootstrap-responsive.css">
+      <publishTime>11/15/2012 11:47:35</publishTime>
+    </File>
+    <File Include="Content/bootstrap-timepicker.css">
+      <publishTime>09/05/2013 17:15:08</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>12/17/2012 13:00:21</publishTime>
+    </File>
+    <File Include="Content/bootstrap204/bootstrap-responsive.css">
+      <publishTime>11/15/2012 11:47:35</publishTime>
+    </File>
+    <File Include="Content/bootstrap204/bootstrap.css">
+      <publishTime>12/17/2012 13:00:21</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/css/bootstrap-datepicker.css">
+      <publishTime>09/10/2013 08:39:55</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/css/bootstrap-responsive.css">
+      <publishTime>07/26/2013 23:50:48</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/css/bootstrap-responsive.min.css">
+      <publishTime>07/26/2013 23:50:48</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/css/bootstrap.css">
+      <publishTime>07/26/2013 23:50:46</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/css/bootstrap.min.css">
+      <publishTime>07/26/2013 23:50:46</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/img/glyphicons-halflings-white.png">
+      <publishTime>07/26/2013 23:50:46</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/img/glyphicons-halflings.png">
+      <publishTime>07/26/2013 23:50:46</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/js/bootstrap-datepicker.js">
+      <publishTime>09/06/2013 10:14:37</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/js/bootstrap.js">
+      <publishTime>07/26/2013 23:50:48</publishTime>
+    </File>
+    <File Include="Content/bootstrap232/js/bootstrap.min.js">
+      <publishTime>07/26/2013 23:50:48</publishTime>
+    </File>
+    <File Include="Content/docs.css">
+      <publishTime>11/15/2012 11:55:31</publishTime>
+    </File>
+    <File Include="Content/font-awesome.css">
+      <publishTime>12/24/2013 09:32:20</publishTime>
+    </File>
+    <File Include="Content/font-awesome.min.css">
+      <publishTime>12/24/2013 09:32:20</publishTime>
+    </File>
+    <File Include="Content/FSP.css">
+      <publishTime>07/02/2014 16:22:41</publishTime>
+    </File>
+    <File Include="Content/Images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>09/26/2013 12:17:56</publishTime>
+    </File>
+    <File Include="Content/prettify.css">
+      <publishTime>11/15/2012 11:55:31</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>11/15/2012 10:54:07</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/animated-overlay.gif">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery-ui.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.accordion.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.all.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.autocomplete.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.base.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.button.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.core.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.datepicker.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.dialog.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.menu.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.progressbar.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.resizable.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.selectable.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.slider.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.spinner.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.tabs.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.theme.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/jquery.ui.tooltip.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/animated-overlay.gif">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_222222_256x240.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_454545_256x240.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_888888_256x240.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery-ui.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.accordion.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.autocomplete.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.button.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.core.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.datepicker.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.dialog.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.menu.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.progressbar.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.resizable.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.selectable.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.slider.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.spinner.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.tabs.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.theme.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Content/themes/base/minified/jquery.ui.tooltip.min.css">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.eot">
+      <publishTime>12/24/2013 09:32:20</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.svg">
+      <publishTime>12/24/2013 09:32:20</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.ttf">
+      <publishTime>12/24/2013 09:32:20</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff">
+      <publishTime>12/24/2013 09:32:20</publishTime>
+    </File>
+    <File Include="fonts/FontAwesome.otf">
+      <publishTime>12/24/2013 09:32:20</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/05/2013 13:26:44</publishTime>
+    </File>
+    <File Include="Images/accent.png">
+      <publishTime>11/15/2012 10:54:07</publishTime>
+    </File>
+    <File Include="Images/Alarm.png">
+      <publishTime>12/20/2012 09:15:27</publishTime>
+    </File>
+    <File Include="Images/arrow_down.png">
+      <publishTime>11/15/2012 13:35:42</publishTime>
+    </File>
+    <File Include="Images/arrow_up.png">
+      <publishTime>11/15/2012 13:35:42</publishTime>
+    </File>
+    <File Include="Images/bullet.png">
+      <publishTime>11/15/2012 10:54:07</publishTime>
+    </File>
+    <File Include="Images/callBox.png">
+      <publishTime>11/26/2012 09:31:08</publishTime>
+    </File>
+    <File Include="Images/favicon.ico">
+      <publishTime>11/15/2012 11:49:26</publishTime>
+    </File>
+    <File Include="Images/glyphicons-halflings-white.png">
+      <publishTime>11/15/2012 11:49:05</publishTime>
+    </File>
+    <File Include="Images/glyphicons-halflings.png">
+      <publishTime>11/15/2012 11:49:06</publishTime>
+    </File>
+    <File Include="Images/heroAccent.png">
+      <publishTime>11/15/2012 10:54:07</publishTime>
+    </File>
+    <File Include="Images/LATATraxInterfaces.png">
+      <publishTime>11/15/2012 11:42:31</publishTime>
+    </File>
+    <File Include="Images/latatraxops.png">
+      <publishTime>11/15/2012 11:45:10</publishTime>
+    </File>
+    <File Include="Images/latatraxopswhite.png">
+      <publishTime>09/26/2013 10:57:25</publishTime>
+    </File>
+    <File Include="Images/LoggedOn.png">
+      <publishTime>01/25/2013 08:35:38</publishTime>
+    </File>
+    <File Include="Images/NIS.png">
+      <publishTime>01/03/2013 08:29:01</publishTime>
+    </File>
+    <File Include="Images/OnAssist.png">
+      <publishTime>12/20/2012 09:16:38</publishTime>
+    </File>
+    <File Include="Images/OnPatrol.png">
+      <publishTime>12/20/2012 09:17:00</publishTime>
+    </File>
+    <File Include="Images/Speeding.png">
+      <publishTime>12/20/2012 09:17:16</publishTime>
+    </File>
+    <File Include="Images/TBD.png">
+      <publishTime>12/20/2012 09:17:45</publishTime>
+    </File>
+    <File Include="Images/ui-anim_basic_16x16.gif">
+      <publishTime>11/15/2012 13:43:39</publishTime>
+    </File>
+    <File Include="Images/web.config">
+      <publishTime>11/15/2012 11:21:40</publishTime>
+    </File>
+    <File Include="junk.html">
+      <publishTime>02/06/2014 13:29:53</publishTime>
+    </File>
+    <File Include="MyScripts/alarmHistory.js">
+      <publishTime>06/14/2014 17:08:59</publishTime>
+    </File>
+    <File Include="MyScripts/AssistEntry/AssistScript.js">
+      <publishTime>03/12/2014 10:27:35</publishTime>
+    </File>
+    <File Include="MyScripts/AssistEntry/AssistScriptOld.js">
+      <publishTime>12/18/2013 09:18:48</publishTime>
+    </File>
+    <File Include="MyScripts/AssistEntry/GlobalData.js">
+      <publishTime>12/18/2013 09:11:07</publishTime>
+    </File>
+    <File Include="MyScripts/AssistEntry/jquery-fallr-1.3.min.js">
+      <publishTime>08/01/2013 19:54:46</publishTime>
+    </File>
+    <File Include="MyScripts/beatScheduleValidation.js">
+      <publishTime>03/06/2014 11:18:22</publishTime>
+    </File>
+    <File Include="MyScripts/driversAlertComments.js">
+      <publishTime>07/14/2014 14:00:44</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.account.create.js">
+      <publishTime>05/21/2013 09:24:11</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.alertMessagesViewModel.js">
+      <publishTime>07/08/2014 10:58:16</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.alertsViewModel.js">
+      <publishTime>07/14/2014 08:21:12</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.assistViewModel.js">
+      <publishTime>07/29/2013 21:38:43</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.constructor.js">
+      <publishTime>07/02/2014 14:57:40</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.contract.create.js">
+      <publishTime>05/17/2013 10:17:21</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.dispatchViewModel.js">
+      <publishTime>07/01/2014 09:22:01</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.dispatchViewModel2.js">
+      <publishTime>06/14/2013 13:39:53</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.gridViewModel.js">
+      <publishTime>04/18/2013 23:58:59</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.incidentViewModel.js">
+      <publishTime>06/09/2014 14:32:06</publishTime>
+    </File>
+    <File Include="MyScripts/FSP.js">
+      <publishTime>06/12/2014 16:20:58</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.map.Label.js">
+      <publishTime>11/15/2012 11:35:26</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.map.LabelInFront.js">
+      <publishTime>11/15/2012 11:35:26</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.mapViewModel.js">
+      <publishTime>07/02/2014 16:14:29</publishTime>
+    </File>
+    <File Include="MyScripts/fsp.truckCollection.js">
+      <publishTime>07/02/2014 20:06:53</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>12/24/2013 09:32:20</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-datepicker.js">
+      <publishTime>11/15/2012 11:53:57</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-popover.js">
+      <publishTime>11/15/2012 11:53:57</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-timepicker.js">
+      <publishTime>12/24/2013 09:39:53</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-tooltip.js">
+      <publishTime>11/15/2012 11:53:57</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>11/15/2012 11:53:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.8.3.js">
+      <publishTime>12/05/2012 22:26:29</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.8.3.min.js">
+      <publishTime>12/05/2012 22:26:29</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.9.1.js">
+      <publishTime>03/28/2013 09:44:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.9.1.min.js">
+      <publishTime>03/28/2013 09:44:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.9.1.min.map">
+      <publishTime>03/28/2013 09:44:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.10.2.js">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.10.2.min.js">
+      <publishTime>03/28/2013 09:44:25</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.9.2.js">
+      <publishTime>12/05/2012 22:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.9.2.min.js">
+      <publishTime>12/05/2012 22:27:02</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-0.5.3.js">
+      <publishTime>11/15/2012 16:58:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-0.5.3.min.js">
+      <publishTime>11/15/2012 16:58:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-1.0.1.js">
+      <publishTime>04/16/2013 10:38:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-1.0.1.min.js">
+      <publishTime>04/16/2013 10:38:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery.ui.autocomplete.selectFirst.js">
+      <publishTime>01/02/2013 10:43:42</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>03/28/2013 09:45:19</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>03/28/2013 09:45:19</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>03/28/2013 09:44:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>03/28/2013 09:44:17</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>03/28/2013 09:44:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>03/28/2013 09:44:56</publishTime>
+    </File>
+    <File Include="Scripts/jQueryRotateCompressed.2.1.js">
+      <publishTime>11/15/2012 20:58:01</publishTime>
+    </File>
+    <File Include="Scripts/knockout-2.2.0.debug.js">
+      <publishTime>11/15/2012 16:55:28</publishTime>
+    </File>
+    <File Include="Scripts/knockout-2.2.0.js">
+      <publishTime>11/15/2012 16:55:27</publishTime>
+    </File>
+    <File Include="Scripts/knockout-2.2.1.debug.js">
+      <publishTime>03/28/2013 09:44:48</publishTime>
+    </File>
+    <File Include="Scripts/knockout-2.2.1.js">
+      <publishTime>03/28/2013 09:44:48</publishTime>
+    </File>
+    <File Include="Scripts/markerwithlabel.js">
+      <publishTime>12/13/2012 10:33:06</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>11/15/2012 16:55:18</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-langs.js">
+      <publishTime>12/19/2013 10:26:38</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-langs.min.js">
+      <publishTime>12/19/2013 10:26:37</publishTime>
+    </File>
+    <File Include="Scripts/moment.js">
+      <publishTime>12/19/2013 10:26:38</publishTime>
+    </File>
+    <File Include="Scripts/moment.min.js">
+      <publishTime>12/19/2013 10:26:38</publishTime>
+    </File>
+    <File Include="Scripts/RichMarker.js">
+      <publishTime>12/13/2012 21:15:58</publishTime>
+    </File>
+    <File Include="Scripts/sortable.js">
+      <publishTime>09/26/2013 11:47:27</publishTime>
+    </File>
+    <File Include="Scripts/Tooltip.js">
+      <publishTime>11/15/2012 20:58:39</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>03/28/2013 09:44:26</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web.TowTruckServiceRef.AlarmStatus.datasource">
+      <publishTime>07/14/2014 13:34:32</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web.TowTruckServiceRef.AssistScreenData.datasource">
+      <publishTime>07/14/2014 13:34:32</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web.TowTruckServiceRef.AssistTruck.datasource">
+      <publishTime>07/14/2014 13:34:32</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web.TowTruckServiceRef.IncidentDisplay.datasource">
+      <publishTime>07/14/2014 13:34:32</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web.TowTruckServiceRef.IncidentIn.datasource">
+      <publishTime>07/14/2014 13:34:32</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web.TowTruckServiceRef.IncidentScreenData.datasource">
+      <publishTime>07/14/2014 13:34:32</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web.TowTruckServiceRef.ListDrivers.datasource">
+      <publishTime>07/14/2014 13:34:32</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web.TowTruckServiceRef.TowTruckData.datasource">
+      <publishTime>07/14/2014 13:34:32</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.AlarmStatus.datasource">
+      <publishTime>08/27/2013 22:49:06</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.Assist.datasource">
+      <publishTime>03/21/2013 19:11:41</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.AssistScreenData.datasource">
+      <publishTime>08/27/2013 22:49:06</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.AssistTruck.datasource">
+      <publishTime>08/27/2013 22:49:06</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.IncidentDisplay.datasource">
+      <publishTime>08/27/2013 22:49:06</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.IncidentIn.datasource">
+      <publishTime>08/27/2013 22:49:06</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.IncidentScreenData.datasource">
+      <publishTime>08/27/2013 22:49:06</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.ListDrivers.datasource">
+      <publishTime>08/27/2013 22:49:06</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/FSP.Web._4._5.TowTruckServiceRef.TowTruckData.datasource">
+      <publishTime>08/27/2013 22:49:06</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/TowTruckService.disco">
+      <publishTime>03/21/2013 19:11:41</publishTime>
+    </File>
+    <File Include="Service References/TowTruckServiceRef/TowTruckService.wsdl">
+      <publishTime>03/21/2013 19:11:41</publishTime>
+    </File>
+    <File Include="Sprites/Map/MapSprites.html">
+      <publishTime>12/20/2012 09:53:17</publishTime>
+    </File>
+    <File Include="Sprites/Map/MapSprites.js">
+      <publishTime>12/13/2012 21:11:32</publishTime>
+    </File>
+    <File Include="Sprites/Map/OnAssist.png">
+      <publishTime>12/11/2012 12:04:53</publishTime>
+    </File>
+    <File Include="Sprites/Map/OnBreak.png">
+      <publishTime>12/11/2012 12:57:19</publishTime>
+    </File>
+    <File Include="Sprites/Map/RichMarker.js">
+      <publishTime>12/13/2012 21:13:23</publishTime>
+    </File>
+    <File Include="Sprites/Map/TruckMarkerOverlay.js">
+      <publishTime>12/11/2012 13:44:54</publishTime>
+    </File>
+    <File Include="Sprites/Map/USGSOverlay.js">
+      <publishTime>12/11/2012 12:38:58</publishTime>
+    </File>
+    <File Include="Views/Account/AwaitingApproval.cshtml">
+      <publishTime>11/15/2012 12:24:59</publishTime>
+    </File>
+    <File Include="Views/Account/ChangePassword.cshtml">
+      <publishTime>09/26/2013 12:21:16</publishTime>
+    </File>
+    <File Include="Views/Account/ChangePasswordSuccess.cshtml">
+      <publishTime>11/15/2012 12:24:59</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>09/05/2013 13:28:20</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>09/05/2013 13:28:20</publishTime>
+    </File>
+    <File Include="Views/Admin/Index.cshtml">
+      <publishTime>04/17/2014 15:38:23</publishTime>
+    </File>
+    <File Include="Views/AlertMessages/Alerts.cshtml">
+      <publishTime>07/14/2014 13:24:28</publishTime>
+    </File>
+    <File Include="Views/AlertMessages/DriversAlertComments.cshtml">
+      <publishTime>07/14/2014 14:02:07</publishTime>
+    </File>
+    <File Include="Views/AlertMessages/History.cshtml">
+      <publishTime>06/13/2014 16:09:30</publishTime>
+    </File>
+    <File Include="Views/AlertMessages/Index.cshtml">
+      <publishTime>06/12/2014 16:22:06</publishTime>
+    </File>
+    <File Include="Views/Assist/Index.cshtml">
+      <publishTime>09/11/2013 10:32:25</publishTime>
+    </File>
+    <File Include="Views/AssistAdmin/Create.cshtml">
+      <publishTime>01/28/2014 07:54:20</publishTime>
+    </File>
+    <File Include="Views/AssistAdmin/CreateOld.cshtml">
+      <publishTime>12/17/2013 19:32:21</publishTime>
+    </File>
+    <File Include="Views/CHPInformation/Index.cshtml">
+      <publishTime>03/11/2013 10:35:34</publishTime>
+    </File>
+    <File Include="Views/Dispatch/Index.cshtml">
+      <publishTime>07/01/2014 09:22:18</publishTime>
+    </File>
+    <File Include="Views/Dispatch/Index2.cshtml">
+      <publishTime>06/14/2013 13:41:59</publishTime>
+    </File>
+    <File Include="Views/EmailReport/Create.cshtml">
+      <publishTime>07/15/2014 10:57:43</publishTime>
+    </File>
+    <File Include="Views/EmailReport/Delete.cshtml">
+      <publishTime>07/15/2014 09:10:57</publishTime>
+    </File>
+    <File Include="Views/EmailReport/Edit.cshtml">
+      <publishTime>07/15/2014 09:17:37</publishTime>
+    </File>
+    <File Include="Views/EmailReport/Index.cshtml">
+      <publishTime>07/15/2014 09:02:10</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>11/15/2012 11:51:55</publishTime>
+    </File>
+    <File Include="Views/Incident/Index.cshtml">
+      <publishTime>09/11/2013 10:39:00</publishTime>
+    </File>
+    <File Include="Views/Report/Index.cshtml">
+      <publishTime>09/05/2013 13:28:20</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>11/15/2012 10:54:07</publishTime>
+    </File>
+    <File Include="Views/Shared/Unauthorized.cshtml">
+      <publishTime>04/02/2013 15:47:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>07/15/2014 08:51:11</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutAdmin.cshtml">
+      <publishTime>12/27/2013 11:13:33</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutBlank.cshtml">
+      <publishTime>09/05/2013 13:28:20</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginPartial.cshtml">
+      <publishTime>12/27/2013 10:29:38</publishTime>
+    </File>
+    <File Include="Views/Shared/_TruckListColumnConfig.cshtml">
+      <publishTime>07/29/2013 21:28:22</publishTime>
+    </File>
+    <File Include="Views/Shared/_TruckStatusList.cshtml">
+      <publishTime>07/29/2013 21:59:30</publishTime>
+    </File>
+    <File Include="Views/Survey/Index.cshtml">
+      <publishTime>06/14/2013 14:45:22</publishTime>
+    </File>
+    <File Include="Views/Truck/Grid.cshtml">
+      <publishTime>09/26/2013 11:15:38</publishTime>
+    </File>
+    <File Include="Views/Truck/Map.cshtml">
+      <publishTime>07/02/2014 16:22:24</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>11/15/2012 10:54:07</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>11/15/2012 10:54:07</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>07/15/2014 11:42:05</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

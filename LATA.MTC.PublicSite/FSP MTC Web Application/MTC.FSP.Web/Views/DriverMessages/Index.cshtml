@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "Messaging";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="driverMessagesController" ng-cloak>
+        <h3>Messaging</h3>
+        <br />
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#driverMessaging" aria-controls="driverMessaging" role="tab" data-toggle="tab">Create Message</a></li>
+                <li role="presentation"><a href="#msgBoard" aria-controls="msgBoard" role="tab" data-toggle="tab">Message Board</a></li>
+                @*FB 3146*@
+                @*<li role="presentation"><a href="#msgArchive" aria-controls="msgArchive" role="tab" data-toggle="tab">Message Archive</a></li>*@
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="driverMessaging">
+                    <br />
+                    <div class="well">
+                        <h4>New Message</h4>
+
+                        <textarea ng-model="message" class="form-control" rows="7"></textarea>
+                        <br />
+
+                        <h4>Selected Trucks (<span>{{selectedTrucks.length}}</span>)</h4>
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <div ng-show="selectedTrucks.length===0" class="alert alert-info">
+                                    <span class="text-muted">None selected</span>
+                                </div>
+
+                                <table class="table table-hover" ng-hide="selectedTrucks.length===0">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Beat #</th>
+                                            <th>Truck #</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="truck in selectedTrucks">
+                                            <td class="col-sm-2">
+                                                <button ng-click="remove(truck)" type="button" class="btn btn-danger btn-sm" title="remove this truck"><i class="fa fa-remove"></i></button>
+                                            </td>
+                                            <td class="col-sm-2">{{truck.beatNumber}}</td>
+                                            <td class="col-sm-8">{{truck.truckNumber}}</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+
+                                <div class="pull-right">
+                                    <div class="checkbox-inline" ng-show="selectedTrucks.length">
+                                        <label>
+                                            <input type="checkbox" ng-model="requireAck" /> Require driver response
+                                        </label>
+                                    </div>
+
+                                    <button ng-click="sendMessage()" ng-disabled="!message" ng-show="selectedTrucks.length" class="btn btn-success"><i class="fa fa-mail-forward" ng-hide="isBusy"></i> <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i> Send Message</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div ng-controller="trucksController" ng-cloak>
+                        @Html.Partial("_TruckStatusList")
+                        @Html.Partial("_ColumnConfig")
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="msgBoard">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3 ng-show="messages.length===0">No Messages found</h3>
+                            <h3 ng-bind="header" ng-show="messages.length > 0"></h3>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchMessages" placeholder="search" class="form-control" ng-show="messages.length > 0" />
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-hover footable"
+                           ng-show="messages.length > 0"
+                           data-filter="#searchMessages"
+                           data-filter-text-only="true" 
+                           data-page-size="10000" data-limit-navigation="10000">
+                        <thead>
+                            <tr>
+                                <th>Sender Name</th>
+                                <th>Text Sent</th>
+                                <th>Time Sent</th>
+                                <th>Reply</th>
+                                <th>Reply Time</th>
+                                <th>Driver</th>
+                                <th data-type="numeric">Beat #</th>
+                                <th>Call Sign</th>
+                                <th>Truck #</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="m in messages">
+                                <td ng-bind="m.UserEmail"></td>
+                                <td ng-bind="m.MessageText"></td>
+                                <td ng-bind="m.SentTime"></td>
+                                <td ng-bind="m.Acked"></td>
+                                <td ng-bind="m.AckedTime"></td>
+                                <td ng-bind="m.Driver"></td>
+                                <td ng-bind="m.BeatNumber"></td>
+                                <td ng-bind="m.CallSign"></td>
+                                <td ng-bind="m.TruckIP"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="msgArchive">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h3 ng-show="messages.length===0">No Messages found</h3>
+                            <h3 ng-bind="header" ng-show="messages.length > 0"></h3>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchMessages" placeholder="search" class="form-control" ng-show="messages.length > 0" />
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-hover footable" ng-show="messages.length > 0" data-filter="#searchMessages" data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th>Sender Name</th>
+                                <th>Text Sent</th>
+                                <th>Time Sent</th>
+                                <th>Reply</th>
+                                <th>Reply Time</th>
+                                <th>Driver</th>
+                                <th>Beat #</th>
+                                <th>Call Sign</th>
+                                <th>Truck #</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="m in messages">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div class="paging">
+                                        <ul class="pagination pagination-sm"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/driverMessagesController.js"></script>
+    <script src="~/app/controllers/trucksController.js"></script>
+
+    <script src="~/app/services/driverMessagesService.js"></script>
+    <script src="~/app/services/trucksService.js"></script>
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+
+}
+

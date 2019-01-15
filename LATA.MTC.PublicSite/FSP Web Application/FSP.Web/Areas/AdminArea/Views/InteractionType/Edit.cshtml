@@ -1,0 +1,29 @@
+﻿@model FSP.Domain.Model.InteractionType
+@{
+    ViewBag.Title = "Edit " + @Model.InteractionType1;
+    
+}
+<div>
+    @Html.ActionLink("Back to Interaction Type", "Index")
+</div>
+<h2>Edit "@Model.InteractionType1"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        @Html.HiddenFor(model => model.InteractionTypeID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InteractionType1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InteractionType1)
+            @Html.ValidationMessageFor(model => model.InteractionType1)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

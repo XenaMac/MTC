@@ -1,0 +1,71 @@
+﻿@using FSP.Web.Helpers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @*This meta tag will make IE browsers feel like Chrome*@
+    @* <meta http-equiv="X-UA-Compatible" content="chrome=1">*@
+    <link href="@Url.Content("~/OCTAFav.ico")" rel="shortcut icon" type="image/x-icon" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/jquery.layout.latest.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/bootstrap/css/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/bootstrap/css/bootstrap-responsive.css")" rel="stylesheet" type="text/css" />
+
+
+    <link href="@Url.Content("~/Content/docs.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/prettify.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/FSP.css")" rel="stylesheet" type="text/css" />
+
+    @*Scripts*@
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/themes/bootstrap/js/bootstrap.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-tooltip.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-popover.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/FSP.js")" type="text/javascript"></script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                @*  <img src="~/Content/Images/latatrax%20ops%20white.png" style="position: absolute; top: 0px; left:0px; height:45px" />*@
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="brand" href='@Url.Content("~/Home/Index")'>
+                    <img src="~/Content/Images/latatrax%20ops%20white.png" style="height: 45px" />
+                </a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        @Html.MenuItem("Home", "Index", "Home", "")
+                        @Html.MenuItem("Map", "Map", "Map", "")
+                        @Html.MenuItem("Incident Dispatch", "Index", "Dispatch", "")
+                        @Html.MenuItem("CHP Information", "Index", "CHPInformation", "")
+                        @Html.MenuItem("Database", "Index", "Admin", "")
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li>
+                            @Html.Partial("_LoginPartial")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div id="websitePath" data-websitePath="@Request.ApplicationPath">
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+
+<script src="@Url.Content("~/Scripts/jquery.dataTables.js")"></script>
+<script src="@Url.Content("~/MyScripts/fsp.admin.js")"></script>
+
+</html>

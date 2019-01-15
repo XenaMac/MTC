@@ -1,0 +1,91 @@
+﻿@model FSP.Web.Models.UIIncident
+@{
+    ViewBag.Title = "LATA Trax | Create New Incident";
+}
+<script src="@Url.Content("~/MyScripts/fsp.admin.js")"></script>
+<h2>Create New Incident</h2>
+
+@using (Html.BeginForm("CreateIncident", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>               
+        <legend>Location Information</legend>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.SelectedFreeway)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(x => x.SelectedFreeway, new SelectList(ViewBag.Freeways, "FreewayID", "FreewayName"), "--Select Freeway--", new { id = "cboFreeways", @class="span8" })
+                @Html.ValidationMessageFor(model => model.SelectedFreeway)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.SelectedBeat)
+            </div>
+            <div class="controls">
+                <select id="SelectedBeat" name="SelectedBeat" disabled="disabled" class="span8">
+                </select>
+                @Html.ValidationMessageFor(model => model.SelectedBeat)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.SelectedSegment)
+            </div>
+            <div class="controls">
+                <select id="SelectedSegment" name="SelectedSegment" disabled="disabled" class="span8">
+                </select>
+                @Html.ValidationMessageFor(model => model.SelectedSegment)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.SelectedVehicilePosition)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(x => x.SelectedVehicilePosition, new SelectList(ViewBag.VehiclePositions, "VehiclePositionID", "VehiclePosition1"), "--Select Vehicle Position--", new { @class="span8" })
+                @Html.ValidationMessageFor(model => model.SelectedVehicilePosition)
+            </div>
+        </div>
+        <legend>General Information</legend>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.SelectedIncidentType)
+            </div>
+            <div class="controls">
+                @Html.DropDownListFor(x => x.SelectedIncidentType, new SelectList(ViewBag.IncidentTypes, "IncidentTypeId", "IncidentType1"), "--Select Incident Type--", new { @class="span8" })
+                @Html.ValidationMessageFor(model => model.SelectedIncidentType)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.VehicleDescription)
+            </div>
+            <div class="controls">
+                @Html.TextAreaFor(m => m.VehicleDescription, new { @class = "span8", rows = 5 })
+                @Html.ValidationMessageFor(model => model.VehicleDescription)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.DispatchComments)
+            </div>
+            <div class="controls">
+                @Html.TextAreaFor(m => m.DispatchComments, new { @class = "span8", rows = 5 })
+                @Html.ValidationMessageFor(model => model.DispatchComments)
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+
+    </fieldset>
+
+   
+   
+
+}

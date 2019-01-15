@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Status & Location Tracker";
+}
+
+<br />
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="assetStatusLocationsController" ng-cloak>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingAssets"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <a class="btn btn-success" href="~/AssetStatusLocations/Create" title="add" ng-show="canEdit"><i class="fa fa-plus"></i> Add</a>
+                    <a class="btn btn-primary" href="~/AssetWarranties/Index">Warranty & Configuration Tracker</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" ng-show="assets.length > 0" data-page-size="10" data-limit-navigation="10">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>OEM Serial #</th>
+                            <th>Location</th>
+                            <th>Truck #</th>
+                            <th>IP Address</th>
+                            <th>Status</th>
+                            <th>Repair Cycle Time (days)</th>
+                            <th>LATA RMA #</th>
+                            <th>OEM RMA #</th>
+                            <th>OEM RMA # Issue Date</th>
+                            <th data-sort-ignore="true"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="a in assets">
+                            <td ng-bind="a.Item"></td>
+                            <td ng-bind="a.OEMSerialNumber"></td>
+                            <td ng-bind="a.Location"></td>
+                            <td ng-bind="a.TruckNumber"></td>
+                            <td ng-bind="a.IPAddress"></td>
+                            <td>
+                                <label class="label label-success" ng-show="a.StatusColor==='Green'">{{a.StatusName}}</label>
+                                <label class="label label-danger" ng-show="a.StatusColor==='Red'">{{a.StatusName}}</label>
+                            </td>
+                            <td ng-bind="a.RepairCycleTimeInDays"></td>
+                            <td ng-bind="a.LATARMANumber"></td>
+                            <td ng-bind="a.OEMRMANumber"></td>
+                            <td ng-bind="a.OEMRMANumberIssueDate"></td>
+                            <td>
+                                <div class="pull-right">
+                                    <a ng-href='@Url.Content("~/AssetStatusLocations/Edit/"){{a.Id}}' class="btn btn-info btn-sm" title="edit" ng-show="canEdit"><i class="fa fa-pencil"></i></a>
+                                    <a ng-href='@Url.Content("~/AssetStatusLocations/Delete/"){{a.Id}}' class="btn btn-danger btn-sm" title="delete" ng-show="canEdit"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="25" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/Scripts/footable.all.min.js"></script>
+    <script src="~/app/controllers/assetStatusLocationsController.js"></script>
+    <script src="~/app/services/assetsService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}
+

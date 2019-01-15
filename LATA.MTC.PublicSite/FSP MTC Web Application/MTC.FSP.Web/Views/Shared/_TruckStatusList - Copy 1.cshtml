@@ -1,0 +1,76 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <br />
+        <div class="pull-right">
+            <a class="btn btn-info" ng-click="showColumnConfig()">Column Configuration</a>
+            <a class="btn btn-info" ng-click="selectAll()" ng-disabled="trucks.length===0" ng-show="selectAllAvailable">Select All</a>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <legend>Available for Dispatching (<span>{{(trucks | filter:{vehicleState:'on patrol'}).length}}</span>)</legend>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th ng-repeat="column in columns | filter: {visible:true}">
+                        <a href="" ng-click="reverse=!reverse;order(column.name,reverse)">{{column.display}}</a>
+                    </th>
+                    <th>@*Icon*@</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="truck in trucks | filter:{vehicleState:'on patrol'}" ng-click="selectTruck(truck)">
+                    <td class="col-sm-1" ng-repeat="column in columns | filter: {visible:true}">{{truck[columns[$index].name]}}</td>
+                    <td>
+                        <img ng-src="{{truck.vehicleStateIconUrl}}" />{{truck.vehicleState}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12">
+        <legend>Logged On but unavailable for Dispatching (<span>{{(trucks | filter:{vehicleState:'!on patrol'} | filter:{vehicleState:'!waiting for driver login'}).length}}</span>)</legend>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th ng-repeat="column in columns | filter: {visible:true}">
+                        <a href="" ng-click="reverse=!reverse;order(column.name,reverse)">{{column.display}}</a>
+                    </th>
+                    <th>@*Icon*@</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="truck in trucks | filter:{vehicleState: '!on patrol'} | filter:{vehicleState:'!waiting for driver login'}" ng-click="selectTruck(truck)">
+                    <td class="col-sm-1"  ng-repeat="column in columns | filter: {visible:true}">{{truck[columns[$index].name]}}</td>
+                    <td>
+                        <img ng-src="{{truck.vehicleStateIconUrl}}" />{{truck.vehicleState}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12">
+        <legend>Not Logged On (<span>{{(trucks | filter:{vehicleState:'waiting for driver login'}).length}}</span>)</legend>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th ng-repeat="column in columns | filter: {visible:true}">
+                        <a href="" ng-click="reverse=!reverse;order(column.name,reverse)">{{column.display}}</a>
+                    </th>
+                    <th>@*Icon*@</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="truck in trucks | filter:{vehicleState:'waiting for driver login'}" ng-click="selectTruck(truck)">
+                    <td class="col-sm-1"  ng-repeat="column in columns | filter: {visible:true}">{{truck[columns[$index].name]}}</td>
+                    <td>                       
+                        <img ng-src="{{truck.vehicleStateIconUrl}}" />{{truck.vehicleState}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

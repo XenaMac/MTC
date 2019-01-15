@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FSP.Domain.Model.CHPOfficer>
+@{
+    ViewBag.Title = "CHP Officers"; 
+}
+<p>
+    @Html.ActionLink("Add CHP Officer", "Create")
+</p>
+<h2>CHP Officers</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Badge ID
+            </th>
+            <th>Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.BadgeID, "Edit", new { id = item.BadgeID })
+                </td>
+                <td>
+                    @item.OfficerFirstName  @item.OfficerLastName
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BadgeID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 26.5, 29.125" name="FSP">
+  <DataContextMoniker Name="/FSPDataContext" />
+  <nestedChildShapes>
+    <classShape Id="0fa60b63-e711-43c4-8900-daf4b998a987" absoluteBounds="18.5, 13.875, 2, 5.2323225911458344">
+      <DataClassMoniker Name="/FSPDataContext/Assist" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5c1f264a-34e4-478a-a9cb-cd7e8d8a0fbc" absoluteBounds="18.515, 14.335, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7c47f4cb-2ad1-48c5-bedc-f771b944ff5e" absoluteBounds="0.75, 2.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FSPDataContext/Weblink" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a1241c48-0195-4ceb-9aa4-8d7ec95490dc" absoluteBounds="0.765, 2.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3d22732c-20dd-4089-bb88-94ee1f129b21" absoluteBounds="0.75, 17.5, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/FSPDataContext/BeatAlarm" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99aad201-6f49-4f59-a673-1a30b234cab3" absoluteBounds="0.765, 17.96, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="32203090-6e70-40ee-8b1a-bf1d12ea6852" absoluteBounds="15.875, 5.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/FSPDataContext/BeatBeatSegment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="91477dc3-af42-41b1-aec9-a337be0dd8c2" absoluteBounds="15.89, 6.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="98ac2ff3-66b9-46f2-a707-0bdabdb49482" absoluteBounds="3.5, 5.25, 2, 1.9631982421874996">
+      <DataClassMoniker Name="/FSPDataContext/BeatsFreeway" />
+      <nestedChildShapes>
+        <elementListCompartment Id="95bdd2fa-7e0a-4dbf-8eb9-035d935888c6" absoluteBounds="3.515, 5.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="39e9cddf-8308-4b1c-bd39-ab880e01548b" absoluteBounds="15.5, 8.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/FSPDataContext/Calendar" />
+      <nestedChildShapes>
+        <elementListCompartment Id="69af5cde-dc59-4b66-a336-e86b540894b7" absoluteBounds="15.515, 8.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6b101ae0-f750-451c-9e2a-98a2e75edc8c" absoluteBounds="15.5, 3.625, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/FSPDataContext/DriverDailySchedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d118a77-b9b6-4bc0-ad68-9dfb8eca9878" absoluteBounds="15.515, 4.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b5988d7e-885b-4b50-b5bd-ab7533d4a345" absoluteBounds="18.75, 20.5, 2, 4.8477197265625023">
+      <DataClassMoniker Name="/FSPDataContext/DriverHistory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2bd904fd-6848-42bf-9219-930a55041024" absoluteBounds="18.765, 20.96, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e323a07c-6456-4eae-82a1-7d7767457289" absoluteBounds="0.75, 5.625, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/FSPDataContext/Freeway" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87747051-0587-4a2d-b82e-526cb9322e99" absoluteBounds="0.765, 6.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b9fcae16-3ce7-43a9-a4ae-2647a266047d" absoluteBounds="6.5, 4.25, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/FSPDataContext/Incident" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d6d21bd9-514e-495d-8207-b4d4733abc79" absoluteBounds="6.515, 4.71, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3e70020d-3d00-41bc-8b6f-d66704fecd9d" absoluteBounds="3.75, 8.375, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/FSPDataContext/IncidentType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee73d83b-b71a-4ef6-a6ea-d45064f29744" absoluteBounds="3.765, 8.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b63e4220-c71b-48c4-8054-f57c0e797866" absoluteBounds="9.75, 10, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/FSPDataContext/InsuranceCarrier" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8417ce76-8f33-4e6d-866e-7dc79477c8ad" absoluteBounds="9.765, 10.46, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="46ae1323-f0f5-4688-960e-c110cb6f2fa1" absoluteBounds="15.75, 23.875, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/FSPDataContext/InteractionType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7b438a41-3d4f-4324-8e89-4b1474cfae58" absoluteBounds="15.765, 24.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cc5d4aa3-fbe2-4e8b-94aa-8a28280f70ca" absoluteBounds="3.75, 10.5, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/FSPDataContext/Location" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be37ca19-c29b-404b-8c37-5fb39df7a6c8" absoluteBounds="3.765, 10.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cf7faee5-2edb-4cb1-9d6f-66b802c9d8a2" absoluteBounds="15.75, 15.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/FSPDataContext/ServiceType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5b118194-0387-47d3-b889-34c5d5293d2a" absoluteBounds="15.765, 16.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="31501600-2698-40e1-822b-e621087ac089" absoluteBounds="15.5, 10.625, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/FSPDataContext/ShiftSchedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d9e6f5af-c4ee-4fbc-8b75-4de89431be06" absoluteBounds="15.515, 11.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1cfc3668-55a0-4b9a-8e07-539f0d596fc4" absoluteBounds="15.75, 18.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/FSPDataContext/TowLocation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="13cd7039-4c66-4514-9ef1-6d10ff4244dc" absoluteBounds="15.765, 19.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6e4e3574-bfbe-434d-a0bb-945f7defdbf9" absoluteBounds="3.75, 12.625, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/FSPDataContext/TrafficSpeed" />
+      <nestedChildShapes>
+        <elementListCompartment Id="15b0a770-5ab6-4d57-8f7d-166c152487d3" absoluteBounds="3.765, 13.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6360abcb-153a-4b67-ba51-c1725b79e562" absoluteBounds="3.75, 14.75, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/FSPDataContext/VehiclePosition" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8143c15f-bd94-4dc3-8a03-ec177eda4f5c" absoluteBounds="3.765, 15.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="42f8b0fc-adda-41d2-a156-83072968932f" absoluteBounds="15.75, 20.875, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/FSPDataContext/VehicleType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5048debc-6c7d-4604-8065-48b8833876ac" absoluteBounds="15.765, 21.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 6.22199625651042); (3.5 : 6.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Freeway/Freeway_BeatsFreeway" />
+      <nodes>
+        <classShapeMoniker Id="e323a07c-6456-4eae-82a1-7d7767457289" />
+        <classShapeMoniker Id="98ac2ff3-66b9-46f2-a707-0bdabdb49482" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 6.81899251302083); (1.75 : 7.70595540364583); (5.79166666666667 : 7.70595540364583 : JumpStart); (6.08333333333333 : 7.70595540364583 : JumpEnd); (6.5 : 7.70595540364583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Freeway/Freeway_Incident" />
+      <nodes>
+        <classShapeMoniker Id="e323a07c-6456-4eae-82a1-7d7767457289" />
+        <classShapeMoniker Id="b9fcae16-3ce7-43a9-a4ae-2647a266047d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 8.9375); (5.79166666666667 : 8.9375 : JumpStart); (5.95833333333333 : 8.9375 : JumpEnd); (8.46875 : 8.9375); (8.46875 : 8.13621256510417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/IncidentType/IncidentType_Incident" />
+      <nodes>
+        <classShapeMoniker Id="3e70020d-3d00-41bc-8b6f-d66704fecd9d" />
+        <classShapeMoniker Id="b9fcae16-3ce7-43a9-a4ae-2647a266047d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 11.1931469726562); (5.79166666666667 : 11.1931469726562 : JumpStart); (5.95833333333333 : 11.1931469726562 : JumpEnd); (6.125 : 11.1931469726562); (6.125 : 9.5); (7.453123 : 9.5); (7.453123 : 8.13621256510417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Location/Location_Incident" />
+      <nodes>
+        <classShapeMoniker Id="cc5d4aa3-fbe2-4e8b-94aa-8a28280f70ca" />
+        <classShapeMoniker Id="b9fcae16-3ce7-43a9-a4ae-2647a266047d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17.75 : 16.4431469726563); (18.1354166666667 : 16.4431469726563 : JumpStart); (18.3958333333333 : 16.4431469726563 : JumpEnd); (18.5 : 16.4431469726563)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/ServiceType/ServiceType_Assist" />
+      <nodes>
+        <classShapeMoniker Id="cf7faee5-2edb-4cb1-9d6f-66b802c9d8a2" />
+        <classShapeMoniker Id="0fa60b63-e711-43c4-8900-daf4b998a987" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17.75 : 18.9286612955729); (18.1354166666667 : 18.9286612955729 : JumpStart); (18.3958333333333 : 18.9286612955729 : JumpEnd); (18.5 : 18.9286612955729)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/TowLocation/TowLocation_Assist" />
+      <nodes>
+        <classShapeMoniker Id="1cfc3668-55a0-4b9a-8e07-539f0d596fc4" />
+        <classShapeMoniker Id="0fa60b63-e711-43c4-8900-daf4b998a987" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.75 : 12.625); (4.75 : 12.1362939453125); (5.79166666666667 : 12.1362939453125 : JumpStart); (5.95833333333333 : 12.1362939453125 : JumpEnd); (6 : 12.1362939453125); (6 : 6.45873353255208); (6.5 : 6.45873353255208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/TrafficSpeed/TrafficSpeed_Incident" />
+      <nodes>
+        <classShapeMoniker Id="6e4e3574-bfbe-434d-a0bb-945f7defdbf9" />
+        <classShapeMoniker Id="b9fcae16-3ce7-43a9-a4ae-2647a266047d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.75 : 14.75); (4.75 : 14.2612939453125); (5.875 : 14.2612939453125); (5.875 : 6.19310628255208); (6.5 : 6.19310628255208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/VehiclePosition/VehiclePosition_Incident" />
+      <nodes>
+        <classShapeMoniker Id="6360abcb-153a-4b67-ba51-c1725b79e562" />
+        <classShapeMoniker Id="b9fcae16-3ce7-43a9-a4ae-2647a266047d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17.75 : 20.9368490375601); (18.1598244349011 : 20.527024602659 : JumpStart); (18.2776755650989 : 20.4091734724612 : JumpEnd); (18.3125 : 20.3743490375601); (18.3125 : 15.1278214863281); (18.5 : 15.1278214863281)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/VehicleType/VehicleType_Assist" />
+      <nodes>
+        <classShapeMoniker Id="42f8b0fc-adda-41d2-a156-83072968932f" />
+        <classShapeMoniker Id="0fa60b63-e711-43c4-8900-daf4b998a987" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4b2f9c44-c2ea-415d-af51-ccc1e10c6a82" absoluteBounds="0.75, 8.75, 2, 4.4631168619791683">
+      <DataClassMoniker Name="/FSPDataContext/vGPSTrackingLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8c49081b-5911-47bd-85d5-c4ac5aee5ed9" absoluteBounds="0.765, 9.21, 1.9700000000000002, 3.9031168619791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="43d27deb-a511-4f7b-9c80-a0ceb948f37f" absoluteBounds="6.75, 0.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/FSPDataContext/vBeatSegment" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f74c5fbc-34e5-48d3-8f51-e5885dddffcf" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3c34f2b6-75b5-4758-a5d0-9baa6793ed76" absoluteBounds="12.75, 18.75, 2, 4.46311686197917">
+      <DataClassMoniker Name="/FSPDataContext/vGPSTracking" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a356769b-e180-4a0a-8643-f6e7107ad5f7" absoluteBounds="12.765, 19.21, 1.9700000000000002, 3.9031168619791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="52fdbecb-d84f-4fd6-be5b-8fb253f56e0d" absoluteBounds="18.375, 2.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FSPDataContext/Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d70bf929-2d4d-440a-afe5-9a36ede58483" absoluteBounds="18.39, 2.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5dedc75a-4df5-41a0-9184-b1c85c822eed" absoluteBounds="6.375, 9.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/FSPDataContext/Group" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6889024d-f169-4055-bc37-38e314b8a468" absoluteBounds="6.39, 10.21, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f4141da6-a8e7-4b8b-b2a4-376eebc86880" absoluteBounds="12.5, 16.875, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/FSPDataContext/ContractorInsurance" />
+      <nestedChildShapes>
+        <elementListCompartment Id="599403e3-f053-4049-9801-e9fbd18b7da9" absoluteBounds="12.515, 17.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.96875 : 12.3478011067708); (9.96875 : 17.4719962565104); (12.5 : 17.4719962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/InsuranceCarrier/InsuranceCarrier_ContractorInsurance" />
+      <nodes>
+        <classShapeMoniker Id="b63e4220-c71b-48c4-8054-f57c0e797866" />
+        <classShapeMoniker Id="f4141da6-a8e7-4b8b-b2a4-376eebc86880" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="49dc40bd-2b97-4bc1-a4c7-ddcbb16c8bb1" absoluteBounds="3, 27.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FSPDataContext/InspectionType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ab01f853-c6aa-4ef9-b07c-b504186d57c1" absoluteBounds="3.015, 27.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="24dfed00-9481-40b6-9a8e-6279466de164" absoluteBounds="0.75, 21.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FSPDataContext/CHPOfficer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e94761c3-90c1-4ca5-8f8d-b5d0d0f53e58" absoluteBounds="0.76500000000000012, 21.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8bfabaff-0458-48a4-ba97-4db9e0f9d384" absoluteBounds="4.125, 24.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/FSPDataContext/CHPInspection" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d5281b4a-685d-404e-a37d-c07704fd9341" absoluteBounds="4.14, 24.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 22.6362939453125); (1.75 : 25.3277498372396); (4.125 : 25.3277498372396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/CHPOfficer/CHPOfficer_CHPInspection" />
+      <nodes>
+        <classShapeMoniker Id="24dfed00-9481-40b6-9a8e-6279466de164" />
+        <classShapeMoniker Id="8bfabaff-0458-48a4-ba97-4db9e0f9d384" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.2812525 : 22.6362939453125); (2.2812525 : 24.7576224186198); (4.125 : 24.7576224186198)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/CHPOfficer/CHPOfficer_CHPInspection1" />
+      <nodes>
+        <classShapeMoniker Id="24dfed00-9481-40b6-9a8e-6279466de164" />
+        <classShapeMoniker Id="8bfabaff-0458-48a4-ba97-4db9e0f9d384" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5625 : 27.5); (4.5625 : 26.4054996744792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/InspectionType/InspectionType_CHPInspection" />
+      <nodes>
+        <classShapeMoniker Id="49dc40bd-2b97-4bc1-a4c7-ddcbb16c8bb1" />
+        <classShapeMoniker Id="8bfabaff-0458-48a4-ba97-4db9e0f9d384" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a41cbc31-6f2e-40a5-acd0-c2e5216a1691" absoluteBounds="12.125, 1, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/FSPDataContext/vCallBox" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ae7cbee4-f674-4580-9ee9-a048c3050740" absoluteBounds="12.14, 1.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="87bb879f-999a-4180-a628-c24a01e7c8b8" absoluteBounds="7.375, 26, 2, 2.5401025390625023">
+      <DataClassMoniker Name="/FSPDataContext/ContractorManager" />
+      <nestedChildShapes>
+        <elementListCompartment Id="17a83c19-673c-47e3-8b78-b07f61274196" absoluteBounds="7.3900000000000006, 26.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b8ab188d-6452-4d97-a033-54719e51629a" absoluteBounds="4.125, 18.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/FSPDataContext/Contractor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad469dea-5e08-43c2-8924-a1f8d5dc57e3" absoluteBounds="4.14, 19.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.125 : 18.75); (5.125 : 17.1422456282552); (5.57291866666667 : 17.1422456282552 : JumpStart); (5.73958533333333 : 17.1422456282552 : JumpEnd); (7.97916666666667 : 17.1422456282552 : JumpStart); (8.14583333333333 : 17.1422456282552 : JumpEnd); (12.5 : 17.1422456282552)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Contractor/Contractor_ContractorInsurance" />
+      <nodes>
+        <classShapeMoniker Id="b8ab188d-6452-4d97-a033-54719e51629a" />
+        <classShapeMoniker Id="f4141da6-a8e7-4b8b-b2a4-376eebc86880" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 21.4824039713542); (5.125 : 24.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Contractor/Contractor_CHPInspection" />
+      <nodes>
+        <classShapeMoniker Id="b8ab188d-6452-4d97-a033-54719e51629a" />
+        <classShapeMoniker Id="8bfabaff-0458-48a4-ba97-4db9e0f9d384" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.125 : 21.0100553971354); (7.90625 : 21.0100553971354); (7.90625 : 26)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Contractor/Contractor_ContractorManager" />
+      <nodes>
+        <classShapeMoniker Id="b8ab188d-6452-4d97-a033-54719e51629a" />
+        <classShapeMoniker Id="87bb879f-999a-4180-a628-c24a01e7c8b8" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8d58ad38-328d-45e0-ad81-16dc4a975ccb" absoluteBounds="10.25, 13.125, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/FSPDataContext/vBeat" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05ac35f0-3a65-4548-be18-113040b52b10" absoluteBounds="10.265, 13.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cd631939-927c-499f-840e-f346db00185b" absoluteBounds="10.125, 4.5, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/FSPDataContext/vDropZone" />
+      <nestedChildShapes>
+        <elementListCompartment Id="792d66ef-d361-42ce-81d3-3c02b7504a17" absoluteBounds="10.14, 4.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="329997f5-736b-4ad2-b277-6b522ac38052" absoluteBounds="22.25, 1.375, 2, 4.2708154296875">
+      <DataClassMoniker Name="/FSPDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="831736ac-39e0-460b-8217-f008ccaf2405" absoluteBounds="22.265, 1.835, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(20.375 : 3.06814697265625); (22.25 : 3.06814697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Role/Role_User" />
+      <nodes>
+        <classShapeMoniker Id="52fdbecb-d84f-4fd6-be5b-8fb253f56e0d" />
+        <classShapeMoniker Id="329997f5-736b-4ad2-b277-6b522ac38052" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6f35f8d9-175b-497a-88f1-c7c443a92df2" absoluteBounds="3.75, 2.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FSPDataContext/TruckState" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da0e0969-2745-4f13-a5a1-51a14b0f21c6" absoluteBounds="3.7649999999999997, 2.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="82db0545-c570-4e7b-9496-d1e8a392dcde" absoluteBounds="6.625, 13.25, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/FSPDataContext/ContractsBeat" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea8fc836-2f67-4f05-8948-0b92dbf00c96" absoluteBounds="6.6400000000000006, 13.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d5763c57-fa16-49ac-8bc2-1e6337cfec68" absoluteBounds="7.5, 17.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/FSPDataContext/Contract" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5cfa458d-04c1-4d61-8afa-2e0a426783c7" absoluteBounds="7.5150000000000006, 18.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.125 : 19.3902498372396); (7.5 : 19.3902498372396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Contractor/Contractor_Contract" />
+      <nodes>
+        <classShapeMoniker Id="b8ab188d-6452-4d97-a033-54719e51629a" />
+        <classShapeMoniker Id="d5763c57-fa16-49ac-8bc2-1e6337cfec68" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.0625 : 17.875); (8.0625 : 14.4439925130208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Contract/Contract_ContractsBeat" />
+      <nodes>
+        <classShapeMoniker Id="d5763c57-fa16-49ac-8bc2-1e6337cfec68" />
+        <classShapeMoniker Id="82db0545-c570-4e7b-9496-d1e8a392dcde" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.25 : 13.8469962565104); (8.625 : 13.8469962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/vBeat/vBeat_ContractsBeat" />
+      <nodes>
+        <classShapeMoniker Id="8d58ad38-328d-45e0-ad81-16dc4a975ccb" />
+        <classShapeMoniker Id="82db0545-c570-4e7b-9496-d1e8a392dcde" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4eb23326-d15b-4b1b-994b-4d3b165281bc" absoluteBounds="13, 11.375, 2, 5.2323225911458326">
+      <DataClassMoniker Name="/FSPDataContext/Driver" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ac6a8750-a115-4fbe-a2ce-93e2597154fa" absoluteBounds="13.015, 11.835, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(13.93749875 : 11.375); (13.93749875 : 4.22199625651042); (15.5 : 4.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Driver/Driver_DriverDailySchedule" />
+      <nodes>
+        <classShapeMoniker Id="4eb23326-d15b-4b1b-994b-4d3b165281bc" />
+        <classShapeMoniker Id="6b101ae0-f750-451c-9e2a-98a2e75edc8c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.656252 : 18.75); (5.656252 : 16.4968082682292); (13 : 16.4968082682292)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Contractor/Contractor_Driver" />
+      <nodes>
+        <classShapeMoniker Id="b8ab188d-6452-4d97-a033-54719e51629a" />
+        <classShapeMoniker Id="4eb23326-d15b-4b1b-994b-4d3b165281bc" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4c2da91d-90cf-4116-9008-507eb04a81fa" absoluteBounds="9.75, 20.625, 2, 6.1938297526041657">
+      <DataClassMoniker Name="/FSPDataContext/FleetVehicle" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d777de9a-2e24-4ac5-927a-2503969d11a2" absoluteBounds="9.765, 21.085, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.75 : 25.09375); (7.98958333333333 : 25.09375 : JumpStart); (7.82291666666667 : 25.09375 : JumpEnd); (6.125 : 25.09375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/FleetVehicle/FleetVehicle_CHPInspection" />
+      <nodes>
+        <classShapeMoniker Id="4c2da91d-90cf-4116-9008-507eb04a81fa" />
+        <classShapeMoniker Id="8bfabaff-0458-48a4-ba97-4db9e0f9d384" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.125 : 21.3087296842448); (7.82291666666667 : 21.3087296842448 : JumpStart); (7.98958333333333 : 21.3087296842448 : JumpEnd); (9.75 : 21.3087296842448)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Contractor/Contractor_FleetVehicle" />
+      <nodes>
+        <classShapeMoniker Id="b8ab188d-6452-4d97-a033-54719e51629a" />
+        <classShapeMoniker Id="4c2da91d-90cf-4116-9008-507eb04a81fa" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b22352f0-dbe6-48ab-a8e3-b2e77606bfcc" absoluteBounds="18.5, 6.625, 2, 4.2708154296875">
+      <DataClassMoniker Name="/FSPDataContext/DriverInteraction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f5a75e75-c289-4dcb-ba40-d5b488275609" absoluteBounds="18.515, 7.085, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.656252 : 18.75); (5.656252 : 16.3862939453125); (6.25 : 16.3862939453125); (6.25 : 9.2612939453125); (7.36978966666667 : 9.2612939453125 : JumpStart); (7.53645633333333 : 9.2612939453125 : JumpEnd); (13.8541654166667 : 9.2612939453125 : JumpStart); (14.0208320833333 : 9.2612939453125 : JumpEnd); (15.25 : 9.2612939453125); (15.25 : 8); (18.125 : 8); (18.125 : 8.76040771484375); (18.1354166666667 : 8.76040771484375 : JumpStart); (18.3020833333333 : 8.76040771484375 : JumpEnd); (18.5 : 8.76040771484375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Contractor/Contractor_DriverInteraction" />
+      <nodes>
+        <classShapeMoniker Id="b8ab188d-6452-4d97-a033-54719e51629a" />
+        <classShapeMoniker Id="b22352f0-dbe6-48ab-a8e3-b2e77606bfcc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.9375025 : 11.375); (14.9375025 : 10.2267976888021); (18.1354166666667 : 10.2267976888021 : JumpStart); (18.3020833333333 : 10.2267976888021 : JumpEnd); (18.5 : 10.2267976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/Driver/Driver_DriverInteraction" />
+      <nodes>
+        <classShapeMoniker Id="4eb23326-d15b-4b1b-994b-4d3b165281bc" />
+        <classShapeMoniker Id="b22352f0-dbe6-48ab-a8e3-b2e77606bfcc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17.75 : 23.9062264964944); (18.21875 : 23.4374764964944); (18.21875 : 8.39464684440104); (18.5 : 8.39464684440104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/InteractionType/InteractionType_DriverInteraction" />
+      <nodes>
+        <classShapeMoniker Id="46ae1323-f0f5-4688-960e-c110cb6f2fa1" />
+        <classShapeMoniker Id="b22352f0-dbe6-48ab-a8e3-b2e77606bfcc" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="27b612f8-1423-46bc-b009-33bac3e92b5d" absoluteBounds="10.125, 7.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FSPDataContext/YearlyCalendar" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fbc019b5-8ef7-443a-a07f-36af2e843b3a" absoluteBounds="10.14, 8.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c43beaf0-0849-42f1-a15f-acf8c0c94462" absoluteBounds="9.125, 1.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FSPDataContext/Var" />
+      <nestedChildShapes>
+        <elementListCompartment Id="789784cf-a5fc-4dd8-b924-42281160e141" absoluteBounds="9.14, 2.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b1d5af31-1519-48dd-b3f2-a8775519b0b5" absoluteBounds="24.25, 10.125, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FSPDataContext/BeatBeatSchedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aebf52f3-1b98-4da7-afe6-12539a77a523" absoluteBounds="24.265, 10.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(24.25 : 10.6562505); (23.3020813333333 : 10.6562505 : JumpStart); (23.1354146666667 : 10.6562505 : JumpEnd); (20.75 : 10.6562505); (20.75 : 12.6458968098958); (18.3020833333333 : 12.6458968098958 : JumpStart); (18.1354166666667 : 12.6458968098958 : JumpEnd); (15.25 : 12.6458968098958); (15.25 : 11.125); (15.0208358333333 : 11.125 : JumpStart); (14.8541691666667 : 11.125 : JumpEnd); (14.0208320833333 : 11.125 : JumpStart); (13.8541654166667 : 11.125 : JumpEnd); (12 : 11.125); (12 : 12.5978011067708); (11.25 : 12.5978011067708); (11.25 : 13.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/BeatBeatSchedule/BeatBeatSchedule_vBeat" />
+      <nodes>
+        <classShapeMoniker Id="b1d5af31-1519-48dd-b3f2-a8775519b0b5" />
+        <classShapeMoniker Id="8d58ad38-328d-45e0-ad81-16dc4a975ccb" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="bb3c8d70-453c-4d60-b1bd-5c71a41046a8" absoluteBounds="2.625, 0.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/FSPDataContext/DailyBeatSchedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de996218-48cc-4679-a8b9-c7fd98da33fd" absoluteBounds="2.64, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ea5fe3bf-9afc-4965-9a8b-3fb255abb303" absoluteBounds="22.25, 6.875, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/FSPDataContext/BeatSchedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9e36e39f-8d1d-46d2-b6f2-f204cef06a39" absoluteBounds="22.265, 7.335, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(23.218748 : 9.79970540364583); (23.218748 : 10.8181469726562); (24.25 : 10.8181469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/BeatSchedule/BeatSchedule_BeatBeatSchedule" />
+      <nodes>
+        <classShapeMoniker Id="ea5fe3bf-9afc-4965-9a8b-3fb255abb303" />
+        <classShapeMoniker Id="b1d5af31-1519-48dd-b3f2-a8775519b0b5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="08493e57-299e-4fea-9203-38f7ed4617ae" absoluteBounds="21.375, 11.25, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/FSPDataContext/AEFrequency" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b642fca0-fe91-4215-8088-200187afbd3f" absoluteBounds="21.39, 11.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8c9df11c-a3d9-435a-88c3-16914b1e2be8" absoluteBounds="24.125, 12.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/FSPDataContext/AERecipient" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9f0b9bcb-a879-4154-906e-fb9ade1807a5" absoluteBounds="24.14, 13.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="73c976de-1954-41c3-84cb-f4fe2a94ccee" absoluteBounds="21.375, 15.375, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/FSPDataContext/AEReport" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9d0c14f9-3b33-4c90-b398-3f97833cf175" absoluteBounds="21.39, 15.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ef5221f4-c221-4848-9621-ee71bf748f15" absoluteBounds="21.375, 13.375, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/FSPDataContext/AEReportType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cbc849db-a3c0-45ef-9841-690e0aad0cba" absoluteBounds="21.39, 13.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(23.375 : 12.1050439453125); (24.15625 : 12.1050439453125); (24.15625 : 12.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/AEFrequency/AEFrequency_AERecipient" />
+      <nodes>
+        <classShapeMoniker Id="08493e57-299e-4fea-9203-38f7ed4617ae" />
+        <classShapeMoniker Id="8c9df11c-a3d9-435a-88c3-16914b1e2be8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(23.375 : 16.0681469726563); (25.125 : 16.0681469726563); (25.125 : 15.0304996744792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/AEReport/AEReport_AERecipient" />
+      <nodes>
+        <classShapeMoniker Id="73c976de-1954-41c3-84cb-f4fe2a94ccee" />
+        <classShapeMoniker Id="8c9df11c-a3d9-435a-88c3-16914b1e2be8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(23.375 : 13.9719962565104); (24.125 : 13.9719962565104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FSPDataContext/AEReportType/AEReportType_AERecipient" />
+      <nodes>
+        <classShapeMoniker Id="ef5221f4-c221-4848-9621-ee71bf748f15" />
+        <classShapeMoniker Id="8c9df11c-a3d9-435a-88c3-16914b1e2be8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

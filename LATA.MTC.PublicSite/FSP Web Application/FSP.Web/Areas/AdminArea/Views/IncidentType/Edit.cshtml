@@ -1,0 +1,36 @@
+﻿@model FSP.Domain.Model.IncidentType
+@{
+    ViewBag.Title = "Edit " + @Model.IncidentType1;
+    
+}
+<div>
+    @Html.ActionLink("Back to Incident Types", "Index")
+</div>
+<h2>Edit "@Model.IncidentType1"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Incident Type</legend>
+        @Html.HiddenFor(model => model.IncidentTypeID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IncidentType1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IncidentType1)
+            @Html.ValidationMessageFor(model => model.IncidentType1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IncidentTypeCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IncidentTypeCode)
+            @Html.ValidationMessageFor(model => model.IncidentTypeCode)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

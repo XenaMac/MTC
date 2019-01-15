@@ -1,0 +1,35 @@
+﻿@model FSP.Domain.Model.IncidentType
+@{
+    ViewBag.Title = "Create";
+    
+}
+<div>
+    @Html.ActionLink("Back to Incident Types", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Incident Type</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IncidentType1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IncidentType1)
+            @Html.ValidationMessageFor(model => model.IncidentType1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IncidentTypeCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IncidentTypeCode)
+            @Html.ValidationMessageFor(model => model.IncidentTypeCode)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}

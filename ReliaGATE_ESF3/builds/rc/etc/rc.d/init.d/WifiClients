@@ -1,0 +1,29 @@
+#!/bin/bash
+#######################################################################
+forever=1
+wifiout='/dev/null'
+propsFile='/lata/config/fterm.props'
+sleepsecs=15
+###############################################################
+# Check if logging enabled
+###############################################################
+if [ -e $propsFile ]; then
+  logSetting=$(cat $propsFile | grep -i "Log=" | grep -i "T");
+  if [ "x$logSetting" != "x" ]; then
+    wifiout="/lata/logs/wificlient$(date '+%Y%m%d').log"
+    echo "Starting WifiClients" $(date) >> $wifiout;
+  fi
+fi
+while [ $forever -eq 1 ]
+do
+  maclist=$(iw dev wlan0 station dump | grep Station | cut -f 2 -s -d" ");
+  for mac in $maclist
+  do
+    ip="UNKN";
+    host="";
+    ip=$(cat /var/lib/dhcpd/dhcpd.leases | grep -B 7 $mac | grep "lease" | cut -f 2 -s -d" " | sort -u);
+    host=$(cat /var/lib/dhcpd/dhcpd.leases | grep -A 1 $mac | grep "client-hostname" | cut -f 2 -s -d"\"" | sort -u);
+    echo $(date '+%y%m%d%H%M%S') $ip $host $mac >> $wifiout;
+  done
+  sleep $sleepsecs
+done

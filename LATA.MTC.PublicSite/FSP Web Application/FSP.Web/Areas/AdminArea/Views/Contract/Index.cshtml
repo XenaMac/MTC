@@ -1,0 +1,62 @@
+﻿@model FSP.Web.Areas.AdminArea.ViewModels.ContractIndexViewModel
+@{
+    ViewBag.Title = "Contracts";    
+}
+
+
+<p>
+    @Html.ActionLink("Add Contract", "Create")
+</p>
+<h2>Contracts</h2>
+<table class="table table-condensed table-striped table-bordered table-hover sortable">
+    <thead>
+        <tr>
+            <th>Agreement Number
+            </th>
+            <th>Start Date
+            </th>
+            <th>End Date
+            </th>
+            <th>Max Obligation
+            </th>
+            <th>Beats
+            </th>
+            <th>Contractor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Contracts)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Contract.AgreementNumber, "Edit", new { id = item.Contract.ContractID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contract.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contract.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contract.MaxObligation)
+                </td>
+                <td>
+                    @foreach (var beat in item.SelectedBeats)
+                    {
+                        <ul style="list-style: none">
+                            <li>@beat</li>
+                        </ul>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink(item.Contract.Contractor.ContractCompanyName, "Edit", "Contractor", null, null, null, new { id = item.Contract.ContractorID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Contract.ContractID })
+                </td>
+            </tr>                                
+        }
+    </tbody>
+</table>

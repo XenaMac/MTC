@@ -1,0 +1,128 @@
+#!/bin/bash
+###############################################################
+# Checks IGN line for power loss and powers down ReliaGate after 
+# predetermined period of time
+###############################################################
+
+###############################################################
+# archive old igncheck.log
+###############################################################
+igncheckout='/lata/config/igncheck.log'
+igncheckold1='/lata/config/igncheck.old1'
+igncheckold2='/lata/config/igncheck.old2'
+igncheckold3='/lata/config/igncheck.old3'
+igncheckold4='/lata/config/igncheck.old4'
+igncheckold5='/lata/config/igncheck.old5'
+if [ -e $igncheckout ]; then
+  mv $igncheckold4 $igncheckold5;
+  mv $igncheckold3 $igncheckold4;
+  mv $igncheckold2 $igncheckold3;
+  mv $igncheckold1 $igncheckold2;
+  mv $igncheckout $igncheckold1;
+fi
+
+###############################################################
+# start new igncheck.log
+###############################################################
+echo "Starting IgnitionCheck" $(date) > $igncheckout;
+
+###############################################################
+# initialize variables
+###############################################################
+defaultsecs=2400
+errordir='/lata/config/error'
+i2cout='/lata/config/i2cout.txt'
+ignval=1
+propsfile='/lata/config/fterm.props'
+sleeptime=10
+
+echo "Variables initialized" $(date) >> $igncheckout;
+
+###############################################################
+# verify error directory
+###############################################################
+if [ ! -e $errordir ]; then
+  mkdir $errordir;
+fi
+
+###############################################################
+# get timeout value
+###############################################################
+if [ -e $propsfile ]; then
+  timeout=$(cat $propsfile | grep -i "IgnTimeoutSecs=" | sed 's/.*=\(.*\)/\1/');
+else
+  timeout=$defaultsecs;
+fi
+echo "Timeout is" $timeout $(date) >> $igncheckout;
+if [[ $timeout -eq 0 ]]; then
+  echo "IgnitionCheck is disabled, exiting" $(date) >> $igncheckout;
+  exit;
+fi
+
+###############################################################
+function log_error()
+###############################################################
+{
+  local level=$1;
+  local type=$2;
+  local number=$3;
+  local description=$4;
+  local ext='.err';
+  local script='cd';
+  local timestamp=$(date '+%s');
+  local filename=$errordir/$level-$type-$script-$number-$timestamp$ext;
+  echo $description" "$(date) > $filename;
+}
+
+###############################################################
+function get_ignval()
+###############################################################
+{
+  echo "Running rg-50-21-catalyst-i2c" $(date) >> $igncheckout;
+  nohup sh -c '/etc/rc.d/init.d/rg-50-21-catalyst-i2c' &> $i2cout &
+  sleep 1;
+  echo "i2cout is" $(date) >> $igncheckout;
+  cat $i2cout >> $igncheckout;
+  ignval=$(cat $i2cout | grep -i "ignition" | sed 's/ignition = \(.\)/\1/');
+  echo "ignval =" $ignval $(date) >> $igncheckout;
+  if [[ $ignval -eq 0 ]]; then
+    echo "Good read ignition 0 value" $ignval $(date) >> $igncheckout;
+  elif [[ $ignval -eq 1 ]]; then
+    echo "Good read ignition 1 value" $ignval $(date) >> $igncheckout;
+  else
+    echo "Error! Unable to read ignition value" $(date) >> $igncheckout;
+    log_error "3" "igncheck" "01" "Error! Unable to read ignition value";
+    ignval=1;
+  fi
+}
+
+###############################################################
+###############################################################
+# Main
+###############################################################
+###############################################################
+echo "At 1" $(date) >> $igncheckout;
+get_ignval;
+while [[ $ignval -eq 1 ]]
+do
+  sleep $sleeptime;
+  get_ignval;
+  if [[ $ignval -eq 0 ]]; then
+    ###############################################################
+    # start timer
+    ###############################################################
+    startsecs=`expr $(date '+%s')`;
+    while [ $ignval -eq 0 ]
+    do
+      currsecs=`expr $(date '+%s')`;
+      elapsedsecs=`expr $currsecs - $startsecs`;
+      echo "elapsedsecs" $elapsedsecs $(date) >> $igncheckout;
+      if (( $elapsedsecs > $timeout )); then
+        echo "Powering off after " $timeout " seconds" $(date) >> $igncheckout;
+        nohup sh -c '/sbin/poweroff' >> /dev/null 2>> /dev/null &
+      fi
+      sleep $sleeptime;
+      get_ignval;
+    done
+  fi
+done

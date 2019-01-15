@@ -1,0 +1,52 @@
+﻿@model IEnumerable<FSP.Domain.Model.LocalBeatSchedule>
+@{
+    ViewBag.Title = "Today's date Schedule";
+}
+
+<h2>@ViewBag.Heading </h2>
+
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th class="">Beat #
+            </th>
+            <th class="">Schedule Name
+            </th>
+            <th class="">Supervisor
+            </th>
+            <th class="">Contact Phones
+            </th>
+            <th class="">Contractor Company
+            </th>
+            <th class="">Weekday
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeatNumber)
+                </td>
+                <td>
+                    <b>@item.ScheduleName</b>
+                    @item.ScheduleTimeTable
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Supervisor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CellPhone)<br />
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractCompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weekday)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

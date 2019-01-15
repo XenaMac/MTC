@@ -1,0 +1,145 @@
+﻿
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #f00;
+    /*display: block;
+    margin-top: 0px;
+    text-align: center;*/
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/*sorting headers added by dpolkinhorn*/
+/*modified for dataTable jquery plugin */
+table .sorting, table .sorting_desc, table .sorting_asc
+{
+    cursor: pointer;
+}
+
+    table .sorting:after, table .sorting_desc:after, table .sorting_asc:after
+    {
+        content: "";
+        float: right;
+        margin-top: 7px;
+        border-width: 0 4px 4px;
+        border-style: solid;
+        border-color: #000 transparent;
+        visibility: hidden;
+    }
+
+table .sorting_asc, table .sorting_desc
+{
+    background-color: rgba(141, 192, 219, 0.25);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+    table .header:hover:after, table .sorting_desc:hover:after, table .sorting_asc:hover:after
+    {
+        visibility: visible;
+    }
+
+    table .sorting_desc:after, table .sorting_desc:hover:after
+    {
+        visibility: visible;
+        filter: alpha(opacity=60);
+        -khtml-opacity: 0.6;
+        -moz-opacity: 0.6;
+        opacity: 0.6;
+    }
+
+    table .sorting_asc:after
+    {
+        border-bottom: none;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #000;
+        visibility: visible;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        filter: alpha(opacity=60);
+        -khtml-opacity: 0.6;
+        -moz-opacity: 0.6;
+        opacity: 0.6;
+    }
+
+/*Truck Details Window*/
+
+.detailsWindowFieldCaption
+{
+    color: #666666;
+    white-space: nowrap;
+}
+
+/*Map ToolTip */
+#tt
+{
+    position: absolute;
+    display: block;
+    /*background: url(images/tt_left.gif) top left no-repeat;*/
+}
+
+#tttop
+{
+    display: block;
+    height: 5px;
+    margin-left: 5px;
+    /*background: url(images/tt_top.gif) top right no-repeat;*/
+    overflow: hidden;
+}
+
+#ttcont
+{
+    display: block;
+    padding: 2px 12px 3px 7px;
+    margin-left: 5px;
+    background: #666;
+    color: #FFF;
+}
+
+#ttbot
+{
+    display: block;
+    height: 5px;
+    margin-left: 5px;
+    /*background: url(images/tt_bottom.gif) top right no-repeat;*/
+    overflow: hidden;
+}
+
+
+.ui-autocomplete
+{
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+
+.ui-autocomplete-loading
+{
+    background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat;
+}

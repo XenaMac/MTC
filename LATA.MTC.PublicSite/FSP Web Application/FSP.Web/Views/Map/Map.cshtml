@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Map";
+}
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDVGMBMCxemD0_VM3UjKVKNxfC1lstlTW4&sensor=false" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/knockout-2.1.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.signalR-0.5.3.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+
+
+<script src="@Url.Content("~/Scripts/markerwithlabel.js")"></script>
+<script src="@Url.Content("~/Scripts/jQueryRotateCompressed.2.1.js")"></script>
+<script src="@Url.Content("~/Scripts/Tooltip.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/MyScripts/fsp.map.LabelInFront.js")"></script>
+
+
+<script src="@Url.Content("~/MyScripts/fsp.constructor.js")"></script>
+<script src="@Url.Content("~/MyScripts/fsp.mapViewModel.js")"></script>
+<script src="@Url.Content("~/MyScripts/fsp.truckCollection.js")"></script>
+
+
+<style type="text/css">
+    #map
+    {
+        height: 100%;
+    }
+
+        #map img
+        {
+            max-width: none;
+        }
+
+    div#infoWindow
+    {
+        height: 180px;
+        width: 250px;
+    }
+
+    .gridRow
+    {
+        cursor: pointer;
+    }
+
+    .labels
+    {
+        z-index: 10000;
+    }
+</style>
+
+<div class="row" style="padding-bottom: 3px;">
+    <div class="span6">
+        <div class="btn-toolbar" style="margin: 0;">
+            <div class="btn-group">
+                <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">Settings
+                <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a id="btnFilter" data-toggle="modal" data-bind="click: showFilter">Filter</a></li>
+                    <li>
+                        <a>
+                            <input type="checkbox" data-bind="checked: callBoxesVisible" value="1" checked />&nbsp;Call Boxes</a>
+                    </li>
+                    <li>
+                        <a>
+                            <input type="checkbox" data-bind="checked: dropZonesVisible" value="1" checked />&nbsp;Drop Zones</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Beats
+                <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a>
+                            <input type="checkbox" data-bind="checked: beatsVisible" checked />&nbsp;Beat Polygons</a></li>
+                    <li>
+                        <a>
+                            <input type="checkbox" data-bind="checked: beatsLabelsVisible" checked />&nbsp;Beat Labels</a></li>
+
+                </ul>
+            </div>
+            <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Segments
+                <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a>
+                            <input type="checkbox" data-bind="checked: beatSegmentsVisible" value="1" checked />&nbsp;Segment Polygons</a></li>
+                    <li>
+                        <a>
+                            <input type="checkbox" data-bind="checked: beatSegmentsLabelsVisible" value="1" checked />&nbsp;Segment Labels</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="span6" style="text-align: right">
+        <a class="btn btn-info" data-bind="click: showTruckList">Tow Truck List</a>
+        <button data-bind="click: mapViewModel.unFollowTruck, visible: followingTruck, text: unFollowText" class="btn btn-danger" type="button">
+        </button>
+    </div>
+</div>
+
+<div id="map" style="width: 100%; height: 500px; overflow: hidden;"></div>
+
+@*map markers custom ko binding*@
+<div data-bind="foreach: trucks">
+    <div data-bind="truckNumber: truckNumber, 
+        beatNumber: beatNumber, 
+        vehicleStateIconUrl: vehicleStateIconUrl, 
+        heading: heading, 
+        lat: lat, 
+        lon: lon, 
+        map: map">
+    </div>
+</div>
+
+@*details*@
+<div id="infoWindowContent" style="display: none; z-index: 5000">
+    <table data-bind="with: selectedTruck">
+        <tr>
+            <td><span data-bind="text: lastMessage()"></span></td>
+        </tr>
+        <tr>
+            <td><span data-bind="text: 'Beat ' + beatNumber()"></span></td>
+        </tr>
+        <tr>
+            <td><span data-bind="text: location()"></span></td>
+        </tr>
+        <tr>
+            <td><span data-bind="text: contractorName()"></span></td>
+        </tr>
+        <tr>
+            <td><span data-bind="text: driverName()"></span></td>
+        </tr>
+        <tr>
+            <td><span data-bind="text: 'Truck ' + truckNumber "></span></td>
+        </tr>
+        <tr>
+            <td><span data-bind="text: speed() + ' MPH'"></span></td>
+        </tr>
+        <tr>
+            <td><span data-bind="text: vehicleState()"></span></td>
+        </tr>
+    </table>
+</div>
+
+@*filter window*@
+<div class="modal hide fade" id="filterModal">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">
+            ×</button>
+        <h3>Filter</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row-fluid">
+            <div class="span6">
+                <h3>Beat Number</h3>
+                <p>
+                    <input type="text" id="beatsFilter" name="beatsFilter" />
+                </p>
+            </div>
+            <div class="span6">
+                <h3>Truck Number</h3>
+                <p>
+                    <input type="text" id="trucksFilter" disabled="disabled" />
+                </p>
+                <h3>Tow Contractor</h3>
+                <p>
+                    <input type="text" id="contractorsFilter" disabled="disabled" />
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a id="btnSaveFilter" href="#" class="btn btn-primary" data-dismiss="modal">Done</a>
+    </div>
+</div>
+

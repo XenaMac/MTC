@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Administrator Trouble Ticket Portal";
+}
+
+
+
+<div ng-app="mtcApp">
+    <div ng-controller="troubleTicketAdminPortalController" ng-cloak>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Administrator Trouble Ticket Portal </h2>
+                <br />
+                <div class="btn-group">
+                    <a href="~/TroubleTickets/AdminPortalMechanical" class="btn btn-default btn-lg">Mechanical/Truck Out of Service</a>
+                    <a href="~/TroubleTickets/AdminPortalInVehicleEquipmentGeneral" class="btn btn-default btn-lg">In-Vehicle Equipment General</a>
+                    <a href="~/TroubleTickets/AdminPortalInVehicleEqupmentLATATrax" class="btn btn-default btn-lg">In-Vehicle Equipment LATATrax</a>
+                    <a href="~/TroubleTickets/AdminPortalBackInService" class="btn btn-default btn-lg">Back In-Service</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Trouble Ticket Snapshot <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingTroubleTicketsSnapshot"></i></h2>
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Mechanical/Failures/Truck Out of Service
+                            </th>
+                            <th>
+                                In-Vehicle Equipment Failures General
+                            </th>
+                            <th>
+                                In-Vehicle Equipment Failures LATATrax
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="t in troubleTicketsSnapshot">
+                            <td ng-bind="t.Status"></td>
+                            <td ng-bind="t.NumberOfMechanical"></td>
+                            <td ng-bind="t.NumberOfInVehicleEquipmentGeneral"></td>
+                            <td ng-bind="t.NumberOfInVehcileEquipmentLATATrax"></td>
+                            <td ng-bind="t.Total"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/troubleTicketAdminPortalController.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+    <script src="~/app/services/troubleTicketService.js"></script>
+}
+

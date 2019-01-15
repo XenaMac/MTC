@@ -1,0 +1,930 @@
+.label {
+    float: left;
+    width: 370px;
+    padding-left: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.paddedDiv {
+    padding: 3px;
+    margin: 15px;
+    font-size: 22pt;
+}
+
+.imgButton {
+    height: 100px;
+}
+
+input[type='radio'] {
+    transform: scale(2);
+    margin-top: -1px;
+    vertical-align: middle;
+}
+
+.lrgButton {
+    height: 100px;
+    width: 120px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #202020;
+}
+
+.lrgButtonRed {
+    height: 100px;
+    width: 120px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #ff0000;
+}
+
+
+.lrgButtonWhite {
+    height: 100px;
+    width: 120px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #989898;
+}
+
+.wideButtonYellow {
+    height: 60px;
+    width: 220px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #ffff00;
+}
+
+.wideButtonGreen {
+    height: 60px;
+    width: 220px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #009900;
+}
+
+.wideButtonRed {
+    height: 60px;
+    width: 220px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #ff0000;
+}
+
+.lrgButtonBlue {
+    height: 100px;
+    width: 120px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #0000FF;
+}
+
+.assistSubmit {
+    height: 60px;
+    width: 320px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #009933;
+}
+
+.assistDone {
+    float: right;
+    margin-right: 10px;
+    height: 60px;
+    width: 200px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #ff0000;
+}
+
+.assistDisabled {
+    float: right;
+    margin-right: 10px;
+    height: 60px;
+    width: 200px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #989898;
+}
+
+.assistRequest {
+    background-color: #FF0000;
+    text-align: center;
+}
+
+.assistRequestWAZE {
+    background-color: #93c4d3;
+    text-align: center;
+}
+
+.assistHead {
+    font-family: Arial,sans-serif;
+    font-size: 64px;
+    font-weight: bold;
+    margin: 20px;
+    height: 80px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.assistData {
+    font-family: Arial,sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.assistOK {
+    height: 70px;
+    width: 300px;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #600000;
+    display: inline;
+    border-radius: 10px;
+    text-shadow: 1px 1px 1px black;
+    color: #700000;
+    border-top: 1px #380000;
+    text-align: center;
+}
+
+.assistDRP {
+    height: 70px;
+    width: 350px;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #600000;
+    display: inline;
+    border-radius: 10px;
+    text-shadow: 1px 1px 1px black;
+    color: #700000;
+    border-top: 1px #380000;
+    text-align: center;
+}
+
+.drpButton {
+    height: 100px;
+    width: 120px;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0px;
+    border: 1px solid #600000;
+    border-radius: 1px 1px 1px 1px 1px 1px 1px 1px;
+    -webkit-border-radius: 5px;
+    color: #c0c0c0;
+    background-color: #0B6E8A;
+    float: right;
+}
+
+.leftClass {
+    font-weight: bold;
+    width: 300px;
+    float: left;
+}
+
+.logonStatus {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 28px;
+}
+
+.logonStatusHolder {
+    background-color: #ff0000;
+    display: inline-block;
+}
+
+.truckStatus {
+    color: #ffffff;
+    font-size: 26px;
+}
+
+.jqmButton {
+    height: 70px;
+    width: 100px;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #600000;
+    display: inline;
+    border-radius: 10px;
+    text-shadow: 1px 1px 1px black;
+    color: #700000;
+    border-top: 1px #380000;
+    text-align: center;
+}
+
+.rightClass {
+    font-weight: normal;
+    float: left;
+    display: inline;
+    width: 600px;
+}
+
+.clear {
+    float: left;
+    clear: both;
+}
+
+.statusHeader {
+    width: 100%;
+    height: 30px;
+    background-color: #000000;
+}
+
+.buttonBar {
+    width: 100%;
+    height: 100px;
+    background-color: #929292;
+}
+
+#currentStatus {
+    color: Red;
+}
+
+.buttonBar {
+    background-color: #989898;
+    color: #989898;
+}
+
+#services {
+    background-color: #c0c0c0;
+}
+
+.thinPad {
+    padding: 10px;
+}
+
+.lataLogo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tileDiv {
+    background-image: url('../images/stripetile.png');
+}
+
+.tileAssistBottom {
+    background-image: url('../images/stripetile.png');
+    position: absolute;
+    bottom: 7px;
+    width: 99%;
+    left: 10px;
+}
+
+.tileDivBottom {
+    background-image: url('../images/stripetile.png');
+    position: absolute;
+    bottom: 7px;
+    width: 800px;
+    left: 10px;
+}
+
+.bigSel {
+    font-size: 20PX;
+    width: 400px;
+}
+
+.astButton {
+    height: 40px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+    border: 1px solid #600000;
+    border-radius: 5px;
+    color: red;
+}
+
+.assistButton {
+    height: 70px;
+    width: 300px;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ff0000;
+    border: 1px solid #600000;
+    display: inline;
+    border-radius: 5px;
+    text-shadow: 1px 1px 1px black;
+    color: white;
+    border-top: 1px #380000;
+}
+
+.eriButton {
+    height: 70px;
+    width: 245px;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ff0000;
+    border: 1px solid #600000;
+    display: inline;
+    border-radius: 5px;
+    text-shadow: 1px 1px 1px black;
+    color: white;
+    border-top: 1px #380000;
+}
+
+.responseButton {
+    background-color: #ff0000;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+    .responseButton:active {
+        -webkit-box-shadow: 0 2px 6px black;
+        color: #380000;
+    }
+
+.assistButton:active {
+    -webkit-box-shadow: 0 2px 6px black;
+    color: #380000;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: large;
+}
+/*
+input[type=checkbox]{
+	transform: scale(2);
+	-webkit-transform: scale(2);
+}
+*/
+.assistArea {
+    width: 600px;
+    height: 120px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+}
+
+.box {
+    background: #fefefe;
+    border: 1px solid #C3D4DB;
+    border-top: 1px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: rgba(0,0,0,0.15) 0 0 1px;
+    -webkit-box-shadow: rgba(0,0,0,0.15) 0 0 1px;
+    box-shadow: rgba(0,0,0,0.15) 0 0 1px;
+    color: #444;
+    font: normal 12px/14px Arial, Helvetica, Sans-serif;
+    margin: 0 auto 30px;
+    overflow: hidden;
+}
+
+    .box.login {
+        height: 470px;
+        width: 950px;
+        position: absolute;
+        left: 30%;
+        top: 60%;
+        margin: -270px 0 0 -166px;
+    }
+
+.boxBody {
+    background: #fefefe;
+    border-top: 1px solid #dde0e8;
+    border-bottom: 1px solid #dde0e8;
+    padding: 10px 20px;
+    font-size: 28px;
+}
+
+.pad {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.box footer {
+    background: #eff4f6;
+    border-top: 1px solid #fff;
+    padding: 22px 26px;
+    overflow: hidden;
+    height: 32px;
+}
+
+.box label {
+    /*display:block;*/
+    float: left;
+    width: 450px;
+    font: 20px Arial, Helvetica, Sans-serif;
+    font-weight: bold;
+    margin: 10px 0 0 6px;
+}
+
+.box footer label {
+    float: left;
+    margin: 4px 0 0;
+}
+
+.LATALogo {
+    padding: 10px;
+}
+
+.txtLogon {
+    height: 30px;
+    width: 400px;
+    font-size: 20px;
+}
+
+#buttonSet {
+    text-align: center;
+}
+
+#assistDiv {
+    height: 100px;
+    background-color: #ccff99;
+    padding: 10px;
+}
+
+
+
+.sectionHead {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#statusDiv {
+    height: 120px;
+    background-color: #c0c0c0;
+    padding: 10px;
+}
+
+#truckStatus {
+    float: left;
+    width: 50%;
+}
+
+#assistData {
+    float: right;
+    width: 50%;
+}
+
+.customerData1 {
+    float: left;
+    width: 33%;
+}
+
+.customerData2 {
+    float: left;
+    width: 33%;
+}
+
+.customerData3 {
+    float: left;
+    width: 33%;
+}
+
+.towData1 {
+    float: left;
+    width: 25%;
+}
+
+.towData2 {
+    float: left;
+    width: 25%;
+}
+
+.towData3 {
+    float: left;
+    width: 25%;
+}
+
+.towData4 {
+    float: left;
+    width: 25%;
+}
+
+.vehicles1 {
+    float: left;
+    width: 20%;
+}
+
+.vehicles2 {
+    float: left;
+    width: 20%;
+}
+
+.vehicles3 {
+    float: left;
+    width: 20%;
+}
+
+.vehicles4 {
+    float: left;
+    width: 20%;
+    ;
+}
+
+.vehicles5 {
+    float: left;
+    width: 20%;
+}
+
+.assistRight {
+    float: left;
+    width: 33%;
+}
+
+.assistLeft {
+    float: left;
+    width: 33%;
+}
+
+.assistMiddle {
+    float: left;
+    width: 33%;
+}
+
+.deepPad {
+    padding: 20px;
+}
+
+.padDiv {
+    padding: 10px;
+    font-size: 22pt;
+}
+
+    .padDiv input {
+        font-size: 22pt;
+        width: 260px;
+    }
+
+    .padDiv textarea {
+        font-family: Arial, sans-serif;
+        font-size: 22pt;
+    }
+
+.subHead {
+    background-color: #c0c0c0;
+    text-align: center;
+    border: 1px black;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+#comments {
+    padding: 5px;
+}
+
+#error {
+    font-size: 20px;
+    text-align: center;
+    color: #ff0000;
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    text-align: center;
+    font: normal 11px/16px Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+header {
+    display: block;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    height: 24px;
+    padding: 5px;
+}
+
+.commentArea {
+    width: 80%;
+    height: 200px;
+}
+
+.txtDescription {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.even {
+    background-color: gray;
+}
+
+/******************
+*
+* Checkboxes
+*
+****************/
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: absolute;
+    left: -9999px;
+}
+
+    [type="checkbox"]:not(:checked) + label,
+    [type="checkbox"]:checked + label {
+        position: relative;
+        padding-left: 25px;
+        cursor: pointer;
+    }
+
+        /* checkbox aspect */
+        [type="checkbox"]:not(:checked) + label:before,
+        [type="checkbox"]:checked + label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 17px;
+            height: 17px;
+            border: 1px solid #aaa;
+            background: #f8f8f8;
+            border-radius: 3px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,.3);
+        }
+        /* checked mark aspect */
+        [type="checkbox"]:not(:checked) + label:after,
+        [type="checkbox"]:checked + label:after {
+            content: 'X';
+            position: absolute;
+            top: 0;
+            left: 4px;
+            font-size: 14px;
+            color: #09ad7e;
+            transition: all .2s;
+        }
+        /* checked mark aspect changes */
+        [type="checkbox"]:not(:checked) + label:after {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        [type="checkbox"]:checked + label:after {
+            opacity: 1;
+            transform: scale(1);
+        }
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+    box-shadow: none;
+    border-color: #bbb;
+    background-color: #ddd;
+}
+
+[type="checkbox"]:disabled:checked + label:after {
+    color: #999;
+}
+
+[type="checkbox"]:disabled + label {
+    color: #aaa;
+}
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+    border: 1px dotted blue;
+}
+
+/* hover style just for information */
+label:hover:before {
+    border: 1px solid #4778d9 !important;
+}
+
+
+.ui-timepicker-div .ui-widget-header {
+    margin-bottom: 8px;
+}
+
+.ui-timepicker-div dl {
+    text-align: left;
+}
+
+    .ui-timepicker-div dl dt {
+        height: 25px;
+        margin-bottom: -25px;
+    }
+
+    .ui-timepicker-div dl dd {
+        margin: 0 10px 10px 65px;
+    }
+
+.ui-timepicker-div td {
+    font-size: 90%;
+}
+
+.ui-tpicker-grid-label {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ui-timepicker-rtl {
+    direction: rtl;
+}
+
+    .ui-timepicker-rtl dl {
+        text-align: right;
+    }
+
+        .ui-timepicker-rtl dl dd {
+            margin: 0 65px 10px 10px;
+        }
+
+
+/*Different Modals form Reporting*/
+
+@media screen and (min-width: 768px) {
+
+    /*Vehicle details main Div ------------------------------------------------------------------------------------------*/
+    #incidentModal .modal-dialog {
+        top: 5%;
+        right: .5%;
+        outline: none;
+        width: 98%;
+    }
+
+    #incidentModal .modal-dialog,
+    #incidentModal .modal-content {
+        /* 80% of window height */
+        height: 95%;
+    }
+
+    #incidentModal .modal-body {
+        /* 100% = dialog height, 120px = header + footer */
+        height: 93%;
+        max-height: calc(100% - 120px);
+        overflow-y: scroll;
+    }
+
+    /*KB_LP ------------------------------------------------------------------------------------------*/
+    #KB_LP .modal-dialog {
+        top: 5%;
+        left: 0%;
+        outline: none;
+        width: 75%;
+    }
+
+    #KB_LP .modal-dialog,
+    #KB_LP .modal-content {
+        /* 80% of window height */
+        height: 85%;
+    }
+
+    /*KB_NT ------------------------------------------------------------------------------------------*/
+    #KB_NT .modal-dialog {
+        top: 5%;
+        left: 0%;
+        outline: none;
+        width: 75%;
+    }
+
+    #KB_NT .modal-dialog,
+    #KB_NT .modal-content {
+        /* 80% of window height */
+        height: 85%;
+    }
+
+    #btnpanel {
+        border-radius: 5px;
+        border: 1px solid #c0c0c0;
+        padding: 10px;
+    }
+
+    #briefUpdate {
+        border-radius: 5px;
+        border: 1px solid #c0c0c0;
+    }
+
+    #assistReport {
+        border-radius: 5px;
+        border: 1px solid #c0c0c0;
+        padding: 10px;
+        overflow-y: scroll;
+        max-height: 525px;
+    }
+
+    #taNotes {
+         width: 100%;
+         height: 150px;
+    }
+
+    #incidentNotes {
+        border-radius: 5px;
+        border: 1px solid #c0c0c0;
+        padding: 10px;
+    }
+
+    .NavDiv {
+        border-radius: 5px;
+        border: 1px solid #c0c0c0;
+        padding: 10px;
+        background-color: #dddddd;
+    }
+
+    .btnNavDiv {
+        border-radius: 5px;
+        border: 1px solid #c0c0c0;
+        padding: 10px;
+    }
+
+    #main {
+        position: relative;
+        width: 1024px;
+        height: 600px;
+        margin: 50px auto 0 auto;
+        text-align: center;
+    }
+
+    .txtContent {
+        width: 1000px;
+        font-family: Arial;
+        font-size: 18px;
+        color: #000;
+        border: 2px solid #3171ad;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        padding: 10px;
+        color: #3c556c;
+        resize: none;
+        overflow: hidden;
+    }
+
+        .txtContent:focus {
+            outline-width: 0;
+        }
+
+    li {
+        list-style: none;
+        font-size: 35px;
+    }
+
+    .btn-xlarge {
+        padding: 30px 30px;
+        margin: 20px 20px;
+        font-size: 25px;
+        font-weight: bold;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+    }
+}

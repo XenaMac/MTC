@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Inspections";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="inspectionsController" ng-cloak>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3>Inspections <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingInspections"></i></h3>
+            </div>
+            <div class="col-xs-6">
+                <br />
+                <div class="form-inline pull-right">
+                    <input type="text" class="form-control" id="filter" placeholder="search" />
+                    <a class="btn btn-success" href="~/CHPInspections/Create" title="add inspection"><i class="fa fa-plus"></i> Inspection</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" data-filter="#filter" data-filter-text-only="true" data-page-size="20" data-limit-navigation="10">
+                    <thead>
+                        <tr>
+                            <th data-toggle="true" data-sort-initial="true">Date</th>
+                            <th>Vehicle</th>
+                            <th>CHP Officer</th>
+                            <th data-hide="phone">Type</th>
+                            <th data-hide="tablet, phone">Notes</th>
+                            <th data-hide="phone">Contractor</th>
+                            <th data-sort-ignore="true"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="i in inspections">
+                            <td ng-bind="i.InspectionDateFriendly"></td>
+                            <td ng-bind="i.FleetVehicle"></td>
+                            <td ng-bind="i.CHPOfficer"></td>
+                            <td ng-bind="i.InspectionType"></td>
+                            <td ng-bind="i.InspectionNotes"></td>
+                            <td ng-bind="i.Contractor"></td>
+                            <td>
+                                <div class="pull-right">
+                                    <a ng-href='@Url.Content("~/CHPInspections/Edit/"){{i.InspectionID}}' class="btn btn-info btn-sm" title="edit"><i class="fa fa-pencil"></i></a>
+                                    <a ng-href='@Url.Content("~/CHPInspections/Delete/"){{i.InspectionID}}' class="btn btn-danger btn-sm" title="delete"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @Html.Partial("_ColumnConfig")
+    </div>
+</div>
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/inspectionsController.js"></script>
+    <script src="~/app/services/inspectionsService.js"></script>
+
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

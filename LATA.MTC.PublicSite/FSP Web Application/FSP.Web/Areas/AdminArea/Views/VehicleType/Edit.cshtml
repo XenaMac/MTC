@@ -1,0 +1,36 @@
+﻿@model FSP.Domain.Model.VehicleType
+@{
+    ViewBag.Title = "Edit " + @Model.VehicleType1;
+    
+}
+<div>
+    @Html.ActionLink("Back to Vehicle Types", "Index")
+</div>
+<h2>Edit "@Model.VehicleType1"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Vehicle Type</legend>
+        @Html.HiddenFor(model => model.VehicleTypeID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehicleType1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehicleType1)
+            @Html.ValidationMessageFor(model => model.VehicleType1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehicleTypeCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehicleTypeCode)
+            @Html.ValidationMessageFor(model => model.VehicleTypeCode)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

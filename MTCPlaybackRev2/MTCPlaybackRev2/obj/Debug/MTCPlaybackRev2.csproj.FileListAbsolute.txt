@@ -1,0 +1,31 @@
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\MTCPlaybackRev2.exe.config
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\MTCPlaybackRev2.exe
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\MTCPlaybackRev2.pdb
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\Esri.ArcGISRuntime.dll
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\Esri.ArcGISRuntime.xml
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.csprojResolveAssemblyReference.cache
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MainWindow.baml
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MainWindow.g.cs
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\App.g.cs
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2_MarkupCompile.cache
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.g.resources
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.Properties.Resources.resources
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.csproj.GenerateResource.Cache
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.exe
+c:\users\elahti\documents\visual studio 2013\Projects\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.pdb
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\MTCPlaybackRev2.exe.config
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.exe
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.pdb
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\MTCPlaybackRev2.exe
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\MTCPlaybackRev2.pdb
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\Esri.ArcGISRuntime.dll
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\Esri.ArcGISRuntime.xml
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.csprojResolveAssemblyReference.cache
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MainWindow.baml
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MainWindow.g.cs
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\App.g.cs
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2_MarkupCompile.cache
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.g.resources
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.Properties.Resources.resources
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.csproj.GenerateResource.Cache
+C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\Xceed.Wpf.Toolkit.dll

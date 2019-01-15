@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EEC7F270-1297-4FB9-9213-50D9E4CF8C07}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FSP.Domain2</RootNamespace>
+    <AssemblyName>FSP.Domain2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0-rc1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0-rc1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Alarm.cs" />
+    <Compile Include="Models\Assist.cs" />
+    <Compile Include="Models\Beat.cs" />
+    <Compile Include="Models\BeatAlarm.cs" />
+    <Compile Include="Models\BeatBeatSchedule.cs" />
+    <Compile Include="Models\BeatBeatSegment.cs" />
+    <Compile Include="Models\BeatSchedule.cs" />
+    <Compile Include="Models\BeatSegment.cs" />
+    <Compile Include="Models\BeatsFreeway.cs" />
+    <Compile Include="Models\buBeat.cs" />
+    <Compile Include="Models\buBeatBeatSegment.cs" />
+    <Compile Include="Models\buBeatSegment.cs" />
+    <Compile Include="Models\C1098Codes.cs" />
+    <Compile Include="Models\Calendar.cs" />
+    <Compile Include="Models\CallBox.cs" />
+    <Compile Include="Models\CHPInspection.cs" />
+    <Compile Include="Models\CHPOfficer.cs" />
+    <Compile Include="Models\Contract.cs" />
+    <Compile Include="Models\Contractor.cs" />
+    <Compile Include="Models\ContractorManager.cs" />
+    <Compile Include="Models\ContractsBeat.cs" />
+    <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\DriverBreak.cs" />
+    <Compile Include="Models\DriverDailySchedule.cs" />
+    <Compile Include="Models\DriverEvent.cs" />
+    <Compile Include="Models\DriverHistory.cs" />
+    <Compile Include="Models\DriverInteraction.cs" />
+    <Compile Include="Models\DropZone.cs" />
+    <Compile Include="Models\FleetVehicle.cs" />
+    <Compile Include="Models\FleetVehiclesBeat.cs" />
+    <Compile Include="Models\Freeway.cs" />
+    <Compile Include="Models\fspContext.cs" />
+    <Compile Include="Models\GPSTracking.cs" />
+    <Compile Include="Models\GPSTrackingLog.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\HeliosUnit.cs" />
+    <Compile Include="Models\Incident.cs" />
+    <Compile Include="Models\IncidentType.cs" />
+    <Compile Include="Models\InspectionType.cs" />
+    <Compile Include="Models\InsuranceCarrier.cs" />
+    <Compile Include="Models\InteractionType.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Mapping\AlarmMap.cs" />
+    <Compile Include="Models\Mapping\AssistMap.cs" />
+    <Compile Include="Models\Mapping\BeatAlarmMap.cs" />
+    <Compile Include="Models\Mapping\BeatBeatScheduleMap.cs" />
+    <Compile Include="Models\Mapping\BeatBeatSegmentMap.cs" />
+    <Compile Include="Models\Mapping\BeatMap.cs" />
+    <Compile Include="Models\Mapping\BeatScheduleMap.cs" />
+    <Compile Include="Models\Mapping\BeatSegmentMap.cs" />
+    <Compile Include="Models\Mapping\BeatsFreewayMap.cs" />
+    <Compile Include="Models\Mapping\buBeatBeatSegmentMap.cs" />
+    <Compile Include="Models\Mapping\buBeatMap.cs" />
+    <Compile Include="Models\Mapping\buBeatSegmentMap.cs" />
+    <Compile Include="Models\Mapping\C1098CodesMap.cs" />
+    <Compile Include="Models\Mapping\CalendarMap.cs" />
+    <Compile Include="Models\Mapping\CallBoxMap.cs" />
+    <Compile Include="Models\Mapping\CHPInspectionMap.cs" />
+    <Compile Include="Models\Mapping\CHPOfficerMap.cs" />
+    <Compile Include="Models\Mapping\ContractMap.cs" />
+    <Compile Include="Models\Mapping\ContractorManagerMap.cs" />
+    <Compile Include="Models\Mapping\ContractorMap.cs" />
+    <Compile Include="Models\Mapping\ContractsBeatMap.cs" />
+    <Compile Include="Models\Mapping\DriverBreakMap.cs" />
+    <Compile Include="Models\Mapping\DriverDailyScheduleMap.cs" />
+    <Compile Include="Models\Mapping\DriverEventMap.cs" />
+    <Compile Include="Models\Mapping\DriverHistoryMap.cs" />
+    <Compile Include="Models\Mapping\DriverInteractionMap.cs" />
+    <Compile Include="Models\Mapping\DriverMap.cs" />
+    <Compile Include="Models\Mapping\DropZoneMap.cs" />
+    <Compile Include="Models\Mapping\FleetVehicleMap.cs" />
+    <Compile Include="Models\Mapping\FleetVehiclesBeatMap.cs" />
+    <Compile Include="Models\Mapping\FreewayMap.cs" />
+    <Compile Include="Models\Mapping\GPSTrackingLogMap.cs" />
+    <Compile Include="Models\Mapping\GPSTrackingMap.cs" />
+    <Compile Include="Models\Mapping\GroupMap.cs" />
+    <Compile Include="Models\Mapping\HeliosUnitMap.cs" />
+    <Compile Include="Models\Mapping\IncidentMap.cs" />
+    <Compile Include="Models\Mapping\IncidentTypeMap.cs" />
+    <Compile Include="Models\Mapping\InspectionTypeMap.cs" />
+    <Compile Include="Models\Mapping\InsuranceCarrierMap.cs" />
+    <Compile Include="Models\Mapping\InteractionTypeMap.cs" />
+    <Compile Include="Models\Mapping\LocationMap.cs" />
+    <Compile Include="Models\Mapping\OffBeatAlertMap.cs" />
+    <Compile Include="Models\Mapping\ReportMap.cs" />
+    <Compile Include="Models\Mapping\RoleMap.cs" />
+    <Compile Include="Models\Mapping\ServicesPerformedMap.cs" />
+    <Compile Include="Models\Mapping\ServiceTypeMap.cs" />
+    <Compile Include="Models\Mapping\ShiftScheduleMap.cs" />
+    <Compile Include="Models\Mapping\SpeedingAlertMap.cs" />
+    <Compile Include="Models\Mapping\sysdiagramMap.cs" />
+    <Compile Include="Models\Mapping\TowLocationMap.cs" />
+    <Compile Include="Models\Mapping\TowTruckSetupMap.cs" />
+    <Compile Include="Models\Mapping\TowTruckYardMap.cs" />
+    <Compile Include="Models\Mapping\TrafficSpeedMap.cs" />
+    <Compile Include="Models\Mapping\TruckMessageMap.cs" />
+    <Compile Include="Models\Mapping\TruckStateMap.cs" />
+    <Compile Include="Models\Mapping\UserMap.cs" />
+    <Compile Include="Models\Mapping\VarMap.cs" />
+    <Compile Include="Models\Mapping\vBeatMap.cs" />
+    <Compile Include="Models\Mapping\vBeatSegmentMap.cs" />
+    <Compile Include="Models\Mapping\vCallBoxMap.cs" />
+    <Compile Include="Models\Mapping\vDropZoneMap.cs" />
+    <Compile Include="Models\Mapping\VehiclePositionMap.cs" />
+    <Compile Include="Models\Mapping\VehicleTypeMap.cs" />
+    <Compile Include="Models\Mapping\vGPSTrackingLogMap.cs" />
+    <Compile Include="Models\Mapping\vGPSTrackingMap.cs" />
+    <Compile Include="Models\Mapping\WeblinkMap.cs" />
+    <Compile Include="Models\Mapping\YearlyCalendarMap.cs" />
+    <Compile Include="Models\OffBeatAlert.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\ServicesPerformed.cs" />
+    <Compile Include="Models\ServiceType.cs" />
+    <Compile Include="Models\ShiftSchedule.cs" />
+    <Compile Include="Models\SpeedingAlert.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\TowLocation.cs" />
+    <Compile Include="Models\TowTruckSetup.cs" />
+    <Compile Include="Models\TowTruckYard.cs" />
+    <Compile Include="Models\TrafficSpeed.cs" />
+    <Compile Include="Models\TruckMessage.cs" />
+    <Compile Include="Models\TruckState.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Var.cs" />
+    <Compile Include="Models\vBeat.cs" />
+    <Compile Include="Models\vBeatSegment.cs" />
+    <Compile Include="Models\vCallBox.cs" />
+    <Compile Include="Models\vDropZone.cs" />
+    <Compile Include="Models\VehiclePosition.cs" />
+    <Compile Include="Models\VehicleType.cs" />
+    <Compile Include="Models\vGPSTracking.cs" />
+    <Compile Include="Models\vGPSTrackingLog.cs" />
+    <Compile Include="Models\Weblink.cs" />
+    <Compile Include="Models\YearlyCalendar.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

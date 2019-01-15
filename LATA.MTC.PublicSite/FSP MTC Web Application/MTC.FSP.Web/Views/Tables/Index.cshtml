@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Tables";
+}
+
+<h2>Tables</h2>
+
+<br />
+<legend>Administrative Information</legend>
+<div class="alert alert-warning">
+    @Html.ActionLink("Contractors & Trucks & Drivers", "Index", "Contractors")<br />
+    @Html.ActionLink("Contractors & Beats & Back-ups", "Backups", "Contractors")<br />
+    @Html.ActionLink("Contracts & Beats", "Index", "Contracts")<br />
+    @Html.ActionLink("Beats & Call Signs", "Index", "BeatCallSigns")<br />
+</div>
+
+@Html.ActionLink("Application Settings", "Index", "MTCApplicationSettings")<br />
+@*@Html.ActionLink("System Variables", "Index", "Vars")<br />*@
+@Html.ActionLink("Insurance Carriers", "Index", "InsuranceCarriers")<br />
+
+@Html.ActionLink("Users", "Index", "ApplicationUsers")<br />
+@Html.ActionLink("User Roles", "Index", "ApplicationRoles")<br />
+
+<br />
+<legend>Alarms</legend>
+@Html.ActionLink("Leeways", "Index", "Vars")<br />
+
+<br />
+<legend>WAZE</legend>
+@Html.ActionLink("Thresholds", "Index", "WAZE")<br />
+
+<br />
+<legend>CHP</legend>
+@Html.ActionLink("CHP Officers", "Index", "CHPOfficers")<br />
+
+<br />
+
+<div class="row">
+    <div class="col-xs-6">
+        <legend>Operations</legend>
+        @Html.ActionLink("Asset Status Types", "Index", "AssetStatus")<br />
+        @Html.ActionLink("Beats to Highways", "Index", "BeatsFreeways")<br />
+        @Html.ActionLink("Highways", "Index", "Freeways")<br />
+        @Html.ActionLink("Inspection Types", "Index", "InspectionTypes")<br />
+        @Html.ActionLink("Incident Types", "Index", "DispatchCodes")<br />
+        @Html.ActionLink("Location Abbreviations", "Index", "LocationAbbreviations")<br />
+        @Html.ActionLink("Rate Table", "Index", "MTCRateTables")<br />
+        @Html.ActionLink("Transportations", "Index", "Transportations")<br />
+        @Html.ActionLink("Trouble Ticket Problems", "Index", "TroubleTicketProblems")<br />
+        @Html.ActionLink("Trouble Ticket Component Issues", "Index", "TroubleTicketComponentIssues")<br />
+        @Html.ActionLink("Trouble Ticket LATATrax Issues", "Index", "TroubleTicketLATATraxIssues")<br />
+        @Html.ActionLink("Vehicle Positions", "Index", "VehiclePositions")<br />
+        @Html.ActionLink("Vehicle Types", "Index", "VehicleTypes")<br />
+    </div>
+    <div class="col-xs-6">
+        <legend>Support</legend>
+        @Html.ActionLink("Store", "IndexNG", "MerchandiseProducts")<br />
+        @Html.ActionLink("Product Sizes", "Index", "MerchandiseProductSizes")<br />
+        @Html.ActionLink("Violation Types", "Index", "ViolationTypes")<br />
+        @Html.ActionLink("Violation Status Types", "Index", "ViolationStatusTypes")<br />
+        @*@Html.ActionLink("Alarm Subscriptions", "Index", "AlarmSubscriptions")<br />*@
+    </div>
+</div>
+

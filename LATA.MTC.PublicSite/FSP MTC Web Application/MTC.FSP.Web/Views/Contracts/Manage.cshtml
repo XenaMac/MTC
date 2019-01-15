@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Manage";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="contractController" ng-init="init('@ViewBag.ContractId')" ng-cloak>
+        <h3>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingContract"></i></h3>
+        @Html.ActionLink("Back To Contracts", "Index", "Contracts")
+        <br />
+        <hr />
+        <form name="contractoForm" role="form" class="form-horizontal">
+            <div class="form-group" ng-class="{'has-error': contractoForm.AgreementNumber.$invalid}">
+                <label for="AgreementNumber" class="col-sm-2 control-label">Agreement Number</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="AgreementNumber" ng-model="contract.AgreementNumber" required>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error has-feedback': contractoForm.StartDate.$invalid}">
+                <label for="StartDate" class="col-sm-2 control-label">Start Date</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="StartDate" ng-model="contract.StartDate" mtc-date-picker required>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error has-feedback': contractoForm.EndDate.$invalid}">
+                <label for="EndDate" class="col-sm-2 control-label">End Date</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="EndDate" ng-model="contract.EndDate" mtc-date-picker required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="MaxObligation" class="col-sm-2 control-label">Max Obligation</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="MaxObligation" ng-model="contract.MaxObligation">
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error has-feedback': contractoForm.selectedContractorId.$invalid}">
+                <label for="selectedContractorId" class="col-sm-2 control-label">Contractor</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="selectedContractorId" ng-model="contract.ContractorId" ng-options="a.Id as a.Text for a in contractors" ng-disabled="busyGettingContractors" required>
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': contractoForm.selectedBeatId.$invalid}">
+                <label for="selectedBeatId" class="col-sm-2 control-label">Beat</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="selectedBeatId" ng-model="contract.BeatId" ng-options="a.Id as a.Text for a in beats" ng-disabled="busyGettingBeats" required>
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <hr />
+            @*<pre>{{contract|json}}</pre>*@
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button class="btn btn-success" ng-disabled="contractoForm.$invalid" ng-click="saveContract()"><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i><i class="fa fa-save" ng-hide="isBusy"></i> Save</button>
+                    <a href="~/Contracts/Index" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/contractController.js"></script>
+    <script src="~/app/services/contractsService.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+}
+
+

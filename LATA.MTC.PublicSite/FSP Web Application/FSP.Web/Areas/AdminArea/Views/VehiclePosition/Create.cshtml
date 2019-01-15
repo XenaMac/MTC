@@ -1,0 +1,35 @@
+﻿@model FSP.Domain.Model.VehiclePosition
+@{
+    ViewBag.Title = "Create";
+    
+}
+<div>
+    @Html.ActionLink("Back to Vehicle Positions", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Vehicle Position</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehiclePosition1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehiclePosition1)
+            @Html.ValidationMessageFor(model => model.VehiclePosition1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehiclePositionCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehiclePositionCode)
+            @Html.ValidationMessageFor(model => model.VehiclePositionCode)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}

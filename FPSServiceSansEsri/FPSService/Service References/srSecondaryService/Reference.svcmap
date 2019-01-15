@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="16ce7c8e-dc84-45aa-b70d-fe0f25bf2ac6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://octa-acceptance:9007/TowTruckService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TowTruckService4.xsd" MetadataType="Schema" ID="c1250d46-7a6e-406a-a8cd-d04f3303ea5c" SourceId="1" SourceUrl="http://octa-acceptance:9007/TowTruckService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TowTruckService1.wsdl" MetadataType="Wsdl" ID="f7f5c68a-0d73-455b-acdf-589586e3c4bf" SourceId="1" SourceUrl="http://octa-acceptance:9007/TowTruckService.svc?wsdl" />
+    <MetadataFile FileName="TowTruckService1.disco" MetadataType="Disco" ID="08a96b40-152d-49f7-b124-9a3943fbf9d3" SourceId="1" SourceUrl="http://octa-acceptance:9007/TowTruckService.svc?disco" />
+    <MetadataFile FileName="TowTruckService41.xsd" MetadataType="Schema" ID="ecd3df80-0c18-42a9-88c8-d9a40af4e448" SourceId="1" SourceUrl="http://octa-acceptance:9007/TowTruckService.svc?xsd=xsd3" />
+    <MetadataFile FileName="TowTruckService42.xsd" MetadataType="Schema" ID="8ec231a4-f1e1-4dca-aae1-533e2f98ca25" SourceId="1" SourceUrl="http://octa-acceptance:9007/TowTruckService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TowTruckService43.xsd" MetadataType="Schema" ID="6b25583d-d943-4eb6-a805-256e4d1dc6f5" SourceId="1" SourceUrl="http://octa-acceptance:9007/TowTruckService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

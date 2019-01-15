@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Reliagate 50-21 I/O
+Bundle-SymbolicName: com.eurotech.reliagate_50-21.io;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: EUROTECH
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-NativeCode: lib/linux/wrl/wrl_4.3_glibc_std/libi2cbus.so; osname=Linux; processor=x86; selection-filter="(&(esf.os.version=wrl_4.3_glibc_std))",
+ *
+Service-Component: OSGI-INF/reliagateAdc.xml,OSGI-INF/reliagateIgnition.xml,OSGI-INF/reliagateLeds.xml,
+ OSGI-INF/reliagateI2cBus.xml
+Bundle-ActivationPolicy: lazy
+Export-Package: com.eurotech.reliagate.io.adc,
+ com.eurotech.reliagate.io.ignition,
+ com.eurotech.reliagate.io.leds
+Import-Package: org.eclipse.kura;version="1.0.0",
+ org.osgi.service.component;version="1.2.0",
+ org.slf4j;version="1.6.4"

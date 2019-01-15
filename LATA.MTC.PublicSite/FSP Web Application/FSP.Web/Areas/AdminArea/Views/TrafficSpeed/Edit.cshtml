@@ -1,0 +1,36 @@
+﻿@model FSP.Domain.Model.TrafficSpeed
+@{
+    ViewBag.Title = "Edit " + @Model.TrafficSpeed1;
+    
+}
+<div>
+    @Html.ActionLink("Back to Traffic Speed Types", "Index")
+</div>
+<h2>Edit "@Model.TrafficSpeed1"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        @Html.HiddenFor(model => model.TrafficSpeedID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TrafficSpeed1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TrafficSpeed1)
+            @Html.ValidationMessageFor(model => model.TrafficSpeed1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TrafficSpeedCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TrafficSpeedCode)
+            @Html.ValidationMessageFor(model => model.TrafficSpeedCode)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

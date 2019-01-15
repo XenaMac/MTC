@@ -1,0 +1,30 @@
+﻿body {
+    padding-bottom: 120px;
+}
+
+.footer {
+    position: fixed;
+    background-color: #4d4d4d;
+    height: 120px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #FFF;
+    padding: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .footer {
+        height: 150px;
+    }
+    body{
+          padding-bottom: 150px;
+    }
+}
+
+
+.form-control {
+    background-color: #dfdfdf;   
+}

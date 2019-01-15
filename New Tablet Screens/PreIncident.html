@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PRE INCIDENT</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/ClientCSS.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-fallr-1.3.css" />
+    <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery-browser-plugin.js" type="text/javascript"></script>
+    <script src="js/GlobalData.js" type="text/javascript"></script>
+    <script src="js/jquery-fallr-1.3.min.js" type="text/javascript"></script>
+    <script src="js/PreIncident.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="header" class="statusHeader">
+        <p><span class="truckStatus">Bay Area LATATrax Incident Report</span></p>
+    </div>
+    <div id="buttons">
+        <input type="button" class="lrgButtonBlue" id="btnPreAssistReport" value="Step 1&#13;&#10;Pre-Assist&#13;&#10;Report" />
+        <input type="button" class="lrgButton" id="btnStep1" value="Step 2&#13;&#10;Problem&#13;&#10;Type" />
+        <input type="button" class="lrgButton" id="btnStep2" value="Step 3&#13;&#10;Action&#13;&#10;Taken" />
+        <input type="button" class="lrgButton" id="btnStep3" value="Step 4&#13;&#10;Transport" />
+        <input type="button" class="lrgButton" id="btnStep4" value="Step 5&#13;&#10;Details" />
+    </div>
+    <hr />
+    <div id="mainDiv">
+        <h2>ENTER OR CORRECT INCIDENT INFORMATION AS NECESSARY</h2>
+        <div>
+            <div class="paddedDiv">
+                <span class="label">Direction:</span><span class="value">
+                    <input type="radio" name="Direction" value="NB">&nbsp;&nbsp;NB</input>&nbsp;
+                    <input type="radio" name="Direction" value="SB">&nbsp;&nbsp;SB</input>&nbsp;
+                    <input type="radio" name="Direction" value="EB">&nbsp;&nbsp;EB</input>&nbsp;
+                    <input type="radio" name="Direction" value="WB">&nbsp;&nbsp;WB</input>&nbsp;
+                </span>
+                <span class="clear"></span>
+            </div>
+            <div class="clear"></div>
+
+            <div class="paddedDiv">
+                <span class="label">Beat:</span><span class="value">
+                    <select id="selBeat" class="bigSel"></select>
+                </span><span class="clear"></span>
+            </div><div class="clear"></div>
+
+            <div class="paddedDiv">
+                <span class="label">Highway:</span>
+                <img src="images/loading_pleasewait.gif" alt="Loading, please wait" id="loadingGif" />
+                <select id="selFreeway" class="bigSel">
+                    <option value="">-- Select a Highway --</option>
+                </select>
+                <span class="clear"></span>
+            </div>
+            <div class="clear"></div>
+
+            <div class="paddedDiv">
+                <span class="label">FSP Location (at 10-97):</span><span class="value">
+                    <input type="text" class="txtLogon" id="txtLocation" /><span class="clear"></span>
+                </span>
+            </div><div class="clear"></div>
+            <div class="paddedDiv"><span class="label">Location of Initial Dispatch:</span><span><input type="text" class="txtLogon" id="txtDispatchLocation" value="N/A" /><span class="clear"></span></span></div><div class="clear"></div>
+            <div class="paddedDiv">
+                <span class="label">Position:</span>
+                <span class="value">
+                    <input type="radio" name="position" value="RS">&nbsp;RS</input>&nbsp;&nbsp;
+                    <input type="radio" name="position" value="CD">&nbsp;CD</input>&nbsp;&nbsp;
+                    <input type="radio" name="position" value="Ramp">&nbsp;Ramp</input>&nbsp;&nbsp;
+                    <input type="radio" name="position" value="In-Lane">&nbsp;In Lane</input>&nbsp;&nbsp;
+                </span>
+                <span class="clear"></span>
+            </div><div class="clear"></div>
+            <div class="paddedDiv" id="inlaneDiv">
+                <span class="label">If In-Lane enter lane</span>
+                <input type="text" id="txtLane" class="txtLogon" placeholder="Enter Lane #" />
+            </div><div class="clear"></div>
+            <div class="paddedDiv">
+                <span class="label">CHP Incident Type:</span>
+                <span class="value">
+                    <select id="selIncidentType" class="bigSel">
+						<!-- Now pulling from service see PreIncident.js getIncidentTypes()
+                        <option>Accident-No Details (11-83)</option>
+                        <option>Accident-Property Damage (11-82)</option>
+                        <option>Abandoned Vehicle (11-24)</option>
+                        <option>Disabled Vehicle-Occupied (11-26)</option>
+                        <option>Traffic Hazard (11-25)</option>
+						<option>Meet With (11-98)</option>
+                        <option>Other</option>
+						-->
+                    </select>
+                </span>
+                <span class="clear"></span>
+            </div><div class="clear"></div>
+            <div class="paddedDiv"><span class="label">CHP Log #:</span><span><input type="text" class="txtLogon" id="txtCHPLogNum" placeholder="CHP Incident Log #" /></span><span class="clear"></span></div><div class="clear"></div>
+            <div class="paddedDiv">
+                <span class="label">Incident Survey ID #:</span><span class="value"><input type="text" class="txtLogon" id="txtIncidentSurveyNum" placeholder="Incident Survey #" /></span><span class="clear"></span>
+            </div><div class="clear"></div>
+            <div><span class="note">FOR CHP DISPATCHES: Radio dispatch with any changes to your assignment</span><span class="clear"></span></h2></div>
+            <div id="submissionButtons">
+                <!--<input type="button" value="Unable to&#13;&#10;Locate (UTL)" id="btnLocate" class="wideButtonRed"/>
+                <input type="button" value="Cancelled&#13;&#10;Assignment (CANC)" id="btnCancelled" class="wideButtonRed"/>-->
+                <input type="button" value="Submit Pre-Assist&#13;&#10; Report" id="btnSubmit" class="wideButtonGreen" />
+                <input type="button" value="On Tow" id="btnOnTow" class="wideButtonYellow" />
+            </div>
+
+        </div>
+</body>
+</html>

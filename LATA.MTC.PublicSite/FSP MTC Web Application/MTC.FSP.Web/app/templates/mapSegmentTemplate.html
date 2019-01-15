@@ -1,0 +1,114 @@
+﻿<div ng-show="!isAdding">
+    <div class="form-group"
+        ng-show="isBusyGettingSegments">
+        Loading Segments...<i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div class="form-group"
+        ng-hide="isBusyGettingSegments">
+        <select class="form-control"
+            ng-model="selectedSegment"
+            ng-options="a as a.segmentID for a in segments"
+            ng-change="setSelectedSegment()"
+            ng-disabled="segments.length === 0 || isEditing">
+            <option value="">
+                --Select Segment--
+            </option>
+        </select>
+    </div>
+</div>
+
+
+<div ng-show="selectedSegment">
+    <div class="form-group">
+        Name
+        <input ng-model="selectedSegment.segmentID"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Description
+        <textarea ng-model="selectedSegment.segmentDescription"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding"></textarea>
+    </div>
+    <div class="form-group">
+        Color
+        <input type="text"
+            minicolors="colorPickerSettings"
+            ng-model="selectedSegment.Color"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+</div>
+
+<div class="form-group"
+    ng-show="selectedSegment && !isAdding">
+    <button ng-show="!isEditing"
+        ng-click="setEdit()"
+        class="btn btn-primary btn-sm">
+        <i class="fa fa-pencil">
+        </i> Edit Segment
+    </button>
+    <button ng-show="isEditing"
+        ng-click="save()"
+        ng-disabled="isBusySaving || isBusyDeleting"
+        class="btn btn-primary btn-sm">
+        <i class="fa fa-check"
+           ng-hide="isBusySaving">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+           ng-show="isBusySaving">
+        </i>
+        Save
+    </button>
+    <button ng-show="isEditing"
+        ng-disabled="isBusySaving || isBusyDeleting"
+        ng-click="delete()"
+        class="btn btn-danger btn-sm">
+        <i class="fa fa-trash"
+           ng-hide="isBusyDeleting">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+           ng-show="isBusyDeleting">
+        </i>
+        Delete
+    </button>
+    <button ng-show="isEditing"
+        ng-click="cancelEdit()"
+        class="btn btn-default btn-sm">
+        Cancel
+    </button>
+    <button ng-show="isEditing"
+        ng-click="reduceSegmentPolygonPoints()"
+        class="btn btn-default btn-sm"
+        title="Will remove every other vertex">
+        <i class="fa fa-eraser"></i>
+    </button>
+</div>
+
+<div class="form-group"
+    ng-show="!isEditing">
+    <button ng-show="!selectedSegment"
+        ng-click="prepareNew()"
+        class="btn btn-success btn-sm">
+        <i class="fa fa-plus"></i> New Segment
+    </button>
+    <button ng-show="!isEditing && isAdding"
+        ng-click="add()"
+        ng-disabled="isBusyAdding"
+        class="btn btn-success btn-sm">
+        <i class="fa fa-check"
+           ng-hide="isBusyAdding">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+           ng-show="isBusyAdding">
+        </i>
+        Save
+    </button>
+    <button ng-show="!isEditing && isAdding"
+        ng-click="cancelAdd()"
+        class="btn btn-default btn-sm">
+        Cancel
+    </button>
+</div>

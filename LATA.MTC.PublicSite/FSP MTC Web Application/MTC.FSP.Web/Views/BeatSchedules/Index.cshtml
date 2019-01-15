@@ -1,0 +1,114 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.MtcBeatScheduleViewModel>
+
+@{
+    ViewBag.Title = "Beat Schedules";
+}
+
+
+<div ng-app="mtcApp">
+    <div ng-controller="beatSchedulesController" ng-cloak>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Beat Schedules <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingBeatSchedules"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <button class="btn btn-success" ng-click="new()" title="add beat schedule"><i class="fa fa-plus"></i> Beat Schedule</button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Beat
+                    </th>
+                    <th>
+                        Schedule(s)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="b in beatSchedules">
+                    <td class="col-sm-2">
+                        {{b.Beat}}
+                    </td>
+                    <td class="col-sm-6">
+                        <div class="row" ng-repeat="s in b.Schedule">
+                            <div class="col-sm-4">
+                                {{s.ScheduleName}}
+                            </div>
+                            <div class="col-sm-4">
+                                {{s.Start}}
+                            </div>
+                            <div class="col-sm-4">
+                                {{s.End}}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-sm-4">
+                        <div class="pull-right">
+                            <button class="btn btn-primary btn-sm " title="edit" ng-click="edit(b)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm" title="delete"><i class="fa fa-trash-o"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="beatScheduleModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Configuration</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group" ng-show="!isEdit">
+                            <label class="control-label">Select Beat</label>
+                            <div class="controls">
+                                <select class="form-control" ng-model="selectedBeat.BeatID" ng-options="b.BeatID as b.BeatNumber for b in beatsWithoutSchedule"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Select Schedule(s)</label>
+                            <div class="checkbox" ng-repeat="s in schedules">
+                                <label>
+                                    <input type="checkbox"
+                                           ng-model="s.isSelected"
+                                           ng-change="checked(s)"
+                                           ng-checked="s.isSelected"
+                                           ng-disabled="!s.isEnabled">
+                                    {{s.scheduleName}}
+                                    ({{s.start}} {{s.end}})
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" ng-click="save()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section scripts{
+
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/beatSchedulesController.js"></script>
+    <script src="~/app/services/beatSchedulesService.js"></script>
+
+}
+
+

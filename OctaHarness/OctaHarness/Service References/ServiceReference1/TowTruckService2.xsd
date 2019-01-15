@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/FPSService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FPSService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://amyanderic.no-ip.org:801/TowTruckService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTowTruckData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TowTruckData" nillable="true" type="tns:TowTruckData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTowTruckData" nillable="true" type="tns:ArrayOfTowTruckData" />
+  <xs:complexType name="TowTruckData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alarms" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BeatID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ContractorID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Direction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Heading" type="xs:double" />
+      <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastMessage" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Lat" type="xs:double" />
+      <xs:element minOccurs="0" name="Lon" type="xs:double" />
+      <xs:element minOccurs="0" name="OutOfBoundsAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OutOfBoundsMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutOfBoundsTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Speed" type="xs:double" />
+      <xs:element minOccurs="0" name="SpeedingAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SpeedingTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpeedingValue" type="xs:double" />
+      <xs:element minOccurs="0" name="TruckID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleState" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TowTruckData" nillable="true" type="tns:TowTruckData" />
+</xs:schema>

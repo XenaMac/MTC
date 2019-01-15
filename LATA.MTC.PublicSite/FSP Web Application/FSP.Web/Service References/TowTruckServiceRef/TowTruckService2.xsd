@@ -1,0 +1,118 @@
+<<<<<<< .mine
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/FPSService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FPSService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTowTruckData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TowTruckData" nillable="true" type="tns:TowTruckData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTowTruckData" nillable="true" type="tns:ArrayOfTowTruckData" />
+  <xs:complexType name="TowTruckData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alarms" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BeatNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DriverName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Heading" type="xs:double" />
+      <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastMessage" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Lat" type="xs:double" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Lon" type="xs:double" />
+      <xs:element minOccurs="0" name="OutOfBoundsAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OutOfBoundsMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutOfBoundsTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Speed" type="xs:double" />
+      <xs:element minOccurs="0" name="SpeedingAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SpeedingTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpeedingValue" type="xs:double" />
+      <xs:element minOccurs="0" name="TruckNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleState" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TowTruckData" nillable="true" type="tns:TowTruckData" />
+  <xs:complexType name="AssistReq">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssistID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Color" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractorID" type="ser:guid" />
+      <xs:element minOccurs="0" name="CustomerLastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerWaitTime" type="xs:int" />
+      <xs:element minOccurs="0" name="DispatchTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DriverID" type="ser:guid" />
+      <xs:element minOccurs="0" name="DropZone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EndOD" type="xs:int" />
+      <xs:element minOccurs="0" name="FleetVehicleID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IncidentID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IncidentTypeID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsMDC" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LicensePlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Make" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceTypeID" type="ser:guid" />
+      <xs:element minOccurs="0" name="StartOD" type="xs:int" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tip" type="xs:int" />
+      <xs:element minOccurs="0" name="TipDetail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TowLocationID" type="ser:guid" />
+      <xs:element minOccurs="0" name="TrafficSpeedID" type="ser:guid" />
+      <xs:element minOccurs="0" name="VehiclePositionID" type="ser:guid" />
+      <xs:element minOccurs="0" name="VehicleTypeID" type="ser:guid" />
+      <xs:element minOccurs="0" name="x1097" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="x1098" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AssistReq" nillable="true" type="tns:AssistReq" />
+  <xs:complexType name="IncidentIn">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BeatSegmentID" type="ser:guid" />
+      <xs:element minOccurs="0" name="CreatedBy" type="ser:guid" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FreewayID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IncidentID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IncidentNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocationID" type="ser:guid" />
+      <xs:element minOccurs="0" name="TimeStamp" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IncidentIn" nillable="true" type="tns:IncidentIn" />
+  <xs:complexType name="ArrayOfIncidentIn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IncidentIn" nillable="true" type="tns:IncidentIn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIncidentIn" nillable="true" type="tns:ArrayOfIncidentIn" />
+</xs:schema>=======
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/FPSService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FPSService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfTowTruckData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TowTruckData" nillable="true" type="tns:TowTruckData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTowTruckData" nillable="true" type="tns:ArrayOfTowTruckData" />
+  <xs:complexType name="TowTruckData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alarms" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BeatDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Heading" type="xs:double" />
+      <xs:element minOccurs="0" name="Lat" type="xs:double" />
+      <xs:element minOccurs="0" name="Lon" type="xs:double" />
+      <xs:element minOccurs="0" name="OutOfBoundsAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OutOfBoundsMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutOfBoundsTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Speed" type="xs:double" />
+      <xs:element minOccurs="0" name="SpeedingAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SpeedingTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpeedingValue" type="xs:double" />
+      <xs:element minOccurs="0" name="TruckID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleState" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TowTruckData" nillable="true" type="tns:TowTruckData" />
+</xs:schema>>>>>>>> .r668

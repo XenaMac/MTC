@@ -1,0 +1,159 @@
+﻿@model FSP.Domain.Model.FleetVehicle
+@{
+    ViewBag.Title = "Details for " + @Model.VehicleNumber;
+    
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div class="span12">
+        <div class="row-fluid">
+            <div class="span3">
+                @Html.ActionLink("Back to Fleet Vehicles", "Index")
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <h2>Details for @Model.VehicleNumber</h2>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+               <hr />
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <h3>Vehicle Number</h3>
+                @Html.DisplayFor(model => model.VehicleNumber)
+            </div>
+            <div class="span3">
+                <h3>Fleet Number</h3>
+                @Html.DisplayFor(model => model.FleetNumber)
+            </div>
+            <div class="span3">
+                <h3>Contractor</h3>
+                @Html.DisplayFor(model => model.Contractor.ContractCompanyName)
+            </div>
+            <div class="span3">
+                <h3>VIN</h3>
+                @Html.DisplayFor(model => model.VIN)
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <h3>Vehicle Type</h3>
+                @Html.DisplayFor(model => model.VehicleType)
+            </div>
+            <div class="span3">
+                <h3>Vehicle Year</h3>
+                @Html.DisplayFor(model => model.VehicleYear)
+            </div>
+            <div class="span3">
+                <h3>Vehicle Make</h3>
+                @Html.DisplayFor(model => model.VehicleMake)
+            </div>
+            <div class="span3">
+                <h3>Vehicle Model</h3>
+                @Html.DisplayFor(model => model.VehicleModel)
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <h3>License Plate</h3>
+                @Html.DisplayFor(model => model.LicensePlate)
+            </div>
+            <div class="span3">
+                <h3>IP Address</h3>
+                @Html.DisplayFor(model => model.IPAddress)
+            </div>
+            <div class="span3">
+                <h3>Fuel Type</h3>
+                @Html.DisplayFor(model => model.FuelType)
+            </div>
+            <div class="span3">
+                <h3>Last CHP Inspection</h3>
+                @Html.DisplayFor(model => model.LastCHPInspection)
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <h3>Program Start Date</h3>
+                @Html.DisplayFor(model => model.ProgramStartDate)
+            </div>
+            <div class="span3">
+                <h3>Program End Date</h3>
+                @Html.DisplayFor(model => model.ProgramEndDate)
+            </div>
+            <div class="span3">
+                <h3>Registration Expire Date</h3>
+                @Html.DisplayFor(model => model.RegistrationExpireDate)
+            </div>
+            <div class="span3">
+                <h3>Insurance Expire Date</h3>
+                @Html.DisplayFor(model => model.InsuranceExpireDate)
+            </div>
+        </div>
+        <div class="row-fluid">           
+            <div class="span3">
+                <h3>FAW</h3>
+                @Html.DisplayFor(model => model.FAW)
+            </div>
+            <div class="span3">
+                <h3>RAW</h3>
+                @Html.DisplayFor(model => model.RAW)
+            </div>
+            <div class="span3">
+                <h3>RAWR</h3>
+                @Html.DisplayFor(model => model.RAWR)
+            </div>
+            <div class="span3">
+                <h3>GVW</h3>
+                @Html.DisplayFor(model => model.GVW)
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <h3>GVWR</h3>
+                @Html.DisplayFor(model => model.GVWR)
+            </div>
+            <div class="span3">
+                <h3>Wheel base</h3>
+                @Html.DisplayFor(model => model.Wheelbase)
+            </div>
+            <div class="span3">
+                <h3>Overhang</h3>
+                @Html.DisplayFor(model => model.Overhang)
+            </div>
+            <div class="span3">
+                <h3>MAXTW</h3>
+                @Html.DisplayFor(model => model.MAXTW)
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <h3>MAX TW CALC DATE</h3>
+                @Html.DisplayFor(model => model.MAXTWCALCDATE)
+            </div>
+            <div class="span3">
+                <h3>Comments</h3>
+                @Html.DisplayFor(model => model.Comments)
+            </div>
+            <div class="span3">
+                
+            </div>
+            <div class="span3">
+               
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span3">
+                <hr />
+            </div>
+        </div>
+    </div>
+   
+}

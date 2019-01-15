@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FSP.Domain.Model.IncidentType>
+@{
+    ViewBag.Title = "Incident Types";    
+}
+<p>
+    @Html.ActionLink("Add Incident Type", "Create")
+</p>
+<h2>Incident Types</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Name
+            </th>
+            <th>Code
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.IncidentType1, "Edit", new { id = item.IncidentTypeID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncidentTypeCode)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IncidentTypeID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

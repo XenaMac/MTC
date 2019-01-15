@@ -1,0 +1,10 @@
+﻿@if (Request.IsAuthenticated)
+{   
+    <span>@Html.ActionLink(@User.Identity.Name + " (" + Roles.GetRolesForUser().FirstOrDefault() + ")", "ChangePassword", "Account", String.Empty, String.Empty, String.Empty, new { area = "" }, null)</span>
+    <span>|</span>
+    <span>@Html.ActionLink("Log Off", "LogOff", "Account", String.Empty, String.Empty, String.Empty, new { area = "" }, null)</span>
+}
+else
+{
+    <span>@Html.ActionLink("Log On", "Login", "Account", String.Empty, String.Empty, String.Empty, new { area = "" }, null)</span>
+}

@@ -1,0 +1,19 @@
+﻿@model FSP.Domain.Model.CHPInspection
+
+@{
+    ViewBag.Title = "Delete " + @Model.InspectionDate.ToString("MM/dd/yyyy");    
+}
+
+<h2>Delete inspection from: "@Model.InspectionDate.ToString("MM/dd/yyyy")"</h2>
+
+<h3>Are you sure you want to delete this CHP Inspection?</h3>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">
+                Delete</button>
+        </div>
+    </p>
+}

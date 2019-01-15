@@ -1,0 +1,46 @@
+﻿
+<div class="row">
+    <div class="col-md-12">
+        <br />
+        <div class="pull-right">            
+            <a class="btn btn-info" ng-click="selectAll()" ng-disabled="trucks.length===0" ng-show="selectAllAvailable">Select All</a>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-12">
+        <legend>Available for Dispatching (<span>{{(trucks | filter:{vehicleState:'on patrol'}).length}}</span>)</legend>
+        <table class="table table-hover footable" data-page-size="2147483647">
+            @Html.Partial("_TruckListTableHeader")
+            <tbody>
+                <tr ng-repeat="truck in trucks | filter:{vehicleState:'on patrol'}" ng-click="selectTruck(truck)">
+                    @Html.Partial("_TruckListTableBody")
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12">
+        <legend>Logged On but unavailable for Dispatching (<span>{{(trucks | filter:{vehicleState:'!on patrol'} | filter:{vehicleState:'!waiting for driver login'}).length}}</span>)</legend>
+        <table class="table table-hover footable" data-page-size="2147483647">
+            @Html.Partial("_TruckListTableHeader")
+            <tbody>
+                <tr ng-repeat="truck in trucks | filter:{vehicleState: '!on patrol'} | filter:{vehicleState:'!waiting for driver login'}" ng-click="selectTruck(truck)">
+                    @Html.Partial("_TruckListTableBody")
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12">
+        <legend>Not Logged On (<span>{{(trucks | filter:{vehicleState:'waiting for driver login'}).length}}</span>)</legend>
+        <table class="table table-hover footable" data-page-size="2147483647">
+            @Html.Partial("_TruckListTableHeader")
+            <tbody>
+                <tr ng-repeat="truck in trucks | filter:{vehicleState:'waiting for driver login'}" ng-click="selectTruck(truck)">
+                    @Html.Partial("_TruckListTableBody")
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,20 @@
+﻿@model FSP.Domain.Model.vDropZone
+
+@{
+    ViewBag.Title = "Delete " + @Model.DropZoneNumber;
+    
+}
+
+<h2>Delete "@Model.DropZoneNumber"</h2>
+
+<h3>Are you sure you want to delete this drop zone?</h3>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">
+                Delete</button>
+        </div>
+    </p>
+}

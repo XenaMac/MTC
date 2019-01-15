@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Alarms";
+}
+
+<h2 class="pull-left">@ViewBag.Heading&nbsp;<i class="fa fa-spinner fa-spin" data-bind="visible: isBusy()"></i></h2>
+<div class="pull-right">
+    <a href="~/AlertMessages/DriversAlertComments" class="btn btn-info">Driver's Alert Comments</a>
+    <a href="~/AlertMessages/History" class="btn btn-info">Alarm Detail</a>
+</div>
+
+<br />
+
+<table class="table table-condensed table-bordered table-striped tablesorter" data-bind="visible: alerts().length > 0">
+    <thead>
+        <tr>
+            <td>Beat</td>
+            <td>Vehicle #</td>
+            <td>Driver Name</td>
+            <td>Log On</td>
+            <td>Roll Out</td>
+            <td>On Patrol</td>
+            <td>Roll In</td>
+            <td>Log Off</td>
+            <td>Speeding</td>
+            <td>Off Beat</td>
+            <td>Long Incident</td>
+            <td>Stationary</td>
+            <td>GPS Issue</td>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: alerts">
+        <tr>
+            <td>
+                <span data-bind="text: BeatNumber"></span>
+            </td>
+            <td>
+                <span data-bind="text: VehicleNumber"></span>
+            </td>
+            <td>
+                <span data-bind="text: DriverName"></span>
+            </td>
+            <td>
+                <div data-bind="visible: LogOnAlarm === true && LogOnAlarmTime != '01/01/01'" style="display: none">
+                    <span data-bind="text: LogOnAlarmTimeFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'LOGON'), visible: IsLogOnAlarmExcused === false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsLogOnAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'LOGON')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+            <td>
+                <div data-bind="visible: RollOutAlarm === true && RollOutAlarmTime != '01/01/01'" style="display: none">
+                    <span data-bind="text: RollOutAlarmTimeFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'ROLLOUT'), visible: IsRollOutAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsRollOutAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'ROLLOUT')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+            <td>
+                <div data-bind="visible: OnPatrolAlarm === true && OnPatrolAlarmTime != '01/01/01'" style="display: none">
+                    <span data-bind="text: OnPatrolAlarmTimeFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'ONPATROL'), visible: IsOnPatrolAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsOnPatrolAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'ONPATROL')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+            <td>
+                <div data-bind="visible: RollInAlarm === true && RollInAlarmTime != '01/01/01'" style="display: none">
+                    <span data-bind="text: RollInAlarmTimeFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'ROLLIN'), visible: IsRollInAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsRollInAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'ROLLIN')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+            <td>
+                <div data-bind="visible: LogOffAlarm === true && LogOffAlarmTime != '01/01/01'" style="display: none">
+                    <span data-bind="text: LogOffAlarmTimeFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'LOGOFF'), visible: IsLogOffAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsLogOffAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'LOGOFF')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+            <td>
+                <div data-bind="visible: SpeedingAlarm === true && SpeedingAlarmTime != '01/01/01'" style="display: none">
+                    <span data-bind="text: SpeedingAlarmTimeFormatted"></span>
+                    <br />
+                    @* <button data-bind="click: excuseAlarm.bind($data, $data, 'SPEEDING'), visible: IsSpeedingAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsSpeedingAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'SPEEDING')" class="btn btn-primary btn-small" title="clear">C</button>*@
+                </div>
+            </td>
+            <td>
+                <div data-bind="visible: OutOfBoundsAlarm === true && OutOfBoundsAlarmTime != '01/01/01'" style="display: none">
+                    <span data-bind="text: OutOfBoundsAlarmTimeFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'OFFBEAT'), visible: IsOutOfBoundsAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsOutOfBoundsAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'OFFBEAT')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+
+            <td>
+                <div data-bind="visible: IncidentAlarm === true && IncidentAlarmTime != '01/01/01'" style="display: none">
+                    <span data-bind="text: IncidentAlarmTimeFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'INCIDENT'), visible: IsIncidentAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsIncidentAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'INCIDENT')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+            <td>
+                <div data-bind="visible: StationaryAlarm === true && StationaryAlarmStart != '01/01/01'" style="display: none">
+                    <span data-bind="text: StationaryAlarmStartFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'STATIONARY'), visible: IsStationaryAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsStationaryAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'STATIONARY')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+            <td>
+                <div data-bind="visible: GPSIssueAlarm === true && GPSIssueAlarmStart != '01/01/01'" style="display: none">
+                    <span data-bind="text: GPSIssueAlarmStartFormatted"></span>
+                    <br />
+                    <button data-bind="click: excuseAlarm.bind($data, $data, 'GPSISSUE'), visible: IsGPSIssueAlarmExcused == false" class="btn btn-info btn-small" title="excuse">X</button>
+                    <button data-bind="visible: IsGPSIssueAlarmExcused === true" class="btn btn-default btn-small" title="excused" disabled="disabled">X</button>
+                    <button data-bind="click: clearAlarm.bind($data, $data, 'GPSISSUE')" class="btn btn-primary btn-small" title="clear">C</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div data-bind="visible: alerts().length === 0">
+    <br />
+    <br />
+    <p>Currently, there are no alarms.</p>
+</div>
+
+<div id="excuseCommentsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Please provide comments</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <textarea class="span5" rows="5" placeholder="type here" data-bind="value: excuseComments"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bind="click: cancelExcuse">Cancel</button>
+                <button type="button" class="btn btn-primary" data-bind="click: excuseAlarmSubmit">Submit</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/KO")
+    @Scripts.Render("~/bundles/alertsViewModel")
+}

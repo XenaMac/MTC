@@ -1,0 +1,551 @@
+﻿@{
+    ViewBag.Title = "Tow Contractor Portal Trouble Tickets";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<br />
+
+<div ng-app="mtcApp">
+    <div ng-controller="troubleTicketTowContractorController" ng-init="init('@ViewBag.TroubleTicketType')" ng-cloak>
+
+        <div class="btn-group">
+            <button class="btn btn-default btn-lg" ng-class="{'btn-primary':ticketType==0}" ng-click="changeView(0)">Mechanical/Truck Out of Service</button>
+            <button class="btn btn-default btn-lg" ng-class="{'btn-primary':ticketType==1}" ng-click="changeView(1)">In-Vehicle Equipment General</button>
+            <button class="btn btn-default btn-lg" ng-class="{'btn-primary':ticketType==2}" ng-click="changeView(2)">In-Vehicle Equipment LATATrax</button>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingTroubleTickets"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <button class="btn btn-success" ng-click="showManageTroubleTicketModal()" ng-show="canEdit"><i class="fa fa-plus"></i> Add</button>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row" ng-show="ticketType==0">
+            <div class="col-sm-6">
+                <div class="alert alert-danger">
+                    Please add a ticket for  any mechanical problems with an FSP vehicle and/or any situation that results in a vehicle not performing FSP service. You should update the ticket as needed and indicate the vehicle is back in service.
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="ticketType==1">
+            <div class="col-sm-6">
+                <div class="alert alert-danger">
+                    Please add a ticket for any MTC-owned equipment not associated with the LATATrax system (eg- FSP radios and scanners). If this in-vehicle equipment issues resulted in a truck missing FSP service please create a separate ticket under that Truck Out of Service tab and list the ID number of the ticket created in this screen in the notes
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" ng-show="ticketType==2">
+            <div class="col-sm-6">
+                <div class="alert alert-danger">
+                    Please add a ticket for any issues with the LATATrax system (eg- WiFi or website).
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <table class="table table-hover table-striped footable">
+            <thead>
+                <tr>
+                    <th data-toggle="true" data-sort-initial="true">
+                        ID
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Ticket Created
+                    </th>
+                    <th>
+                        Ticket Created By
+                    </th>
+                    <th>
+                        Contact Name
+                    </th>
+                    <th>
+                        Contact Phone
+                    </th>
+                    <th>
+                        Tow Contractor
+                    </th>
+                    <th data-hide="all">
+                        Tow Contractor Contact Name
+                    </th>
+                    <th data-hide="all">
+                        Tow Contractor Phone
+                    </th>
+
+                    <th ng-show="ticketType==1">
+                        In-Vehicle Contractor
+                    </th>
+                    <th data-hide="all" ng-show="ticketType==1">
+                        In-Vehicle Contractor Contact Name
+                    </th>
+                    <th data-hide="all" ng-show="ticketType==1">
+                        In-Vehicle Contractor Phone
+                    </th>
+
+                    <th ng-show="ticketType==2">
+                        In-Vehicle LATATrax Contractor
+                    </th>
+                    <th data-hide="all" ng-show="ticketType==2">
+                        In-Vehicle LATATrax Contractor Contact Name
+                    </th>
+                    <th data-hide="all" ng-show="ticketType==2">
+                        In-Vehicle LATATrax Contractor Phone
+                    </th>
+
+                    <th>
+                        Truck #
+                    </th>
+                    <th ng-show="ticketType==2">
+                        ReliaGate OEM Ser. #
+                    </th>
+                    <th ng-show="ticketType==0" data-hide="phone,tablet">
+                        Problems
+                    </th>
+                    <th ng-show="ticketType==1" data-hide="phone,tablet">
+                        Component Issues
+                    </th>
+                    <th ng-show="ticketType==2" data-hide="phone,tablet">
+                        LATATrax Issues
+                    </th>
+                    <th ng-show="ticketType==1 || ticketType==2" data-hide="phone,tablet">
+                        Affected Drivers
+                    </th>
+
+                    <th>
+                        Problem Started
+                    </th>
+                    <th ng-show="ticketType==0" data-hide="all">
+                        Date Truck Out of Service
+                    </th>
+                    <th ng-show="ticketType==0" data-hide="all">
+                        Date Truck Back In-Service
+                    </th>
+                    <th ng-show="ticketType==0" data-hide="all">
+                        Date Truck Missed First Service
+                    </th>
+                    <th ng-show="ticketType==0" data-hide="all">
+                        Date Truck Missed Last Service
+                    </th>
+                    <th ng-show="ticketType==0" data-hide="all">
+                        Contractor Notes
+                    </th>
+                    <th ng-show="ticketType==1" data-hide="all">
+                        In-Vehicle Contractor Notes
+                    </th>
+                    <th ng-show="ticketType==2" data-hide="all">
+                        LATA Notes
+                    </th>
+                    <th data-hide="all">
+                        MTC Notes
+                    </th>
+                    <th data-sort-ignore="true"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in troubleTickets | filter: { TroubleTicketType: ticketType }">
+                    <td ng-bind="t.Id"></td>
+                    <td ng-bind="t.TroubleTicketStatusName"></td>
+                    <td ng-bind="t.CreateOnNice"></td>
+                    <td ng-bind="t.CreatedBy"></td>
+                    <td ng-bind="t.ContactName"></td>
+                    <td ng-bind="t.ContactPhone"></td>
+                    <td ng-bind="t.TowContractCompanyName"></td>
+                    <td ng-bind="t.TowContactName"></td>
+                    <td ng-bind="t.TowContactPhone"></td>
+
+                    <td ng-bind="t.InVehicleContractCompanyName" ng-show="$parent.ticketType==1"></td>
+                    <td ng-bind="t.InVehicleContactName" ng-show="$parent.ticketType==1"></td>
+                    <td ng-bind="t.InVehicleContactPhone" ng-show="$parent.ticketType==1"></td>
+
+                    <td ng-bind="t.InVehicleLATATraxContractCompanyName" ng-show="$parent.ticketType==2"></td>
+                    <td ng-bind="t.InVehicleLATATraxContactName" ng-show="$parent.ticketType==2"></td>
+                    <td ng-bind="t.InVehicleLATATraxContactPhone" ng-show="$parent.ticketType==2"></td>
+
+                    <td ng-bind="t.TruckNumber"></td>
+                    <td ng-bind="t.ReliaGateOEMSerialNumber" ng-show="ticketType==2"></td>
+
+                    <td ng-show="$parent.ticketType==0">
+                        <div ng-repeat="p in t.TroubleTicketProblems">
+                            <span ng-bind="p.Problem"></span>
+                        </div>
+                    </td>
+                    <td ng-show="$parent.ticketType==1">
+                        <div ng-repeat="p in t.TroubleTicketComponentIssues">
+                            <span ng-bind="p.Issue"></span>
+                        </div>
+                    </td>
+                    <td ng-show="$parent.ticketType==2">
+                        <div ng-repeat="p in t.TroubleTicketLATATraxIssues">
+                            <span ng-bind="p.Issue"></span>
+                        </div>
+                    </td>
+                    <td ng-show="$parent.ticketType==1 || $parent.ticketType==2">
+                        <div ng-repeat="p in t.TroubleTicketDrivers">
+                            <span ng-bind="p.DriverFullName"></span>
+                        </div>
+                    </td>
+
+                    <td ng-bind="t.ProblemStartedOnNice"></td>
+                    <td ng-bind="t.DateTruckOutOfServiceNice" ng-show="ticketType==0"></td>
+                    <td ng-bind="t.DateTruckBackInServiceNice" ng-show="ticketType==0"></td>
+                    <td ng-bind="t.FirstShiftTruckMissed" ng-show="ticketType==0"></td>
+                    <td ng-bind="t.LastShiftTruckMissed" ng-show="ticketType==0"></td>
+
+                    <td ng-bind="t.ContractorNotes"></td>
+                    <td ng-bind="t.InVehicleContractorNotes" ng-show="ticketType==1"></td>
+                    <td ng-bind="t.LATANotes" ng-show="ticketType==2"></td>
+                    <td ng-bind="t.MTCNotes"></td>
+                    <td>
+                        <div class="pull-right">
+                            <button class="btn btn-danger  btn-sm" ng-show="ticketType==0 && t.TroubleTicketStatus!=2 && canEdit" ng-click="resolveMechanicalTroubleTicket(t)">Back In-Service</button>
+                            <button class="btn btn-primary btn-sm" ng-click="editTroubleTicket(t)" ng-show="canEdit"><i class="fa fa-pencil"></i></button>
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="manageMechanicalTroubleTicketModal" class="modal fade" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Mechanical/Truck Out of Service Trouble Ticket</h4>
+                    </div>
+                    <form role="form" name="manageMechanicalTroubleTicketForm">
+                        <div class="modal-body">
+
+                            <div class="form-group" show-errors>
+                                <label for="selectedTicketStatus">Status <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedTicketStatus" ng-model="selectedTicketStatus" required>
+                                    <option value="0">Unresolved</option>
+                                    <option value="1">Pending</option>
+                                    <option value="2">Resolved</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" show-errors>
+                                <label for="selectedFleetVehicleId">Vehicle <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedFleetVehicleId" ng-model="selectedFleetVehicleId" ng-options="a.Id as a.Text for a in fleetVehicles" ng-disabled="isBusyGettingFleetVehicles" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactName">Contact Name</label>
+                                <input name="contactName" type="text" ng-model="contactName" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactPhone">Contact Phone</label>
+                                <input name="contactPhone" type="text" ng-model="contactPhone" class="form-control" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="outOfServiceDate">Estimated Date Out of Service</label>
+                                <input name="outOfServiceDate" type="text" ng-model="dateTruckOutOfService" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inServiceDate">Estimated Date In Service</label>
+                                <input name="inServiceDate" type="text" ng-model="dateTruckBackInService" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inServiceDate">Nature of the Problem</label>
+                                <div class="checkbox" ng-repeat="p in troubleTicketProblems">
+                                    <label>
+                                        <input type="checkbox"
+                                               name="selectedTroubleTicketProblems[]"
+                                               value="{{p.Id}}"
+                                               ng-checked="selectedTroubleTicketProblems.indexOf(p.Id) > -1"
+                                               ng-click="toggleTicketProblemSelection(p.Id)"> {{p.Problem}}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="problemStartDate">Date Problem Started</label>
+                                <input name="problemStartDate" type="text" ng-model="dateProblemStarted" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="actionTakenByContractor">Have you already submitted a back-up request for this breakdown</label>
+                                <div>
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="radio" name="backupRequestSubmitted" ng-model="backupRequestSubmitted" value="1" /> Yes
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-inline">
+                                        <label>
+                                            <input type="radio" name="backupRequestSubmitted" ng-model="backupRequestSubmitted" value="0" /> No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notes">Tow Contractor Notes </label>
+                                <textarea name="notes" type="text" ng-model="contractorNotes" class="form-control" rows="3"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-disabled="manageMechanicalTroubleTicketForm.$invalid || isBusySaving || manageMechanicalTroubleTicketForm.$pristine" ng-click="saveTroubleTicket()"><i class="fa fa-save" ng-hide="isBusySaving"></i><i class="fa fa-spinner fa-spin" ng-show="isBusySaving"></i> Save</button>
+                            <button type="button" class="btn btn-primary" ng-disabled="manageMechanicalTroubleTicketForm.$invalid || isBusySaving || manageMechanicalTroubleTicketForm.$pristine" ng-click="saveTroubleTicketAndRequestBackup()"><i class="fa fa-save" ng-hide="isBusySaving"></i><i class="fa fa-spinner fa-spin" ng-show="isBusySaving"></i> Save and Request Back-up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="resolveMechanicalTroubleTicketModal" class="modal fade" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Resolve Trouble Ticket</h4>
+                    </div>
+                    <form role="form" name="resolveMechanicalTroubleTicketForm">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="firstShiftTruckMissed">First Date Truck Missed Service</label>
+                                <input name="firstShiftTruckMissed" type="text" ng-model="firstShiftTruckMissed" class="form-control" mtc-date-picker />
+                            </div>
+                            <div class="form-group">
+                                <label for="lastShiftTruckMissed">Last Date Truck Missed Service</label>
+                                <input name="lastShiftTruckMissed" type="text" ng-model="lastShiftTruckMissed" class="form-control" mtc-date-picker />
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Contractor Notes </label>
+                                <div class="alert alert-danger">
+                                    Please indicate the specific shifts that did NOT have service
+                                </div>
+                                <textarea name="notes" type="text" ng-model="contractorNotes" class="form-control" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-disabled="resolveMechanicalTroubleTicketForm.$invalid || isBusySaving" ng-click="resolveTroubleTicket()"><i class="fa fa-save" ng-hide="isBusySaving"></i><i class="fa fa-spinner fa-spin" ng-show="isBusySaving"></i> Resolve</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="manageInVehicleEquipmentTroubleTicketModal" class="modal fade" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Indicate the In-Vehicle Component(s) with an Issue</h4>
+                    </div>
+                    <form role="form" name="manageInVehicleEquipmentTroubleTicketForm">
+                        <div class="modal-body">
+
+                            <div class="form-group" show-errors>
+                                <label for="selectedTicketStatus">Status <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedTicketStatus" ng-model="selectedTicketStatus" required>
+                                    <option value="0">Unresolved</option>
+                                    <option value="1">Pending</option>
+                                    <option value="2">Resolved</option>
+                                </select>
+                            </div>
+
+                            @*<div class="form-group" show-errors>
+                                    <label for="selectedContractorId">In-Vehicle Contractor <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                    <select class="form-control" name="associatedInVehicleContractorId" ng-model="associatedInVehicleContractorId" ng-options="a.Id as a.Text for a in inVehicleContractors">
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>*@
+
+                            <div class="form-group">
+                                <label for="contactName">Contact Name</label>
+                                <input name="contactName" type="text" ng-model="contactName" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactPhone">Contact Phone</label>
+                                <input name="contactPhone" type="text" ng-model="contactPhone" class="form-control" />
+                            </div>
+
+
+
+                            <div class="form-group" show-errors>
+                                <label for="selectedFleetVehicleId">Vehicle <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedFleetVehicleId" ng-model="selectedFleetVehicleId" ng-options="a.Id as a.Text for a in fleetVehicles" ng-disabled="isBusyGettingFleetVehicles" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inServiceDate">Drivers who have direct experience with this problem</label>
+                                <div class="checkbox" ng-repeat="d in drivers">
+                                    <label>
+                                        <input type="checkbox"
+                                               name="selectedDrivers[]"
+                                               value="{{d.Id}}"
+                                               ng-checked="selectedDrivers.indexOf(d.Id) > -1"
+                                               ng-click="toggleDriversSelection(d.Id)"> {{d.Text}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inServiceDate">Indicate In-Vehicle Component Issue</label>
+                                <div class="checkbox" ng-repeat="p in troubleTicketComponentIssues">
+                                    <label>
+                                        <input type="checkbox"
+                                               name="selectedTroubleTicketComponentIssues[]"
+                                               value="{{p.Id}}"
+                                               ng-checked="selectedTroubleTicketComponentIssues.indexOf(p.Id) > -1"
+                                               ng-click="toggleComponentIssuesSelection(p.Id)"> {{p.Issue}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="problemStartDate">Date Problem Started</label>
+                                <input name="problemStartDate" type="text" ng-model="dateProblemStarted" class="form-control" mtc-date-picker />
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Tow Contractor Notes </label>
+                                <textarea name="notes" type="text" ng-model="contractorNotes" class="form-control" rows="2"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-disabled="manageInVehicleEquipmentTroubleTicketForm.$invalid || isBusySaving" ng-click="saveTroubleTicket()"><i class="fa fa-save" ng-hide="isBusySaving"></i><i class="fa fa-spinner fa-spin" ng-show="isBusySaving"></i> Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="manageInVehicleEquipmentLATATraxTroubleTicketModal" class="modal fade" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">In-Vehicle Equipment LATATrax Trouble Ticket</h4>
+                    </div>
+                    <form role="form" name="manageInVehicleEquipmentLATATraxTroubleTicketForm">
+                        <div class="modal-body">
+                            <div class="form-group" show-errors>
+                                <label for="selectedTicketStatus">Status <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedTicketStatus" ng-model="selectedTicketStatus" required>
+                                    <option value="0">Unresolved</option>
+                                    <option value="1">Pending</option>
+                                    <option value="2">Resolved</option>
+                                </select>
+                            </div>
+                            @*<div class="form-group" show-errors>
+                                    <label for="selectedContractorId">LATATrax Contractor <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                    <select class="form-control" name="associatedInVehicleLATATraxContractorId" ng-model="associatedInVehicleLATATraxContractorId" ng-options="a.Id as a.Text for a in inVehicleLATATraxContractors">
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>*@
+                            <div class="form-group">
+                                <label for="contactName">Contact Name</label>
+                                <input name="contactName" type="text" ng-model="contactName" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactPhone">Contact Phone</label>
+                                <input name="contactPhone" type="text" ng-model="contactPhone" class="form-control" />
+                            </div>
+
+                            <div class="form-group" show-errors>
+                                <label for="selectedFleetVehicleId">Vehicle <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedFleetVehicleId" ng-model="selectedFleetVehicleId" ng-options="a.Id as a.Text for a in fleetVehicles" ng-disabled="isBusyGettingFleetVehicles" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <div class="form-group" show-errors>
+                                <label for="reliaGateOEMSerialNumber">ReliaGate OEM Serial #</label>
+                                <input name="reliaGateOEMSerialNumber" type="text" ng-model="reliaGateOEMSerialNumber" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="inServiceDate">Drivers who have direct experience with this problem</label>
+                                <div class="checkbox" ng-repeat="d in drivers">
+                                    <label>
+                                        <input type="checkbox"
+                                               name="selectedDrivers[]"
+                                               value="{{d.Id}}"
+                                               ng-checked="selectedDrivers.indexOf(d.Id) > -1"
+                                               ng-click="toggleDriversSelection(d.Id)"> {{d.Text}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inServiceDate">Indicate LATATrax Issue</label>
+                                <div class="checkbox" ng-repeat="p in troubleTicketLATATraxIssues">
+                                    <label>
+                                        <input type="checkbox"
+                                               name="selectedTroubleTicketLATATraxIssues[]"
+                                               value="{{p.Id}}"
+                                               ng-checked="selectedTroubleTicketLATATraxIssues.indexOf(p.Id) > -1"
+                                               ng-click="toggleLATATraxIssuesSelection(p.Id)"> {{p.Issue}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="problemStartDate">Date Problem Started</label>
+                                <input name="problemStartDate" type="text" ng-model="dateProblemStarted" class="form-control" mtc-date-picker />
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Tow Contractor Notes </label>
+                                <textarea name="notes" type="text" ng-model="contractorNotes" class="form-control" rows="2"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-disabled="manageInVehicleEquipmentLATATraxTroubleTicketForm.$invalid || isBusySaving" ng-click="saveTroubleTicket()"><i class="fa fa-save" ng-hide="isBusySaving"></i><i class="fa fa-spinner fa-spin" ng-show="isBusySaving"></i> Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/troubleTicketTowContractorController.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+    <script src="~/app/services/troubleTicketService.js"></script>
+    <script src="~/app/directives/showInputErrorDirective.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}
+

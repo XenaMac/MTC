@@ -1,0 +1,23 @@
+﻿@model MTC.FSP.Web.Models.AssetWarranty
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this asset warranty?</h3>
+<div>
+    <h4>"@Model.Item"</h4>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a href="~/AssetWarranties/Index" class="btn btn-default">Cancel</a>
+        </div>
+    }
+</div>

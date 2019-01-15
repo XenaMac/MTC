@@ -1,0 +1,135 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.MTCRateTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@if (ViewBag.OffCount == "true")
+{
+    <div class="alert alert-info" role="alert">WARNING: Beat count within the rate table does not equal the beat conut within the beats table.</div>
+}
+
+<table class="table">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.BeatNumber)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.CurrentMonthRate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.p100)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.p150)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.p200)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.p250)
+        </th>*@
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.p300)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.p350)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.p400)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.p450)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.p500)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.p550)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.p600)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.p650)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.p700)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.p750)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.p800)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.BeatNumber)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.CurrentMonthRate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.p100)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.p150)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.p200)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.p250)
+        </td>*@
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.p300)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.p350)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.p400)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.p450)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.p500)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.p550)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.p600)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.p650)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.p700)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.p750)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.p800)
+        </td>*@
+        <td class="text-center">
+            @Html.ActionLink("Edit", "Edit", new { id = item.RateTableID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.RateTableID }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.RateTableID })
+        </td>
+    </tr>
+}
+
+</table>

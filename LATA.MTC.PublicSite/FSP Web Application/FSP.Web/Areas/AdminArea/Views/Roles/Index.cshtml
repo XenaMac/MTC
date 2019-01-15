@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FSP.Domain.Model.Role>
+@{
+    ViewBag.Title = "User Roles";
+}
+
+<p>
+    @Html.ActionLink("Add Role", "Create")
+</p>
+<h2>
+    User Roles</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>
+                Role Name
+            </th>
+            <th>
+                Role Description
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.RoleName != "Admin")
+                    {
+                        @Html.ActionLink(item.RoleName, "Edit", new { id = item.RoleID })
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleDescription)
+                </td>
+                <td>
+                    @if (item.RoleName != "Admin")
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RoleID })
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

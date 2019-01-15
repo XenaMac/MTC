@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Time Test</title>
+		<link rel="stylesheet" type="text/css" href="css/ClientCSS.css"/>
+		<script src="scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+		
+	</head>
+	<body>
+		<header>LATATrax Status&nbsp&nbsp<label id="driverNameVal"></label>&nbsp&nbsp<label id="truckIdVal"></label></header>
+		<div id="navigation">
+			<input type="button" id="btnStatus" value="Status" class="lrgButton"/>
+		</div>
+		<div id="assistInfo" class="even">
+			<label id="selectedAssist">Selected Assist:&nbsp</label><label id="selectedAssistVal"></label>
+		</div>
+		<div id="IncidentType" class="odd">
+			<label for="ddlIncidentTypes">Incident Type</label>
+			<select name="ddlIncidentTypes" id="ddlIncidentTypes"><option value="none">none</option></select><!--auto loaded through AJAX, see LogAssist.js-->
+		</div>
+		<!--<div id="dispatch" class="even"> <!--multi column section-->
+			<div class="assistLeft">
+				<label for="txtx1097">x1097</label>
+				<input id="txtx1097" type="text" data-role="datebox" data-options='{"mode":"timeflipbox"}'></input>
+			</div>
+			<div class="assistRight">
+				<label for="txtx1098">x1098</label>
+				<input type="text" id="txtx1098" data-role="datebox" data-options='{"mode":"timeflipbox"}'></input>
+			</div>	   
+		<!--</div>-->
+		<div id="cusWaitTime" class="odd">
+			<label for="txtCustomerWaitTime">Customer Wait Time</label>
+			<input type="text" name="txtCustomerWaitTime" id="txtCustomerWaitTime"/>
+		</div>
+		
+		<div id="locationData" class="even">
+			<label for="ddlFreeways">Freeway</label>
+			<select name="ddlFreeways" id="ddlFreeways"><option value="none">none</option></select><!--auto loaded through AJAX, see LogAssist.js-->
+			<label for="ddlServiceTypes">Service Type</label>
+			<select name="ddlServiceTypes" id="ddlServiceTypes"><option value="none">none</option></select><!--auto loaded through AJAX, see LogAssist.js-->
+			<label for="ddlDropZones">Drop Zone</label>
+			<select name="ddlDropZones" id="ddlDropZones"><option value="none">none</option></select><!--auto loaded through AJAX, see LogAssist.js-->
+		</div>
+		
+		<!--<div id="vehicleData">-->
+			<div class="vehicles1">
+				<label>Vehicle Make</label>
+				<input type="text" id="txtVehicleMake" />
+			</div>
+			<div class="vehicles2">
+				<label>Vehicle Type</label>
+				<input type="text" id="txtVehicleType"/>
+			</div>	   
+			<div class="vehicles3">
+				<label>Vehicle Color</label>
+				<input type="text" id="txtVehicleColor"/>
+			</div>
+			<div class="vehicles4">
+				<label>License Plate</label>
+				<input type="text" id="txtLicensePlate"/>
+			</div>
+			<div class="vehicles5">
+				<label>License State</label>
+				<input type="text" id="txtState"/>
+			</div>
+		<!--</div>-->
+		
+		<div id="towData">
+			
+				<label for="startOD">StartOD</label>
+				<input type="text" name="startOD" id="startOD"/>
+			
+				<label for="endOD">EndOD</label>
+				<input type="text" name="endOD" id="endOD"/>
+
+				<label for="ddlTowLocations">Tow Location</label>
+				<select name="ddlDropZones" id="ddlDropZones"><option value="none">none</option></select>
+
+		</div>
+		
+		<div class="customerData1">
+				<label for="tip">Tip</label>
+				<input type="text" name="tip" id="tip"/>
+			</div>
+			<div class="customerData2">
+				<label for="tipDetail">Tip Detail</label>
+				<input type="text" name="tipDetail" id="tipDetail"/>
+			</div>
+			<div class="customerData3">
+				<label for="CustLastName">Customer Last Name</label>
+				<input type="text" name="CustLastName" id="CustLastName"/>
+			</div>
+	</body>
+</html>

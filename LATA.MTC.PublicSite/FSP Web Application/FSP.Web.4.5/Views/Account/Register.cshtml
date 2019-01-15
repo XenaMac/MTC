@@ -1,0 +1,73 @@
+﻿@model FSP.Web.Models.RegisterModel
+@{
+    ViewBag.Title = "LATA Trax | Register";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Use the form below to create a new account.</h2>
+</hgroup>
+<p class="message-info">
+    Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
+</p>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/MyScripts/fsp.account.create.js"></script>
+
+@using (Html.BeginForm((string)ViewBag.FormAction, "Account", FormMethod.Post, new { id = "accountRegisterForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Email, new { maxlength = 30 })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <br />
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.FirstName, new { maxlength = 15 })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+        <br />
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.LastName, new { maxlength = 20 })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+        <br />
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <br />
+
+        <div class="editor-label">
+            Confirm Password
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.ConfirmPassword)
+            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        </div>
+        <br />
+
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Register</button>
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,43 @@
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.exe
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.pdb
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\bin\Debug\GMap.NET.Core.dll
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.csprojResolveAssemblyReference.cache
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Form1.resources
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Properties.Resources.resources
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.csproj.GenerateResource.Cache
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.exe
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.pdb
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\bin\Debug\GMap.NET.WindowsForms.dll
+c:\users\eric\documents\visual studio 2010\Projects\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Form2.resources
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.exe
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.pdb
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.exe
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.pdb
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\bin\Debug\GMap.NET.Core.dll
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\bin\Debug\GMap.NET.WindowsForms.dll
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Form1.resources
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Properties.Resources.resources
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.csproj.GenerateResource.Cache
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.csprojResolveAssemblyReference.cache
+C:\Users\elahti\Dropbox\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.exe.config
+C:\FSP\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.exe.config
+C:\FSP\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.exe
+C:\FSP\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.pdb
+C:\FSP\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.exe
+C:\FSP\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.pdb
+C:\FSP\FSPPlayback\FSPPlayback\bin\Debug\GMap.NET.Core.dll
+C:\FSP\FSPPlayback\FSPPlayback\bin\Debug\GMap.NET.WindowsForms.dll
+C:\FSP\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Form1.resources
+C:\FSP\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Properties.Resources.resources
+C:\FSP\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.csproj.GenerateResource.Cache
+C:\MTC\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.exe.config
+C:\MTC\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.exe
+C:\MTC\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.pdb
+C:\MTC\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.exe
+C:\MTC\FSPPlayback\FSPPlayback\bin\Debug\FSPPlayback.pdb
+C:\MTC\FSPPlayback\FSPPlayback\bin\Debug\GMap.NET.Core.dll
+C:\MTC\FSPPlayback\FSPPlayback\bin\Debug\GMap.NET.WindowsForms.dll
+C:\MTC\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.csprojResolveAssemblyReference.cache
+C:\MTC\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Form1.resources
+C:\MTC\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.Properties.Resources.resources
+C:\MTC\FSPPlayback\FSPPlayback\obj\x86\Debug\FSPPlayback.csproj.GenerateResource.Cache

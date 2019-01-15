@@ -1,0 +1,223 @@
+﻿@{
+    ViewBag.Title = "Back-up Request";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<br />
+
+<div class="btn-group">
+    <a href="~/BackupTrucks/MtcInstructions" class="btn btn-default btn-lg">MTC Instructions</a>
+    <a href="~/BackupTrucks/BackupResources" class="btn btn-default btn-lg">Back-up Resources</a>
+    <a href="~/BackupTrucks/RequestBackup" class="btn btn-primary btn-lg">Request a Back-up</a>
+    <a href="~/BackupTrucks/ResponseBackup" class="btn btn-default btn-lg">Respond to Request</a>
+    <a href="~/BackupTrucks/Status" class="btn btn-default btn-lg">Back-up Request Status</a>
+</div>
+
+<br />
+<br />
+
+<div ng-app="mtcApp">
+    <div ng-controller="backupRequestTruckController" ng-cloak>
+        <h3>{{header}}&nbsp;<i class="fa fa-spinner fa-spin" ng-show="busyGettingContractorBeatNumbers || busyGettingContactors || busyGettingCurrentUser"></i></h3>
+        <div class="row" ng-show="userIsAdmin">
+            <div class="col-sm-12" ng-class="{'has-error': requestBackupTruckForm.selectedContractorId.$invalid }">
+                <label>Requesting Contractor <i class="fa fa-exclamation-circle" title="required"></i> <i class="fa fa-spinner fa-spin" ng-show="busyGettingContractors"></i></label>
+                <select class="form-control"
+                        name="selectedContractorId"
+                        ng-change="getContractorBeats(selectedContractorId)"
+                        ng-model="selectedContractorId"
+                        ng-options="a.Id as a.Text for a in contractors"
+                        ng-disabled="userIsContractor"
+                        required>
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+        <br />
+        <section ng-show="busyGettingContractorBeatNumbers">
+            Getting Contractor Beat assignments...<i class="fa fa-spinner fa-spin"></i>
+        </section>
+
+        <section ng-show="contractorBeatNumbers.length === 0 && selectedContractorId && !busyGettingContractorBeatNumbers">
+            <div class="alert alert-danger">
+                The selected Contractor has no Beat assignments.
+            </div>
+        </section>
+
+
+        <form name="requestBackupTruckForm" novalidate>
+            <section ng-show="contractorBeatNumbers.length > 0 && !busyGettingContractorBeatNumbers">
+                <div class="row">
+                    <div class="col-sm-12" ng-class="{'has-error': requestBackupTruckForm.selectedBeatId.$invalid }">
+                        <label>Requesting Contractor's Beat needing back-up <i class="fa fa-exclamation-circle" title="required"></i></label>
+                        <select class="form-control"
+                                name="selectedBeatId"
+                                ng-change="getBackupAssignments()"
+                                ng-model="selectedBeatId"
+                                ng-options="a.Id as a.Text for a in contractorBeatNumbers | orderBy:'Value'"
+                                ng-disabled="busyGettingContractorBeatNumbers && !selectedContractorId"
+                                required>
+                            <option value="">--Select--</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-12" ng-class="{'has-error': requestBackupTruckForm.requestPriorityOptions.$invalid }">
+                        <label>Request Priority <i class="fa fa-exclamation-circle" title="required"></i></label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="requestPriorityOptions" value="true" ng-model="requestPriorityIsUrgent" required />Urgent: Need back-up within 24 hours. Response required in {{urgentPriorityInHours}} or less
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="requestPriorityOptions" value="false" ng-model="requestPriorityIsUrgent" required />Standard: Need back-up later than 24 hours. Response required in {{standardPriorityInHours}} or less
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+
+                <section ng-show="isBusyGettingBackupAssignments">
+                    Getting Beat Schedule...<i class="fa fa-spinner fa-spin"></i>
+                </section>
+
+                <section ng-show="backupAssignements.length === 0 && !isBusyGettingBackupAssignments && selectedBeatId">
+                    <div class="alert alert-danger">
+                        No backups are assigned to the selected Beat
+                    </div>
+                </section>
+
+
+                <section ng-show="backupAssignements.length > 0">
+                    <div class="row">
+                        <div class="col-sm-12" ng-show="dateAndShifts.length > 0">
+                            <h4>Dates and Shifts <button class="btn btn-primary btn-sm" ng-click="addDateAndShifts()" ng-disabled="isBusyGettingScheduleAvailability"><i class="fa fa-plus" ng-hide="isBusyGettingScheduleAvailability"></i><i class="fa fa-spinner fa-spin" ng-show="isBusyGettingScheduleAvailability"></i> Add </button></h4>
+                            <div class="row" ng-repeat="s in dateAndShifts">
+                                <div class="col-md-2">
+                                    <input type="text" name="s.BackupDate" class="form-control" ng-change="updateScheduleAvailability(s)" ng-model="s.BackupDate" maxlength="15" mtc-date-picker min-date-from-today="0" />
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="s.AMRequested" ng-disabled="!s.AMAvailable" /> AM
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="s.MIDRequested" ng-disabled="!s.MIDAvailable" /> MID
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="s.PMRequested" ng-disabled="!s.PMAvailable" /> PM
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-danger btn-sm" ng-click="removeDateAndShifts(s)" ng-show="s.canBeRemoved">Remove <i class="fa fa-trash-o"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-12" ng-class="{'has-error': requestBackupTruckForm.selectedBackupReasonId.$invalid }">
+                            <label>Reason back-up needed <i class="fa fa-exclamation-circle" title="required"></i></label>
+                            <select class="form-control"
+                                    name="selectedBackupReasonId"
+                                    ng-model="selectedBackupReasonId"
+                                    ng-options="a.Id as a.Text for a in backupReasons"
+                                    ng-disabled="busyGettingBackupReaaons"
+                                    required>
+                                <option value="">--Select--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Comments</label>
+                            <textarea class="form-control"
+                                      rows="5"
+                                      ng-model="comments"></textarea>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Backup Assignments</label>
+                            <div class="radio" ng-repeat="a in backupAssignements">
+                                <label>
+                                    <input type="radio"
+                                           name="optionsRadios"
+                                           value="{{a.contractorId}}"
+                                           ng-model="$parent.selectedBackupAssignmentContractorId" />
+                                    {{a.contractorCompanyName}}
+                                    <span ng-show="a.assignmentLevel===1">(Primary)</span>
+                                    <span ng-show="a.assignmentLevel===2">(Secondary)</span>
+                                    <span ng-show="a.assignmentLevel===3">(Tertiary)</span>
+                                    <br />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>&nbsp;</label>
+                            <div class="alert alert-info">
+                                <p>
+                                    <b>Request Process:</b> Your request will be emailed first to the primary back-up contractor and CC to you and others.
+                                    Upon receipt of a <b>DECLINED</b> response or when the <b>allowable response time</b> has elapsed, the request will be
+                                    emailed to your next back-up contractor, CC you and the others.
+                                </p>
+                                <br />
+                                <p>
+                                    If you have already made prior back-up arrangements, indicate the back-up contractor
+                                    you selected and the reason. All 3 back-up contractors will be sent an email indicating your selection
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Indicate Reason for selection</label>
+                            <textarea class="form-control"
+                                      rows="5"
+                                      ng-model="selectionReason"
+                                      ng-disabled="!selectedBackupAssignmentContractorId"></textarea>
+                        </div>
+                    </div>
+
+                    @*make sure that for the selected contractor and beat, we have back-ups set up.*@
+                    <input type="checkbox" ng-model="haveBackupsSetForContractorAndBeatSelection" required style="display:none" />
+
+                    <div class="form-actions">
+                        <div class="pull-right">
+                            <button class="btn btn-success pull-right"
+                                    ng-disabled="requestBackupTruckForm.$invalid || isBusyRequestingBackup"
+                                    ng-click="requestBackup()">
+                                <i class="fa fa-spinner fa-spin" ng-show="isBusyRequestingBackup"></i> Submit
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/backupRequestTruckController.js"></script>
+    <script src="~/app/services/backupTruckService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+
+}

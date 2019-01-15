@@ -1,0 +1,20 @@
+#Deployment Plugin Project File
+#Mon Oct 05 11:22:54 MDT 2015
+build.ant.name=C\:\\Dropbox\\SVN\\MTC\\ReliaGATE_ESF3\\workspaces\\com.lata.fsp.mtc/src/main/resources/com.lata.fsp.mtc_build.xml
+build.dp.file=C\:\\Dropbox\\SVN\\MTC\\ReliaGATE_ESF3\\workspaces\\com.lata.fsp.mtc/target/com.lata.fsp.mtc.dp
+build.location=
+bundles.0.bundle_path=C\:\\Dropbox\\SVN\\MTC\\ReliaGATE_ESF3\\builds\\3.5.8\\plugins\\com.lata.fsp.mtc_3.5.8.201510051122.jar
+bundles.0.customizer=false
+bundles.0.headers.count=0
+bundles.0.missing=false
+bundles.0.name=bundles/com.lata.fsp.mtc_3.5.8.201510051122.jar
+bundles.0.symbolic_name=com.lata.fsp.mtc;singleton\:\=true
+bundles.0.version=3.5.8.201510051122
+bundles.count=1
+certificates.count=0
+general.signbundles=false
+headers.other.headers=
+headers.symbolic.name=com.lata.fsp.mtc
+headers.version=3.5.8
+resources.count=0
+

@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Order Details";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<br />
+<a href="~/Merchandise/OrderHistory">Back to your orders</a>
+<br />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="merchandiseOrderDetailsController" ng-cloak>
+
+        <input id="orderId" type="hidden" value="@ViewBag.OrderId" />
+
+        <div class="row">
+            <div class="col-xs-4">
+                <h1>Status <label class="label" ng-class="{'label-success': merchandiseOrderStatus===0 || merchandiseOrderStatus===1 ,'label-warning': merchandiseOrderStatus===2,'label-danger': merchandiseOrderStatus===3 }">{{orderStatus}}</label><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h1>
+            </div>
+            <div class="col-xs-8">
+                <br />
+                <div class="pull-right">
+                    <button class="btn btn-danger" ng-click="cancelOrder()" ng-show="canCancel && !isEditMode && canEdit" ng-disabled="isBusy"><i class="fa fa-trash-o"></i> Cancel Order</button>
+                    <button class="btn btn-danger" ng-click="declineOrder()" ng-show="canDecline && !isEditMode && merchandiseOrderStatus===0 && canEdit" ng-disabled="isBusy"><i class="fa fa-remove"></i> Decline Order</button>
+                    <button class="btn btn-success" ng-click="fulFillOrder()" ng-show="canFulFill && !isEditMode && merchandiseOrderStatus===0 && canEdit" ng-disabled="isBusy"><i class="fa fa-truck"></i> Fulfill Order</button>
+
+                    <button class="btn btn-primary" ng-hide="isEditMode || merchandiseOrderStatus!=0 || !canEdit" ng-click="edit()" ng-disabled="isBusy"><i class="fa fa-edit"></i> Edit</button>
+                    <button class="btn btn-success" ng-show="isEditMode && canEdit" ng-click="save()"><i class="fa fa-save"></i> Save</button>
+                    <button class="btn btn-default" ng-show="isEditMode && canEdit" ng-click="cancel()" ng-disabled="isBusy"> Cancel</button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <h2>Product List</h2>
+        <br />
+        <div>
+            <div>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Unit Cost</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="product in orderProducts">
+                            <td ng-bind="product.Product"></td>
+                            <td ng-bind="product.UnitCost | currency"></td>
+                            <td ng-bind="product.Quantity"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr />
+        <h2>Order Details</h2>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Contractor:
+                <label ng-bind="newContractor"></label>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Contact Name:
+                <label ng-show="!isEditMode" ng-bind="newContactName"></label>
+                <input type="text" ng-model="newContactName" ng-show="isEditMode" ng-disabled="canDecline" class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Contact Number:
+                <label ng-show="!isEditMode" ng-bind="newContactNumber"></label>
+                <input type="text" ng-model="newContactNumber" ng-show="isEditMode" ng-disabled="canDecline" class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Pick-up Date:
+                <label ng-show="!isEditMode" ng-bind="newPickupDate"></label>
+                <input type="text" ng-model="newPickupDate" ng-show="isEditMode" class="form-control" mtc-date-picker />
+                <br />
+                <div class="alert alert-info" ng-show="isEditMode">
+                    Pick-ups must be scheduled two day in advance and are not available on Weekends or Holidays. MTC will confirm your requested pick-up time.
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Pick-up Time:
+                <label ng-show="!isEditMode" ng-bind="newPickupTimeFriendly"></label>
+
+              
+                <label class="radio-inline" ng-show="isEditMode">
+                    <input type="radio" name="pickupTime" ng-model="newPickupTime" value="9" ng-required="true" />9 AM
+                </label>
+                <label class="radio-inline" ng-show="isEditMode">
+                    <input type="radio" name="pickupTime" ng-model="newPickupTime" value="10" ng-required="true" />10 AM
+                </label>
+                <label class="radio-inline" ng-show="isEditMode">
+                    <input type="radio" name="pickupTime" ng-model="newPickupTime" value="11" ng-required="true" />11 AM
+                </label>
+                <label class="radio-inline" ng-show="isEditMode">
+                    <input type="radio" name="pickupTime" ng-model="newPickupTime" value="1" ng-required="true" />1 PM
+                </label> 
+                <label class="radio-inline" ng-show="isEditMode">
+                    <input type="radio" name="pickupTime" ng-model="newPickupTime" value="2" ng-required="true" />2 PM
+                </label>
+                <label class="radio-inline" ng-show="isEditMode">
+                    <input type="radio" name="pickupTime" ng-model="newPickupTime" value="3" ng-required="true" />3 PM
+                </label>
+                <label class="radio-inline" ng-show="isEditMode">
+                    <input type="radio" name="pickupTime" ng-model="newPickupTime" value="4" ng-required="true" />4 PM
+                </label>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Received By:
+                <label ng-show="!isEditMode" ng-bind="newReceivedBy"></label>
+                <input type="text" ng-model="newReceivedBy" ng-show="isEditMode" ng-disabled="canCancel" class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Received On:
+                <label ng-show="!isEditMode" ng-bind="newReceivedOn"></label>
+                <input type="text" ng-model="newReceivedOn" ng-show="isEditMode" ng-disabled="canCancel" class="form-control" mtc-date-picker />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Created By:
+                <label ng-bind="createdBy"></label>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Created On:
+                <label ng-bind="createdOn | datetimefilter"></label>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                Comments:
+                <label ng-show="!isEditMode" ng-bind="newComments"></label>
+                <textarea ng-model="newComments" ng-show="isEditMode" class="form-control" rows="5"></textarea>
+            </div>
+        </div>
+        <br />
+        <h2>History</h2>
+        <br />
+        @Html.Partial("_AuditTable")
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/merchandiseOrderDetailsController.js"></script>
+    <script src="~/app/services/merchandiseService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script src="~/app/directives/showInputErrorDirective.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+
+}

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FSP.Domain.Model.TowLocation>
+@{
+    ViewBag.Title = "Tow Locations";
+}
+
+<p>
+    @Html.ActionLink("Add Tow Location", "Create")
+</p>
+<h2>Tow Locations</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Name
+            </th>
+            <th>Code
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.TowLocation1, "Edit", new { id = item.TowLocationID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TowLocationCode)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TowLocationID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

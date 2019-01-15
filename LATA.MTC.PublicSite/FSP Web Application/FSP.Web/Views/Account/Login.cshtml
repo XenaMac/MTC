@@ -1,0 +1,42 @@
+﻿@model FSP.Web.ViewModels.LoginModel
+@{
+    ViewBag.Title = "LATA Trax | Log in";
+}
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Please enter your user name and password. @Html.ActionLink("Register", "Register") if you don't have an account.
+       
+    </h2>
+</hgroup>
+@using (Html.BeginForm(new { returnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.ValidationSummary(true, "Log in was unsuccessful. Please correct the errors and try again.")
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            Email
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.RememberMe)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(m => m.RememberMe)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Login</button>
+        </div>
+    </fieldset> 
+}

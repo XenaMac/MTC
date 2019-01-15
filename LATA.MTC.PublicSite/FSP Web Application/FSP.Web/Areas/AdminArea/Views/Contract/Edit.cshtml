@@ -1,0 +1,94 @@
+﻿@model FSP.Web.Areas.AdminArea.ViewModels.ContractCreateViewModel
+@{
+    ViewBag.Title = "Edit " + @Model.Contract.AgreementNumber;
+    
+}
+<div>
+    @Html.ActionLink("Back to Contracts", "Index")
+</div>
+
+<h2>Edit "@Model.Contract.AgreementNumber"</h2>
+
+
+
+
+@using (Html.BeginForm("Edit", "Contract", FormMethod.Post, new { id = "contractForm" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+
+        @Html.HiddenFor(model => model.Contract.ContractID)
+        @Html.HiddenFor(model => model.Contract.BeatID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contract.AgreementNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contract.AgreementNumber)
+            @Html.ValidationMessageFor(model => model.Contract.AgreementNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contract.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contract.StartDate)
+            @Html.ValidationMessageFor(model => model.Contract.StartDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contract.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contract.EndDate)
+            @Html.ValidationMessageFor(model => model.Contract.EndDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contract.MaxObligation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contract.MaxObligation)
+            @Html.ValidationMessageFor(model => model.Contract.MaxObligation)
+        </div>
+
+        <div class="editor-label">
+            Available Beats
+        </div>
+        <div class="editor-field">
+            <select data-bind="options: beats, optionsText: 'text', optionsValue: 'id', value: selectedBeatId"></select>
+            <input class="btn btn-success" type="button" value="add" data-bind="click: addBeat" />
+        </div>
+
+        Selected Beats
+        <hr />
+        <div data-bind="visible: selectedBeats().length > 0">
+            <div data-bind="foreach: selectedBeats">
+                <span data-bind="text: text"></span>
+                <input id="SelectedBeats" name="SelectedBeats" type="hidden" data-bind="value: id" />
+                <input class="btn btn-warning" type="button" value="X" data-bind="click: $root.removeSelectedBeat" title="remove" />
+                <br />
+                <br />
+            </div>
+        </div>
+        <hr />
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contract.ContractorID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.Contract.ContractorID, new SelectList(ViewBag.Contractors, "ContractorID", "ContractCompanyName"), "--Select Contractor--", new { @class = "span8" })
+            @Html.ValidationMessageFor(model => model.Contract.ContractorID)
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}
+@section scripts{
+    <script src="~/Scripts/knockout-2.2.1.js"></script>
+    <script src="~/MyScripts/fsp.contract.create.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+}

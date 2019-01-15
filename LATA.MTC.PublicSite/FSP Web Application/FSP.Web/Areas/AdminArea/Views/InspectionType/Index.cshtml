@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FSP.Domain.Model.InspectionType>
+@{
+    ViewBag.Title = "Freeways";
+}
+
+<p>
+    @Html.ActionLink("Add Inspection Type", "Create")
+</p>
+<h2>Inspection Types</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Inspection Type Name
+            </th>
+            <th>Inspection Type Code
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.InspectionType1, "Edit", new { id = item.InspectionTypeID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionTypeCode)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InspectionTypeID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FSP.Domain.Model.Contractor>
+@{
+    ViewBag.Title = "Freeways";
+}
+
+<p>
+    @Html.ActionLink("Add Contractor", "Create")
+</p>
+<h2>Contractors</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>                         
+            <th>Contract Company
+            </th>
+            <th>Phone Number
+            </th>
+            <th>MCP Number
+            </th>
+            <th>MCP Expiration
+            </th>            
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.ContractCompanyName, "Edit", new { id = item.ContractorID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficeTelephone)
+                </td>                          
+                <td>
+                    @Html.DisplayFor(modelItem => item.MCPNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MCPExpiration)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ContractorID })
+                </td>          
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ContractorID })
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>

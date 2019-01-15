@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2011, 2013 Eurotech and/or its affiliates
+
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+       Eurotech
+
+-->
+
+<MetaData xmlns="http://www.osgi.org/xmlns/metatype/v1.2.0" localization="en_us">
+    <OCD id="com.eurotech.lata.logger.LataLogger" 
+         name="LataLogger" 
+         description="Logs Cellular and WIFi RSSI and GPS position to a specified file">
+ 
+    <Icon resource="http://sphotos-a.xx.fbcdn.net/hphotos-ash4/p480x480/408247_10151040905591065_1989684710_n.jpg" size="32"/>
+    
+    <AD id="logging.enabled"
+        name="logging.enabled"
+        type="Boolean"
+        cardinality="0"
+        required="true"
+        default="true"
+        description="Enables cellular and wifi RSSI and GPS position logging."/>
+    
+    <AD id="logging.rate"
+        name="logging.rate"
+        type="Integer"
+        cardinality="0"
+        required="false"
+        default="2"
+        description="Logging rate in seconds."/>
+    
+    <AD id="log.file"  
+        name="log.file"
+        type="String"
+        cardinality="0" 
+        required="false"
+        default="/tmp/lata.log" 
+        description="Cellular/WiFi RSSI, and GPS position log file."/>
+    
+     <AD id="max.log.records"
+         name="max.log.records"
+         type="Integer"
+         cardinality="0"
+         required="false"
+         default="250"
+         description="Maximum number of log records in a file."/>
+   	</OCD>
+   
+    <Designate pid="com.eurotech.lata.logger.LataLogger">
+        <Object ocdref="com.eurotech.lata.logger.LataLogger"/>
+    </Designate>
+</MetaData>

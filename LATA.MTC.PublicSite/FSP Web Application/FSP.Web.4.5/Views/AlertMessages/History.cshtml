@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = ViewBag.Heading;
+}
+
+<h2 class="pull-left">@ViewBag.Heading&nbsp<i class="fa fa-spin fa-spinner" data-bind="visible: isBusy()"></i></h2>
+<a href="~/AlertMessages/Alerts" class="btn btn-info pull-right">Alarms</a><br /><br /><br />
+
+<div id="alarmHistory">
+
+    <form class="form-inline">
+
+        <select data-bind="enable: !isBusy(), options: beats,
+    optionsText: 'Text',
+    value: selectedBeat,
+    optionsCaption: 'All Beats'">
+        </select>
+
+        <select data-bind="enable: !isBusy(), options: drivers,
+    optionsText: 'Text',
+    value: selectedDriver,
+    optionsCaption: 'All Drivers'">
+        </select>
+
+        <select data-bind="enable: !isBusy(), options: alarmTypes,
+    value: selectedAlarmType,
+    optionsCaption: 'All Alarms'">
+        </select>
+
+        <select data-bind="enable: !isBusy(), options: excuseTypes,
+    optionsText: 'Text',
+    value: selectedExcusedType,
+    optionsCaption: 'All'">
+        </select>
+
+        <button type="button" class="btn btn-primary" data-bind="enable: !isBusy(), click: filter">Filter</button>
+        <button type="button" class="btn" data-bind="enable: !isBusy(), click: reset">Refresh</button>
+    </form>
+
+    <table class="table table-hover table-striped" data-bind="visible: alarms().length > 0">
+        <thead>
+            <tr>
+                <th>Beat</th>
+                <th>Company</th>
+                <th>Vehicle</th>
+                <th>Driver</th>
+                <th>Time</th>
+                <th>Type</th>
+                <th>Excused?</th>
+                <th>Comments</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: alarms">
+            <tr>
+                <td><span data-bind="text: BeatNumber"></span></td>
+                <td><span data-bind="text: ContractCompanyName"></span></td>
+                <td><span data-bind="text: VehicleNumber"></span></td>
+                <td><span data-bind="text: DriverName"></span></td>
+                <td><span data-bind="text: AlarmTime"></span></td>
+                <td><span data-bind="text: AlarmType"></span></td>
+                <td>
+                    <input type="checkbox" data-bind="checked: IsExcused" />
+                </td>
+                <td>
+                    <input type="text" data-bind="value: Comments" />
+                </td>
+                <td>
+                    <button class="btn btn-primary" data-bind="click: updateAlarm">Update</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="alarm" data-bind="visible: alarms().length === 0">
+        No Alarms found
+    </div>
+
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/fspAlarmHistory")
+}

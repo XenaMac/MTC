@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Dispatch";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/KOAndSignarlR")
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/fspDispatch")
+}
+
+<div class="row">
+    <div class="span12">
+        @*<a class="btn btn-info" data-bind="click: showAssistsList" target="_blank">Assists</a>*@
+        <a class="btn btn-info" href="~/Assist/Index" target="_blank">Assists</a>
+        <a class="btn btn-info" data-bind="click: showConfig">Column Configuration</a>
+    </div>
+
+</div>
+<br />
+<div class="row">
+
+    <div class="span6" style="float: left">
+        <legend>New Dispatch</legend>
+        <table align="left" border="0" cellpadding="5" cellspacing="5" style="padding-right: 20px;">
+            <tr>
+                <td>Direction<br />
+                    <input id="fspDirection" tabindex="1" type="text" data-bind="value: fspDirection" placeholder="" maxlength="1" style="width: 20px;" />
+
+                </td>
+                <td>Freeway<br />
+                    <input id="fspFreeway" tabindex="2" type="text" data-bind="value: fspFreeway" placeholder="" maxlength="3" style="width: 40px;" />
+
+                </td>
+                <td>Location<br />
+                    <input id="fspLocation" tabindex="3" type="text" data-bind="value: fspLocation" placeholder="" maxlength="4" style="width: 50px;" />
+
+                </td>
+                <td>Cross Street<br />
+                    <input id="fspCrossStreet" class="span6" tabindex="4" type="text" data-bind="value: fspCrossStreet" placeholder="" maxlength="20" style="width: 100%;" />
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div data-bind="visible: fspLocation() === 'BTWN'">
+                        Cross Street 2<br />
+                        <input id="fspCrossStreet2" class="span6" tabindex="4" type="text" data-bind="value: fspCrossStreet2" placeholder="" maxlength="20" style="width: 140px;" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">Comments<br />
+                    <textarea id="comments" tabindex="5" data-bind="value: comments" style="width: 100%"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="span6" data-bind="visible: selectedTrucks().length > 0" style="float: right; display: none; height: 300px; overflow: auto">
+        <legend>Selected Trucks (<span data-bind="text: selectedTrucks().length"></span>)</legend>
+        <div>
+            <input data-bind="click: doDispatch" type="button" class="btn btn-danger" value="Send Trucks" />
+        </div>
+        <div>
+            <br />
+        </div>
+        <table class="table table-condensed table-bordered table-striped tablesorter">
+            <tbody data-bind="foreach: selectedTrucks">
+                <tr>
+                    <td style="vertical-align: central">
+                        <span data-bind="text: beatNumber()" style="vertical-align: central"></span>
+                    </td>
+                    <td style="vertical-align: central">
+                        <span data-bind="text: truckNumber"></span>
+                    </td>
+                    <td>
+                        <input data-bind="click: unSelectTruck" value="remove" type="button" class="btn btn-info" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div class="alert alert-block">
+                <div>Dispatch Summary: </div>
+                <div>
+                    <span>Heading</span>
+                    <b><span data-bind="text: fspDirection()"></span></b>
+                    <span>on</span>
+                    <b><span data-bind="text: fspFreeway()"></span></b>
+                    <b><span data-bind="text: fspLocation()"></span></b>
+                    <b><span data-bind="text: fspCrossStreet()"></span></b>
+                    <b><span data-bind="text: 'and ' + fspCrossStreet2(), visible: fspCrossStreet2().length > 0"></span></b>
+                    <i data-bind="visible: comments().length > 0">"<span data-bind="    text: comments()"></span>"</i>
+                </div>
+
+            </div>
+            <div>
+                <ul data-bind="foreach: selectedTrucks()" class="unstyled">
+                    <li>
+                        <input type="hidden" name="SelectedTrucks" data-bind="value: truckNumber" />
+                    </li>
+                </ul>
+                <input data-bind="click: doDispatch" type="button" class="btn btn-danger" value="Send Trucks" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <br />
+</div>
+@Html.Partial("_TruckStatusList")
+
+@Html.Partial("_TruckListColumnConfig")

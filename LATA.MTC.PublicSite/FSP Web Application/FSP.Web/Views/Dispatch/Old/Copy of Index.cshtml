@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Dispatch";
+}
+<script src="@Url.Content("~/Scripts/knockout-2.1.0.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/MyScripts/fsp.dispatch.js")" type="text/javascript"></script>
+
+<section data-bind="visible: dispatchs().length > 0" style="display: none">
+    <div class="row-fluid">
+        <div class="span4">
+            <h2>Dispatch</h2>
+        </div>
+        <div style="text-align: right">
+            <input type="text" placeholder="search" data-bind="value: searchValue, valueUpdate:'afterkeydown'" />
+        </div>
+    </div>
+
+    <table id="dispatchGrid" class="table table-condensed table-bordered table-striped tablesorter">
+       @* <thead>
+            <tr>
+                <th>
+                    <span data-bind="click: $root.sortByBeatNumber">Beat #</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'beatNumber' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'beatNumber' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th>
+                    <span data-bind="click: $root.sortByTruckNumber">Truck #</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'truckNumber' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'truckNumber' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByContractorName">Contractor</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'contractorName' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'contractorName' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByDriverName">Driver</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'driverName' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'driverName' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByServiceDate">Service Date</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'serviceDate' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'serviceDate' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByBeatStartTime">Beat Start</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'beatStartTime' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'beatStartTime' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByStatus">Status</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'status' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'status' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByLastUpdateTime">Last Update</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'lastUpdateTime' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'lastUpdateTime' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByAlarms">Alarms</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'alarms' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'alarms' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByFreeway">Freeway</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'freeway' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'freeway' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByDirection">Direction</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'direction' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'direction' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByLastLocation">Last Location</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'lastLocation' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'lastLocation' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByAssistDescription">Assist Desc.</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'assistDescription' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'assistDescription' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByIncidentCode">Incident Code</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'incidentCode' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'incidentCode' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByServiceCode">Service Code</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'serviceCode' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'serviceCode' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByVehicleDescription">Vehicle Desc.</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'vehicleDescription' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'vehicleDescription' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByVehicleLicensePlateNumber">Vehicle Lic. #</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'vehicleLicensePlateNumber' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'vehicleLicensePlateNumber' && currentSortDirection() === 'Asc'" />
+                </th>
+                <th><span data-bind="click: $root.sortByTowLocation">Tow Location</span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: currentSort() === 'towLocation' && currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: currentSort() === 'towLocation' && currentSortDirection() === 'Asc'" />
+                </th>
+            </tr>
+        </thead>*@
+        <thead>
+            <tr data-bind="foreach: columns">
+                <th>
+                    <span data-bind="click: sort, text: name()"></span>
+                    <img src='@Url.Content("~/Content/images/arrow_down.png")' data-bind="visible: $root.currentSort() === value() && $root.currentSortDirection() === 'Desc'" />
+                    <img src='@Url.Content("~/Content/images/arrow_up.png")' data-bind="visible: $root.currentSort() === value() && $root.currentSortDirection() === 'Asc'" />              
+                </th>               
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: dispatchs">
+            <tr data-bind="click: $root.setSelectedDispatch, visible: isVisible">
+                <td>
+                    <span data-bind="text: beatNumber()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: truckNumber()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: contractorName()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: driverName()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: serviceDate()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: beatStartTime()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: status()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: lastUpdateTime()"></span>
+                </td>
+                <td data-bind="style:{ backgroundColor: alarms().length > 1 ? 'Red' : 'Transparent'}">
+                    <span data-bind="text: alarms()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: freeway()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: direction()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: lastLocation()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: assistDescription()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: incidentCode()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: serviceCode()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: vehicleDescription()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: vehicleLicensePlateNumber()"></span>
+                </td>
+                <td>
+                    <span data-bind="text: towLocation()"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+@*details*@
+<div class="modal hide fade" id="detailsModal">
+
+    <div data-bind="if: selectedDispatch">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">
+                ×</button>
+            <h1>Details for Truck<span data-bind="text: selectedDispatch().truckNumber"></span></h1>
+        </div>
+        <div class="modal-body">
+            <div class="row-fluid">
+                <div class="span9">
+                    <table width="100%">
+                        <tr>
+                            <td>Beat Number</td>
+                            <td><b><span data-bind="text: selectedDispatch().beatNumber()"></span></b></td>
+                        </tr>
+                        <tr>
+                            <td>Truck Number</td>
+                            <td><b><span data-bind="text: selectedDispatch().truckNumber()"></span></b></td>
+                        </tr>
+                        <tr>
+                            <td>Contractor</td>
+                            <td><b><span data-bind="text: selectedDispatch().contractorName()"></span></b></td>
+                        </tr>
+                        <tr>
+                            <td>Driver</td>
+                            <td><b><span data-bind="text: selectedDispatch().driverName()"></span></b></td>
+                        </tr>
+                        <tr>
+                            <td>Service Date</td>
+                            <td><b><span data-bind="text: selectedDispatch().serviceDate()"></span></b></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>...</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Close</a>
+        </div>
+
+
+    </div>
+  
+
+</div>

@@ -1,0 +1,292 @@
+﻿#map {
+    height: 100%;
+}
+
+    #map img {
+        max-width: none;
+    }
+
+div#infoWindow {
+    height: 180px;
+    width: 250px;
+}
+
+.gridRow {
+    cursor: pointer;
+}
+
+.labels {
+    z-index: 10000;
+}
+
+#towTruckGrid tr {
+    cursor: pointer;
+}
+
+.hoverDetails {
+    font-weight: bold;
+}
+
+.hoverDetailsFields {
+    font-weight: normal;
+    text-align: right;
+    color: gray;
+    padding-left: 6px;
+    padding-bottom: 3px;
+}
+
+.table-striped tbody tr:nth-child(odd) td {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.table-striped tbody tr.highlight td {
+    background-color: rgba(255,0,0,0.7);
+}
+
+.truckDetailsPopup{
+    font-size:8pt; 
+    line-height:10px !important;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+    /*display: block;
+    margin-top: 0px;
+    text-align: center;*/
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/*sorting headers added by dpolkinhorn*/
+/*modified for dataTable jquery plugin */
+table .sorting, table .sorting_desc, table .sorting_asc {
+    cursor: pointer;
+}
+
+    table .sorting:after, table .sorting_desc:after, table .sorting_asc:after {
+        content: "";
+        float: right;
+        margin-top: 7px;
+        border-width: 0 4px 4px;
+        border-style: solid;
+        border-color: #000 transparent;
+        visibility: hidden;
+    }
+
+table .sorting_asc, table .sorting_desc {
+    background-color: rgba(141, 192, 219, 0.25);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+    table .header:hover:after, table .sorting_desc:hover:after, table .sorting_asc:hover:after {
+        visibility: visible;
+    }
+
+    table .sorting_desc:after, table .sorting_desc:hover:after {
+        visibility: visible;
+        filter: alpha(opacity=60);
+        -khtml-opacity: 0.6;
+        -moz-opacity: 0.6;
+        opacity: 0.6;
+    }
+
+    table .sorting_asc:after {
+        border-bottom: none;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #000;
+        visibility: visible;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        filter: alpha(opacity=60);
+        -khtml-opacity: 0.6;
+        -moz-opacity: 0.6;
+        opacity: 0.6;
+    }
+
+/*Truck Details Window*/
+
+.detailsWindowFieldCaption {
+    color: #666666;
+    white-space: nowrap;
+}
+
+/*Map ToolTip */
+#tt {
+    position: absolute;
+    display: block;
+    /*background: url(images/tt_left.gif) top left no-repeat;*/
+}
+
+#tttop {
+    display: block;
+    height: 5px;
+    margin-left: 5px;
+    /*background: url(images/tt_top.gif) top right no-repeat;*/
+    overflow: hidden;
+}
+
+#ttcont {
+    display: block;
+    padding: 2px 12px 3px 7px;
+    margin-left: 5px;
+    background: #666;
+    color: #FFF;
+}
+
+#ttbot {
+    display: block;
+    height: 5px;
+    margin-left: 5px;
+    /*background: url(images/tt_bottom.gif) top right no-repeat;*/
+    overflow: hidden;
+}
+
+/*jquery UI customizations*/
+
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    z-index: 2147483647;
+}
+
+.ui-autocomplete-loading {
+    background: white url('../Images/ui-anim_basic_16x16.gif') right center no-repeat;
+}
+
+.error {
+    color: red;
+}
+
+.welcomeDisplay {
+    position: absolute;
+    right: 30px;
+    top: 10px;    
+    white-space: nowrap;
+    list-style: none;
+    color: white;
+}
+
+    .welcomeDisplay a:link, .welcomeDisplay a:visited, .welcomeDisplay a::selection {
+        color: white;
+    }
+
+/*bootstrap customizations*/
+
+@media (min-width: 980px) {
+    body {
+        padding-top: 60px;
+    }
+}
+
+@media (min-width: 1490px) {
+    .navbar .brand {
+        position: absolute;
+        left: 10px;
+        top: 5px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .welcomeDisplay {
+        display: none;
+    }
+}
+
+@media (min-width: 200px) and (max-width:1489px) {
+    .navbar .brand {
+        position: relative;
+        top: 5px;
+    }
+}
+
+.navbar .nav {
+    position: relative;
+    left: 0;
+    display: block;
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+    .navbar .nav > li {
+        float: left;
+        font-size: 17px;
+    }
+
+
+    .navbar .nav > .active > a,
+    .navbar .nav > .active > a:hover,
+    .navbar .nav > .active > a:focus {
+        color: white;
+        text-decoration: none;
+        background-color: gray;
+        -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+        -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+    }
+
+
+/*NAVBAR SIMPLE*/
+
+/*.navbar-simple .brand {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.navbar-simple .navbar-inner {
+    background: #fff;
+    filter: none !important;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 2px 15px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 2px 15px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+   
+.navbar-simple .navbar-inner .nav li a {
+    background: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    color: #777;
+    font-size: 13px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+    .navbar-simple .navbar-inner .nav li a:hover {
+        background: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        color: #bf3604;
+    }
+
+.navbar-simple .navbar-inner .nav li.active a {
+    color: #bf3604;
+    background: red;
+}
+
+*/

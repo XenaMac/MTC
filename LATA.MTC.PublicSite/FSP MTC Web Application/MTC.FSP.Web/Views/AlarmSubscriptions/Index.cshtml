@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.AlarmSubscription>
+
+@{
+    ViewBag.Title = "Alarm Subscriptions";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Alarm Subscriptions</h2>
+        @Html.ActionLink("Create New", "Create")
+    </div>
+    <div class="col-md-4">
+        <br />
+        <input type="text" id="search" placeholder="search" class="form-control" />
+    </div>
+</div>
+<br />
+
+<table class="table table-hover footable" data-filter="#search" data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubscribedAlarmName)
+            </th>
+            <th data-sort-ignore="true"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubscribedAlarmName)
+                </td>
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12" class="text-center">
+                <div class="paging">
+                    <ul class="pagination pagination-sm"></ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

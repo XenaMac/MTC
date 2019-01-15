@@ -1,0 +1,123 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.ViolationType>
+
+@{
+    ViewBag.Title = "Violation Types";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+
+
+
+
+<br />
+<div class="row">
+    <div class="col-md-8">
+        <h2>Violation Types</h2>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+    <div class="col-md-4">
+        <input type="text" id="search" placeholder="search" class="form-control" />
+    </div>
+</div>
+
+
+<table class="table table-hover table-striped footable" data-page-size="5" data-limit-navigation="10" data-filter="#search">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                Minimum Severity
+            </th>
+            <th>
+                Maximum Severity
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppliesTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAVLViolation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicableLATATraxAlarm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DetectableByLATATraxAlone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicableReports)
+            </th>
+            <th data-sort-ignore="true"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ViolationTypeSeverity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxViolationTypeSeverity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppliesTo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAVLViolation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicableLATATraxAlarm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DetectableByLATATraxAlone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicableReports)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12" class="text-center">
+                <div class="paging">
+                    <ul class="pagination pagination-sm"></ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

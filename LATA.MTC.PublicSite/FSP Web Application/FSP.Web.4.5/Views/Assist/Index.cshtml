@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Assists";
+}
+
+<div class="row">
+    <div class="span12">
+        <a class="btn btn-info" data-bind="click: showConfig">Column Configuration</a>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="span12">
+        <h2>Assists (<span data-bind="text: assists().length"></span>)</h2>        
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="span12">
+        <table class="table table-condensed table-bordered table-striped tablesorter">
+            <thead>
+                <tr data-bind="foreach: columns">
+                    <th data-bind="visible: isVisible">
+                        <span data-bind="click: sort, text: name()"></span>
+                        <img src='@Url.Content("~/Images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                        <img src='@Url.Content("~/Images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                    </th>
+                </tr>
+            </thead>           
+            <tbody data-bind="foreach: assists" style="cursor: pointer">
+                <tr data-bind="foreach: columns" class="gridRow">
+                    <td data-bind="visible: isVisible" class="span2">
+                        <span data-bind="visible: value() === 'beatNumber', text: $parent.beatNumber"></span>
+                        <span data-bind="visible: value() === 'dispatchNumber', text: $parent.dispatchNumber"></span>
+                        <span data-bind="visible: value() === 'assistNumber', text: $parent.assistNumber"></span>
+                        <span data-bind="visible: value() === 'driverComments', text: $parent.driverComments"></span>
+                        <span data-bind="visible: value() === 'driver', text: $parent.driver"></span>
+                        <span data-bind="visible: value() === 'make', text: $parent.make"></span>
+                        <span data-bind="visible: value() === 'color', text: $parent.color"></span>
+                        <span data-bind="visible: value() === 'dropZone', text: $parent.dropZone"></span>
+                        <span data-bind="visible: value() === 'plateNumber', text: $parent.plateNumber"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.Partial("_TruckListColumnConfig")
+
+@section scripts{
+    @Scripts.Render("~/bundles/KO")
+    @Scripts.Render("~/bundles/fspAssist")
+}

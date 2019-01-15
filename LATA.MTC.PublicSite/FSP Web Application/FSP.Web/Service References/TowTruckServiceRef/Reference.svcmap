@@ -1,0 +1,70 @@
+<<<<<<< .mine
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="129700bb-6a45-4bd1-921d-85f7fcca4b04" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://38.124.164.211:9007/TowTruckService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TowTruckService.xsd" MetadataType="Schema" ID="f83795c7-c018-49cb-8b85-0381af2248ae" SourceId="1" SourceUrl="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TowTruckService.disco" MetadataType="Disco" ID="1babf240-66d1-4566-86fa-ee06dcbb5fcc" SourceId="1" SourceUrl="http://38.124.164.211:9007/TowTruckService.svc?disco" />
+    <MetadataFile FileName="TowTruckService1.xsd" MetadataType="Schema" ID="a0376827-910f-4764-a85f-c6688d0578a6" SourceId="1" SourceUrl="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TowTruckService.wsdl" MetadataType="Wsdl" ID="51a5e25c-528d-414c-b022-3b810a03f123" SourceId="1" SourceUrl="http://38.124.164.211:9007/TowTruckService.svc?wsdl" />
+    <MetadataFile FileName="TowTruckService2.xsd" MetadataType="Schema" ID="ec357b56-06eb-483a-8e9b-1379f13b8c5c" SourceId="1" SourceUrl="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TowTruckService3.xsd" MetadataType="Schema" ID="a637a4c4-b027-4264-877e-dd6fcb5a6274" SourceId="1" SourceUrl="http://38.124.164.211:9007/TowTruckService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>=======
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a2fbd23a-a2e8-4cf6-a59d-758a763aa821" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://amyanderic.no-ip.org:801/TowTruckService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TowTruckService.xsd" MetadataType="Schema" ID="c4cd8c92-dcfb-4895-884e-f2f326a1ba63" SourceId="1" SourceUrl="http://amyanderic.no-ip.org:801/TowTruckService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TowTruckService1.xsd" MetadataType="Schema" ID="6656234b-254c-4628-ba39-75bd78bc7db0" SourceId="1" SourceUrl="http://amyanderic.no-ip.org:801/TowTruckService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TowTruckService2.xsd" MetadataType="Schema" ID="c35ae0cd-c22e-42a0-be52-6d9c8ee465df" SourceId="1" SourceUrl="http://amyanderic.no-ip.org:801/TowTruckService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TowTruckService.disco" MetadataType="Disco" ID="f27f44ef-397f-4462-bf38-f6ba0b921ff6" SourceId="1" SourceUrl="http://amyanderic.no-ip.org:801/TowTruckService.svc?disco" />
+    <MetadataFile FileName="TowTruckService.wsdl" MetadataType="Wsdl" ID="27c6e78d-d3ae-42f4-a241-ab647fa651e3" SourceId="1" SourceUrl="http://amyanderic.no-ip.org:801/TowTruckService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>>>>>>>> .r668

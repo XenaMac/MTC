@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FSP.Domain.Model.vDropZone>
+@{
+    ViewBag.Title = "Drop Zones";
+}
+
+<p>
+    @Html.ActionLink("Add Drop Zone", "Create")
+</p>
+<h2>Drop Zones</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Drop Zone Number
+            </th>
+            <th>Location
+            </th>
+            <th>City
+            </th>
+            <th>Drop Zone Description
+            </th>
+            <th>PD Phone
+            </th>
+            <th>Capacity
+            </th>
+            <th>Comments
+            </th>
+            <th>Restrictions
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.DropZoneNumber, "Edit", new { id = item.DropZoneID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DropZoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PDPhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restrictions)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DropZoneID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

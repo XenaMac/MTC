@@ -1,0 +1,69 @@
+﻿@model MTC.FSP.Web.Models.CHPOfficer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this CHP Officer?</h3>
+
+<div class="alert alert-danger">
+    <h3>THIS WILL ALSO DELETE ALL RELATED <b>CHP INSPECTION</b> AND ASSIGNED BEAT INFORMATION</h3>
+</div>
+
+<div>
+    <h4>"@Model.OfficerLastName, @Model.OfficerFirstName"</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BadgeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BadgeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficerLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficerLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficerFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficerFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a href="~/CHPOfficers/Index" class="btn btn-default">Cancel</a>
+        </div>
+    }
+</div>

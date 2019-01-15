@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\deploy\MTC FSP Service</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Admin/AddTruck.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/CadMessages.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/ControlMessages.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/CurrentBeats.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/CurrentBeatSchedules.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/CurrentIncidents.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/Dashboard.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/LogOffDriver.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/Logon.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/SetGPS.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/SetLeeways.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/ShowBeats.aspx">
+      <publishTime>01/13/2017 07:45:18</publishTime>
+    </File>
+    <File Include="Admin/ShowDrops.aspx">
+      <publishTime>01/13/2017 07:45:18</publishTime>
+    </File>
+    <File Include="Admin/speedTester.htm">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/SurveyControl.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/TestUtils.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/TimeChecker.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/TowTruckCheckList.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/TowTruckSetup.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/TruckAlarmStatus.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/TruckDetail.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/TruckMessages.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="Admin/WAZEFeed.aspx">
+      <publishTime>11/27/2017 10:10:08</publishTime>
+    </File>
+    <File Include="Admin/Yards.aspx">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="AJAXFSPService.svc">
+      <publishTime>09/28/2017 08:21:32</publishTime>
+    </File>
+    <File Include="bin/ar/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:07</publishTime>
+    </File>
+    <File Include="bin/ar/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:07</publishTime>
+    </File>
+    <File Include="bin/cs/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/da/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/de/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/de/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/es/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/es/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/ESRI.ArcGIS.Client.dll">
+      <publishTime>09/28/2017 08:21:37</publishTime>
+    </File>
+    <File Include="bin/Esri.ArcGISRuntime.dll">
+      <publishTime>09/28/2017 08:21:37</publishTime>
+    </File>
+    <File Include="bin/et/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/fi/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/FPSService.dll">
+      <publishTime>02/22/2018 09:39:05</publishTime>
+    </File>
+    <File Include="bin/FPSService.pdb">
+      <publishTime>02/22/2018 09:39:05</publishTime>
+    </File>
+    <File Include="bin/fr/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/fr/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/he/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>09/28/2017 08:21:33</publishTime>
+    </File>
+    <File Include="bin/it/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/it/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/ja/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/ja/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/ko/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/lt/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:09</publishTime>
+    </File>
+    <File Include="bin/lv/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:09</publishTime>
+    </File>
+    <File Include="bin/Microsoft.SqlServer.Types.dll">
+      <publishTime>12/10/2016 15:26:34</publishTime>
+    </File>
+    <File Include="bin/nb-NO/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>09/28/2017 08:21:54</publishTime>
+    </File>
+    <File Include="bin/nl/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/no/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/pl/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/pt-BR/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:09</publishTime>
+    </File>
+    <File Include="bin/pt-BR/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:09</publishTime>
+    </File>
+    <File Include="bin/pt-PT/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/pt/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/ro/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:09</publishTime>
+    </File>
+    <File Include="bin/ru/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:09</publishTime>
+    </File>
+    <File Include="bin/ru/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:09</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/SqlServerTypes/x64/msvcr120.dll">
+      <publishTime>10/03/2017 08:41:28</publishTime>
+    </File>
+    <File Include="bin/SqlServerTypes/x64/SqlServerSpatial140.dll">
+      <publishTime>10/03/2017 08:41:28</publishTime>
+    </File>
+    <File Include="bin/SqlServerTypes/x86/msvcr120.dll">
+      <publishTime>10/03/2017 08:41:28</publishTime>
+    </File>
+    <File Include="bin/SqlServerTypes/x86/SqlServerSpatial140.dll">
+      <publishTime>10/03/2017 08:41:28</publishTime>
+    </File>
+    <File Include="bin/sv/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/zh-CN/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/zh-CN/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/ESRI.ArcGIS.Client.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Esri.ArcGISRuntime.resources.dll">
+      <publishTime>01/26/2018 08:22:08</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.SqlServer.Types.resources.dll">
+      <publishTime>05/10/2017 13:19:02</publishTime>
+    </File>
+    <File Include="Client/Assist.html">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Client/css/ClientCSS.css">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Client/css/jqModal.css">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Client/css/reset.css">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Client/images/LATAShort.jpg">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/Logon.html">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/scripts/AssistScript.js">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/scripts/GlobalData.js">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/scripts/jqm-datebox-1.1.0.core.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Client/scripts/jqm-datebox-1.1.0.mode.flipbox.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Client/scripts/jqModal.js">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/scripts/jquery-1.8.2.min.js">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/scripts/jquery.ui.map.full.min.js">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/scripts/LogonScript.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Client/scripts/StatusScreen.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Client/scripts/StatusScript.js">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/Status.html">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Client/TimeTest.html">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="css/HoverTable.css">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_flat_0_eeeeee_40x100.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_flat_55_c0402a_40x100.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_flat_55_eeeeee_40x100.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_glass_100_f8f8f8_1x400.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_glass_35_dddddd_1x400.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_glass_60_eeeeee_1x400.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_inset-hard_75_999999_1x100.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-bg_inset-soft_50_c9c9c9_1x100.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-icons_3383bb_256x240.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-icons_454545_256x240.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-icons_70b2e1_256x240.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-icons_999999_256x240.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/images/ui-icons_fbc856_256x240.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/jquery-ui-1.8.23.custom.css">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/jquery.simple-dtpicker.css">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/SiteStyle.css">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="css/TowTruckCheckList.css">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="EsriService.svc">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="FSPService.svc">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/12-012 LOGO - LATA Trax_PNG-02.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/LATA Trax_icon_checkbox.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/LATAShort.jpg">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/LATATRAX LOGO.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/LATATRAX ScreenName.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/LATATRAX Tire.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/LATATRAX Tire2.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/mtc ftt dashboard_v2_2-01.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/mtc ftt dashboard_v2_alert icon.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/mtc ftt dashboard_v2_bay area lata trax logo.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/mtc ftt dashboard_v2_connected vehicle icon.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/mtc ftt dashboard_v2_message vehicle icon.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/mtc ftt dashboard_v2_mtc logo.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/SmallVertBar.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/topMenuImages.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Images/VertBar.png">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="MTCDataFeed.aspx">
+      <publishTime>09/28/2017 08:21:49</publishTime>
+    </File>
+    <File Include="MTCDataFeedXML.aspx">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="MTCFSPFeed.aspx">
+      <publishTime>02/08/2017 10:24:22</publishTime>
+    </File>
+    <File Include="MTCWaze.aspx">
+      <publishTime>11/10/2016 13:01:23</publishTime>
+    </File>
+    <File Include="MTCWazeXML.aspx">
+      <publishTime>11/11/2016 12:12:05</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>10/03/2017 08:41:27</publishTime>
+    </File>
+    <File Include="RSSFeeder.svc">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="Scripts/Ai2CanvasAnimation.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/bscHtml5.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/CurrentAssistsToTable.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/CurrentConnectsJSONtoTable.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/CurrentDrivers.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/CurrentIncidentsToTable.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/CurrentStateJSONtoTable.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.8.1.min.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.8.23.custom.min.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery.simple-dtpicker.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery.tablesorter.min.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/speedchecker.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/TimeFixer.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/TowTruckCheckList.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/TowTruckSetup.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="Scripts/TruckDetail.js">
+      <publishTime>09/28/2017 08:21:40</publishTime>
+    </File>
+    <File Include="SqlServerTypes/readme.htm">
+      <publishTime>10/03/2017 08:41:27</publishTime>
+    </File>
+    <File Include="SqlServerTypes/x64/msvcr120.dll">
+      <publishTime>10/03/2017 08:41:28</publishTime>
+    </File>
+    <File Include="SqlServerTypes/x64/SqlServerSpatial140.dll">
+      <publishTime>10/03/2017 08:41:28</publishTime>
+    </File>
+    <File Include="SqlServerTypes/x86/msvcr120.dll">
+      <publishTime>10/03/2017 08:41:28</publishTime>
+    </File>
+    <File Include="SqlServerTypes/x86/SqlServerSpatial140.dll">
+      <publishTime>10/03/2017 08:41:28</publishTime>
+    </File>
+    <File Include="TabletClient/Assist.html">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/ClientCSS.css">
+      <publishTime>11/27/2017 09:40:09</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_flat_30_cccccc_40x100.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_flat_50_5c5c5c_40x100.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_glass_20_555555_1x400.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_glass_40_0078a3_1x400.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_glass_40_ffc73d_1x400.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_gloss-wave_25_333333_500x100.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_highlight-soft_80_eeeeee_1x100.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_inset-soft_25_000000_1x100.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-bg_inset-soft_30_f58400_1x100.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-icons_222222_256x240.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-icons_4b8e0b_256x240.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-icons_a83300_256x240.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-icons_cccccc_256x240.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/images/ui-icons_ffffff_256x240.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/at.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/bars.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/book.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/calendar.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/camera.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/chart.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/chat.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/check.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/clock.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/cog.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/document.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/down.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/error.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/folder.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/heart.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/help.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/home.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/info.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/key.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/lamp.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/left.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/magnifier.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/mail.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/minus.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/pen.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/pin.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/plus.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/quote.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/reload.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/right.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/star.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/tag.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/trash.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/unlock.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/up.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/user.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/window.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/img/wrench.png">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/jqModal.css">
+      <publishTime>12/05/2016 11:56:36</publishTime>
+    </File>
+    <File Include="TabletClient/css/jquery-fallr-1.3.css">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/jquery-ui-1.9.2.custom.min.css">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/css/jquery.ptTimeSelect.css">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/css/reset.css">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/EarlyRollIn.html">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/images/LATAShort.jpg">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/images/stripetile.png">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/js/Jplayer.swf">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/Logon.html">
+      <publishTime>01/24/2018 10:05:08</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/AssistScript.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/EarlyRollIn.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/GlobalData.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/jqModal.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/jquery-1.8.2.min.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/jquery-fallr-1.3.min.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/jquery-ui-1.9.1.custom.min.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/jquery.jplayer.min.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/jquery.ptTimeSelect.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/jquery.ui.map.full.min.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/LogonScript.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/playSounds.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/scripts/StatusScript.js">
+      <publishTime>09/28/2017 08:21:38</publishTime>
+    </File>
+    <File Include="TabletClient/sounds/Alarm.mp3">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/SoundTest.html">
+      <publishTime>09/28/2017 08:21:39</publishTime>
+    </File>
+    <File Include="TabletClient/Status.html">
+      <publishTime>06/29/2017 14:58:48</publishTime>
+    </File>
+    <File Include="TowTruckService.svc">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/25/2018 06:28:14</publishTime>
+    </File>
+    <File Include="WebSite/CurrentConnects.aspx">
+      <publishTime>09/28/2017 08:21:41</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+﻿@model FSP.Domain.Model.Location
+@{
+    ViewBag.Title = "Create";
+    
+}
+<div>
+    @Html.ActionLink("Back to Locations", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Incident Type</legend>
+        <div class="editor-label">
+           @Html.LabelFor(model => model.Location1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Location1)
+            @Html.ValidationMessageFor(model => model.Location1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LocationCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LocationCode)
+            @Html.ValidationMessageFor(model => model.LocationCode)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>LATATrax Assist Response</title>
+		<!--<link rel="stylesheet" type="text/css" href="css/reset.css"/>-->
+		<link rel="stylesheet" type="text/css" href="css/ClientCSS.css"/>
+		<script src="scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+		<script src="scripts/GlobalData.js" type="text/javascript"></script>
+		<script src="scripts/AssistScript.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<header>LATATrax Assist Report&nbsp&nbsp<label id="driverNameVal"></label>&nbsp&nbsp<label id="truckIdVal"></label></header>
+		
+		<!--<div class="padDiv"><!--sel assist-->
+			<!--<label id="selectedAssist">Selected Assist:</label><label id="selectedAssistVal"></label>-->
+		<!--</div>-->
+		<div class="padDiv"><!--incident-->
+			<div class="subHead">Incident Information</div>
+				<label for="ddlIncidentTypes">Incident Type</label>
+				<select name="ddlIncidentTypes" id="ddlIncidentTypes"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				<label for="ddlTrafficSpeeds">Traffic Speed</label>
+				<select name="ddlTrafficSpeeds" id="ddlTrafficSpeeds"></select>
+				<label for="ddlServiceTypes">Service Type</label>
+				<select name="ddlServiceTypes" id="ddlServiceTypes"></select><!--auto loaded through AJAX, see LogAssist.js-->
+		</div>
+		
+		<div class="padDiv"><!--dispatch-->
+			<div class="subHead">Dispatch Information</div>
+				<!--<span class="assistLeft">-->
+					<label for="txtx1097">x1097</label>
+					<input id="txtx1097" type="text"></input>
+				<!--</span>
+				<span class="assistMiddle">-->
+					<label for="txtx1098">x1098</label>
+					<input type="text" id="txtx1098"></input>
+				<!--</span>
+				<span class="assistRight">-->
+					<label for="txtCustomerWaitTime">Customer Wait Time</label>
+					<input type="text" name="txtCustomerWaitTime" id="txtCustomerWaitTime" value="0"/>
+				<!--</span>-->
+		</div>
+	
+		<div class="padDiv"><!--location-->
+			<div class="subHead">Location Information</div>
+				<label for="ddlFreeways">Freeway</label>
+				<select name="ddlFreeways" id="ddlFreeways"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				<label for="ddlVehiclePositions">Vehicle Position</label>
+				<select name="ddlVehiclePositions" id="ddlVehiclePositions"></select>
+				<label for="ddlLocations">Location</label>
+				<select name="ddlLocations" id="ddlLocations"></select>
+				<label for="txtDirection">Direction</label>
+				<input type="text" id="txtDirection" name="txtDirection"/>
+		</div>
+		
+		<div class="padDiv"><!--vehicle-->
+			<div class="subHead">Vehicle Information</div>
+			<!--<span class="vehicles1">-->
+				<label for="txtVehicleMake">Make</label>
+				<input type="text" id="txtVehicleMake" />
+			<!--</span>
+			<span class="vehicles2">-->
+				<label for="ddlVehicleTypes">Type</label>
+				<select name="ddlVehicleTypes" id="ddlVehicleTypes"></select>
+			<!--</span>
+			<span class="vehicles3">-->
+				<label for="txtVehicleColor">Color</label>
+				<input type="text" id="txtVehicleColor"/>
+			<!--</span>
+			<span class="vehicles4">-->
+				<label for="txtLicensePlate">Plate</label>
+				<input type="text" id="txtLicensePlate"/>
+			<!--</span>
+			<span class="vehicles5">-->
+				<label for="txtState">State</label>
+				<input type="text" id="txtState"/>
+			<!--</span>-->
+		</div>
+		
+		<div class="padDiv"><!--Tow-->
+			<div class="subHead">Tow Information</div>
+			<!--<span class="towData1">-->
+				<label for="txtStartOD">StartOD</label>
+				<input type="text" name="txtStartOD" id="txtStartOD" value="0.0"/>
+			<!--</span>
+			<span class="towData2">-->
+				<label for="txtEndOD">EndOD</label>
+				<input type="text" name="txtEndOD" id="txtEndOD" value="0.0"/>
+			<!--</span>
+			<span class="towData3">-->
+				<label for="ddlTowLocations">Tow Location</label>
+				<select name="ddlTowLocations" id="ddlTowLocations"></select><!--auto loaded through AJAX, see LogAssist.js-->
+			<!--</span>
+			<span class="towData4">-->
+				<label for="txtDropZone">Drop Zone</label>
+				<input type="text" id="txtDropZone" />
+				<!--<select name="ddlDropZones" id="ddlDropZones"></select><!--auto loaded through AJAX, see LogAssist.js-->
+			<!--</span>-->
+		</div>
+		
+		<div class="padDiv"><!--Customer-->
+			<div class="subHead">Customer Information</div>
+			<!--<span class="customerData1">-->
+				<label for="txtTip">Tip</label>
+				<input type="text" name="txtTip" id="txtTip"/>
+			<!--</span>
+			<span class="customerData2">-->
+				<label for="txtTipDetail">Tip Detail</label>
+				<input type="text" name="txtTipDetail" id="txtTipDetail"/>
+			<!--</span>
+			<span class="customerData3">-->
+				<label for="CustLastName">Customer Last Name</label>
+				<input type="text" name="txtCustomerLastName" id="txtCustomerLastName"/>
+			<!--</span>-->
+		</div>
+		
+		<div class="padDiv"><!--Other-->
+			<div class="subHead">Other</div>
+			<label for="txtComments">Comments</label>
+			<textarea class="commentArea" id="txtComments"></textarea>
+			<!--<input type="text" name="Comment" id="Comment"/>-->
+			<div>
+			<label for="isMDC">MDC</label>
+			<input type="checkbox" name="isMDC" id="isMDC"/>
+			<label for="ddlContractors">Contractor</label>
+			<select name="ddlContractors" id="ddlContractors"></select><!--auto loaded through AJAX, see LogAssist.js-->
+			<label for="txtLogNumber">Log Number</label>
+			<input type="text" name="txtLogNumber" id="txtLogNumber"/>
+			</div>
+		</div>
+		
+		<input type="button" id="btnPost" value="Post Assist" class="astButton"/>
+		<input type="button" id="btnStatus" value="Status" class="astButton"/>
+	</body>
+</html>

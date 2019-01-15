@@ -1,0 +1,286 @@
+﻿@{
+    ViewBag.Title = "Back-up Response";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<br />
+
+<div class="btn-group">
+    <a href="~/BackupTrucks/MtcInstructions" class="btn btn-default btn-lg">MTC Instructions</a>
+    <a href="~/BackupTrucks/BackupResources" class="btn btn-default btn-lg">Back-up Resources</a>
+    <a href="~/BackupTrucks/RequestBackup" class="btn btn-default btn-lg">Request a Back-up</a>
+    <a href="~/BackupTrucks/ResponseBackup" class="btn btn-primary btn-lg">Respond to Request</a>
+    <a href="~/BackupTrucks/Status" class="btn btn-default btn-lg">Back-up Request Status</a>
+</div>
+
+<br />
+<br />
+
+<div ng-app="mtcApp">
+    <div ng-controller="backupResponseTruckController" ng-cloak>
+        <h3>{{header}}&nbsp;<i class="fa fa-spinner fa-spin" ng-show="busyGettingDeclinationReasons || busyGettingContactors || busyGettingCurrentUser"></i></h3>
+        <div ng-show="userIsAdmin">
+            <br />
+            <label>Select Contractor (Back-up provider)</label>
+            <select class="form-control"
+                    ng-change="getBackupRequests()"
+                    name="selectedContractorId"
+                    ng-model="selectedContractorId"
+                    ng-disabled="busyGettingWithInit"
+                    ng-options="a.Id as a.Text for a in contractors">
+                <option value="">--Select--</option>
+            </select>
+        </div>
+
+        <h4 ng-bind="subHeader"></h4>
+        <br />
+
+        <section ng-show="busyGettingBackupRequests">
+            <div>
+                Loading Backup Requests <i class="fa fa-spinner fa-spin"></i>
+            </div>
+        </section>
+
+        <section ng-show="backupRequests.length===0 && (!busyGettingDeclinationReasons || !busyGettingContactors || !busyGettingCurrentUser) && selectedContractorId !== null && !busyGettingBackupRequests">
+            <div class="alert alert-danger">
+                There are no backup requests for the contractor
+            </div>
+        </section>
+
+        <form name="backupResponseForm" ng-show="backupRequests.length > 0 && !busyGettingBackupRequests">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>Select Active Backup Request</label>
+                    <select class="form-control"
+                            name="selectedBackupRequest"
+                            ng-model="selectedBackupRequest"
+                            ng-options="a as a.RequestNumber for a in backupRequests"
+                            ng-disabled="busyGettingBackupRequests">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <section ng-show="selectedBackupRequest">
+
+                <section>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div>
+                                <label>Request:</label><br />
+                                <span class="text-muted">ID:</span> {{selectedBackupRequest.RequestNumber}}<br />
+                                <span class="text-muted">
+                                    Created:
+                                </span> {{selectedBackupRequest.CreateOn | datetimefilter}}<br />
+                                <span class="text-muted">Importance:</span> <span ng-show="selectedBackupRequest.RequestIsUrgent===true" class="label label-danger">Urgent</span><span ng-show="selectedBackupRequest.RequestIsUrgent===false">Normal</span>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <label>Requesting Contractor Info:</label><br />
+                            <span class="text-muted">
+                                Name:
+                            </span> {{selectedBackupRequest.RequestingContractor.ContractorCompanyName}}<br />
+                            <span class="text-muted">
+                                Contact:
+                            </span> {{selectedBackupRequest.RequestingContractor.ContactName}}<br />
+                            <span class="text-muted">
+                                Phone:
+                            </span> {{selectedBackupRequest.RequestingContractor.Phone}}<br />
+                            <span class="text-muted">Email:</span> {{selectedBackupRequest.RequestingContractor.Email}}
+                        </div>
+                        <div class="col-xs-4">
+                            <label>Beat needing backup:</label><br />
+                            {{selectedBackupRequest.BeatNeedingBackup.BeatNumber}}
+                        </div>
+                    </div>
+
+                    <br />
+                    <div ng-show="selectedBackupRequest.PrimaryBackupContractor.ContractorId === selectedContractorId">
+                        <div class="alert alert-info">
+                            You are the <b>primary</b> backup provider for this backup request.
+                        </div>
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.PrimaryBackupResponseTimeExpiredOrDeclined===true && selectedBackupRequest.PrimaryBackupResponded===false">
+                            You have declined this backup request or your response time has expired.
+                        </div>
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.PrimaryBackupResponded===true">
+                            You have already responded to this request.
+                        </div>
+                    </div>
+
+                    <div ng-show="selectedBackupRequest.SecondaryBackupContractor.ContractorId === selectedContractorId">
+                        <div class="alert alert-info">
+                            You are the <b>secondary</b> backup provider for this backup request.
+                        </div>
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.SecondaryBackupResponseTimeExpiredOrDeclined===true && selectedBackupRequest.SecondaryBackupResponded===false">
+                            You have declined this backup request or your response time has expired.
+                        </div>
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.SecondaryBackupResponded===true">
+                            You have already responded to this request.
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.PrimaryBackupResponded===true && selectedBackupRequest.BackupAccepted === true">
+                            The <b>primary</b> backup provider, <b>
+                                {{selectedBackupRequest.PrimaryBackupContractor.ContractorCompanyName}}
+                                ({{selectedBackupRequest.PrimaryBackupContractor.ContactName}}, {{selectedBackupRequest.PrimaryBackupContractor.Phone}}, {{selectedBackupRequest.PrimaryBackupContractor.Email}})
+                            </b> has accepted this request.
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="(selectedBackupRequest.PrimaryBackupResponseTimeExpiredOrDeclined===false && selectedBackupRequest.PrimaryBackupResponded===false && selectedBackupRequest.SecondaryBackupResponseTimeExpiredOrDeclined===false)">
+                            The <b>primary</b> backup provider, <b>
+                                {{selectedBackupRequest.PrimaryBackupContractor.ContractorCompanyName}}
+                                ({{selectedBackupRequest.PrimaryBackupContractor.ContactName}}, {{selectedBackupRequest.PrimaryBackupContractor.Phone}}, {{selectedBackupRequest.PrimaryBackupContractor.Email}})
+                            </b> has not responded yet. Are you sure
+                            you want to respond?
+                        </div>
+                    </div>
+
+                    <div ng-show="selectedBackupRequest.TertiaryBackupContractor.ContractorId === selectedContractorId">
+                        <div class="alert alert-info">
+                            You are the <b>tertiary</b> backup provider for this backup request.
+                        </div>
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.TertiaryBackupResponseTimeExpiredOrDeclined===true && selectedBackupRequest.TertiaryBackupResponded===false">
+                            You have declined this backup request or your response time has expired.
+                        </div>
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.TertiaryBackupResponded===true">
+                            You have already responded to this request.
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.PrimaryBackupResponded===true && selectedBackupRequest.BackupAccepted === true">
+                            The <b>primary</b> backup provider, <b>
+                                {{selectedBackupRequest.PrimaryBackupContractor.ContractorCompanyName}}
+                                ({{selectedBackupRequest.PrimaryBackupContractor.ContactName}}, {{selectedBackupRequest.PrimaryBackupContractor.Phone}}, {{selectedBackupRequest.PrimaryBackupContractor.Email}})
+                            </b> has accepted this request.
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="selectedBackupRequest.SecondaryBackupResponded===true && selectedBackupRequest.BackupAccepted === true">
+                            The <b>secondary</b> backup provider, <b>
+                                {{selectedBackupRequest.SecondaryBackupContractor.ContractorCompanyName}}
+                                ({{selectedBackupRequest.SecondaryBackupContractor.ContactName}}, {{selectedBackupRequest.SecondaryBackupContractor.Phone}}, {{selectedBackupRequest.SecondaryBackupContractor.Email}})
+                            </b> has accepted this request.
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="(selectedBackupRequest.PrimaryBackupResponseTimeExpiredOrDeclined===false && selectedBackupRequest.PrimaryBackupResponded===false && selectedBackupRequest.TertiaryBackupResponseTimeExpiredOrDeclined===false)">
+                            The <b>primary</b> backup provider, <b>
+                                {{selectedBackupRequest.PrimaryBackupContractor.ContractorCompanyName}}
+                                ({{selectedBackupRequest.PrimaryBackupContractor.ContactName}}, {{selectedBackupRequest.PrimaryBackupContractor.Phone}}, {{selectedBackupRequest.PrimaryBackupContractor.Email}})
+                            </b> has not responded yet. Are you sure
+                            you want to respond?
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="(selectedBackupRequest.SecondaryBackupResponseTimeExpiredOrDeclined===false && selectedBackupRequest.SecondaryBackupResponded===false && selectedBackupRequest.TertiaryBackupResponseTimeExpiredOrDeclined===false)">
+                            The <b>secondary</b> backup provider, <b>
+                                {{selectedBackupRequest.SecondaryBackupContractor.ContractorCompanyName}}
+                                ({{selectedBackupRequest.SecondaryBackupContractor.ContactName}}, {{selectedBackupRequest.SecondaryBackupContractor.Phone}}, {{selectedBackupRequest.SecondaryBackupContractor.Email}})
+                            </b> has not responded yet. Are you sure
+                            you want to respond?
+                        </div>
+                    </div>
+
+                </section>
+
+                <div class="well well-sm" ng-show="canRespond()">
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label>Response</label>
+                            <div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" ng-model="selectedBackupResponseStatus" value="0" required />Accept<br />
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" ng-model="selectedBackupResponseStatus" value="1" required />Qualified Acceptance<br />
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" ng-model="selectedBackupResponseStatus" value="2" required />Decline<br />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div ng-show="selectedBackupResponseStatus==='1'">
+                                <label>Dates and Shifts</label>
+                                <div>
+                                    <div class="row" ng-repeat="s in selectedBackupRequest.dateAndShifts">
+                                        <div class="col-md-2">
+                                            {{s.BackupDate}}
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="checkbox" ng-show="s.AMRequested && !s.previouslyAMSatisfied">
+                                                <label>
+                                                    <input type="checkbox" ng-model="s.AMSatisfied" /> AM
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2" ng-show="s.MIDRequested && !s.previouslyMIDSatisfied">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-model="s.MIDSatisfied" /> MID
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2" ng-show="s.PMRequested && !s.previouslyPMSatisfied">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" ng-model="s.PMSatisfied" /> PM
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="selectedBackupResponseStatus==='2'">
+                                <label>Reason back-up declined</label>
+                                <select class="form-control" name="selectedBackupDeclinationReasonId"
+                                        ng-model="selectedBackupDeclinationReasonId"
+                                        ng-options="a.Id as a.Text for a in backupDeclinationReasons"
+                                        ng-disabled="busyGettingBackupReaaons">
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <br />
+                            <div>
+                                <label>Comments</label>
+                                <textarea class="form-control" rows="5" ng-model="comments"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success  pull-right"
+                                    ng-disabled="backupResponseForm.$invalid || isBusyRespondingToBackup"
+                                    ng-click="submitBackupResponse()">
+                                <i class="fa fa-spinner fa-spin" ng-show="isBusyRespondingToBackup"></i> Submit
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </form>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $(".datepicker").datepicker();
+    </script>
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/backupResponseTruckController.js"></script>
+    <script src="~/app/services/backupTruckService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+}
+

@@ -1,0 +1,42 @@
+﻿@model FSP.Domain.Model.CHPOfficer
+@{
+    ViewBag.Title = "Edit " + @Model.OfficerFirstName + " " + @Model.OfficerLastName;
+    
+}
+<div>
+    @Html.ActionLink("Back to CHP Officers", "Index")
+</div>
+<h2>Edit "@Model.OfficerFirstName @Model.OfficerLastName"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BadgeID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BadgeID)
+            @Html.ValidationMessageFor(model => model.BadgeID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OfficerFirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OfficerFirstName)
+            @Html.ValidationMessageFor(model => model.OfficerFirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OfficerLastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OfficerLastName)
+            @Html.ValidationMessageFor(model => model.OfficerLastName)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

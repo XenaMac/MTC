@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "MTC Map Interface";
+    Layout = "~/Views/Shared/_Layout_Map.cshtml";
+}
+
+<div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline', gutters: false">
+    <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'">
+        <ul class="menuGroup">
+            <li class="menuItem" id="contentsButton"><img src="~/Content/Images/mtc_map_ui_v3_2_contents.png" class="menuImage" />Contents</li>
+            <li class="menuItem" id="editButton"><img src="~/Content/Images/mtc_map_ui_v3_6_edit.png" class="menuImage" />Edit</li>
+            <li class="menuItem" id="createButton"><img src="~/Content/Images/mtc_map_ui_v3_2_create features.png" class="menuImage" />Create</li>
+            <li class="menuItem" id="beatButton"><img src="~/Content/Images/mtc_map_ui_v3_2_beats.png" class="menuImage"/>Beats</li>
+            <li class="menuItem" id="basemapButton"><img src="~/Content/Images/mtc_map_ui_v3_2_basemaps.png" class="menuImage" />Basemap</li>
+            <li class="menuItem" id="legendButton"><img src="~/Content/Images/mtc_map_ui_v3_2_legend.png" class="menuImage" />Legend
+                <ul>
+                    <li class="menuItem" id="TruckLegend">Truck Legend</li>
+                    <li class="menuItem" id="CongestionLegend">Congestion Legend</li>
+                </ul>
+            </li>
+            <!--li class="menuItem" id="GeoEventsButton"><img src="~/Content/Images/mtc_map_ui_v3_2_geo%20events.png" class="menuImage" />GeoFencing</li -->
+            <li class="menuItem" id="AGOButton"><img src="~/Content/Images/mtc_map_ui_v3_2_arcgis%20online.png" class="menuImage" />ArcGIS Online</li>
+            <li class="menuItem" id="globalAddButton"><img src="~/Content/Images/mtc_map_ui_v3_2_add.png" class="menuImage" />Add</li>
+        </ul>
+        <ul class="menuGroup buttonGroup">
+            <li class="menuItem" id="alertButton"><img src="~/Content/Images/mtc_map_ui_v3_6_alerts.png" class="menuImage" />Alarms</li>
+            <li class="menuItem" id="statusButton"><img src="~/Content/Images/mtc_map_ui_v3_6_truck%20status.png" class="menuImage" />Truck Status</li>
+            <!--li class="menuItem" id="bookmarksButton">Bookmarks</li-->
+            <li class="menuItem" id="shiftLogButton"><img src="~/Content/Images/mtc_map_ui_v3_2_scratchpad.png" class="menuImage" />Shift Log</li>
+        </ul> 
+    </div>
+    <div id="container">
+        <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
+            <div id="HomeButton"></div>
+            <div id="followButton" class="hidden">Stop Following</div>
+            <div id="basemapHolder" class="hidden">
+                <div id="basemapGallery"></div>
+            </div>
+        </div>
+    </div>
+    <div id="mainToolset" data-dojo-type="dijit/layout/StackContainer" data-dojo-props="region:'left', splitter: true">
+        <div id="contents" data-dojo-type="dijit/layout/ContentPane" title="Contents">
+            <div id="tocContainer">
+                <div class="accordionHeading">Contents</div>
+                <div id="TableOfContents"></div>
+            </div>
+        </div>
+        <div id="editor" data-dojo-type="dijit/layout/ContentPane" title="Create/Edit Features">
+            <div id="containerDiv">
+                <div class="accordionHeading">Feature Creation</div>
+                <div id="templatePickerDiv"></div>
+            </div>
+            <div id="toolsContainer">
+                <div id="attributeInspectorDiv"></div>
+            </div>
+        </div>
+        <div id="beats" data-dojo-type="dijit/layout/ContentPane" title="Beats">
+            <div class="accordionHeading">Beat Tools</div>
+            <div id="beatsContainer">
+                <!--div id="createBeatsButton" class="beatButton">Create New Beat</div-->
+                <div id="editBeatsButton" class="beatButton">Edit Existing Beat</div>
+            </div>
+        </div>
+    </div>
+</div>

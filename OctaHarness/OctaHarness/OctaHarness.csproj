@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3A0B0270-4E36-4733-A9C6-73C335986A73}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OctaHarness</RootNamespace>
+    <AssemblyName>OctaHarness</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>OctaTruck.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ionic.Zip.Reduced">
+      <HintPath>..\..\..\Users\elahti\Downloads\SharpKml 1.05 - Binary\Debug\Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\110\Shared\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpKml">
+      <HintPath>..\..\..\Users\elahti\Downloads\SharpKml 1.05 - Binary\Debug\SharpKml.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ack.cs" />
+    <Compile Include="Alarms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Alarms.Designer.cs">
+      <DependentUpon>Alarms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssistRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssistRequest.Designer.cs">
+      <DependentUpon>AssistRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assists.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assists.Designer.cs">
+      <DependentUpon>Assists.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSVTruck.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeoCodeCalc.cs" />
+    <Compile Include="Incidents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Incidents.Designer.cs">
+      <DependentUpon>Incidents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MTCAssistRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MTCAssistRequest.Designer.cs">
+      <DependentUpon>MTCAssistRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParseCSV.cs" />
+    <Compile Include="ParseKML.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiveUDP.cs" />
+    <Compile Include="RunCSV.cs" />
+    <Compile Include="RunKML.cs" />
+    <Compile Include="SendMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SendMessage.Designer.cs">
+      <DependentUpon>SendMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SendUDP.cs" />
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\srTTSrv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRef.cs" />
+    <Compile Include="State.cs" />
+    <Compile Include="TowTruck.cs" />
+    <Compile Include="GPS.cs" />
+    <Compile Include="TruckList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TruckList.Designer.cs">
+      <DependentUpon>TruckList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UDPListener.cs" />
+    <Compile Include="WAZEMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WAZEMessage.Designer.cs">
+      <DependentUpon>WAZEMessage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Alarms.resx">
+      <DependentUpon>Alarms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssistRequest.resx">
+      <DependentUpon>AssistRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assists.resx">
+      <DependentUpon>Assists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Incidents.resx">
+      <DependentUpon>Incidents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MTCAssistRequest.resx">
+      <DependentUpon>MTCAssistRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SendMessage.resx">
+      <DependentUpon>SendMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TruckList.resx">
+      <DependentUpon>TruckList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WAZEMessage.resx">
+      <DependentUpon>WAZEMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.AlarmStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.AssistTruck.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.beatData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.beatInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.beatSegmentPolygonData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.dropSitePolygonData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.esriCB.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.ListDrivers.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.MTCIncidentScreenData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.RunStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.TowTruckData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.TruckMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\OctaHarness.ServiceReference1.yardPolygonData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\TowTruckService1.wsdl" />
+    <None Include="Service References\ServiceReference1\TowTruckService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\TowTruckService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\TowTruckService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\TowTruckService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.AlarmStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.AssistTruck.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.beatData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.beatInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.beatSegmentPolygonData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.dropSitePolygonData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.esriCB.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.ListDrivers.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.MTCIncidentScreenData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.RunStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.TowTruckData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.TruckMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\OctaHarness.srTTSrv.yardPolygonData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srTTSrv\TowTruckService.wsdl" />
+    <None Include="Service References\srTTSrv\TowTruckService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\srTTSrv\TowTruckService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\srTTSrv\TowTruckService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\srTTSrv\TowTruckService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+    <WCFMetadataStorage Include="Service References\srTTSrv\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="OctaTruck.ico" />
+    <None Include="Service References\ServiceReference1\TowTruckService1.disco" />
+    <None Include="Service References\srTTSrv\TowTruckService.disco" />
+    <None Include="Service References\srTTSrv\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\srTTSrv\configuration.svcinfo" />
+    <None Include="Service References\srTTSrv\configuration91.svcinfo" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FSP.Domain.Model.Driver>
+@{
+    ViewBag.Title = "Drivers";
+}
+
+<p>
+    @Html.ActionLink("Add Driver", "Create")
+</p>
+<h2>Drivers</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Name
+            </th>
+            <th>Contractor
+            </th>           
+            <th>License Number
+            </th>
+            <th>FSPID Number
+            </th>
+            <th>DOB
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.FirstName + " " + item.LastName, "Edit", new { id = item.DriverID })
+                </td>
+                <td>
+                    @Html.ActionLink(item.Contractor.ContractCompanyName, "Edit", "Contractor", null, null, null, new { id = item.ContractorID }, null)
+                </td>              
+                <td>
+                    @Html.DisplayFor(modelItem => item.DriversLicenseNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FSPIDNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DriverID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

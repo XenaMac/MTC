@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Status Screen</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head>
+<body>
+<div data-role="page" id="StatusScreen">
+	<div data-role="header" id="StatusScreenHeader">FSP Status Screen</div>
+	<div data-role="content">
+		<div class="ui-grid-a">
+			<div class="ui-block-a" style="width:20%">
+				<h3>Navigation</h3>
+			</div>
+			<div class="ui-block-b" style="width:80%">
+					<h3>Requests</h3>
+			</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a" style="width:20%;height:200px">
+				<ul data-role="listview" data-inset="true" data-filter="false">
+					<li><a href="LogAssist.html" id="LogAssist" class="test">Log Assist</a></li>
+					<li><a href="#" id="OnResponse" class="test">Set On Assist</a></li>
+					<li><a href="#" id="OnPatrol" class="test">Set On Patrol</a></li>
+					<li><a href="#" id="LogOff" class="test">Log Off</a></li>
+				</ul>
+			</div>
+			<div class="ui-block-b" style="width:80%;height:200px;overflow:auto" id="requestDiv">
+				<ul data-role="listview" data-inset="true" data-filter="false" id="assistRequests">
+					<!-- Populate dynamically
+					<li><a href="#" id="Request0910120844" class="request">Request for Assist</a></li>
+					<li><a href="#" id="Request0910120843" class="request">Request for Assist</a></li>
+					<li><a href="#" id="Request0910120842" class="request">Request for Assist</a></li>
+					<li><a href="#" id="Request0910120841" class="request">Request for Assist</a></li>-->
+				</ul>
+			</div>	   
+		</div>
+		<hr/>
+		
+		<div id="selectedRequest">
+			<h3>Selected Request</h3>
+		</div>
+		<div id="RequestData" class="ui-grid-solo" style="height:20%;width:100%">
+			<!-- Populated automagically through responding to assist request-->
+		</div>
+
+		<div id="map_canvas"style="height:300px;width:100%"><!--Map loaded dynamically--></div>
+	</div><!-- content -->
+</div><!--page-->
+</body>
+</html>

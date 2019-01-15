@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>FSP Log Assist</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+	<script src="scripts/OctaMain.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+	<link rel="stylesheet" href="http://jquerymobile.com/demos/1.1.1/docs/_assets/css/jqm-docs.css" />
+	<link rel="stylesheet" href="/themes/OctaTemp.css"/>
+	<link rel="stylesheet" href="/themes/jQueryMobile" />
+	<style type="text/css">
+		.ui-grid-b .ui-block-a{
+			position: relative;
+			width: 32%;
+		}
+		.ui-grid-b .ui-block-b{
+			position: relative;
+			width: 32%;
+			left: 2%;
+		}
+		.ui-grid-b .ui-block-c{
+			position: relative;
+			width: 32%;
+			left: 4%;
+		}
+		.ui-grid-a .ui-block-a{
+			position: relative;
+			width: 49%;
+		}
+		.ui-grid-a .ui-block-b{
+			position: relative;
+			width: 49%;
+			left: 2%;
+		}
+		#mdc #isMDC:visited{
+			background-color: #6B6B6B;
+		}
+	</style>
+</head>
+<body>
+	<div data-role="page" id="LogAssist">
+		<div data-role="header" data-position="fixed" id="LogAssistHeader">FSP Log Assist</div><!--header-->
+		<div data-role="content">
+			<div id="AssistType">
+				<label for="txtAssistType">Assist Type</label>
+				<select name="txtAssistType" id="txtAssistType"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				<div id="dropDowns"></div><!--DropDowns-->
+			</div>
+			<div id="dispatch">
+				<label for="txtDispatchTime">Dispatch Time</label>
+				<input type="date" name="txtDispatchTime" id="txtDispatchTime" data-role="datebox" data-options='{"mode":"timeflipbox"}'/>
+				<label for="txt1097Time">10-97</label>
+				<input type="date" name="txt1097Time" id="txt1097Time" data-role="datebox" data-options='{"mode":"timeflipbox"}'/>
+				<label for="txtCustomerWaitTime">Customer Wait Time</label>
+				<input type="text" name="txtCustomerWaitTime" id="txtCustomerWaitTIme"/>
+				<label for="ddlFreeway">Freeway</label>
+				<select name="ddlFreeway" id="ddlFreeway"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				<div id="dropDowns"></div><!--DropDowns-->
+			</div>
+			<div id="ServiceType">
+				<label for="service">Service Type</label>
+				<select name="service" id="service"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				<div id="dropDowns"></div><!--DropDowns-->
+			</div>
+			<div id="dropZone">
+				<label for="dropZ">Drop Zone</label>
+				<select name="dropZ" id="dropZ"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				<div id="dropDowns"></div><!--DropDowns-->
+			</div>
+			<div class="ui-grid-b">
+				<div class="ui-block-a"><label for="ui-block-a">Vehicle Make</label><input type="text" data-theme="c"></input></div>
+				<div class="ui-block-b"><label for="ui-block-b">Vehicle Type</label><input type="text" data-theme="c"></input></div>	   
+				<div class="ui-block-c"><label for="ui-block-c">Vehicle Color</label><input type="text" data-theme="c"></input></div>	   
+			</div>
+			<div id="licensePlate">
+				<label for="license">License Plate</label>
+				<input type="text" name="license" id="license"/>
+			</div>
+			<div id="State">
+				<label for="state">State</label>
+				<input type="text" name="state" id="state"/>
+			</div>
+			<div id="StartOD">
+				<label for="startOD">StartOD</label>
+				<input type="text" name="startOD" id="startOD"/>
+			</div>
+			<div id="EndOD">
+				<label for="endOD">EndOD</label>
+				<input type="text" name="endOD" id="endOD"/>
+			</div>
+			<div id="towLocation">
+				<label for="tlocation">Tow Location</label>
+				<select name="tlocation" id="tlocation"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				<div id="dropDowns"></div><!--DropDowns-->
+			</div>
+			<div id="Tip">
+				<label for="tip">Tip</label>
+				<input type="text" name="tip" id="tip"/>
+			</div>
+			<div id="TipDetail">
+				<label for="tipDetail">Tip Detail</label>
+				<input type="text" name="tipDetail" id="tipDetail"/>
+			</div>
+			<div id="lastName">
+				<label for="CustLastName">Customer Last Name</label>
+				<input type="text" name="CustLastName" id="CustLastName"/>
+			</div>
+			<div id="comments">
+				<label for="Comment">Comments</label>
+				<input type="text" name="Comment" id="Comment"/>
+			</div>
+			<div id="mdc">
+				<label for="isMDC" data-iconpos="right">MDC</label>
+				<input type="checkbox" name="isMDC" id="isMDC"/>
+			</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a"><label for="ui-block-a">x1097</label><input type="text" data-theme="c"></input></div>
+				<div class="ui-block-b"><label for="ui-block-b">x1098</label><input type="text" data-theme="c"></input></div>	   
+			</div>
+			<div id="contractor">
+				<label for="Contractor">Contractor</label>
+				<select name="Contractor" id="Contractor"></select><!--auto loaded through AJAX, see LogAssist.js-->
+				<div id="dropDowns"></div><!--DropDowns-->
+			</div>
+			<div id="LogNumber">
+				<label for="lNumber">Log Number</label>
+				<input type="text" name="lNumber" id="lNumber"/>
+			</div>
+			
+		</div><!--content-->
+
+		<div data-role="footer" data-position="fixed"></div><!--footer-->
+	</div> <!-- page-->
+</body>
+</html>

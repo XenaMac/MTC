@@ -1,0 +1,31 @@
+﻿@model IEnumerable<FSP.Domain.Model.InteractionType>
+@{
+    ViewBag.Title = "Interaction Types";
+}
+
+<p>
+    @Html.ActionLink("Add Interaction Type", "Create")
+</p>
+<h2>Interaction Types</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Interaction Type Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.InteractionType1, "Edit", new { id = item.InteractionTypeID })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InteractionTypeID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

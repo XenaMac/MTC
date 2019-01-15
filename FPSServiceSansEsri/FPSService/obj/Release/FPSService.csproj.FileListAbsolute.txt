@@ -1,0 +1,212 @@
+C:\MTC\FPSService\FPSService\bin\FPSService.dll.config
+C:\MTC\FPSService\FPSService\bin\FPSService.dll
+C:\MTC\FPSService\FPSService\bin\FPSService.pdb
+C:\MTC\FPSService\FPSService\bin\ESRI.ArcGIS.Client.dll
+C:\MTC\FPSService\FPSService\bin\Newtonsoft.Json.dll
+C:\MTC\FPSService\FPSService\bin\ESRI.ArcGIS.Client.xml
+C:\MTC\FPSService\FPSService\bin\Newtonsoft.Json.xml
+C:\MTC\FPSService\FPSService\bin\ar\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\de\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\es\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\fr\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\it\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\ja\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\pt-BR\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\ru\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\zh-CN\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\bin\zh-Hans\ESRI.ArcGIS.Client.resources.dll
+C:\MTC\FPSService\FPSService\obj\Release\FPSService.dll
+C:\MTC\FPSService\FPSService\obj\Release\FPSService.pdb
+C:\Users\temuj\Documents\SVN\MTC FSP Service\FPSService\bin\FPSService.dll.config
+C:\Users\temuj\Documents\SVN\MTC FSP Service\FPSService\bin\FPSService.dll
+C:\Users\temuj\Documents\SVN\MTC FSP Service\FPSService\bin\FPSService.pdb
+C:\Users\temuj\Documents\SVN\MTC FSP Service\FPSService\bin\Newtonsoft.Json.dll
+C:\Users\temuj\Documents\SVN\MTC FSP Service\FPSService\bin\Newtonsoft.Json.xml
+C:\Users\temuj\Documents\SVN\MTC FSP Service\FPSService\obj\Release\FPSService.csprojResolveAssemblyReference.cache
+C:\Users\temuj\Documents\SVN\MTC FSP Service\FPSService\obj\Release\FPSService.dll
+C:\Users\temuj\Documents\SVN\MTC FSP Service\FPSService\obj\Release\FPSService.pdb
+C:\MTC\FPSService\FPSService\obj\Release\FPSService.csprojResolveAssemblyReference.cache
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\FPSService.dll.config
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\FPSService.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\FPSService.pdb
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\Newtonsoft.Json.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\Newtonsoft.Json.xml
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\obj\Release\FPSService.csprojResolveAssemblyReference.cache
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\obj\Release\FPSService.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\obj\Release\FPSService.pdb
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\ESRI.ArcGIS.Client.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\Esri.ArcGISRuntime.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\ESRI.ArcGIS.Client.xml
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\Esri.ArcGISRuntime.xml
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\ar\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\de\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\es\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\fr\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\it\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\ja\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\pt-BR\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\ru\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\zh-CN\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\zh-Hans\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService\FPSService\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\FPSService.dll.config
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\FPSService.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\FPSService.pdb
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\ESRI.ArcGIS.Client.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\Esri.ArcGISRuntime.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\Newtonsoft.Json.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\ESRI.ArcGIS.Client.xml
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\Esri.ArcGISRuntime.xml
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\Newtonsoft.Json.xml
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\ar\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\de\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\es\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\fr\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\it\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\ja\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\pt-BR\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\ru\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\zh-CN\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\bin\zh-Hans\ESRI.ArcGIS.Client.resources.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\obj\Release\FPSService.csprojResolveAssemblyReference.cache
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\obj\Release\FPSService.dll
+C:\Users\elahti\Documents\SVN\MTC\FPSService - Sans Esri\FPSService\obj\Release\FPSService.pdb
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\FPSService.dll.config
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\FPSService.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\FPSService.pdb
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ESRI.ArcGIS.Client.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\Esri.ArcGISRuntime.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\Newtonsoft.Json.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ESRI.ArcGIS.Client.xml
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\Esri.ArcGISRuntime.xml
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\Newtonsoft.Json.xml
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ar\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\de\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\es\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\fr\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\it\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ja\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\pt-BR\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ru\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\zh-CN\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\zh-Hans\ESRI.ArcGIS.Client.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ar\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\cs\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\da\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\de\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\es\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\et\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\fi\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\fr\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\he\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\it\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ja\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ko\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\lt\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\lv\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\nb-NO\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\nl\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\no\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\pl\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\pt-BR\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\pt-PT\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ro\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\ru\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\sv\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\zh-CN\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\bin\zh-Hans\Esri.ArcGISRuntime.resources.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\obj\Release\FPSService.csprojResolveAssemblyReference.cache
+D:\LATA Code\FPSService - Sans Esri\FPSService\obj\Release\FPSService.dll
+D:\LATA Code\FPSService - Sans Esri\FPSService\obj\Release\FPSService.pdb
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\FPSService.dll.config
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\FPSService.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\FPSService.pdb
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\Microsoft.SqlServer.Types.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\Newtonsoft.Json.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\Newtonsoft.Json.xml
+C:\GitHub\FPSServiceSansEsri\FPSService\obj\Release\FPSService.csprojResolveAssemblyReference.cache
+C:\GitHub\FPSServiceSansEsri\FPSService\obj\Release\FPSService.csproj.CoreCompileInputs.cache
+C:\GitHub\FPSServiceSansEsri\FPSService\obj\Release\FPSService.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\obj\Release\FPSService.pdb
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\SqlServerTypes\x64\msvcr120.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\SqlServerTypes\x86\msvcr120.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\SqlServerTypes\x64\msvcr120.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\SqlServerTypes\x86\msvcr120.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\FPSService.dll.config
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\FPSService.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\FPSService.pdb
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\ESRI.ArcGIS.Client.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\Esri.ArcGISRuntime.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\Newtonsoft.Json.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\Esri.ArcGISRuntime.xml
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\Newtonsoft.Json.xml
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\ar\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\cs\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\da\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\de\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\es\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\et\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\fi\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\fr\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\he\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\it\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\ja\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\ko\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\lt\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\lv\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\nb-NO\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\nl\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\no\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\pl\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\pt-BR\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\pt-PT\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\ro\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\ru\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\sv\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\zh-CN\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\bin\zh-Hans\Esri.ArcGISRuntime.resources.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\obj\Release\FPSService.csprojResolveAssemblyReference.cache
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\obj\Release\FPSService.dll
+D:\Subversion\MTC\FPSServiceSansEsri\FPSService\obj\Release\FPSService.pdb
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ESRI.ArcGIS.Client.xml
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\Esri.ArcGISRuntime.xml
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ar\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\de\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\es\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\fr\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\it\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ja\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\pt-BR\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ru\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\zh-CN\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\zh-Hans\ESRI.ArcGIS.Client.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ar\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\cs\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\da\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\de\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\es\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\et\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\fi\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\fr\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\he\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\it\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ja\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ko\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\lt\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\lv\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\nb-NO\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\nl\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\no\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\pl\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\pt-BR\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\pt-PT\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ro\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\ru\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\sv\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\zh-CN\Esri.ArcGISRuntime.resources.dll
+C:\GitHub\FPSServiceSansEsri\FPSService\bin\zh-Hans\Esri.ArcGISRuntime.resources.dll

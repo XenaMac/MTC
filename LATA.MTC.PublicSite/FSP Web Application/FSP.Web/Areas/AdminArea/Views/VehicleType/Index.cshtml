@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FSP.Domain.Model.VehicleType>
+@{
+    ViewBag.Title = "Vehicle Types"; 
+}
+<p>
+    @Html.ActionLink("Add Vehicle Type", "Create")
+</p>
+<h2>Vehicle Types</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Name
+            </th>
+            <th>Code
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.VehicleType1, "Edit", new { id = item.VehicleTypeID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleTypeCode)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VehicleTypeID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

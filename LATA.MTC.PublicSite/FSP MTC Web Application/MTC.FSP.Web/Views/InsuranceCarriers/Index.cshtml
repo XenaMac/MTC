@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.InsuranceCarrier>
+
+@{
+    ViewBag.Title = "Insurance Carriers";
+}
+
+<h2>Insurance Carriers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CarrierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsurancePolicyNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PolicyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarrierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsurancePolicyNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpirationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PolicyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InsuranceID }) |            
+            @Html.ActionLink("Delete", "Delete", new { id=item.InsuranceID })
+        </td>
+    </tr>
+}
+
+</table>

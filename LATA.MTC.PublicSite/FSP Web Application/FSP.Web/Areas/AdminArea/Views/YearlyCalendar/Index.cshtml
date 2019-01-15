@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FSP.Domain.Model.YearlyCalendar>
+@{
+    ViewBag.Title = "Yearly Calendar";
+}
+
+<p>
+    @Html.ActionLink("Add Yearly Calendar", "Create")
+</p>
+<h2>Yearly Calendar</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Name
+            </th>
+            <th>Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>                               
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.dayName, "Edit", new { id = item.DateID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DateID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

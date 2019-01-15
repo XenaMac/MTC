@@ -1,0 +1,163 @@
+﻿@model FSP.Domain.Model.DriverInteraction
+@{
+    ViewBag.Title = "Edit " + @Model.InteractionArea;
+    
+}
+<div>
+    @Html.ActionLink("Back to Driver Interactions", "Index")
+</div>
+<h2>Edit "@Model.InteractionArea"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.InteractionID)
+
+   <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContractorID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ContractorID, new SelectList(ViewBag.Contractors, "ContractorID", "ContractCompanyName"), "--Select Contractor--", new { @class = "span4" })
+            @Html.ValidationMessageFor(model => model.ContractorID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DriverID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.DriverID, new SelectList(ViewBag.Drivers, "DriverID", "FullName"), "--Select Driver--", new { @class = "span4" })
+            @Html.ValidationMessageFor(model => model.DriverID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InteractionTypeID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.InteractionTypeID, new SelectList(ViewBag.InteractionTypes, "InteractionTypeID", "InteractionType1"), "--Select Interaction Type--", new { @class = "span4" })
+            @Html.ValidationMessageFor(model => model.InteractionTypeID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InteractionDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.InteractionDate, new { @class = "span4 datepicker" })
+            @Html.ValidationMessageFor(model => model.InteractionDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InteractionArea)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.InteractionArea, new { @class = "span4" })
+            @Html.ValidationMessageFor(model => model.InteractionArea)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehicleNumber)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.VehicleNumber, new { @class = "span4" })
+            @Html.ValidationMessageFor(model => model.VehicleNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BeatNumber)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BeatNumber, new { @class = "span4" })
+            @Html.ValidationMessageFor(model => model.BeatNumber)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InteractionDescription)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.InteractionDescription, new { @class = "span4", rows = 5 })
+            @Html.ValidationMessageFor(model => model.InteractionDescription)
+        </div>
+        <div class="editor-label">
+        </div>
+        <div class="editor-field">
+            <label class="checkbox">
+                @Html.EditorFor(model => model.InspectionPassFail)
+                @Html.LabelFor(model => model.InspectionPassFail)
+            </label>
+            @Html.ValidationMessageFor(model => model.InspectionPassFail)
+        </div>
+        <div class="editor-label">
+        </div>
+        <div class="editor-field">
+            <label class="checkbox">
+                @Html.EditorFor(model => model.AccidentPreventable)
+                @Html.LabelFor(model => model.AccidentPreventable)
+            </label>
+            @Html.ValidationMessageFor(model => model.AccidentPreventable)
+        </div>
+        <div class="editor-label">
+        </div>
+        <div class="editor-field">
+            <label class="checkbox">
+                @Html.EditorFor(model => model.FollowupRequired)
+                @Html.LabelFor(model => model.FollowupRequired)
+            </label>
+            @Html.ValidationMessageFor(model => model.FollowupRequired)
+        </div>
+        <br />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FollowupDescription)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.FollowupDescription, new { @class = "span4", rows = 5 })
+            @Html.ValidationMessageFor(model => model.FollowupDescription)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FollowupDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FollowupDate, new { @class = "span4 datepicker" })
+            @Html.ValidationMessageFor(model => model.FollowupDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FollowupCompletionDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.FollowupCompletionDate, new { @class = "span4 datepicker" })
+            @Html.ValidationMessageFor(model => model.FollowupCompletionDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FollowupComments)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.FollowupComments, new { @class = "span4", rows = 5 })
+            @Html.ValidationMessageFor(model => model.FollowupComments)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CloseDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CloseDate, new { @class = "span4 datepicker" })
+            @Html.ValidationMessageFor(model => model.CloseDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BadgeID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BadgeID, new { @class = "span4" })
+            @Html.ValidationMessageFor(model => model.BadgeID)
+        </div>
+
+
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}
+
+@section scripts{
+
+    <script>
+        $(".datepicker").datepicker();
+    </script>
+
+}

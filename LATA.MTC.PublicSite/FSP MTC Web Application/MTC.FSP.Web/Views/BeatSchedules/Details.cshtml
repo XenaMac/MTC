@@ -1,0 +1,98 @@
+﻿@model MTC.FSP.Web.Models.BeatSchedule
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BeatSchedule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ScheduleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScheduleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weekday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weekday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RollOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RollOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnPatrol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnPatrol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RollIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RollIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogOff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BreakDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BreakDuration)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BeatScheduleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0"
+		name="com.eurotech.lata.logger.LataLogger"
+		activate="activate"
+		deactivate="deactivate"
+		enabled="true"
+		immediate="true"
+		configuration-policy="require"
+		modified="updated">
+   <implementation class="com.eurotech.lata.logger.LataLogger"/>
+<!--
+   <property name="service.pid" type="String" value="com.eurotech.lata.logger.LataLogger"/>
+-->
+   <service>
+      <provide interface="com.eurotech.lata.logger.LataLogger"/>
+   </service>
+   <reference name="ModemMonitorService"
+       		  cardinality="0..1"
+       		  policy="static"
+       		  bind="setModemMonitorService"  
+       		  unbind="unsetModemMonitorService"
+       		  interface="com.eurotech.framework.net.modem.ModemMonitorService"/>
+       		  
+   <reference name="WifiClientMonitorService"
+       		  cardinality="0..1"
+       		  policy="static"
+       		  bind="setWifiClientMonitorService"  
+       		  unbind="unsetWifiClientMonitorService"
+       		  interface="com.eurotech.framework.net.wifi.WifiClientMonitorService"/>
+       		  
+   <reference name="IgnitionService"
+              interface="com.eurotech.reliagate.io.ignition.IgnitionService"
+              policy="static"
+       		  cardinality="1..1" 
+       		  bind="setIgnitionService"  
+       		  unbind="unsetIgnitionService"/>
+
+
+   <reference name="LedService" 
+              interface="com.eurotech.reliagate.io.leds.LedService" 
+              policy="static" 
+              cardinality="1..1" 
+              bind="setLedService"
+              unbind="unsetLedService"/>
+              
+   <reference name="PositionService"
+   			  interface="com.eurotech.framework.position.PositionService"
+   			  policy="static"
+   			  cardinality="1..1"
+   			  bind="setPositionService"
+   			  unbind="unsetPositionService"/>
+</scr:component>

@@ -1,0 +1,24 @@
+#!/bin/bash
+###############################################################
+# This logs IP address on ppp0
+###############################################################
+###############################################################
+# Check for modem connection and existing tcpdump process
+###############################################################
+connection=0
+ipout="/lata/logs/ips$(date '+%Y%m%d').log"
+# get lmt ppp ip address
+lmtip=$(ifconfig | grep "P-t-P" | sed 's/.*:\([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\).*P.*/\1/');
+# test for modem connection
+if [ "x$lmtip" != "x" ]; then
+  connection=1
+fi
+if [ $connection -eq 1 ]; then
+  # make sure tcpdump process not already running
+  oldtcp=$(ps -A | grep tcpdump);
+  if [ "x$oldtcp" == "x" ]; then
+    # start ip logger
+    echo "Starting IpLogger" $(date) >> $ipout;
+    nohup sh -c "tcpdump -n -s 38 -i ppp0 >> $ipout" &> /tmp/tcpdump.log &
+  fi
+fi

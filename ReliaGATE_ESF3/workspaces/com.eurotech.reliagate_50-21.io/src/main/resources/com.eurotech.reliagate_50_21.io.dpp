@@ -1,0 +1,20 @@
+#Deployment Plugin Project File
+#Mon Oct 05 06:46:38 MDT 2015
+build.ant.name=C\:\\Dropbox\\SVN\\MTC\\ReliaGATE_ESF3\\workspaces\\com.eurotech.reliagate_50-21.io/src/main/resources/com.eurotech.reliagate_50_21.io_build.xml
+build.dp.file=C\:\\Dropbox\\SVN\\MTC\\ReliaGATE_ESF3\\workspaces\\com.eurotech.reliagate_50-21.io/target/com.eurotech.reliagate_50_21.io.dp
+build.location=
+bundles.0.bundle_path=C\:\\Dropbox\\SVN\\MTC\\ReliaGATE_ESF3\\builds\\3.5.8\\plugins\\com.eurotech.reliagate_50-21.io_1.0.0.201510050646.jar
+bundles.0.customizer=false
+bundles.0.headers.count=0
+bundles.0.missing=false
+bundles.0.name=bundles/com.eurotech.reliagate_50-21.io_1.0.0.201510050646.jar
+bundles.0.symbolic_name=com.eurotech.reliagate_50-21.io;singleton\:\=true
+bundles.0.version=1.0.0.201510050646
+bundles.count=1
+certificates.count=0
+general.signbundles=false
+headers.other.headers=
+headers.symbolic.name=com.eurotech.reliagate_50_21.io
+headers.version=1.0.0
+resources.count=0
+

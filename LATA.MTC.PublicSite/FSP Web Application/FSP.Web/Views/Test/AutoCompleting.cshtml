@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "AutoCompleting";
+}
+<script src="~/Scripts/knockout-2.1.0.js"></script>
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+<script src="~/MyScripts/junk/junk.js"></script>
+
+<span data-bind="text: header()"></span>
+<br />
+@*<input data-bind="acBeatNumbers: { autoFocus: true }, jqAutoSource: myItems, 
+    jqAutoValue: mySelectedItem, 
+    jqAutoSourceLabel: 'name', 
+    jqAutoSourceValue: 'id'" />*@
+
+
+<input id="filterBeatNumber" />
+
+
+
+
+

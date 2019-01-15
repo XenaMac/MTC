@@ -1,0 +1,34 @@
+﻿@model FSP.Domain.Model.Var
+@{
+    ViewBag.Title = "Edit " + @Model.VarName;
+    
+}
+<div>
+    @Html.ActionLink("Back to Alarm Leeways", "Index")
+</div>
+<h2>Edit "@Model.VarName"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.VarID)
+    @Html.HiddenFor(model => model.VarName)
+    <fieldset>        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VarName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.VarName, new { disabled = "disabled" })           
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VarValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VarValue)
+            @Html.ValidationMessageFor(model => model.VarValue)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

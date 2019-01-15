@@ -1,0 +1,35 @@
+﻿@model FSP.Web.ViewModels.AdminViewModel
+@{
+    ViewBag.Title = "LATA Trax | Admin Dashboard";
+}
+<header class="jumbotron subhead" id="overview">
+    <h2>Database Administration</h2>
+    <br />
+    <legend>Contract Information</legend>
+    <a href='@Url.Content("~/AdminArea/Contract/Index")'>Contracts</a><br />
+    <a href='@Url.Content("~/AdminArea/Contractor/Index")'>Contractors</a><br />
+    <a href='@Url.Content("~/AdminArea/ContractorManager/Index")'>Contractor Managers</a><br />
+    <br />
+    <br />
+    <legend>Management Tables</legend>
+    <a href='@Url.Content("~/AdminArea/DropZone/Index")'>Drop Zones</a><br />
+    <a href='@Url.Content("~/AdminArea/FleetVehicle/Index")'>Fleet Vehicles</a><br />
+    <a href='@Url.Content("~/AdminArea/Freeway/Index")'>Freeways</a><br />
+    <a href='@Url.Content("~/AdminArea/IncidentType/Index")'>Incident Types</a><br />
+    <a href='@Url.Content("~/AdminArea/InspectionType/Index")'>Inspection Types</a><br />
+    <a href='@Url.Content("~/AdminArea/InsuranceCarrier/Index")'>Insurance Carriers</a><br />
+    <a href='@Url.Content("~/AdminArea/InteractionType/Index")'>Interaction Types</a><br />
+    <a href='@Url.Content("~/AdminArea/Location/Index")'>Locations</a><br />
+    <a href='@Url.Content("~/AdminArea/ServiceType/Index")'>Service Types</a><br />
+    <a href='@Url.Content("~/AdminArea/TowLocation/Index")'>Tow Location</a><br />
+    <a href='@Url.Content("~/AdminArea/TrafficSpeed/Index")'>Traffic Speed</a><br />
+    <a href='@Url.Content("~/AdminArea/VehiclePosition/Index")'>Vehicle Positions</a><br />
+    <a href='@Url.Content("~/AdminArea/VehicleType/Index")'>Vehicle Types</a><br />
+    <br />
+    <br />
+    <legend>Security</legend>
+    <a href='@Url.Content("~/AdminArea/Users/Index")'>Users</a><br />
+    @*<a href='@Url.Content("~/AdminArea/Roles/Index")'>User Roles</a><br />*@
+    <br />
+
+</header>

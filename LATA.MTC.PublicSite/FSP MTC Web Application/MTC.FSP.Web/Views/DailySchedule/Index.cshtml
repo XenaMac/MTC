@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Daily Schedule";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="dailyScheduleController" ng-cloak>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <input type="text" id="searchSchedules" placeholder="search" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" data-filter="#searchSchedules" data-filter-text-only="true" data-page-size="1000" data-limit-navigation="1000">
+                    <thead>
+                        <tr>
+                            <th data-type="numeric" data-sort-initial="true">
+                                Beat #
+                            </th>
+                            <th>
+                                Schedule Name
+                            </th>
+                            <th>
+                                Service Hours (OP-RI)
+                            </th>
+                            <th>
+                                Contractor Supervisor
+                            </th>
+                            <th>
+                                Contractor
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in schedules">
+                            <td ng-bind="d.BeatNumber"></td>
+                            <td>
+                                {{d.ScheduleName}}
+                                <label class="label label-warning" ng-show="d.ScheduleType === 'Holiday'">Holiday</label>
+                                <label class="label label-warning" ng-show="d.ScheduleType === 'Custom'">Custom</label>
+                            </td>
+                            <td>
+                                {{d.StartTimeFriendly}}-{{d.EndTimeFriendly}}
+                            </td>
+                            <td ng-bind="d.ContactName"></td>
+                            <td ng-bind="d.ContractCompanyName"></td>
+                        </tr>
+                    </tbody>
+                    @*<tfoot>
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>*@
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/footable.all.min.js"></script>
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/dailyScheduleController.js"></script>
+    <script src="~/app/services/scheduleService.js"></script>
+    <script src="~/app/services/trucksService.js"></script>
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

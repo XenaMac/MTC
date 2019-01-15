@@ -1,0 +1,8 @@
+C:\FSP\FSP Web Application\FSP\FSP.Common\obj\Debug\FSP.Common.csprojResolveAssemblyReference.cache
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP Web Application\FSP.Common\bin\Debug\FSP.Common.dll
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP Web Application\FSP.Common\bin\Debug\FSP.Common.pdb
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP Web Application\FSP.Common\bin\Debug\FSP.Domain.dll
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP Web Application\FSP.Common\bin\Debug\FSP.Domain.pdb
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP Web Application\FSP.Common\obj\Debug\FSP.Common.csprojResolveAssemblyReference.cache
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP Web Application\FSP.Common\obj\Debug\FSP.Common.dll
+C:\Users\crardin\Documents\LATA.MTC.PublicSite\FSP Web Application\FSP.Common\obj\Debug\FSP.Common.pdb

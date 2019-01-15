@@ -1,0 +1,579 @@
+﻿@{
+    ViewBag.Title = "Monthly Invoice";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+<link href="~/Content/Invoice.css" rel="stylesheet" />
+
+<br />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div class="row" ng-controller="invoiceController" ng-cloak>
+
+        @*Header and Month chooser*@
+        <div class="col-md-12" id="header">
+            <h3>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h3><br />
+
+            <div class="col-md-1">
+                <div class="dropdown" id="Month">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="MonthDD" data-toggle="dropdown" aria-expanded="true">
+                        <span id="MonthDDText">Choose Month</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" id="months">
+                        <li data-ng-repeat="m in months" role="presentation">
+                            <a class="month" href="#" id="{{m}}">{{m}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-1 text-left">
+                <div class="dropdown" id="Beat">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="BeatDD" data-toggle="dropdown" aria-expanded="true">
+                        <span id="BeatDDText">Choose Beat</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" id="Beats">
+                        <li data-ng-repeat="b in Beats" role="presentation">
+                            <a class="beat" href="#" id="{{b.Id}}">{{b.Text}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-1 text-left">
+                <div class="dropdown" id="Contractors">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="contractor" data-toggle="dropdown" aria-expanded="true">
+                        <span id="ContractorText">Choose Contractor</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" id="Contractors">
+                        <li data-ng-repeat="c in Contractors" role="presentation">
+                            <a class="contractor" href="#" id="{{c.ContractorID}}">{{c.ContractCompanyName}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1 pull-right" id="choices">
+                <button id="loadInvoice" type="button" class="btn btn-primary" ng-click="loadInvoice()">View Invoice <span class="glyphicon glyphicon-list-alt"></span></button>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <button id="openSavedInvoice" type="button" class="btn btn-success" ng-click="openInvoices()">Open Saved Invoice <span class="glyphicon glyphicon-open"></span></button>
+                <button id="printInvoice" type="button" class="btn btn-info" ng-click="printInvoice()">Print Invoice <span class="glyphicon glyphicon-print"></span></button>
+            </div>
+
+        </div>
+
+        @*spacer*@
+        <div id="spacer" class="col-lg-12"><hr /></div>
+
+        @*nav and gird*@
+        <div class="col-lg-8 col-lg-offset-2" id="progressDiv" ng-show="isBuilding">
+            <div class="progress">
+                <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                    Retreiving Contractor Invoice Info
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12" id="invoiceDiv">
+            <div class="col-lg-12 text-center">
+                @*MTC Information*@
+                <div id="ContractorAddress" class="col-md-12 text-left">
+                    <strong>Metropolitan Transportation Commission</strong><br />
+                    Service Authority for Freeways and Expressways<br />
+                    {{MTCAddress}}
+                </div>
+
+                @*spacer*@
+                <div id="spacer" class="col-lg-12"><hr /></div>
+
+                @*Contractor Information*@
+                <div id="ContractorAddress" class="col-md-12 text-left">
+                    <div class="col-md-5">
+                        <strong>
+                            {{companyname}}<br />
+                        </strong>
+                        {{address1}}, {{city}} {{state}} {{zip}}<br />
+                        {{contact}}  |  {{email}}  |  {{phone}}
+                    </div>
+                    <div class="col-md-5">
+                        Invoice Month: <strong>{{_month}}</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Beat:<strong>{{beatNum}}</strong><br />
+                        Invoice #: <strong>{{invoiceNumber}}</strong><br />
+                        Contract #: <strong>{{contractnumber}}</strong>  |  Contract Period: <strong>{{contractbeg | date:'MM/dd/yyyy' }} - {{contractexp | date:'MM/dd/yyyy'}}</strong>
+                    </div>
+                    <br /><br /><br />
+                </div>
+
+                @*Base Rate Grid*@
+                <div id="MonthBase" class="col-md-12 text-left">
+                    <fieldset>
+                        <legend><br />{{month}} Service Summary</legend>
+                        Total Weekdays for the month of {{month}}: <b>{{TotalWeekdays}}</b><br />
+                        Total Saturdays for the month of {{month}}: <b>{{TotalSaturdays}}</b><br />
+                        Total Sundays for the month of {{month}}: <b>{{TotalSundays}}</b><br />
+                        Total Holidays for the month of {{month}}: <b>{{TotalHolidays}} {{ Holidays }}</b><br />
+                        @*Total Custom Days for the month of {{month}}: <b>{{TotalCustomDays}} {{ CustomDaysInMonth }}</b>*@
+                        <hr />
+                        <table class="col-lg-12" border="1" width="600">
+                            <tr>
+                                <th class="summaryHeader"></th>
+                                <th class="summaryHeader">Days</th>
+                                <th class="summaryHeader">Shifts</th>
+                                <th class="summaryHeader">Contract Hours</th>
+                                <th class="summaryHeader">On Patrol Hours<br /><small>(OT adjustments included)</small></th>
+                            </tr>
+                            <tr>
+                                <td class="summaryLblTD">Weekday</td>
+                                <td class="summaryTD">{{WeekDays}}</td>
+                                <td class="summaryTD">{{WeekShifts}}</td>
+                                <td class="summaryTD">{{WeekContractHours}}</td>
+                                <td class="summaryTD">{{WeekOnPatrolHours}}</td>
+                            </tr>
+                            @*<tr>
+                                    <td class="summaryLblTD">Fridays Additional</td>
+                                    <td class="summaryTD">??</td>
+                                    <td class="summaryTD">??</td>
+                                    <td class="summaryTD">??</td>
+                                    <td class="summaryTD">??</td>
+                                </tr>*@
+                            <tr>
+                                <td class="summaryLblTD">Saturdays</td>
+                                <td class="summaryTD">{{SatDays}}</td>
+                                <td class="summaryTD">{{SatShifts}}</td>
+                                <td class="summaryTD">{{SatContractHours}}</td>
+                                <td class="summaryTD">{{SatOnPatrolHours}}</td>
+                            </tr>
+                            <tr>
+                                <td class="summaryLblTD">Sundays</td>
+                                <td class="summaryTD">{{SunDays}}</td>
+                                <td class="summaryTD">{{SunShifts}}</td>
+                                <td class="summaryTD">{{SunContractHours}}</td>
+                                <td class="summaryTD">{{SunOnPatrolHours}}</td>
+                            </tr>
+                            <tr>
+                                <td class="summaryLblTD">Holidays</td>
+                                <td class="summaryTD">{{HolDays}}</td>
+                                <td class="summaryTD">{{HolShifts}}</td>
+                                <td class="summaryTD">{{HolContractHours}}</td>
+                                <td class="summaryTD">{{HolOnPatrolHours}}</td>
+                            </tr>
+                            <tr>
+                                <td class="summaryLblTD">Custom</td>
+                                <td class="summaryTD">{{CustomDays}}</td>
+                                <td class="summaryTD">{{CustomShifts}}</td>
+                                <td class="summaryTD">{{CustomContractHours}}</td>
+                                <td class="summaryTD">{{CustomOnPatrolHours}}</td>
+                            </tr>
+                            <tr>
+                                <td class="summaryLblTD">Total</td>
+                                <td class="summaryTD"><strong>{{TotalDays}}</strong></td>
+                                <td class="summaryTD"><strong>{{TotalShifts}}</strong></td>
+                                <td class="summaryTD"><strong>{{TotalContractHours}}</strong></td>
+                                <td class="summaryTD"><strong>{{TotalOnPatrolHours}}</strong></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <br />
+                    <p><em>* Contract Hours = Total Shift Hours * Number of Trucks. On Patrol Hours adjusted with Additions and Subtractions.</em></p>
+                </div>
+
+                @*Rate*@
+                <div id="RateDiv" class="col-md-12 text-left">
+                    <br />
+                    <table class="col-lg-12" border="1">
+                        <tr>
+                            <td width="60%" class="summaryLblTD">{{month}}'s Base Rate <small>with fuel at: ${{FuelRate}}</small></td>
+                            <td class="summaryTD">${{BaseRate}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                @*This Month's Base Pay*@
+                <div id="CMPayDiv" class="col-md-12 text-left">
+                    <br />
+                    <table class="col-lg-12" border="1">
+                        <tr>
+                            <td width="60%" class="summaryLblTD">{{month}}'s Base Pay</td>
+                            <td class="summaryTD">(Contract Hours x Rate) {{CMBasePay | currency}}</td>
+                        </tr>
+                    </table>
+                    <div class="col-lg-12 text-left"><br /><button id="saveInvoice1" type="button" class="btn btn-default" ng-click="SaveInvoice()">Save Invoice <span class="glyphicon glyphicon-save"></span></button><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></div>
+                </div>
+
+                @*Additions*@
+                <div id="additionsDiv" class="col-md-12 text-left">
+                    <fieldset>
+                        <legend><br />{{month}}'s Additions <button class="btn btn-success" type="submit" id="openAdditionModal"><span class="glyphicon glyphicon-plus-sign"></span></button></legend>
+                        <table class="col-lg-12" border="1" id="additionsTable">
+                            <tr>
+                                <th class="additionsHeader">Category</th>
+                                <th class="additionsHeader">Date</th>
+                                <th class="additionsHeader">Description/Action</th>
+                                <th class="additionsHeader">Time Addition (15 min blocks)</th>
+                                <th class="additionsHeader">Rate</th>
+                                <th class="additionsHeader">Cost</th>
+                                <th class="additionsHeader">Modify</th>
+                            </tr>
+                            <tr ng-repeat="addition in additions">
+                                <td class="additionsTD">{{addition.category}}</td>
+                                <td class="additionsTD">{{addition.date | date:'MM/dd/yyyy HH:mm:ss Z'}}</td>
+                                <td class="additionsTD">{{addition.description}}</td>
+                                <td class="additionsTD">{{addition.TimeAdded}}</td>
+                                <td class="additionsTD">${{addition.Rate}}</td>
+                                <td class="additionsTD">${{addition.Cost}}</td>
+                                <td class="additionsTD">
+                                    <button type="button" class="btn btn-default btn-sm" ng-show="addition.MENum" ng-click="modifyAddition(addition.MENum);">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                    <button type="button" id={{addition.id}} class="btn btn-default btn-sm" @*ng-show="addition.MENum"*@ ng-click="deleteAddition(addition.id);">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right bol"><strong>TOTAL:&nbsp;&nbsp;</strong></td>
+                                <td class="additionsHeader">{{TotalTimeAdded}}&nbsp;&nbsp;</td>
+                                <td class="text-right bol"><strong>TOTAL:&nbsp;&nbsp;</strong></td>
+                                <td class="additionsHeader">{{TotalAdditions | currency}}</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <div class="col-lg-12 text-left"><br /><button id="saveInvoice2" type="button" class="btn btn-default" ng-click="SaveInvoice()">Save Invoice <span class="glyphicon glyphicon-save"></span></button><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></div>
+                </div>
+
+                @*Deductions*@
+                <div id="deductionsDiv" class="col-md-12 text-left">
+                    <fieldset>
+                        <legend><br />{{month}}'s Deductions <button class="btn btn-danger" type="submit" id="openDeductionModal"><span class="glyphicon glyphicon-plus-sign"></span></button></legend>
+                        <table class="col-lg-12" border="1" id="deductionsTable">
+                            <tr>
+                                <th class="deductionsHeader">Category</th>
+                                <th class="deductionsHeader">Date</th>
+                                <th class="deductionsHeader" style="width: 35%;">Description/Action</th>
+                                <th class="deductionsHeader">Time Deduction (15 min blocks)</th>
+                                <th class="deductionsHeader">Rate</th>
+                                <th class="deductionsHeader">Cost</th>
+                                <th class="deductionsHeader">Modify</th>
+                            </tr>
+                            <tr ng-repeat="deduction in deductions">
+                                <td class="deductionsTD">{{deduction.category}}</td>
+                                <td class="deductionsTD">{{deduction.date | date:'MM/dd/yyyy HH:mm:ss Z'}}</td>
+                                <td class="deductionsTD">{{deduction.description}}</td>
+                                <td class="deductionsTD">{{deduction.TimeAdded}}</td>
+                                <td class="deductionsTD">{{BaseRate | currency}}</td>
+                                @*<td class="additionsTD">${{deduction.Cost}}</td>*@
+                                <td class="col-lg-2 deductionsTD">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input type="text" id={{deduction.id}} class="form-control deducts" aria-label="Costs" value="{{deduction.Cost}}" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" ng-click="updateDeductsTotals(deduction.id)" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="deductionsTD">
+                                    <button type="button" class="btn btn-default btn-sm" ng-show="deduction.MENum" ng-click="modifyDeduction(deduction.MENum);">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </button>
+                                    <button type="button" id={{deduction.id}} class="btn btn-default btn-sm" @*ng-show="deduction.MENum"*@ ng-click="deleteDeduction(deduction.id);">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-right bol"><strong>TOTAL:&nbsp;&nbsp;</strong></td>
+                                <td class="deductionsHeader">{{TotalDedTimeAdded}}&nbsp;&nbsp;</td>
+                                <td class="text-right bol"><strong>TOTAL:&nbsp;&nbsp;</strong></td>
+                                <td class="deductionsHeader">- {{TotalDeductions | currency}}</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <div class="col-lg-12 text-left"><br /><button id="saveInvoice3" type="button" class="btn btn-default" ng-click="SaveInvoice()">Save Invoice <span class="glyphicon glyphicon-save"></span></button><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></div>
+                </div>
+
+                @*Invoice Total*@
+                <div id="invoiceTotalDiv" class="col-md-12 text-left">
+                    <fieldset>
+                        <legend><br />{{month}}'s Invoice Amount</legend>
+                        <table class="footable col-lg-12" border="1">
+                            <tr>
+                                <td width="75%" class="text-right bol"><strong>TOTAL:&nbsp;&nbsp;</strong></td>
+                                <td class="totalsHeader">{{InvoiceTotal | currency}}</td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                    <div class="col-lg-12 text-left"><br /><button id="saveInvoice3" type="button" class="btn btn-default" ng-click="SaveInvoice()">Save Invoice <span class="glyphicon glyphicon-save"></span></button><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></div>
+                </div>
+
+                @*Anamolies*@
+                <div id="anamoliesDiv" class="col-md-12 text-left">
+                    <fieldset>
+                        <legend><br />{{month}}'s Anomalies </legend>
+                        <table class="footable col-lg-12" border="1" id="anamoliesTable" data-page-size="10" data-limit-navigation="10">
+                            <thead>
+                                <tr>
+                                    <th class="anamoliesHeader">Date</th>
+                                    <th class="anamoliesHeader">Description</th>
+                                    <th class="anamoliesHeader">Schedule Name</th>
+                                    <th class="anamoliesHeader">Beat Number</th>
+                                    <th class="anamoliesHeader" data-sort-ignore="true">Create Deduction</th>
+                                    <th class="anamoliesHeader" data-sort-ignore="true">Delete Anomaly</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="anamolie in anamolies">
+                                    <td class="anamoliesTD">{{anamolie.date | date:'MM/dd/yyyy'}}</td>
+                                    <td class="anamoliesTD">{{anamolie.Description}}</td>
+                                    <td class="anamoliesTD">{{anamolie.ScheduledName}}</td>
+                                    <td class="anamoliesTD">{{anamolie.BeatNumber}}</td>
+                                    <td class="anamoliesTD">
+                                        <button class="btn btn-default btn-sm createDeductionModal" type="button" id={{anamolie.ID}}><span class="glyphicon glyphicon-plus-sign"></span> Deduction</button>
+                                    </td>
+                                    <td class="anamoliesTD">
+                                        <button class="btn btn-default btn-sm deleteAnamolie" type="button" ng-click="deleteAnamolie(anamolie.ID)"><span class="glyphicon glyphicon-trash"></span></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div class="paging">
+                                            <ul class="pagination pagination-sm"></ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </fieldset>
+                    <div class="col-lg-12 text-left"><br /><button id="saveInvoice3" type="button" class="btn btn-default" ng-click="SaveInvoice()">Save Invoice <span class="glyphicon glyphicon-save"></span></button><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></div>
+                </div>
+
+                @*Signature Line*@
+                <br />
+                <br />
+                <div id="MTCSafe" class="panel panel-primary">
+                    <div class="panel-body text-left">
+                        MTC Safe:
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Add Addition Modal -->
+        <div class="modal fade" id="additionModal" tabindex="-1" role="dialog" aria-labelledby="Add_Addition" aria-hidden="true">
+            <form id="additionForm">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: #1b6a27; color: #ffffff;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myAdditionLabel">Add Invoice Addition</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="additionCategory">Category:</label>
+                                <input type="text" class="form-control" id="additionCategory" placeholder="Category" required ng-model="category">
+                            </div>
+                            <div class="form-group">
+                                <label for="additionDate">Date:</label>
+                                <input type="date" class="form-control" id="additionDate" placeholder="Date" required ng-model="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="additionDescription">Description:</label>
+                                <input type="text" class="form-control" id="additionDescription" placeholder="Description" required ng-model="description">
+                            </div>
+                            <div class="form-group">
+                                <label for="additionTimeAdded">Time Addition (# of 15 minute blocks):</label>
+                                <input type="number" class="form-control" id="additionTimeAdded" placeholder="(15 minute increments) ... 1, 2, etc... 0 if none" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required ng-model="timeadded" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="additionRate">Rate:</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">$</span>
+                                    <input type="text" class="form-control" id="additionRate" placeholder="#.##" required ng-model="rate">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="additionCost">Cost:</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">$</span>
+                                    <input type="text" class="form-control" id="additionCost" placeholder="#.##" required ng-model="cost">
+                                </div>
+                                <input type="hidden" ng-model="MENum" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Save Addition</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Add Deduction Modal -->
+        <div class="modal fade" id="deductionModal" tabindex="-1" role="dialog" aria-labelledby="Add_Deduction" aria-hidden="true">
+            <form id="deductionForm">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color: #ff0000; color: #ffffff;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myDeductionLabel">Add Invoice Deduction</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="deductionCategory">Category:</label>
+                                <input type="text" class="form-control" id="deductionCategory" placeholder="Category" required ng-model="category">
+                            </div>
+                            <div class="form-group">
+                                <label for="deductionDate">Date:</label>
+                                <input type="date" class="form-control" id="deductionDate" placeholder="Date" required ng-model="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="deductionDescription">Description:</label>
+                                <input type="text" class="form-control" id="deductionDescription" placeholder="Description" required ng-model="description">
+                            </div>
+                            <div class="form-group">
+                                <label for="deductionTimeAdded">Time Deduction (# of 15 minute blocks):</label>
+                                <input type="number" class="form-control" id="deductionTimeAdded" placeholder="(15 minute increments) ... 1, 2, etc... 0 if none" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required ng-model="timeadded" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="deductionRate">Rate:</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">$</span>
+                                    <input type="text" class="form-control" id="deductionRate" placeholder="#.##" required ng-model="rate">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="deductionCost">Cost:</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">$</span>
+                                    <input type="text" class="form-control" id="deductionCost" placeholder="#.##" required ng-model="cost">
+                                </div>
+                                <input type="hidden" ng-model="MENum" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Save deduction</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Invoice Name and  Notes Modal -->
+        <div id="SaveModal" class="modal fade">
+            <form id="saveInvoiceForm">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="saveInvoiceLabel">Save Invoice <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" role="alert" id="IE">
+                                <strong>INVOICE EXISTS:</strong> The invoice number below already exists in the database. Saving this invoice will replace that current one in the database. If you wish to leave the current invoice intact rename this invoice.
+                            </div>
+                            <div class="form-group">
+                                <label for="invoiceNumber">Invoice Number:</label>
+                                <input type="text" class="form-control" id="invoiceNumber" required ng-model="invoiceNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="invoiceNote">Invoice Note:</label>
+                                <textarea class="form-control" rows="3" id="invoiceNote" placeholder="Notes:" required ng-model="Notes"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Save Invoice</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Open Invoice Modal -->
+        <div id="openInvoicesModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="openInvoiceLbl">Open Invoice <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h4>
+                    </div>
+                    <div class="modal-body invoiceBox">
+                        <table id="invoicesTable" class="table table-hover footable" data-filter=#filter data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+                            <thead>
+                                <tr>
+                                    <th class="">
+                                        @Html.DisplayName("Invoice Number")
+                                    </th>
+                                    <th class="">
+                                        @Html.DisplayName("Mod Date/By")
+                                    </th>
+                                    <th class="">
+                                        @Html.DisplayName("Notes")
+                                    </th>
+                                    <th data-sort-ignore="true"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="invoice in invoiceNumbers">
+                                    <td>
+                                        {{invoice.InvoiceNumber}}
+                                    </td>
+                                    <td>
+                                        {{invoice.ModDate}} / {{invoice.ModBy}}
+                                    </td>
+                                    <td>
+                                        {{invoice.Notes}}
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="openInvoice(invoice.InvoiceNumber);">
+                                            <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-sm" ng-click="deleteInvoice(invoice.InvoiceNumber)">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        <div class="paging">
+                                            <ul class="pagination pagination-sm"></ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        @*<button type="submit" class="btn btn-danger">Open Invoice</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/app/controllers/invoiceController.js"></script>
+    <script src="~/app/services/invoiceService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

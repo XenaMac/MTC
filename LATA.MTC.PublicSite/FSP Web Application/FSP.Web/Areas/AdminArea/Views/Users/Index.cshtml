@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FSP.Domain.Model.User>
+@{ 
+    ViewBag.Title = "Users";    
+}
+
+<h2>Users</h2>
+<br />
+<div class="row-fluid">
+    <div class="table-wrapper">
+        <table class="table table-bordered table-condensed table-striped sortable">
+            <thead>
+                <tr>
+                    <th>Last Name
+                    </th>
+                    <th>First Name
+                    </th>
+                    <th>Email
+                    </th>
+                    <th>Role
+                    </th>
+                    <th>Approved
+                    </th>  
+                    <th></th>                  
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderBy(p => p.IsApproved).ThenBy(p => p.LastName).ThenBy(p => p.FirstName))
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.LastName, "Edit", new { id = item.UserID })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Role.RoleName)
+                        </td>
+                        <td>
+                            @if (item.IsApproved == true)
+                            {
+                                <div class="control-label">
+                                    <span class="label label-success">Approved</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="control-label">
+                                    <span class="label label-warning">Not Approved</span>
+                                </div>
+                            }
+                            <div style="display: none">@item.IsApproved</div>
+                        </td>
+                        <td>
+                            @if (item.IsApproved == false)
+                            {
+                                @Html.ActionLink("Approve", "Approve", new { id = item.UserID })
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.UserID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,387 @@
+﻿body
+{
+    margin:0;
+    padding:0;
+    font-family: sans-serif, Helvetica, Arial; 
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    background-color: #1A1A1A;
+    }
+        
+h1
+{
+    color: #fff;
+    text-shadow: 0px -1px 0px #000;
+    text-align: center;
+    padding: 18px;
+    margin: 0px;
+    font-weight: normal;
+    font-size: 24px;
+    font-family: sans-serif, Lucida Grande, Helvetica, Arial;
+    -moz-box-shadow: 0px 1px 0px #3a3a3a;
+    -webkit-box-shadow: 0px 1px 0px #3a3a3a;
+    box-shadow: 0px 1px 0px #3a3a3a;
+}
+h2
+{
+    margin:0;
+    padding:0;
+}
+h3
+{
+    margin:0;
+    padding:0;
+}
+p
+{
+    padding-left: 5px;
+}
+        
+#header
+{
+    background-image: url('../Images/LATATRAX Tire2.png');
+}
+#footer
+{
+    background:#999;
+    top: -160px;
+}
+
+#page_container
+{
+    width:1300px;
+    height: 770px;
+    margin:0 auto;
+    color: #fff;
+    background: #2d2d2d;
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(60,60,60)),
+        color-stop(0.74, rgb(43,43,43)),
+        color-stop(1, rgb(60,60,60))
+        );
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(60,60,60) 0%,
+        rgb(43,43,43) 74%,
+        rgb(60,60,60) 100%
+        );
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+         
+}
+#inputDiv
+{
+    top: 0px;
+    width:370px;
+    height: 100%;
+    float:left;
+}
+#cboxDiv
+{
+    top: 0px;
+    width: 560px;
+    height: 100%;
+    float: left;
+       
+}
+#speedHolder
+{ 
+    position: relative;
+    float: right;
+    width: 370px;
+    height: 350px;
+  
+     
+}
+
+A:link {text-decoration: none; color: Gray}
+A:visited {text-decoration: none; color: Gray}
+A:active {text-decoration: none; color: Gray}
+A:hover {text-decoration: underline; color: red;}
+
+#footer
+{
+   
+    position: relative;
+    font-size: 14px;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-bottom: 1px;
+    clear:both;
+    background:#999;
+}
+	        
+#page_container h1 
+{
+    color: #fff;
+    text-shadow: 0px -1px 0px #000;
+    text-align: center;
+    padding: 18px;
+    margin: 0px;
+    font-weight: normal;
+    font-size: 24px;
+    font-family: sans-serif, Lucida Grande, Helvetica, Arial;
+    -moz-box-shadow: 0px 1px 0px #3a3a3a;
+    -webkit-box-shadow: 0px 1px 0px #3a3a3a;
+    box-shadow: 0px 1px 0px #3a3a3a;
+}
+#sig
+{
+    width: 40%;
+}
+            
+.css3button 
+{
+    position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #050505;
+	padding: 20px 80px;
+	background: -moz-linear-gradient(
+		top,
+		#8dc710 0%,
+		#c7d95f 50%,
+		#add136 50%,
+		#6d8000);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#8dc710),
+		color-stop(0.50, #c7d95f),
+		color-stop(0.50, #add136),
+		to(#6d8000));
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 25px;
+	border: 1px solid #6d8000;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,0.4);
+		left: -5px;
+}
+.css3button:hover
+{
+    background: -moz-linear-gradient(
+        top,
+        #8dc710 0%,
+        #c7d95f 50%,
+        #add136 50%,
+        #6d8000);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(#8dc710),
+        color-stop(0.50, #add136),
+        color-stop(0.50, #c7d95f),
+        to(#6d8000));
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8dc710', endColorstr='#89c403');
+    background-color:#8dc710;
+}
+.css3button:active
+{
+    background: -moz-linear-gradient(
+        top,
+        #8dc710 0%,
+        #c7d95f 50%,
+        #add136 50%,
+        #6d8000);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(#8dc710),
+        color-stop(0.60, #d7d95f),
+        color-stop(0.60, #ddd536),
+        to(#6d8000));
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8dc710', endColorstr='#89c403');
+    background-color:#8dc710;
+    }
+
+.text 
+{
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border:solid 1px #444;
+    font-size: 18px;
+    width: 80%;
+    padding: 7px 8px 7px 8px;
+    background: #ddd;
+    background: -moz-linear-gradient(
+        center bottom,
+        rgb(225,225,225) 0%,
+        rgb(215,215,215) 54%,
+        rgb(173,173,173) 100%
+    );
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(225,225,225)),
+        color-stop(0.54, rgb(215,215,215)),
+        color-stop(1, rgb(173,173,173))
+    );
+    color:#333;
+    text-shadow:0px 1px 0px #FFF;
+    -moz-box-shadow: 0px 1px 0px #777;
+    -webkit-box-shadow: 0px 1px 0px #777;
+    box-shadow: 0px 1px 0px #777;
+ }
+ 
+ #cboxAll
+ {
+     padding-top: 0px;
+     padding-left: 5px;
+ }
+ 
+ #inputAll
+ {
+     padding-top: 0px;
+     padding-left: 25px;
+ }
+ 
+ .cbox
+ {   	 
+	padding-right: 20px;
+	padding-left: 0px;
+ }
+ 
+ .indiInput
+ {
+    padding-bottom: 5px;
+ }
+ .indiCbox
+ {
+     padding-bottom: 5px;
+ }
+ #hd1
+ {
+    left: 0px;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;    
+    position: relative;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+       
+ #hd2
+ {
+    height: 50px;
+    top: -68px;
+    left: 280px;
+    padding-bottom:0px;
+    border-bottom: solid #181818 1px;
+    position: relative;
+    width: 74%;  
+ }
+ 
+ #hd3
+{
+    position: relative;
+    top: 25px;
+    left: 748px;
+    width: 0px;
+}
+        
+#emsg
+{
+    color: Red;
+}
+#iName
+{
+    color: Red;
+}
+#VehID
+{
+    color: Red;
+}
+#IPA
+{
+    color: Red;
+}
+#SSN
+{
+    color: Red;
+}
+#ID
+{
+    color: Red;
+}
+#tTC
+{
+    color: Red;
+}
+#S
+{
+    color: Red;
+}
+#DS
+{
+    color: Red;
+}
+#US
+{
+    color: Red;
+}
+#Sec
+{
+    color: Red;
+}
+#Ce
+{
+    color: Red;
+}
+#Pow
+{
+    color: Red;
+}
+#RoutSec
+{
+    color: Red;
+}
+#Moist
+{
+    color: Red;
+}
+#SpeedT
+{
+    color: Red;
+}
+#G
+{
+    color: Red;
+}
+#Cont
+{
+    color: Red;
+}
+#DownloadSpeed
+{
+    top: 0px;
+    position: relative;
+    width: 150px;
+}
+#UploadSpeed
+{
+    top: 0px;
+    position: relative;
+    width: 150px;
+}
+#speedchecker_link
+{
+    position: relative;
+    left: 40px;
+}
+

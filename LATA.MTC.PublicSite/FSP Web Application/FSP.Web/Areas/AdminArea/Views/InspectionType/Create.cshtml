@@ -1,0 +1,35 @@
+﻿@model FSP.Domain.Model.InspectionType
+@{
+    ViewBag.Title = "Create";
+    
+}
+<div>
+    @Html.ActionLink("Back to Inspection Types", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InspectionType1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InspectionType1)
+            @Html.ValidationMessageFor(model => model.InspectionType1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InspectionTypeCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InspectionTypeCode)
+            @Html.ValidationMessageFor(model => model.InspectionTypeCode)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,67 @@
+#!/bin/bash
+
+echo stopping equinox
+ESF stop
+
+echo removing old bundles
+rm /opt/jvm/esf/bundlefiles/com.lata.*
+
+echo make required directories
+mkdir /lata 2>/dev/null
+mkdir /lata/builds 2>/dev/null
+mkdir /lata/config 2>/dev/null
+mkdir /lata/config/error 2>/dev/null
+mkdir /lata/data 2>/dev/null
+mkdir /lata/fileupdate 2>/dev/null
+mkdir /lata/history 2>/dev/null
+mkdir /lata/logs 2>/dev/null
+mkdir /lata/transfers 2>/dev/null
+
+chmod -R a+rw /lata/rc 2>/dev/null
+
+echo copying /boot files...
+cp -f /lata/rc/boot/grub/* /boot/grub
+
+echo copying /etc files...
+cp -f /lata/rc/etc/* /etc
+
+echo copying /etc/rc.d/init.d files...
+cp -f /lata/rc/etc/rc.d/init.d/* /etc/rc.d/init.d
+
+echo copying known_hosts file
+cp -f ./ssh/known_hosts /root/.ssh/known_hosts
+
+echo copying /lata/config files...
+cp -f /lata/rc/lata/config/* /lata/config
+
+echo copying /lata/data files...
+cp -f /lata/rc/lata/data/* /lata/data
+
+echo copying /lata/logs files...
+cp -f /lata/rc/lata/logs/* /lata/logs
+
+echo copying /opt files...
+cp -f /lata/rc/opt/jvm/esf/bundlefiles/* /opt/jvm/esf/bundlefiles
+cp -f /lata/rc/opt/jvm/esf/configuration/.esf/com.esf.core.system.bootstrap/* /opt/jvm/esf/configuration/.esf/com.esf.core.system.bootstrap
+
+echo done with program files...
+
+echo restricting access
+chmod 600 /lata/config/fterm.id
+
+echo setting execution privilages
+chmod a+x /etc/rc.d/init.d/AutoUpdate
+chmod a+x /etc/rc.d/init.d/LmtWatchDog
+chmod a+x /etc/rc.d/init.d/ManifestCheck
+chmod a+x /etc/rc.d/init.d/WarmUp
+chmod a+x /etc/rc.d/init.d/firewall
+
+echo creating symbolic links...
+rm /etc/rc3.d/S09WarmUp
+ln -s /etc/rc.d/init.d/WarmUp /etc/rc3.d/S09WarmUp
+
+echo setting symbolic link privileges...
+chmod 777 /etc/rc3.d/S09WarmUp
+
+echo set local time zone
+ln -sf /usr/share/zoneinfo/PST8PDT /etc/localtime

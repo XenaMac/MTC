@@ -1,0 +1,234 @@
+#!/bin/bash
+###############################################################
+# This script performs software updates
+###############################################################
+buildlist='/lata/config/buildlist.txt'
+builds='/lata/builds'
+buildsremote='builds'
+configFile='/lata/config/fterm.config'
+dlbuildlist='/lata/config/dlbuildlist.txt'
+dlbuilds='/lata/config/dlbuilds'
+dlfilepath=''
+fileupdate='/lata/fileupdate'
+getbuilds='/lata/config/getbuild.txt'
+history='/lata/history'
+identFile='/etc/ssh/ssh_host_rsa_key'
+lmtuser='mtclmt'
+propsFile='/lata/config/fterm.props'
+serverbuilds='/lata/config/serverbuilds'
+sftpbatch='/lata/config/sftpbatch.txt'
+sftplog='/lata/config/sftp.log'
+updateerror='/lata/config/installerror.log'
+updateout='/dev/null'
+updatebuild=0
+
+# check if logging enabled
+if [ -e $propsFile ]; then
+  logSetting=$(cat $propsFile | grep -i "Log=" | grep -i "T");
+  if [ "x$logSetting" != "x" ]; then
+    updateout='/lata/logs/update.log'
+  fi
+fi
+
+echo "**************************" >> $updateout
+echo "Starting AutoUpdate" $(date) >> $updateout
+
+# remove previous update error file, if found
+if [ -e $updateerror ]; then
+  rm $updateerror;
+fi
+
+###############################################################
+# Sleep for five minutes so iptables configured
+###############################################################
+value=300
+echo "Sleeping for" $value "seconds">> $updateout
+sleep $value
+echo "Waking up" $(date) >> $updateout
+
+###############################################################
+function check_for_builds ()
+{
+  if [ ! -e $1 ]; then
+    echo "Directory doesn't exist" $1 $(date) >> $updateerror;
+    return;
+  fi
+  cd $1
+  for i in $(find . -type f);
+  do
+    filesubpath=$(echo $i | sed 's/\.\/\(.*\)/\1/');
+    if [ $filesubpath = "." ]; then
+      filesubpath="";
+    else
+      getfile=$filesubpath;
+      filesubpath=/$filesubpath;
+    fi
+    srcfilepath=$1$filesubpath; 
+    dstfilepath=$2$filesubpath; 
+    # If update file doesn't exist, get from sftp server
+    if [ ! -e $dstfilepath ]; then
+      updatebuild=1
+      dlfilepath=$fileupdate$filesubpath;
+      echo "ls -l" $getfile >> $getbuilds;
+      echo "get" $getfile >> $getbuilds;
+      echo "Will download" $getfile >> $updateout;
+      # download only one build per session
+      break;
+    fi
+  done
+}
+
+###############################################################
+# Check for modem connection and existing SFTP process
+###############################################################
+# wait up to 10 minutes for modem connection
+COUNT=0;
+connection=0
+while :
+do
+  # get AT&T wwan0 ip address
+  lmtip=$(ifconfig | grep --after-context=1 "wwan0" | grep "inet addr" | sed 's/.*:\([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\).*Bcast.*/\1/');
+
+  # test for modem connection
+  if [ "x$lmtip" != "x" ]; then
+    echo "Have modem connection at" $lmtip $(date) >> $updateout;
+    connection=1
+    break;
+  else
+    # get Verizon ppp0 ip address
+    lmtip=$(ifconfig | grep "P-t-P" | sed 's/.*:\([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\).*P.*/\1/');
+    if [ "x$lmtip" != "x" ]; then
+      echo "Have modem connection at" $lmtip $(date) >> $updateout;
+      connection=1
+      break;
+    else
+      COUNT=`expr $COUNT + 1`;
+      echo "Count at" $COUNT $(date) >> $updateout;
+      if [ $COUNT -gt 10 ]; then
+        echo "Unable to connect, exiting" $(date) >> $updateout;
+        break;
+      fi
+      sleep 60;
+    fi
+  fi
+done
+
+if [ $connection -eq 1 ]; then
+
+  # check if old sftp process exists
+  oldsftp=$(ps | grep sftp | grep IdentityFile);
+
+  if [ "x$oldsftp" != "x" ]; then
+    echo "Old sftp session still running, exiting" $(date) >> $updateout;
+    exit;
+  fi
+
+  # get current sftp server IP
+  sftpserver=$(cat /lata/config/fterm.config | grep "SFTPServerIP" | sed 's/.*>\([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\)<.*/\1/');
+
+  if [ "x$sftpserver" = "x" ]; then
+    echo "SFTP Server IP missing in fterm.config, exiting" $(date) >> $updateout;
+    echo "SFTP Server IP missing in fterm.config, exiting" $(date) >> $updateerror;
+    exit;
+  else
+    echo "Using SFTP Server IP" $sftpserver $(date) >> $updateout;
+  fi
+
+  ###############################################################
+  # Create SFTP script commands to check for available builds
+  ###############################################################
+  echo "cd" $buildsremote > $sftpbatch;
+  echo "ls" >> $sftpbatch;
+
+  # SFTP script command to exit sftp session
+  echo "exit" >> $sftpbatch;
+
+  # get list of available builds on the server
+  echo "Checking sftp server for available builds" $(date) >> $updateout;
+  sftp -o IdentityFile=/lata/config/fterm.id -o ConnectTimeout=120 -b $sftpbatch $lmtuser@$sftpserver > $sftplog 2>&1
+
+  # error check
+  loginerror=$(cat $sftplog | grep "Permission denied");
+  if [ "x$loginerror" != "x" ]; then
+    echo "Login denied, exiting" $(date) >> $updateout;
+    echo "Login denied, exiting" $(date) >> $updateerror;
+    exit;
+  fi
+
+  # get list of available builds from the sftp log
+  grep tgz $sftplog > $buildlist
+  grep '\.sh' $sftplog >> $buildlist
+
+  # create server build directory if necessary
+  if [ ! -e $serverbuilds ]; then
+    mkdir $serverbuilds
+  else
+    # delete old server build file list
+    rm $serverbuilds/*
+  fi
+
+  # create new server build file list
+  cd $serverbuilds
+  while read LINE
+  do
+    touch $LINE
+  done < $buildlist
+
+  ###############################################################
+  # Download build
+  ###############################################################
+  # get list of downloaded builds
+  ls $history | grep tgz > $dlbuildlist
+  ls $history | grep '\.sh' >> $dlbuildlist
+  ls $builds | grep tgz >> $dlbuildlist
+  ls $builds | grep '\.sh' >> $dlbuildlist
+
+  # create downloaded build directory if necessary
+  if [ ! -e $dlbuilds ]; then
+    mkdir $dlbuilds
+  else
+    # delete old server build file list
+    rm $dlbuilds/*
+  fi
+
+  # create new downloaded build file list
+  cd $dlbuilds
+  while read LINE
+  do
+    touch $LINE
+  done < $dlbuildlist
+
+  # create sftp batch file to get builds and change to local directory
+  # change to local fileupdate directory
+  echo "lcd" $fileupdate > $getbuilds;
+  echo "cd" $buildsremote >> $getbuilds;
+  check_for_builds $serverbuilds $dlbuilds;
+
+  # command to exit sftp
+  echo "exit" >> $getbuilds;
+
+  # if udpate available, get it
+  if [ $updatebuild -eq 1 ]; then
+
+    echo "Downloading builds from sftp server" $(date) >> $updateout;
+    sftp -o IdentityFile=/lata/config/fterm.id -o ConnectTimeout=120 -b $getbuilds $lmtuser@$sftpserver > $sftplog
+
+    # check server vs downloaded file sizes
+
+    # check build server vs downloaded file sizes
+    serversize=$(cat $sftplog | grep $getfile | grep 'rwx' | sed 's/.* \([0-9][0-9][0-9]*\) [A-Z].*/\1/');
+    dlsize=$(ls -l $dlfilepath | grep 'rwx' | sed 's/.* \([0-9][0-9][0-9]*\) [A-Z].*/\1/');
+    if [ $serversize -eq $dlsize ]; then
+      echo "File sizes match" $serversize $dlsize $(date) >> $updateout;
+      echo "Moving build from fileupdate to builds" $(date) >> $updateout;
+      mv $dlfilepath $builds;
+    else
+      echo "Transfer error, file sizes don't match" $dlfilepath "server" $serversize "downloaded "$dlsize $(date) >> $updateout;
+      echo "Transfer error, file sizes don't match" $dlfilepath "server" $serversize "downloaded "$dlsize $(date) >> $updateerror;
+      echo "Removing downloaded file" $dlfilepath $(date) >> $updateout;
+      rm $dlfilepath;
+    fi
+  else
+    echo "No new downloads available, exiting" $(date) >> $updateout;
+  fi
+fi

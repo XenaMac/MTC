@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LataTrax
+Bundle-SymbolicName: com.eurotech.lata.logger;singleton:=true
+Bundle-Version: 2.6.0
+Bundle-Vendor: Los Alamos Technical Associates
+Service-Component: OSGI-INF/lataLogger.xml
+Import-Package: com.eurotech.framework,
+ com.eurotech.framework.configuration,
+ com.eurotech.framework.net.modem,
+ com.eurotech.framework.net.wifi,
+ com.eurotech.framework.position,
+ com.eurotech.reliagate.io.ignition,
+ com.eurotech.reliagate.io.leds,
+ org.osgi.service.component;version="1.2.0",
+ org.slf4j;version="1.6.4",
+ org.xml.sax,
+ org.xml.sax.helpers
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

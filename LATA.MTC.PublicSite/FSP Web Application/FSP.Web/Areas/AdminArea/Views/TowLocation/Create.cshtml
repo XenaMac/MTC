@@ -1,0 +1,35 @@
+﻿@model FSP.Domain.Model.TowLocation
+@{
+    ViewBag.Title = "Create";
+    
+}
+<div>
+    @Html.ActionLink("Back to Tow Locations", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TowLocation1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TowLocation1)
+            @Html.ValidationMessageFor(model => model.TowLocation1)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TowLocationCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TowLocationCode)
+            @Html.ValidationMessageFor(model => model.TowLocationCode)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}

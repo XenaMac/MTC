@@ -1,0 +1,32 @@
+﻿@model IEnumerable<FSP.Domain.Model.Var>
+@{
+    ViewBag.Title = "Alarm Leeways";
+}
+
+<p>
+    @Html.ActionLink("Add Alarm Leeway", "Create")
+</p>
+<h2>Alarm Leeways</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Name
+            </th>
+            <th>Value
+            </th>            
+        </tr>
+    </thead>
+    <tbody>                               
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.VarName, "Edit", new { id = item.VarID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarValue)
+                </td>                
+            </tr>
+        }
+    </tbody>
+</table>

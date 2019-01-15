@@ -1,0 +1,225 @@
+﻿@model FSP.Domain.Model.FleetVehicle
+@{
+    ViewBag.Title = "Create";
+    
+}
+<div>
+    @Html.ActionLink("Back to Fleet Vehicles", "Index")
+</div>
+<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehicleNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehicleNumber)
+            @Html.ValidationMessageFor(model => model.VehicleNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FleetNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FleetNumber)
+            @Html.ValidationMessageFor(model => model.FleetNumber)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.AgreementNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AgreementNumber)
+            @Html.ValidationMessageFor(model => model.AgreementNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contractor.ContractCompanyName)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ContractorID, new SelectList(ViewBag.Contractors, "ContractorID", "ContractCompanyName"), "--Select Contractor--", new { @class="span4" })
+            @Html.ValidationMessageFor(model => model.ContractorID)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehicleType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehicleType)
+            @Html.ValidationMessageFor(model => model.VehicleType)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehicleYear)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehicleYear)
+            @Html.ValidationMessageFor(model => model.VehicleYear)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehicleMake)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehicleMake)
+            @Html.ValidationMessageFor(model => model.VehicleMake)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VehicleModel)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VehicleModel)
+            @Html.ValidationMessageFor(model => model.VehicleModel)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LicensePlate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LicensePlate)
+            @Html.ValidationMessageFor(model => model.LicensePlate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IPAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IPAddress)
+            @Html.ValidationMessageFor(model => model.IPAddress)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FuelType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FuelType)
+            @Html.ValidationMessageFor(model => model.FuelType)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VIN)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VIN)
+            @Html.ValidationMessageFor(model => model.VIN)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProgramStartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProgramStartDate)
+            @Html.ValidationMessageFor(model => model.ProgramStartDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProgramEndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProgramEndDate)
+            @Html.ValidationMessageFor(model => model.ProgramEndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegistrationExpireDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RegistrationExpireDate)
+            @Html.ValidationMessageFor(model => model.RegistrationExpireDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InsuranceExpireDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InsuranceExpireDate)
+            @Html.ValidationMessageFor(model => model.InsuranceExpireDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastCHPInspection)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastCHPInspection)
+            @Html.ValidationMessageFor(model => model.LastCHPInspection)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FAW)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FAW)
+            @Html.ValidationMessageFor(model => model.FAW)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RAW)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RAW)
+            @Html.ValidationMessageFor(model => model.RAW)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RAWR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RAWR)
+            @Html.ValidationMessageFor(model => model.RAWR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GVW)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GVW)
+            @Html.ValidationMessageFor(model => model.GVW)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GVWR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GVWR)
+            @Html.ValidationMessageFor(model => model.GVWR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Wheelbase)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Wheelbase)
+            @Html.ValidationMessageFor(model => model.Wheelbase)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Overhang)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Overhang)
+            @Html.ValidationMessageFor(model => model.Overhang)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MAXTW)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MAXTW)
+            @Html.ValidationMessageFor(model => model.MAXTW)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MAXTWCALCDATE)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MAXTWCALCDATE)
+            @Html.ValidationMessageFor(model => model.MAXTWCALCDATE)
+        </div>
+
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comments)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comments)
+            @Html.ValidationMessageFor(model => model.Comments)
+        </div>
+
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}

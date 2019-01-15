@@ -1,0 +1,125 @@
+﻿@model IEnumerable<FSP.Domain.Model.BeatSchedule>
+@{
+    ViewBag.Title = "Schedules";
+}
+
+<p>
+    @Html.ActionLink("Create New Schedule", "Create")
+</p>
+<h2>Week-Day Schedules</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th class="span3">Name
+            </th>
+            <th class="span2">Log On
+            </th>
+            <th class="span2">Roll Out
+            </th>
+            <th class="span2">On Patrol
+            </th>
+            <th class="span2">Roll In
+            </th>
+            <th class="span2">Log Off
+            </th>
+            <th class="span2">Start
+            </th>
+            <th class="span2">End
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.Weekday == true).OrderBy(p => p.OnPatrol))
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.ScheduleName, "Edit", new { id = item.BeatScheduleID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RollOut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OnPatrol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RollIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LogOff)
+                </td>
+                <td>
+                    @item.StartDate.ToShortDateString()
+                </td>
+                <td>
+                    @item.EndDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BeatScheduleID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h2>Week-End Schedules</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th class="span3">Name
+            </th>
+            <th class="span2">Log On
+            </th>
+            <th class="span2">Roll Out
+            </th>
+            <th class="span2">On Patrol
+            </th>
+            <th class="span2">Roll In
+            </th>
+            <th class="span2">Log Off
+            </th>
+            <th class="span2">Start
+            </th>
+            <th class="span2">End
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(p => p.Weekday == false).OrderBy(p => p.OnPatrol))
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.ScheduleName, "Edit", new { id = item.BeatScheduleID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RollOut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OnPatrol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RollIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LogOff)
+                </td>
+                <td>
+                    @item.StartDate.ToShortDateString()
+                </td>
+                <td>
+                    @item.EndDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.BeatScheduleID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

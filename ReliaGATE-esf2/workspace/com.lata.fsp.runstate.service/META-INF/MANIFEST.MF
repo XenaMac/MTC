@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RunStateService
+Bundle-SymbolicName: com.lata.fsp.runstate.service
+Bundle-Version: 2.2.3
+Bundle-Vendor: LATA
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: com.lata.fsp.runstate.service

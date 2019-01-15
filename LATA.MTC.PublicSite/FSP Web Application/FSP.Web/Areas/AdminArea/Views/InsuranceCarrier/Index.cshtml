@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FSP.Domain.Model.InsuranceCarrier>
+@{
+    ViewBag.Title = "Insurance Carriers";
+}
+
+<p>
+    @Html.ActionLink("Add Insurance Carrier", "Create")
+</p>
+<h2>Insurance Carriers</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Carrier Name
+            </th>
+            <th>Policy Number
+            </th>
+            <th>Expiration Date
+            </th>
+            <th>Policy Name
+            </th>
+            <th>Phone
+            </th>
+            <th>Fax
+            </th>
+            <th>Email
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.CarrierName, "Edit", new { id = item.InsuranceID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsurancePolicyNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpirationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PolicyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InsuranceID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

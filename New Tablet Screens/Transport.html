@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>TRANSPORT</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/ClientCSS.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery-fallr-1.3.css"/>
+		<script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="js/jquery-browser-plugin.js" type="text/javascript"></script>
+		<script src="js/GlobalData.js" type="text/javascript"></script>
+		<script src="js/jquery-fallr-1.3.min.js" type="text/javascript"></script>
+		<script src="js/Transport.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="header" class="statusHeader">
+			<p><span class="truckStatus">Bay Area LATATrax Incident Report</span></p>
+		</div>
+		<div id="buttons">
+            <input type="button" class="lrgButton" id="btnPreAssistReport" value="Step 1&#13;&#10;Pre-Assist&#13;&#10;Report" />
+            <input type="button" class="lrgButton" id="btnStep1" value="Step 2&#13;&#10;Problem&#13;&#10;Type" />
+            <input type="button" class="lrgButton" id="btnStep2" value="Step 3&#13;&#10;Action&#13;&#10;Taken" />
+            <input type="button" class="lrgButtonBlue" id="btnStep3" value="Step 4&#13;&#10;Transport" />
+            <input type="button" class="lrgButton" id="btnStep4" value="Step 5&#13;&#10;Details" />
+		</div>
+		<div><h2>Enter all that apply</h2></div>
+			<div class="paddedDiv">
+				<div>
+					<input type="checkbox" name="action" id="chkTransportedFemale"/>
+					<label for="chkTransportedFemale">Provided Transportation to Female (11-48X) (FPAS)</label>
+				</div>
+                <div>
+                    <input type="checkbox" name="action" id="chkTransportedFemaleJuvenile" />
+                    <label for="chkTransportedFemaleJuvenile">Provided Transportation to Female Juvenile (11-48X) (FJUV)</label>
+                </div>
+				<div>
+					<input type="checkbox" name="action" id="chkTransportedMale"/>
+                    <label for="chkTransportedMale">Provided Transportation to Male (11-48) (MPAS)</label>
+				</div>
+                <div>
+                    <input type="checkbox" name="action" id="chkTransportedMaleJuvenile" />
+                    <label for="chkTransportedMaleJuvenile">Provided Transportation to Male Juvenile(11-48) (MJUV)</label>
+                </div>
+				<div>
+					<input type="checkbox" name="action" id="chkTransportedPush"/>
+					<label for="chkTransportedPush">Provided Push (P)</label>
+				</div>
+				<div>
+					<input type="checkbox" name="action" id="chkTransportedTow"/>
+					<label for="chkTransportedTow">Provided Tow (T)</label>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="paddedDiv">
+				<span class="label">
+					<label for="txtStartOdo">Start Odometer</label>
+				</span>
+				<span class="value">
+					<input id="txtStartODO" class="txtLogon" type="text"/>
+				</span>
+			</div>
+			<div class="clear"></div>
+			<div class="paddedDiv">
+				<span class="label">
+					<label for="txtStartOdo">End Odometer</label>
+				</span>
+				<span class="value">
+					<input id="txtEndODO" class="txtLogon" type="text"/>
+				</span>
+			</div>
+			<div class="clear"></div>
+		
+		<div><h2>Complete if vehicle was taken to a drop site</h2></div>
+		<div>
+			<div class="paddedDiv">
+				<span class="label">Select Beat</span>
+				<span class="value">
+					<select id="selBeat" class="bigSel">
+						<option>Select</option>
+					</select>
+				</span>
+			</div>
+			<div class="clear"></div>
+			<div class="paddedDiv">
+				<span class="label">Select Drop Site</span>
+				<span class="value">
+					<select id="selDrop" class="bigSel">
+						<option>Select</option>
+					</select>
+				</span>
+			</div>
+			<div class="paddedDiv">
+				<span class="label">If Other:</span>
+				<span class="value">
+					<input type="text" id="txtOtherDrop" name="txtOtherDrop" class="txtLogon"/>
+				</span>
+			</div>
+			<div class="clear"></div>
+		</div>
+	<hr/>
+	</body>
+</html>

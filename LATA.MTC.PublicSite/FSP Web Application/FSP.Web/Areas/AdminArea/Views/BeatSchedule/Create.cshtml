@@ -1,0 +1,41 @@
+﻿@using FSP.Web.Helpers
+@{
+    ViewBag.Title = "Create";    
+}
+
+<div>
+    @Html.ActionLink("Back to Beat Schedules", "Index")
+</div>
+<h2>New Beat Schedule</h2>
+
+<form class="form-horizontal">
+    <fieldset>
+        <legend></legend>
+        <div class="control-group">            
+            <label class="control-label">Select Beat</label>
+            <div class="controls">
+                <select data-bind="options: beats, value: selectedBeat, optionsText: 'BeatNumber', captionText: '--Select--'"></select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Select Schedule(s)</label>
+            <div class="controls" data-bind="foreach: schedules">
+                <label class="checkbox">
+                    <input type="checkbox" data-bind="click: checked">
+                    <span data-bind="text: scheduleName"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <input type="button" class="btn btn-primary" value="Submit" data-bind="enable: selectedSchedules().length > 0 && isBusy() === false, click: save" />
+        </div>
+    </fieldset>
+</form>
+
+
+@section scripts{
+    <script src="~/Scripts/knockout-2.2.1.js"></script>
+    <script src="~/MyScripts/beatScheduleValidation.js"></script>
+}
+

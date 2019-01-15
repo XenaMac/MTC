@@ -1,0 +1,71 @@
+﻿@model FSP.Domain.Model.InsuranceCarrier
+@{
+    ViewBag.Title = "Edit " + @Model.CarrierName;
+    
+}
+<div>
+    @Html.ActionLink("Back to Insurance Carriers", "Index")
+</div>
+<h2>Edit "@Model.CarrierName"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        @Html.HiddenFor(model => model.InsuranceID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CarrierName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CarrierName)
+            @Html.ValidationMessageFor(model => model.CarrierName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.InsurancePolicyNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InsurancePolicyNumber)
+            @Html.ValidationMessageFor(model => model.InsurancePolicyNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ExpirationDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ExpirationDate)
+            @Html.ValidationMessageFor(model => model.ExpirationDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PolicyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PolicyName)
+            @Html.ValidationMessageFor(model => model.PolicyName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fax)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fax)
+            @Html.ValidationMessageFor(model => model.Fax)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

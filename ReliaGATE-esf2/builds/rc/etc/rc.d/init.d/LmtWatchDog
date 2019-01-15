@@ -1,0 +1,113 @@
+#!/bin/bash
+###############################################################
+# This script performs software updates
+###############################################################
+fileerror='/lata/config/fileerror.log'
+installerror='/lata/config/installerror.log'
+propsFile='/lata/config/fterm.props'
+watchdogfile='/lata/config/watchdog.txt'
+watchdogflag='/lata/config/watchdogOFF'
+watchdogout='/dev/null'
+preGpsTimeout=600
+postGpsTimeout=60
+preGps=1
+doReboot=0
+
+#########################################
+# verify error directory
+#########################################
+errordir='/lata/config/error'
+if [ ! -e $errordir ]; then
+  mkdir $errordir;
+fi
+
+function log_error()
+{
+  local level=$1;
+  local type=$2;
+  local number=$3;
+  local description=$4;
+  local ext='.err';
+  local script='wd';
+  local timestamp=$(date '+%s');
+  local filename=$errordir/$level-$type-$script-$number-$timestamp$ext;
+  echo $description" "$(date) > $filename;
+}
+
+#########################################
+# create watchdogfile if it doesn't exist
+#########################################
+if [ ! -e $watchdogfile ]; then
+  echo $(date) "GPS is not alive (enabled=true)..." > $watchdogfile;
+fi
+
+#########################################
+# check if need to enable logging
+#########################################
+if [ -e $propsFile ]; then
+  logSetting=$(cat $propsFile | grep -i "Log=" | grep -i "T");
+  if [ "x$logSetting" != "x" ]; then
+    watchdogout='/lata/logs/watchdog.log';
+  fi
+fi
+
+if [ ! -e $watchdogflag ]; then
+  #########################################
+  # check time of watchdogfile against date
+  #########################################
+  cat $watchdogfile >> $watchdogout;
+  watchdogtime=$(cat $watchdogfile | grep "enabled");
+  if [ "x$watchdogtime" != "x" ]; then
+    watchdogtime2=$(echo $watchdogtime | grep "not alive");
+    if [ "x$watchdogtime2" != "x" ]; then
+      # Sun Jul 28 16:22:19 EDT 2013 GPS is not alive (enabled=true)...
+      dogtdatetime=$(echo $watchdogtime2 | sed 's/\(^.*\)GPS.*/\1/');
+    else
+      preGps=0
+      # 2012/11/17 23:59:56:GPS is alive (enabled=true)...
+      dogtdatetime=$(echo $watchdogtime | sed 's/\([0-9]*\/[0-9]*\/[0-9]* [0-9]*:[0-9]*:[0-9]*\):.*/\1/');
+    fi
+
+    #date -d "MMDDHHmmYYYY" '+%s'
+    dogsecs=$(date -d "$dogtdatetime" '+%s');
+    nowsecs=$(date '+%s');
+    dognowdiff=`expr $nowsecs - $dogsecs`;
+    echo $dognowdiff "seconds no GPS" $(date) >> $watchdogout;
+ 
+    #########################################
+    # reboot if first GPS update doesn't occur
+    # in 10 minutes else reboot after 1 minute
+    # if subsequent GPS updates stop
+    #########################################
+    if [ $preGps -eq 1 ]; then
+      if [ $dognowdiff -ge $preGpsTimeout ]; then
+        doReboot=1;
+      fi
+    else
+      if [ $dognowdiff -ge $postGpsTimeout ]; then
+        doReboot=1;
+      fi
+    fi
+    if [ $doReboot -eq 1 ]; then
+      #########################################
+      # too long without GPS, reboot ZyWAN
+      #########################################
+      echo "Error! GPS pump is dead, Rebooting" $(date) >> $watchdogout;
+      echo "Error! GPS pump is dead, Rebooting" $(date) >> $fileerror;
+      echo "Error! GPS pump is dead, Rebooting" $(date) >> $installerror;
+      log_error "3" "watchdog" "01" "Error! GPS pump is dead, Rebooting ";
+      reboot;
+    else
+      echo "Not rebooting" $(date) >> $watchdogout;
+    fi
+  else
+    echo "Nothing in" $watchdogfile $(date) >> $watchdogout;
+    echo $(date) "GPS is not alive (enabled=true)..." > $watchdogfile;
+    echo "Not rebooting" $(date) >> $watchdogout;
+  fi
+else
+  #########################################
+  # don't do anything if watchdog disabled
+  #########################################
+  echo "Watchdog disabled by" $watchdogflag $(date) >> $watchdogout;
+fi

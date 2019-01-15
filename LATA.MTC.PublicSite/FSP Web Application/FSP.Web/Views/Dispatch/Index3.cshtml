@@ -1,0 +1,23 @@
+﻿@model FSP.Web.ViewModels.Dispatch
+
+@{
+    ViewBag.Title = "Index3";
+}
+<script src="@Url.Content("~/Scripts/knockout-2.1.0.js")"></script>
+<script src="@Url.Content("~/MyScripts/junk.js")"></script>
+
+<table class="table table-condensed table-bordered table-striped tablesorter">
+    <thead>
+        <tr data-bind="foreach: properties">
+            <th><span data-bind="text: name(), click: sort"></span></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: records">
+        <tr>
+            <td><span data-bind="text: firstName"></span></td>
+            <td><span data-bind="text: lastName"></span></td>
+            <td><span data-bind="text: dob"></span></td>
+        </tr>
+    </tbody>
+</table>
+

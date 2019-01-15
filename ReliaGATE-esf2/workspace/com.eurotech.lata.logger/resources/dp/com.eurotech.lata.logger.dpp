@@ -1,0 +1,20 @@
+#Deployment Plugin Project File
+#Tue Mar 01 05:50:37 MST 2016
+build.ant.name=<.>\\resources\\dp\\com.eurotech.lata.logger_build.xml
+build.dp.file=<.>\\resources\\dp\\com.eurotech.lata.logger.dp
+build.location=
+bundles.0.bundle_path=C\:\\Dropbox\\SVN\\MTC\\ReliaGATE-esf2\\builds\\2.6.0\\plugins\\com.eurotech.lata.logger_2.6.0.jar
+bundles.0.customizer=false
+bundles.0.headers.count=0
+bundles.0.missing=false
+bundles.0.name=bundles/com.eurotech.lata.logger_2.6.0.jar
+bundles.0.symbolic_name=com.eurotech.lata.logger;singleton\:\=true
+bundles.0.version=2.6.0
+bundles.count=1
+certificates.count=0
+general.signbundles=false
+headers.other.headers=
+headers.symbolic.name=com.eurotech.lata.logger
+headers.version=1.0.0
+resources.count=0
+

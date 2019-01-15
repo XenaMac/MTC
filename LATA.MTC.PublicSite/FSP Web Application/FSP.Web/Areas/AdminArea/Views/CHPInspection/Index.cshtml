@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FSP.Domain.Model.CHPInspection>
+@{
+    ViewBag.Title = "CHP Inspections";
+}
+
+<p>
+    @Html.ActionLink("Add CHP Inspection", "Create")
+</p>
+<h2>CHP Inspections</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Inspection Date
+            </th>
+            <th>Fleet Vehicle
+            </th>
+            <th>CHP Officer
+            </th>
+            <th>Inspection Type
+            </th>
+            <th>Inspection Notes
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.InspectionDate.ToString("MM/dd/yyyy"), "Edit", new { id = item.InspectionID })
+                </td>
+                <td>
+                    @Html.ActionLink(item.FleetVehicle.VehicleNumber, "Edit", "FleetVehicle", null, null, null, new { id = item.FleetVehicleID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.CHPOfficer.OfficerFirstName + " "  + item.CHPOfficer.OfficerLastName, "Edit", "CHPOfficer", null, null, null, new { id = item.BadgeID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink(item.InspectionType.InspectionType1, "Edit", "InspectionType", null, null, null, new { id = item.InspectionTypeID }, null)
+                </td>               
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionNotes)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InspectionID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

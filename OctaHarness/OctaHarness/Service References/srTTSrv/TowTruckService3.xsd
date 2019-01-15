@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/FPSService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FPSService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9017/TowTruckService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTowTruckData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TowTruckData" nillable="true" type="tns:TowTruckData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTowTruckData" nillable="true" type="tns:ArrayOfTowTruckData" />
+  <xs:complexType name="TowTruckData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alarms" type="xs:boolean" />
+      <xs:element minOccurs="0" name="BeatNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CallSign" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Cell" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DriverName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Heading" type="xs:int" />
+      <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastMessage" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Lat" type="xs:double" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Lon" type="xs:double" />
+      <xs:element minOccurs="0" name="OutOfBoundsAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OutOfBoundsMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutOfBoundsTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Speed" type="xs:double" />
+      <xs:element minOccurs="0" name="SpeedingAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SpeedingTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpeedingValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusStarted" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TruckNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleState" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TowTruckData" nillable="true" type="tns:TowTruckData" />
+  <xs:complexType name="CopyTruck">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BeatID" type="ser:guid" />
+      <xs:element minOccurs="0" name="BeatNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Driver" nillable="true" type="tns:CopyDriver" />
+      <xs:element minOccurs="0" name="Extended" nillable="true" type="tns:CopyExtended" />
+      <xs:element minOccurs="0" name="Identifier" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:CopyStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CopyTruck" nillable="true" type="tns:CopyTruck" />
+  <xs:complexType name="CopyDriver">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignedBeat" type="ser:guid" />
+      <xs:element minOccurs="0" name="BeatScheduleID" type="ser:guid" />
+      <xs:element minOccurs="0" name="BreakStarted" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DriverID" type="ser:guid" />
+      <xs:element minOccurs="0" name="FSPID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LunchStarted" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TowTruckCompany" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CopyDriver" nillable="true" type="tns:CopyDriver" />
+  <xs:complexType name="CopyExtended">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContractorID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ContractorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FAW" type="xs:int" />
+      <xs:element minOccurs="0" name="FleetNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FleetVehicleID" type="ser:guid" />
+      <xs:element minOccurs="0" name="FuelType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GVW" type="xs:int" />
+      <xs:element minOccurs="0" name="GVWR" type="xs:int" />
+      <xs:element minOccurs="0" name="InsuranceExpireDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastCHPInspection" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LicensePlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MAXTW" type="xs:int" />
+      <xs:element minOccurs="0" name="MAXTWCALCDATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Overhang" type="xs:int" />
+      <xs:element minOccurs="0" name="ProgramEndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProgramStartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RAW" type="xs:int" />
+      <xs:element minOccurs="0" name="RAWR" type="xs:int" />
+      <xs:element minOccurs="0" name="RegistrationExpireDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TruckNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleMake" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleModel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleYear" type="xs:int" />
+      <xs:element minOccurs="0" name="Wheelbase" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CopyExtended" nillable="true" type="tns:CopyExtended" />
+  <xs:complexType name="CopyStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GPSIssueAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IncidentAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncidentAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IncidentAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncidentAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IncidentAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LogOffAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LogOffAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LogOffAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogOffAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LogOffAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LogOnAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LogOnAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LogOnAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogOnAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LogOnAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OnPatrolAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutOfBoundsAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OutOfBoundsMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutOfBoundsStartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutOfBoundsTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollInAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RollInAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollInAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RollInAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollInAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollOutAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RollOutAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollOutAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RollOutAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollOutAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpeedingAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SpeedingTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpeedingValue" type="xs:double" />
+      <xs:element minOccurs="0" name="StationaryAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StationaryAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StationaryAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationaryAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StationaryAlarmStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StatusStarted" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VehicleStatus" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CopyStatus" nillable="true" type="tns:CopyStatus" />
+  <xs:complexType name="ArrayOfCopyTruck">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CopyTruck" nillable="true" type="tns:CopyTruck" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCopyTruck" nillable="true" type="tns:ArrayOfCopyTruck" />
+  <xs:complexType name="MTCPreAssistData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Beat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CHPIncidentType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CHPLogNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CrossStreet" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direction" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DispatchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FSPLocation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Freeway" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncidentSurveyNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LaneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Lat" type="xs:double" />
+      <xs:element minOccurs="0" name="LocationofInitialDispatch" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Lon" type="xs:double" />
+      <xs:element minOccurs="0" name="Position" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MTCPreAssistData" nillable="true" type="tns:MTCPreAssistData" />
+  <xs:complexType name="ArrayOfAssistTruck">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AssistTruck" nillable="true" type="tns:AssistTruck" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAssistTruck" nillable="true" type="tns:ArrayOfAssistTruck" />
+  <xs:complexType name="AssistTruck">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContractorID" type="ser:guid" />
+      <xs:element minOccurs="0" name="ContractorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TruckID" type="ser:guid" />
+      <xs:element minOccurs="0" name="TruckNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AssistTruck" nillable="true" type="tns:AssistTruck" />
+  <xs:complexType name="ArrayOfListDrivers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ListDrivers" nillable="true" type="tns:ListDrivers" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfListDrivers" nillable="true" type="tns:ArrayOfListDrivers" />
+  <xs:complexType name="ListDrivers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContractorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DriverID" type="ser:guid" />
+      <xs:element minOccurs="0" name="DriverName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TruckID" type="ser:guid" />
+      <xs:element minOccurs="0" name="TruckNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListDrivers" nillable="true" type="tns:ListDrivers" />
+  <xs:complexType name="ArrayOfAlarmStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AlarmStatus" nillable="true" type="tns:AlarmStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAlarmStatus" nillable="true" type="tns:ArrayOfAlarmStatus" />
+  <xs:complexType name="AlarmStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BeatNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractCompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DriverName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GPSIssueAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmID" type="ser:guid" />
+      <xs:element minOccurs="0" name="GPSIssueAlarmStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HasAlarms" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncidentAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IncidentAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IncidentAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IncidentAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IncidentAlarmID" type="ser:guid" />
+      <xs:element minOccurs="0" name="IncidentAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OnPatrolAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmID" type="ser:guid" />
+      <xs:element minOccurs="0" name="OnPatrolAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutOfBoundsAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OutOfBoundsAlarmID" type="ser:guid" />
+      <xs:element minOccurs="0" name="OutOfBoundsCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutOfBoundsExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutOfBoundsMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutOfBoundsStartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutOfBoundsTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollInAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RollInAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollInAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RollInAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RollInAlarmID" type="ser:guid" />
+      <xs:element minOccurs="0" name="RollInAlarmTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpeedingAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SpeedingAlarmID" type="ser:guid" />
+      <xs:element minOccurs="0" name="SpeedingTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SpeedingValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationaryAlarm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StationaryAlarmCleared" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StationaryAlarmComments" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationaryAlarmExcused" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StationaryAlarmID" type="ser:guid" />
+      <xs:element minOccurs="0" name="StationaryAlarmStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StatusStarted" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VehicleNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VehicleStatus" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlarmStatus" nillable="true" type="tns:AlarmStatus" />
+  <xs:complexType name="TruckMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Acked" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AckedTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="MessageID" type="ser:guid" />
+      <xs:element minOccurs="0" name="MessageResponse" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MessageType" type="xs:int" />
+      <xs:element minOccurs="0" name="SentTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TruckIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserEmail" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TruckMessage" nillable="true" type="tns:TruckMessage" />
+  <xs:complexType name="ArrayOfbeatData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="beatData" nillable="true" type="tns:beatData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfbeatData" nillable="true" type="tns:ArrayOfbeatData" />
+  <xs:complexType name="beatData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BackupTruckCount" type="xs:int" />
+      <xs:element minOccurs="0" name="BeatNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CallSign" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractCompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EndTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ScheduleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TruckCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="beatData" nillable="true" type="tns:beatData" />
+  <xs:complexType name="ArrayOfRunStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RunStatus" nillable="true" type="tns:RunStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRunStatus" nillable="true" type="tns:ArrayOfRunStatus" />
+  <xs:complexType name="RunStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alert" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Heading" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Speed" type="xs:int" />
+      <xs:element minOccurs="0" name="StatusChange" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Time" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RunStatus" nillable="true" type="tns:RunStatus" />
+</xs:schema>

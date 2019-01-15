@@ -1,0 +1,32 @@
+﻿@using FSP.Web.Helpers
+@model FSP.Web.Areas.AdminArea.ViewModels.BeatScheduleCRUDViewModel
+@{
+    ViewBag.Title = "Edit"; 
+}
+
+<div>
+    @Html.ActionLink("Back to Beat Schedules", "Index")
+</div>
+<h2>Edit Beat Schedule for "@Model.BeatNumber"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)   
+    @Html.HiddenFor(model=>model.BeatID)
+    @Html.HiddenFor(model=>model.BeatNumber)
+    <fieldset>
+        <legend></legend>
+       
+        <div class="editor-label">
+            Schedules
+        </div>
+        <div class="editor-field">          
+            @Html.CheckBoxList("SelectedSchedules", Model.Schedules)
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}
+

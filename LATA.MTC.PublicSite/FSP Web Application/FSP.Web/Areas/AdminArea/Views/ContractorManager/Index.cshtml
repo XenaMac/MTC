@@ -1,0 +1,61 @@
+﻿@model IEnumerable<FSP.Domain.Model.ContractorManager>
+@{
+    ViewBag.Title = "Contractor Managers";
+}
+
+<p>
+    @Html.ActionLink("Add Contractor Manager", "Create")
+</p>
+<h2>Contractor Managers</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Name
+            </th>
+            <th>Phone
+            </th>
+            <th>Cell Phone
+            </th>
+            <th>Email
+            </th>
+            <th>Start Date
+            </th>
+            <th>End Date
+            </th>
+            <th>Contractor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.LastName + ", " + item.FirstName, "Edit", new { id = item.ContractorManagerID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CellPhone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Contractor.ContractCompanyName, "Edit", "Contractor", null, null, null, new { id = item.ContractorID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ContractorManagerID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

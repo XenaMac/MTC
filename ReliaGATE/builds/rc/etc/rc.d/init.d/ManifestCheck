@@ -1,0 +1,186 @@
+#!/bin/bash
+###############################################################
+# This script uses the manifest files to verify all build files
+# are present and not corrupted or modified
+###############################################################
+dirs=('/boot/grub' '/etc' '/etc/rc.d/init.d' '/opt/jvm/esf/bundlefiles' '/opt/jvm/esf/configuration/.esf/com.esf.core.system.bootstrap')
+fileerror='/lata/config/fileerror.log'
+forever=1
+dirindexfile='/lata/config/manifestdir.txt'
+dirrowfile='/lata/config/manifestrow.txt'
+manifest='manifest.txt'
+manifestflag='/lata/config/manifestOFF'
+manifestout='/dev/null'
+propsFile='/lata/config/fterm.props'
+sleepsecs=30
+arrsize=${#dirs[@]};
+
+###############################################################
+# Check if logging enabled
+###############################################################
+if [ -e $propsFile ]; then
+  logSetting=$(cat $propsFile | grep -i "Log=" | grep -i "T");
+  if [ "x$logSetting" != "x" ]; then
+    manifestout='/lata/logs/manifest.log'
+    echo "Starting ManifestCheck" $(date) >> $manifestout;
+  fi
+fi
+
+###############################################################
+# verify error directory
+###############################################################
+errordir='/lata/config/error'
+if [ ! -e $errordir ]; then
+  mkdir $errordir;
+fi
+
+function log_error()
+{
+  local level=$1;
+  local type=$2;
+  local number=$3;
+  local description=$4;
+  local ext='.err';
+  local script='mc';
+  local timestamp=$(date '+%s');
+  local filename=$errordir/$level-$type-$script-$number-$timestamp$ext;
+  echo $description" "$(date) > $filename;
+}
+###############################################################
+# function to check manifest checksum against computed checksum
+###############################################################
+function check_manifest()
+{
+local checksum
+local count=0
+local eof=0
+local directory=${dirs[$dirindex]}
+local FD=7
+local filesize
+local filename
+local manifile=$directory/$manifest
+local data
+local nextdir=0
+local pathname
+local tokens
+
+# Check manifest file exists
+if [ -e $manifile ]; then
+  exec 7<$manifile
+
+  # find current row
+  while [ $eof -eq 0 ]
+  do
+    if read data <&$FD; then
+      let count++
+      if [ $count -eq $dirrow ]; then
+        # get manifest checksum filesize filename
+        tokens=( $data );
+        manchecksum=${tokens[0]};
+        manfilesize=${tokens[1]};
+        filename=${tokens[2]};
+        pathname=$directory/$filename;
+
+        if [ -e $pathname ]; then
+          # get computed checksum filesize
+          /opt/jvm/bin/java -cp /etc/rc.d/init.d CRC32Checksum $pathname > checksum.txt;
+          checksum=$(cat checksum.txt | sed 's/\([0-9]*\) [0-9]* .*/\1/');
+          filesize=$(cat checksum.txt | sed 's/[0-9]* \([0-9]*\) .*/\1/');
+          if [ $manchecksum -ne $checksum -o $manfilesize -ne $filesize ]; then
+            echo "Error! Bad" $pathname $manchecksum $checksum $manfilesize $filesize $(date) >> $manifestout;
+            echo "Error! Bad" $pathname $manchecksum $checksum $manfilesize $filesize $(date) >> $fileerror;
+            log_error "2" "integrity" "03" "Error! Bad "$pathname" "$manchecksum" "$checksum" "$manfilesize" "$filesize;
+          else
+            echo $pathname $(date) >> $manifestout;
+          fi
+        else
+          echo "Error! Missing" $pathname $(date) >> $manifestout;
+          echo "Error! Missing" $pathname $(date) >> $fileerror;
+          log_error "2" "integrity" "04" "Error! Missing "$pathname;
+        fi
+        dirrow=`expr $dirrow + 1`;
+        eof=1
+      fi
+    else
+      if [ $count -lt 2 ]; then
+        # manifest file has no files
+        echo "Error! Empty manifest file" $manifile $(date) >> $manifestout;
+        echo "Error! Empty manifest file" $manifile $(date) >> $fileerror;
+        log_error "2" "integrity" "05" "Error! Empty manifest file "$manifile;
+      fi
+      eof=1
+      dirrow=2
+      nextdir=1
+    fi
+  done
+
+else
+  # missing manifest file
+  echo "Error! Missing manifest file" $manifile $(date) >> $manifestout;
+  echo "Error! Missing manifest file" $manifile $(date) >> $fileerror;
+  log_error "2" "integrity" "06" "Error! Missing manifest file "$manifile;
+  nextdir=1
+fi
+if [ $nextdir -eq 1 ]; then
+  # get next directory
+  dirindex=`expr $dirindex + 1`;
+  if [ $dirindex -eq $arrsize ]; then
+    dirindex=0;
+  fi
+  dirrow=2;
+  echo $dirindex > $dirindexfile;
+fi
+echo $dirrow > $dirrowfile;
+}
+
+###############################################################
+# Get last directory and last row indices from files else use 2
+###############################################################
+if [ -e $dirindexfile ]; then
+  dirindex=$(cat $dirindexfile | sed 's/\([0-9]*\)/\1/');
+  if [ "x$dirindex" != "x" -a $dirindex -le $arrsize ]; then
+    if [ ! -e ${dirs[$dirindex]} ]; then
+      dirindex=0;
+      dirrow=2;
+    else
+      if [ -e $dirrowfile ]; then
+        dirrow=$(cat $dirrowfile | sed 's/\([0-9]*\)/\1/');
+        if [ "x$dirrow" == "x" ]; then
+          dirrow=2;
+        else
+          if [ $dirrow -lt 2 ]; then
+            dirrow=2;
+          fi
+        fi
+      else
+        dirrow=2;
+      fi
+    fi
+  else
+    dirindex=0;
+    dirrow=2;
+  fi
+else
+  dirindex=0;
+  dirrow=2;
+fi
+echo $dirindex > $dirindexfile;
+echo $dirrow > $dirrowfile;
+
+###############################################################
+# Loop forever
+###############################################################
+
+while [ $forever -eq 1 ]
+do
+  if [ ! -e $manifestflag ]; then
+    dirtocheck=${dirs[$dirindex]}
+    if [ "x$dirtocheck" != "x" ]; then
+      check_manifest;
+    else
+      dirindex=0;
+      dirrow=2;
+    fi
+  fi
+  sleep $sleepsecs
+done

@@ -1,0 +1,140 @@
+﻿@model FSP.Domain.Model.BeatSchedule
+@{
+    ViewBag.Title = "Create";
+    
+}
+
+<link href="~/Content/bootstrap-timepicker.css" rel="stylesheet" />
+
+
+<div>
+    @Html.ActionLink("Back to Schedules", "Index")
+</div>
+<h2>New Schedule</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScheduleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScheduleName)
+            @Html.ValidationMessageFor(model => model.ScheduleName)
+        </div>
+
+        <br />
+
+        <div class="editor-field">
+            <div class="checkbox">
+                <label>
+                    @Html.EditorFor(model => model.Weekday)
+                    Is Weekday
+                </label>
+            </div>            
+        </div>
+
+        <br />
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logon)
+        </div>
+        <div class="editor-field">
+            <div class="input-append bootstrap-timepicker">
+                @Html.TextBoxFor(model => model.Logon, new { @class = "input-small timerpicker" })
+                <span class="add-on"><i class="icon-time"></i></span>
+            </div>
+            @Html.ValidationMessageFor(model => model.Logon)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RollOut)
+        </div>
+        <div class="editor-field">
+            <div class="input-append bootstrap-timepicker">
+                @Html.TextBoxFor(model => model.RollOut, new { @class = "input-small timerpicker" })
+                <span class="add-on"><i class="icon-time"></i></span>
+            </div>
+            @Html.ValidationMessageFor(model => model.RollOut)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OnPatrol)
+        </div>
+        <div class="editor-field">
+            <div class="input-append bootstrap-timepicker">
+                @Html.TextBoxFor(model => model.OnPatrol, new { @class = "input-small timerpicker" })
+                <span class="add-on"><i class="icon-time"></i></span>
+            </div>
+            @Html.ValidationMessageFor(model => model.OnPatrol)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RollIn)
+        </div>
+        <div class="editor-field">
+            <div class="input-append bootstrap-timepicker">
+                @Html.TextBoxFor(model => model.RollIn, new { @class = "input-small timerpicker" })
+                <span class="add-on"><i class="icon-time"></i></span>
+            </div>
+            @Html.ValidationMessageFor(model => model.RollIn)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LogOff)
+        </div>
+        <div class="editor-field">
+            <div class="input-append bootstrap-timepicker">
+                @Html.TextBoxFor(model => model.LogOff, new { @class = "input-small timerpicker" })
+                <span class="add-on"><i class="icon-time"></i></span>
+            </div>
+            @Html.ValidationMessageFor(model => model.LogOff)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.StartDate, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.EndDate, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Create</button>
+        </div>
+    </fieldset>
+}
+
+@section scripts{
+    <script src="~/Scripts/bootstrap-timepicker.js"></script>
+    <script>
+
+        $(function () {
+            $('.timerpicker').timepicker({
+                minuteStep: 1,
+                showSeconds: false,
+                showMeridian: false
+            });
+
+            $('.datepicker').datepicker({
+                dateFormat:'MM/DD/YYYY'
+            });
+        });
+
+    </script>
+}

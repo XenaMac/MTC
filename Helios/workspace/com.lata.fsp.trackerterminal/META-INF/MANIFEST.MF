@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Trackerterminal
+Bundle-SymbolicName: com.lata.fsp.trackerterminal
+Bundle-Version: 2.2.6
+Bundle-Vendor: LATA
+Bundle-RequiredExecutionEnvironment: OSGi/Minimum-1.1
+Import-Package: com.esf.device.gps.service,
+ org.eclipse.soda.sat.core.framework;version="1.1.0",
+ org.xml.sax,
+ org.xml.sax.helpers
+Bundle-Activator: com.lata.fsp.trackerterminal.bundle.Activator
+Require-Bundle: com.lata.fsp.runstate.service;bundle-version="1.0.4"

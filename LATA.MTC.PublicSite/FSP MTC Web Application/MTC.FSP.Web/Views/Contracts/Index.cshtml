@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Contracts & Beats";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+
+
+<div ng-app="mtcApp">
+    <div ng-controller="contractsController" ng-cloak>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Contracts & Beats <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingContracts"></i></h2>
+                @Html.ActionLink("Back to Tables", "Index", "Tables")
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <a class="btn btn-success" href="~/Contracts/Manage" title="add contract"><i class="fa fa-plus"></i> Contract</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" data-page-size="20" data-limit-navigation="10">
+                    <thead>
+                        <tr>
+                            <th data-toggle="true" data-sort-initial="true">Agreement Number</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Max Obligation</th>
+                            <th>Beat</th>
+                            <th>Contractor</th>
+                            <th data-sort-ignore="true"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="c in contracts | orderBy : predicate : reverse">
+                            <td ng-bind="c.AgreementNumber"></td>
+                            <td ng-bind="c.StartDate"></td>
+                            <td ng-bind="c.EndDate"></td>
+                            <td ng-bind="c.MaxObligation"></td>
+                            <td ng-bind="c.Beat"></td>
+                            <td ng-bind="c.ContractorCompanyName"></td>
+                            <td>
+                                <div class="pull-right">
+                                    <a ng-href="~/Contracts/Manage/{{c.ContractId}}" class="btn btn-primary" title="edit contract"><i class="fa fa-pencil"></i></a>
+                                    <a ng-href="~/Contracts/Delete/{{c.ContractId}}" class="btn btn-danger" title="remove contract"><i class="fa fa-remove"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/contractsController.js"></script>
+    <script src="~/app/services/contractsService.js"></script>
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

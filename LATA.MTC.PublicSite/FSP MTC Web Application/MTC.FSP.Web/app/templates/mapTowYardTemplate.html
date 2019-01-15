@@ -1,0 +1,145 @@
+﻿<div ng-show="!isAdding">
+    <div class="form-group"
+        ng-hide="yards.length > 0">
+        Loading Tow Truck Yards...<i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div class="form-group">
+        <select class="form-control"
+            ng-model="selectedYard"
+            ng-options="a as a.Contractor for a in yards"
+            ng-change="setSelectedYard()"
+            ng-disabled="yards.length === 0 || isEditing">
+            <option value="">
+                --Select Yard--
+            </option>
+        </select>
+    </div>
+</div>
+
+<div ng-show="selectedYard">
+    <div class="form-group">
+        ID
+        <input ng-model="selectedYard.YardID"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Contractor
+        <input ng-model="selectedYard.Contractor"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Address
+        <input ng-model="selectedYard.Address"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        City
+        <input ng-model="selectedYard.City"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Zip
+        <input ng-model="selectedYard.Zip"
+               type="text"
+               class="form-control"
+               ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Phone
+        <input ng-model="selectedYard.Phone"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Beat
+        <select class="form-control"
+            ng-model="selectedYard.BeatID"
+            ng-options="a.Value as a.Value for a in beats"
+            ng-disabled="!isEditing && !isAdding">
+            <option value="">
+                --Select Beat--
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        Color
+        <input type="text"
+            minicolors="colorPickerSettings"
+            ng-model="selectedYard.Color"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+</div>
+
+<div class="form-group"
+    ng-show="selectedYard && !isAdding">
+    <button ng-show="!isEditing"
+        ng-click="setEdit()"
+        class="btn btn-primary btn-sm">
+        <i class="fa fa-pencil"></i> Edit Yard
+    </button>
+    <button ng-show="isEditing"
+        ng-click="save()"
+        ng-disabled="isBusySaving || isBusyDeleting"
+        class="btn btn-primary btn-sm">
+        <i class="fa fa-check"
+           ng-hide="isBusySaving">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+           ng-show="isBusySaving">
+        </i>
+        Save
+    </button>
+    <button ng-show="isEditing"
+        ng-disabled="isBusySaving || isBusyDeleting"
+        ng-click="delete()"
+        class="btn btn-danger btn-sm">
+        <i class="fa fa-trash"
+           ng-hide="isBusyDeleting">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+           ng-show="isBusyDeleting">
+        </i>
+        Delete
+    </button>
+    <button ng-show="isEditing"
+        ng-click="cancelEdit()"
+        class="btn btn-default btn-sm">
+        Cancel
+    </button>
+</div>
+
+<div class="form-group"
+    ng-show="!isEditing">
+    <button ng-show="!selectedYard"
+        ng-click="prepareNew()"
+        class="btn btn-success btn-sm">
+        <i class="fa fa-plus"></i> New Yard
+    </button>
+    <button ng-show="!isEditing && isAdding"
+        ng-click="add()"
+        ng-disabled="isBusyAdding"
+        class="btn btn-success btn-sm">
+        <i class="fa fa-check"
+           ng-hide="isBusyAdding">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+           ng-show="isBusyAdding">
+        </i>
+        Save
+    </button>
+    <button ng-show="!isEditing && isAdding"
+        ng-click="cancelAdd()"
+        class="btn btn-default btn-sm">
+        Cancel
+    </button>
+</div>

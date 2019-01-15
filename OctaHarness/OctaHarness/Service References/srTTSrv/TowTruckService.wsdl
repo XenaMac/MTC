@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TowTruckService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:9017/TowTruckService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:9017/TowTruckService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:9017/TowTruckService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FPSService" />
+      <xsd:import schemaLocation="http://localhost:9017/TowTruckService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITowTruckService_reloadBeats_InputMessage">
+    <wsdl:part name="parameters" element="tns:reloadBeats" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_reloadBeats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:reloadBeatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_reloadBeatSegments_InputMessage">
+    <wsdl:part name="parameters" element="tns:reloadBeatSegments" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_reloadBeatSegments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:reloadBeatSegmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_reloadYards_InputMessage">
+    <wsdl:part name="parameters" element="tns:reloadYards" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_reloadYards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:reloadYardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_reloadDrops_InputMessage">
+    <wsdl:part name="parameters" element="tns:reloadDrops" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_reloadDrops_OutputMessage">
+    <wsdl:part name="parameters" element="tns:reloadDropsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_CurrentTrucks_InputMessage">
+    <wsdl:part name="parameters" element="tns:CurrentTrucks" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_CurrentTrucks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CurrentTrucksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_UpdateVar_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVar" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_UpdateVar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateVarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_SingleTruckDump_InputMessage">
+    <wsdl:part name="parameters" element="tns:SingleTruckDump" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_SingleTruckDump_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SingleTruckDumpResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_UnexcuseAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnexcuseAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_UnexcuseAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnexcuseAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_findSeg_InputMessage">
+    <wsdl:part name="parameters" element="tns:findSeg" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_findSeg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:findSegResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_findBeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:findBeat" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_findBeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:findBeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_TruckDump_InputMessage">
+    <wsdl:part name="parameters" element="tns:TruckDump" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_TruckDump_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TruckDumpResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ClearAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ExcuseAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExcuseAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ExcuseAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExcuseAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_addAssist_InputMessage">
+    <wsdl:part name="parameters" element="tns:addAssist" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_addAssist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addAssistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllIncidents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIncidents" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllIncidents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIncidentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAssistTrucks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssistTrucks" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAssistTrucks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssistTrucksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetUsedBreakTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsedBreakTime" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetUsedBreakTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsedBreakTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetTruckDrivers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTruckDrivers" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetTruckDrivers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTruckDriversResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_LogOffDriver_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOffDriver" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_LogOffDriver_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOffDriverResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllAlarms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAlarms" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetAllAlarms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllAlarmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AlarmByTruck_InputMessage">
+    <wsdl:part name="parameters" element="tns:AlarmByTruck" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_AlarmByTruck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AlarmByTruckResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ResetAlarm_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetAlarm" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_ResetAlarm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetBeatData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBeatData" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetBeatData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBeatDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetBeatDataByBeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBeatDataByBeat" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_GetBeatDataByBeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBeatDataByBeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getTruckRunStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTruckRunStatus" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getTruckRunStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTruckRunStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_rebootTruck_InputMessage">
+    <wsdl:part name="parameters" element="tns:rebootTruck" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_rebootTruck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:rebootTruckResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getTruck_InputMessage">
+    <wsdl:part name="parameters" element="tns:getTruck" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getTruck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getTruckResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteBeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteBeat" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteBeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteBeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteBeatSegment_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteBeatSegment" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteBeatSegment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteBeatSegmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteCallBox_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteCallBox" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteCallBox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteCallBoxResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteDropSite_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteDropSite" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteDropSite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteDropSiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteYard_InputMessage">
+    <wsdl:part name="parameters" element="tns:deleteYard" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_deleteYard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:deleteYardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getMessagesBySender_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMessagesBySender" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getMessagesBySender_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMessagesBySenderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllMessages" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getMessagesByDriverID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMessagesByDriverID" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getMessagesByDriverID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMessagesByDriverIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getMessagesByCallSign_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMessagesByCallSign" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getMessagesByCallSign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMessagesByCallSignResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getMessagesByBeat_InputMessage">
+    <wsdl:part name="parameters" element="tns:getMessagesByBeat" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getMessagesByBeat_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getMessagesByBeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllBeats_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllBeats" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllBeats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllBeatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getBeatByBeatID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getBeatByBeatID" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getBeatByBeatID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getBeatByBeatIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllSegmentPolygons_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllSegmentPolygons" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllSegmentPolygons_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllSegmentPolygonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getSegmentPolygon_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSegmentPolygon" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getSegmentPolygon_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSegmentPolygonResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getSegmentPolygonById_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSegmentPolygonById" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getSegmentPolygonById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSegmentPolygonByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllYards_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllYards" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllYards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllYardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getYardPolygon_InputMessage">
+    <wsdl:part name="parameters" element="tns:getYardPolygon" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getYardPolygon_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getYardPolygonResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllDropSites_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllDropSites" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllDropSites_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllDropSitesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getDropSite_InputMessage">
+    <wsdl:part name="parameters" element="tns:getDropSite" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getDropSite_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getDropSiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllCallBoxes_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllCallBoxes" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getAllCallBoxes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllCallBoxesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getCallBoxByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:getCallBoxByID" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getCallBoxByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getCallBoxByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateBeatInfoData_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateBeatInfoData" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateBeatInfoData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateBeatInfoDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateBeatSegmentData_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateBeatSegmentData" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateBeatSegmentData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateBeatSegmentDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateYardData_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateYardData" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateYardData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateYardDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateDropSiteData_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateDropSiteData" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateDropSiteData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateDropSiteDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateCallBox_InputMessage">
+    <wsdl:part name="parameters" element="tns:updateCallBox" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_updateCallBox_OutputMessage">
+    <wsdl:part name="parameters" element="tns:updateCallBoxResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_setConfidence_InputMessage">
+    <wsdl:part name="parameters" element="tns:setConfidence" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_setConfidence_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setConfidenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getConfidence_InputMessage">
+    <wsdl:part name="parameters" element="tns:getConfidence" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_getConfidence_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getConfidenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_addWAZE_InputMessage">
+    <wsdl:part name="parameters" element="tns:addWAZE" />
+  </wsdl:message>
+  <wsdl:message name="ITowTruckService_addWAZE_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addWAZEResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ITowTruckService">
+    <wsdl:operation name="reloadBeats">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/reloadBeats" message="tns:ITowTruckService_reloadBeats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/reloadBeatsResponse" message="tns:ITowTruckService_reloadBeats_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="reloadBeatSegments">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/reloadBeatSegments" message="tns:ITowTruckService_reloadBeatSegments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/reloadBeatSegmentsResponse" message="tns:ITowTruckService_reloadBeatSegments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="reloadYards">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/reloadYards" message="tns:ITowTruckService_reloadYards_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/reloadYardsResponse" message="tns:ITowTruckService_reloadYards_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="reloadDrops">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/reloadDrops" message="tns:ITowTruckService_reloadDrops_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/reloadDropsResponse" message="tns:ITowTruckService_reloadDrops_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CurrentTrucks">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/CurrentTrucks" message="tns:ITowTruckService_CurrentTrucks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/CurrentTrucksResponse" message="tns:ITowTruckService_CurrentTrucks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/UpdateVar" message="tns:ITowTruckService_UpdateVar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/UpdateVarResponse" message="tns:ITowTruckService_UpdateVar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SingleTruckDump">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/SingleTruckDump" message="tns:ITowTruckService_SingleTruckDump_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/SingleTruckDumpResponse" message="tns:ITowTruckService_SingleTruckDump_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnexcuseAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/UnexcuseAlarm" message="tns:ITowTruckService_UnexcuseAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/UnexcuseAlarmResponse" message="tns:ITowTruckService_UnexcuseAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="findSeg">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/findSeg" message="tns:ITowTruckService_findSeg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/findSegResponse" message="tns:ITowTruckService_findSeg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="findBeat">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/findBeat" message="tns:ITowTruckService_findBeat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/findBeatResponse" message="tns:ITowTruckService_findBeat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TruckDump">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/TruckDump" message="tns:ITowTruckService_TruckDump_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/TruckDumpResponse" message="tns:ITowTruckService_TruckDump_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ClearAlarm" message="tns:ITowTruckService_ClearAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ClearAlarmResponse" message="tns:ITowTruckService_ClearAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcuseAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ExcuseAlarm" message="tns:ITowTruckService_ExcuseAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ExcuseAlarmResponse" message="tns:ITowTruckService_ExcuseAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addAssist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/addAssist" message="tns:ITowTruckService_addAssist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/addAssistResponse" message="tns:ITowTruckService_addAssist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllIncidents">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetAllIncidents" message="tns:ITowTruckService_GetAllIncidents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetAllIncidentsResponse" message="tns:ITowTruckService_GetAllIncidents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssistTrucks">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetAssistTrucks" message="tns:ITowTruckService_GetAssistTrucks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetAssistTrucksResponse" message="tns:ITowTruckService_GetAssistTrucks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedBreakTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetUsedBreakTime" message="tns:ITowTruckService_GetUsedBreakTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetUsedBreakTimeResponse" message="tns:ITowTruckService_GetUsedBreakTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTruckDrivers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetTruckDrivers" message="tns:ITowTruckService_GetTruckDrivers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetTruckDriversResponse" message="tns:ITowTruckService_GetTruckDrivers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOffDriver">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/LogOffDriver" message="tns:ITowTruckService_LogOffDriver_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/LogOffDriverResponse" message="tns:ITowTruckService_LogOffDriver_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAlarms">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetAllAlarms" message="tns:ITowTruckService_GetAllAlarms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetAllAlarmsResponse" message="tns:ITowTruckService_GetAllAlarms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AlarmByTruck">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/AlarmByTruck" message="tns:ITowTruckService_AlarmByTruck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/AlarmByTruckResponse" message="tns:ITowTruckService_AlarmByTruck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/SendMessage" message="tns:ITowTruckService_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/SendMessageResponse" message="tns:ITowTruckService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetAlarm">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/ResetAlarm" message="tns:ITowTruckService_ResetAlarm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/ResetAlarmResponse" message="tns:ITowTruckService_ResetAlarm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBeatData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetBeatData" message="tns:ITowTruckService_GetBeatData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetBeatDataResponse" message="tns:ITowTruckService_GetBeatData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBeatDataByBeat">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/GetBeatDataByBeat" message="tns:ITowTruckService_GetBeatDataByBeat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/GetBeatDataByBeatResponse" message="tns:ITowTruckService_GetBeatDataByBeat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTruckRunStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getTruckRunStatus" message="tns:ITowTruckService_getTruckRunStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getTruckRunStatusResponse" message="tns:ITowTruckService_getTruckRunStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="rebootTruck">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/rebootTruck" message="tns:ITowTruckService_rebootTruck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/rebootTruckResponse" message="tns:ITowTruckService_rebootTruck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getTruck">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getTruck" message="tns:ITowTruckService_getTruck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getTruckResponse" message="tns:ITowTruckService_getTruck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteBeat">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/deleteBeat" message="tns:ITowTruckService_deleteBeat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/deleteBeatResponse" message="tns:ITowTruckService_deleteBeat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteBeatSegment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/deleteBeatSegment" message="tns:ITowTruckService_deleteBeatSegment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/deleteBeatSegmentResponse" message="tns:ITowTruckService_deleteBeatSegment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteCallBox">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/deleteCallBox" message="tns:ITowTruckService_deleteCallBox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/deleteCallBoxResponse" message="tns:ITowTruckService_deleteCallBox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteDropSite">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/deleteDropSite" message="tns:ITowTruckService_deleteDropSite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/deleteDropSiteResponse" message="tns:ITowTruckService_deleteDropSite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteYard">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/deleteYard" message="tns:ITowTruckService_deleteYard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/deleteYardResponse" message="tns:ITowTruckService_deleteYard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMessagesBySender">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getMessagesBySender" message="tns:ITowTruckService_getMessagesBySender_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getMessagesBySenderResponse" message="tns:ITowTruckService_getMessagesBySender_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getAllMessages" message="tns:ITowTruckService_getAllMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getAllMessagesResponse" message="tns:ITowTruckService_getAllMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMessagesByDriverID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getMessagesByDriverID" message="tns:ITowTruckService_getMessagesByDriverID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getMessagesByDriverIDResponse" message="tns:ITowTruckService_getMessagesByDriverID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMessagesByCallSign">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getMessagesByCallSign" message="tns:ITowTruckService_getMessagesByCallSign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getMessagesByCallSignResponse" message="tns:ITowTruckService_getMessagesByCallSign_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getMessagesByBeat">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getMessagesByBeat" message="tns:ITowTruckService_getMessagesByBeat_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getMessagesByBeatResponse" message="tns:ITowTruckService_getMessagesByBeat_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllBeats">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getAllBeats" message="tns:ITowTruckService_getAllBeats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getAllBeatsResponse" message="tns:ITowTruckService_getAllBeats_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getBeatByBeatID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getBeatByBeatID" message="tns:ITowTruckService_getBeatByBeatID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getBeatByBeatIDResponse" message="tns:ITowTruckService_getBeatByBeatID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllSegmentPolygons">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getAllSegmentPolygons" message="tns:ITowTruckService_getAllSegmentPolygons_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getAllSegmentPolygonsResponse" message="tns:ITowTruckService_getAllSegmentPolygons_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSegmentPolygon">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getSegmentPolygon" message="tns:ITowTruckService_getSegmentPolygon_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getSegmentPolygonResponse" message="tns:ITowTruckService_getSegmentPolygon_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSegmentPolygonById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getSegmentPolygonById" message="tns:ITowTruckService_getSegmentPolygonById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getSegmentPolygonByIdResponse" message="tns:ITowTruckService_getSegmentPolygonById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllYards">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getAllYards" message="tns:ITowTruckService_getAllYards_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getAllYardsResponse" message="tns:ITowTruckService_getAllYards_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getYardPolygon">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getYardPolygon" message="tns:ITowTruckService_getYardPolygon_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getYardPolygonResponse" message="tns:ITowTruckService_getYardPolygon_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllDropSites">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getAllDropSites" message="tns:ITowTruckService_getAllDropSites_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getAllDropSitesResponse" message="tns:ITowTruckService_getAllDropSites_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getDropSite">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getDropSite" message="tns:ITowTruckService_getDropSite_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getDropSiteResponse" message="tns:ITowTruckService_getDropSite_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllCallBoxes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getAllCallBoxes" message="tns:ITowTruckService_getAllCallBoxes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getAllCallBoxesResponse" message="tns:ITowTruckService_getAllCallBoxes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getCallBoxByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getCallBoxByID" message="tns:ITowTruckService_getCallBoxByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getCallBoxByIDResponse" message="tns:ITowTruckService_getCallBoxByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateBeatInfoData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/updateBeatInfoData" message="tns:ITowTruckService_updateBeatInfoData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/updateBeatInfoDataResponse" message="tns:ITowTruckService_updateBeatInfoData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateBeatSegmentData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/updateBeatSegmentData" message="tns:ITowTruckService_updateBeatSegmentData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/updateBeatSegmentDataResponse" message="tns:ITowTruckService_updateBeatSegmentData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateYardData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/updateYardData" message="tns:ITowTruckService_updateYardData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/updateYardDataResponse" message="tns:ITowTruckService_updateYardData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateDropSiteData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/updateDropSiteData" message="tns:ITowTruckService_updateDropSiteData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/updateDropSiteDataResponse" message="tns:ITowTruckService_updateDropSiteData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="updateCallBox">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/updateCallBox" message="tns:ITowTruckService_updateCallBox_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/updateCallBoxResponse" message="tns:ITowTruckService_updateCallBox_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setConfidence">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/setConfidence" message="tns:ITowTruckService_setConfidence_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/setConfidenceResponse" message="tns:ITowTruckService_setConfidence_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getConfidence">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/getConfidence" message="tns:ITowTruckService_getConfidence_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/getConfidenceResponse" message="tns:ITowTruckService_getConfidence_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addWAZE">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITowTruckService/addWAZE" message="tns:ITowTruckService_addWAZE_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITowTruckService/addWAZEResponse" message="tns:ITowTruckService_addWAZE_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ITowTruckService" type="tns:ITowTruckService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="reloadBeats">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/reloadBeats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reloadBeatSegments">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/reloadBeatSegments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reloadYards">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/reloadYards" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reloadDrops">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/reloadDrops" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CurrentTrucks">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/CurrentTrucks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVar">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/UpdateVar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SingleTruckDump">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/SingleTruckDump" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnexcuseAlarm">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/UnexcuseAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findSeg">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/findSeg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findBeat">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/findBeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TruckDump">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/TruckDump" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearAlarm">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ClearAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcuseAlarm">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ExcuseAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAssist">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/addAssist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllIncidents">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetAllIncidents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssistTrucks">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetAssistTrucks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsedBreakTime">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetUsedBreakTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTruckDrivers">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetTruckDrivers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOffDriver">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/LogOffDriver" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAlarms">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetAllAlarms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlarmByTruck">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/AlarmByTruck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetAlarm">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/ResetAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeatData">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetBeatData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBeatDataByBeat">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/GetBeatDataByBeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTruckRunStatus">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getTruckRunStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rebootTruck">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/rebootTruck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTruck">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getTruck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBeat">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/deleteBeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBeatSegment">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/deleteBeatSegment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteCallBox">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/deleteCallBox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDropSite">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/deleteDropSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteYard">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/deleteYard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMessagesBySender">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getMessagesBySender" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllMessages">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getAllMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMessagesByDriverID">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getMessagesByDriverID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMessagesByCallSign">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getMessagesByCallSign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMessagesByBeat">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getMessagesByBeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllBeats">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getAllBeats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBeatByBeatID">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getBeatByBeatID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllSegmentPolygons">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getAllSegmentPolygons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSegmentPolygon">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getSegmentPolygon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSegmentPolygonById">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getSegmentPolygonById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllYards">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getAllYards" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getYardPolygon">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getYardPolygon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllDropSites">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getAllDropSites" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDropSite">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getDropSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCallBoxes">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getAllCallBoxes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCallBoxByID">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getCallBoxByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateBeatInfoData">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/updateBeatInfoData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateBeatSegmentData">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/updateBeatSegmentData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateYardData">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/updateYardData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateDropSiteData">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/updateDropSiteData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateCallBox">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/updateCallBox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setConfidence">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/setConfidence" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfidence">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/getConfidence" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addWAZE">
+      <soap:operation soapAction="http://tempuri.org/ITowTruckService/addWAZE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TowTruckService">
+    <wsdl:port name="BasicHttpBinding_ITowTruckService" binding="tns:BasicHttpBinding_ITowTruckService">
+      <soap:address location="http://localhost:9017/TowTruckService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

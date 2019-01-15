@@ -1,0 +1,78 @@
+﻿@model FSP.Domain.Model.ContractorManager
+@{
+    ViewBag.Title = "Edit " + @Model.FirstName + " " + @Model.LastName;
+    
+}
+<div>
+    @Html.ActionLink("Back to Contractor Managers", "Index")
+</div>
+<h2>Edit "@Model.FirstName @Model.LastName"</h2>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        @Html.HiddenFor(model => model.ContractorManagerID)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CellPhone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CellPhone)
+            @Html.ValidationMessageFor(model => model.CellPhone)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndDate)
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContractorID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.ContractorID, new SelectList(ViewBag.Contractors, "ContractorID", "ContractCompanyName"), "--Select Contractor--", new { @class="span8" })
+            @Html.ValidationMessageFor(model => model.ContractorID)
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                Update</button>
+        </div>
+    </fieldset>
+}

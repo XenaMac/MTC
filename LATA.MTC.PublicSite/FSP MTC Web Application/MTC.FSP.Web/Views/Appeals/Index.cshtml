@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Appeals Portals Index";
+}
+
+<div ng-app="mtcApp">
+    <div ng-controller="appealsPortalController" ng-cloak>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Appeals Portals <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h2>
+                <br />
+                <div class="btn-group">
+                    <a href="~/Appeals/AdministratorAppeals" class="btn btn-default btn-lg" ng-disabled="!isAdmin">Administrators Appeal Portal</a>
+                    <a href="~/Appeals/ContractorAppeals" class="btn btn-default btn-lg" ng-disabled="!isContractor">Contractor Appeals Portal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/appealsPortalController.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+}

@@ -1,0 +1,300 @@
+#!/bin/sh
+
+# archive old warmup.log
+warmupout='/lata/config/warmup.log'
+warmupold1='/lata/config/warmup.old1'
+warmupold2='/lata/config/warmup.old2'
+warmupold3='/lata/config/warmup.old3'
+if [ -e $warmupout ]; then
+  mv $warmupold2 $warmupold3;
+  mv $warmupold1 $warmupold2;
+  mv $warmupout $warmupold1;
+fi
+
+# start new warmup.log
+date > $warmupout
+
+# verify error directory
+errordir='/lata/config/error'
+if [ ! -e $errordir ]; then
+  mkdir $errordir;
+fi
+
+function log_error()
+{
+  local level=$1;
+  local type=$2;
+  local number=$3;
+  local description=$4;
+  local ext='.err';
+  local script='wu';
+  local timestamp=$(date '+%s');
+  local filename=$errordir/$level-$type-$script-$number-$timestamp$ext;
+  echo $description" "$(date) > $filename;
+}
+
+# disable system health monitoring utilities
+manifestoff='/lata/config/manifestOFF'
+manifeston='/lata/config/manifestON'
+watchdogoff='/lata/config/watchdogOFF'
+watchdogon='/lata/config/watchdogON'
+echo "Disabling LMT watchdog" $(date) >> $warmupout;
+echo "WarmUp TempDisabled" $(date) > $watchdogoff;
+echo "Disabling manifest checker" $(date) >> $warmupout;
+echo "WarmUp TempDisabled" $(date) > $manifestoff;
+
+# initialize vars
+builds_dir='/lata/builds'
+configFile='/lata/config/fterm.config'
+errfound=0
+failfile='/lata/config/fail'
+fileerror='/lata/config/fileerror.log'
+gold_dir='/lata/gold'
+install=0
+install_dir='/lata'
+installerror='/lata/config/installerror.log'
+installout='/mterm/install.log'
+logs_dir='/lata/logs'
+newprops='/lata/config/fterm.props.new'
+old_dir='/lata/history'
+oldprops='/lata/config/fterm.props'
+rc_dir='/lata/rc'
+rebootcount='/lata/config/rebootcount.log'
+watchdogfile='/lata/config/watchdog.txt'
+
+now=$(date '+%s');
+
+function update_props ()
+{
+  # if new props file then replace the old one
+  if [ -e $newprops ]; then
+    if [ -e $oldprops ]; then
+      echo "removing" $oldprops $(date)>> $warmupout;
+      rm $oldprops;
+    fi
+    echo "moving" $newprops "to" $oldprops $(date) >> $warmupout;
+    mv $newprops $oldprops;
+  fi
+}
+
+if [ ! -e $rebootcount ]; then
+  echo "0" > $rebootcount;
+fi
+
+reboots=$(cat $rebootcount | sed 's/.*\([0-9]\).*/\1/'); 
+reboots=`expr $reboots + 1`;
+echo $reboots > $rebootcount;
+echo "Reboot count at" $reboots;
+echo "Reboot count at" $reboots >> $warmupout;
+
+# remove zip files older than 30 days
+cd $logs_dir;
+for i in $(find . -type f -ctime +30 -name \*.zip);
+do
+  rm $i;
+done
+
+# zip and remove log files 
+for i in $(find . -name \*.log);
+do
+  zipfile=$(echo $i | sed 's/\.\/\(.*\)\.log$/\1/');
+  logext='.log';
+  fromfile=$zipfile$logext;
+  nowday=$(echo $now | sed 's/[0-9][0-9][0-9][0-9][0-9]\([0-9]*\)/\1/');
+  zipsep='_';
+  zipfile=$zipfile$zipsep$nowday;
+  echo "Zipping" $fromfile to $zipfile;
+  echo "Zipping" $fromfile to $zipfile >> $warmupout;
+  zip $zipfile $fromfile;
+  echo "Removing " $fromfile;
+  echo "Removing " $fromfile >> $warmupout;
+  rm $i;
+done
+
+# check for excessive reboots
+if [ "$reboots" = "3" ]; then
+
+  echo "Too many consecutive reboots, not doing installs. Reboots = " $reboots;
+  echo "Too many consecutive reboots, not doing installs. Reboots = " $reboots >> $warmupout;
+  rm $rebootcount;
+
+else
+
+  # process any shell scripts
+  for i in $(find $builds_dir -name \*.sh);
+  do
+    start_hours=$(echo $i | sed 's/\/.*\/.*\/\([0-9]*\)_.*.sh/\1/');
+    start=`expr $start_hours \* 3600`;
+    dur_days=$(echo $i | sed 's/\/.*\/.*\/.*_\([0-9]*\)_.*.sh/\1/');
+    duration=`expr $dur_days \* 86400`;
+    end=`expr $start + $duration`;
+    if [ $start -eq 0 -o $now -gt $start ]; then
+      if [ $duration -eq 0 -o $now -lt $end ]; then
+          chmod u+x $i
+          echo "executing shell script" $i $(date) >> $warmupout;
+          $i;
+      fi
+       # script executed or expired, either way remove it
+      mv $i $old_dir;
+    fi
+  done
+  
+  # check for failed install
+  if [ -e $failfile ]; then
+    echo "Found failfile now removing" $failfile >> $warmupout;
+    rm $failfile;
+    # revert to gold build
+    echo "Reverting to gold" $(date) >> $warmupout;
+    rm -r $rc_dir;
+    cp -r $gold_dir $rc_dir;
+    install=1;
+    nohup sh -c '/lata/rc/dir_install' >> $warmupout 2>> $warmupout &
+    COUNT=0;
+    # wait for install to complete or for 5 minutes
+    while :
+    do
+      sleep 10;
+      DIR_INSTALLING=`ps ax | grep dir_install | grep bash`;
+      if [ "x$DIR_INSTALLING" != "x" ]; then
+        COUNT=`expr $COUNT + 1`;
+        echo "Count at" $COUNT $(date) >> $warmupout;
+        if [ $COUNT -gt 30 ]; then
+          echo "Gold install is hung" $COUNT $(date) >> $warmupout;
+          echo "Gold install is hung" $COUNT $(date) >> $installerror;
+          break;
+        fi
+      else
+        echo "Install complete" $(date) >> $warmupout;
+        break;
+      fi
+    done
+  fi
+  
+  # extract any compressed tar files
+  if [ $install -eq 0 ]; then
+    for i in $(find $builds_dir -name \*.tgz);
+    do
+      start_hours=$(echo $i | sed 's/\/.*\/.*\/\([0-9]*\)_.*.tgz/\1/');
+      start=`expr $start_hours \* 3600`;
+      dur_days=$(echo $i | sed 's/\/.*\/.*\/.*_\([0-9]*\)_.*.tgz/\1/');
+      duration=`expr $dur_days \* 86400`;
+      end=`expr $start + $duration`;
+      if [ $now -gt $start ]; then
+        if [ $duration -eq 0 -o $now -lt $end ]; then
+          # is this a build?
+          updatetype=$(echo $i | sed 's/\/.*\/.*\/.*_[0-9]*_\([A-Z]\).*.tgz/\1/');
+          echo "updatetype" $updatetype >> $warmupout;
+          if [ "$updatetype" = "V" ]; then
+            # don't install versions older than current version
+            verscurr1=$(cat /lata/config/fterm.config | grep "<Version>" | sed 's/.*>\([0-9]*\)\..*/\1/');
+            verscurr2=$(cat /lata/config/fterm.config | grep "<Version>" | sed 's/.*>[0-9]*\.\([0-9]*\)\..*/\1/');
+            verscurr3=$(cat /lata/config/fterm.config | grep "<Version>" | sed 's/.*>[0-9]*\.[0-9]*\.\([0-9]*\)<.*/\1/');
+            versnew1=$(echo $i | sed 's/\/.*\/.*\/.*_[0-9]*_V\([0-9]*\).*\.tgz/\1/');
+            versnew2=$(echo $i | sed 's/\/.*\/.*\/.*_[0-9]*_V[0-9]*\.\([0-9]*\).*\.tgz/\1/');
+            versnew3=$(echo $i | sed 's/\/.*\/.*\/.*_[0-9]*_V[0-9]*\.[0-9]*\.\([0-9]*\).*\.tgz/\1/');
+            currvers=`expr $verscurr1 \* 10000 + $verscurr2 \* 100 + $verscurr3`;
+            newvers=`expr $versnew1 \* 10000 + $versnew2 \* 100 + $versnew3`;
+            echo "curr version" $currvers "new version" $newvers >> $warmupout;
+            if [ $newvers -le $currvers ]; then
+              # remove build
+              echo "not installing old build, moving it" $i >> $warmupout;
+              mv $i $old_dir;
+              continue;
+            fi
+          fi
+          echo "installing" $i >> $warmupout;
+          install=1;
+          # if a full build remove rc directory first
+          if grep -q full <<<$i; then
+            echo "removing" $rc_dir >> $warmupout;
+            rm -r $rc_dir;
+          fi
+          # extract tarball
+          cd $install_dir;tar xzvf $i >> $warmupout;
+          # if a diff build execute delete file script
+          if grep -q diff <<<$i; then
+            echo "deleting outdated files";
+            delscript='/lata/rc/delete_files';
+            chmod u+x $delscript;
+            echo "executing delete file script" $delscript $(date) >> $warmupout;
+            $delscript;
+            rm $delscript;
+          fi
+          # install build
+          echo "installing from rc directory" >> $warmupout;
+          cd $rc_dir;chmod u+x dir_install;
+          echo "creating failfile" $failfile >> $warmupout;
+          ls > $failfile;
+          echo "Starting install" $(date) >> $warmupout;
+          nohup sh -c '/lata/rc/dir_install' >> $warmupout 2>> $warmupout &
+          COUNT=0;
+          # wait for install to complete or for 5 minutes
+          while :
+          do
+            sleep 10;
+            DIR_INSTALLING=`ps ax | grep dir_install | grep bash`;
+            if [ "x$DIR_INSTALLING" != "x" ]; then
+              COUNT=`expr $COUNT + 1`;
+              echo "Count at" $COUNT $(date) >> $warmupout;
+              if [ $COUNT -gt 30 ]; then
+                echo "Install is hung" $COUNT $(date) >> $warmupout;
+                echo "RC install is hung" $COUNT $(date) >> $installerror;
+                install=0;
+                break;
+              fi
+            else
+              echo "Install complete" $(date) >> $warmupout;
+              echo "Remove failfile" $failfile >> $warmupout;
+              rm $failfile;
+              break;
+            fi
+          done
+        fi
+        # build installed or expired, either way remove it
+        echo "moving" $i >> $warmupout;
+        mv $i $old_dir;
+      fi
+      if [ $install -eq 1 ]; then
+        # install any other builds at next reboot
+        break;
+      fi
+    done
+  fi
+fi
+
+# either reboot or initiate system startup
+if [ $install -eq 1 ]; then
+  # remove old promote scripts
+  filename_end="_0_rc2gold.sh";
+  allpromotes="*$filename_end";
+  echo "removing old rc to gold promotion script" $allpromotes $(date) >> $warmupout;
+  rm $allpromotes;
+  # create script to promote rc build to gold after 1 week
+  promote_date=`expr $now / 3600 + 168`;
+  promote_file="$promote_date$filename_end"
+  echo "creating rc to gold promotion script" $i $(date) >> $warmupout;
+  cd $builds_dir;
+  echo "#!/bin/sh" > $promote_file;
+  echo "rm -r" $gold_dir >> $promote_file;
+  echo "cp -r" $rc_dir $gold_dir >> $promote_file;
+  echo "Rebooting" >> $warmupout;
+  update_props;
+  reboot;
+else
+  echo "Checking for new fterm.props file" $(date) >> $warmupout;
+  update_props;
+  echo "Starting AutoUpdate script" $(date) >> $warmupout;
+  chmod a+x /etc/rc.d/init.d/AutoUpdate;
+  nohup sh -c '/etc/rc.d/init.d/AutoUpdate 1' &> /tmp/AutoUpdate.out &
+  echo "Clearing reboot count" $(date) >> $warmupout;
+  if [ -e $rebootcount ]; then
+    rm $rebootcount;
+  fi
+  # remove old watchdog file
+  if [ -e $watchdogfile ]; then
+    echo "Removing old watchdog file" >> $warmupout
+    rm $watchdogfile;
+  fi
+  echo "WarmUp Done" $(date) >> /tmp/WarmUp.out;
+fi
+

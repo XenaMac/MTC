@@ -1,0 +1,104 @@
+﻿@model MTC.FSP.Web.Models.BeatSchedule
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BeatSchedule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ScheduleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScheduleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weekday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weekday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RollOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RollOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OnPatrol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OnPatrol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RollIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RollIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LogOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogOff)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BreakDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BreakDuration)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,33 @@
+﻿
+<link href="~/Content/footer.css" rel="stylesheet" />
+
+<div class="footer">
+    <div class="row">
+        <div class="col-xs-6" style="border-right: 2px solid white">
+
+            <div class="col-xs-3 col-md-2 col-lg-1">
+                <img src="~/Content/Images/mtcContact.png" class="img-responsive center-block" />
+            </div>
+            <div class="col-xs-9 col-md-10 col-lg-11">
+                <h4><i>Contact the</i> Metropolitan Transportation Commission</h4>
+                <p>
+                    <a href="mailto:@ViewBag.MTCContactEmail">@ViewBag.MTCContactEmail</a> <br />
+                    @ViewBag.MTCContactPhone
+                </p>
+            </div>
+
+        </div>
+        <div class="col-xs-6">
+            <div class="col-xs-3 col-md-2 col-lg-1">
+                <img src="~/Content/Images/mtcSupport.png" class="img-responsive center-block" />
+            </div>
+            <div class="col-xs-9 col-md-10 col-lg-11">
+                <h4><i>Contact</i> LATATrax Technical Support</h4>
+                <p>                    
+                    <a href="mailto:@ViewBag.LATATraxSupportEmail">@ViewBag.LATATraxSupportEmail</a> <br />
+                    @ViewBag.LATATraxSupportPhone
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

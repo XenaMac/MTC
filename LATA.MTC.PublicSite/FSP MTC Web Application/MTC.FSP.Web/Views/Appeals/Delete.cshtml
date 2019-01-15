@@ -1,0 +1,206 @@
+﻿@model MTC.FSP.Web.Models.Appeal
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AppealType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppealType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppealStatu.AppealStatusID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppealStatu.AppealStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppealType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AppealType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPhone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactPhone)
+        </dd>
+
+        @if (Model.AppealType == "Violation")
+        {
+            <dt>
+                @Html.Raw("Violation Name")
+            </dt>
+            <dd>
+                @Html.Raw(ViewBag.VioName)
+            </dd>
+
+            <dt>
+                @Html.Raw("Date/Time of Violation")
+            </dt>
+            <dd>
+                @Html.Raw(ViewBag.VioDateTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.V_ReasonForAppeal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.V_ReasonForAppeal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.V_AppropriateCharge)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.V_AppropriateCharge)
+            </dd>
+        }
+        else if (Model.AppealType == "Overtime")
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.O_Datetime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.O_Datetime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Driver.DriverID)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Driver.FirstName) @Html.DisplayFor(model => model.Driver.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Beatid)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BeatData.BeatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.O_CallSign)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.O_CallSign)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.O_NumOfBlocks)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.O_NumOfBlocks)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.O_BlocksInitGranted)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.O_BlocksInitGranted)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.O_CHPOTNumber)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.O_CHPOTNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.O_Detail)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.O_Detail)
+            </dd>
+        }
+        else if (Model.AppealType == "Invoice")
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.I_EventDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.I_EventDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Driver.DriverID)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Driver.FirstName) @Html.DisplayFor(model => model.Driver.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Beatid)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BeatData.BeatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.I_AppealReason)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.I_AppealReason)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.I_AppealDeduction)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.I_AppealDeduction)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.I_InvoiceReason)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.I_InvoiceReason)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.I_InvoiceDeduction)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.I_InvoiceDeduction)
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MTCNote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MTCNote)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Contactor Appeals", "ContractorAppeals")
+        </div>
+    }
+</div>

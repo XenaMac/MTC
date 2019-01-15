@@ -1,0 +1,2 @@
+﻿- truck map info window
+- relative image status paths

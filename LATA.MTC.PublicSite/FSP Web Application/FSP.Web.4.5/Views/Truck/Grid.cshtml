@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Truck List";
+}
+
+
+@*grid*@
+<div class="span12">
+    <div class="row-fluid" data-bind="visible: trucks().length > 0" style="display: none">
+        <div class="row">
+            <a class="btn btn-info" data-bind="click: showConfig">Column Configuration</a>
+        </div>
+        <div>
+            <br />
+        </div>
+        <div class="row">
+            <table id="towTruckGrid" class="table table-condensed table-bordered table-striped tablesorter">
+                <thead>
+                    <tr data-bind="foreach: columns">
+                        <th data-bind="visible: isVisible">
+                            <span data-bind="click: sort, text: name()"></span>
+                            <img src='@Url.Content("~/Images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                            <img src='@Url.Content("~/Images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                        </th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: trucks">
+                    <tr data-bind="foreach: columns, click: showTruckInMap, attr: { id: id }" class="gridRow">
+                        <td data-bind="visible: isVisible">
+                            <span data-bind="visible: value() === 'beatNumber', text: $parent.beatNumber"></span>
+                            <span data-bind="visible: value() === 'truckNumber', text: $parent.truckNumber"></span>
+                            <span data-bind="visible: value() === 'driverName', text: $parent.driverName"></span>
+                            <span data-bind="visible: value() === 'headingText', text: $parent.headingText"></span>
+                            <span data-bind="visible: value() === 'location', text: $parent.location"></span>
+                            <img data-bind="visible: value() === 'status', attr: { src: $parent.vehicleStateIconUrl }" alt="" />
+                            <span data-bind="visible: value() === 'status', text: $parent.vehicleState"></span>
+                            <span data-bind="visible: value() === 'lastStatusChanged', text: $parent.lastStatusChanged"></span>
+                            <span data-bind="visible: value() === 'speed', text: $parent.speed"></span>
+                            <span data-bind="visible: value() === 'speedingValue', text: $parent.speedingValue"></span>
+                            <span data-bind="visible: value() === 'speedingTime', text: $parent.speedingTime"></span>
+                            <span data-bind="visible: value() === 'contractorName', text: $parent.contractorName"></span>
+                            <span data-bind="visible: value() === 'outOfBoundsMessage', text: $parent.outOfBoundsMessage"></span>
+                            <span data-bind="visible: value() === 'outOfBoundsTime', text: $parent.outOfBoundsTime"></span>
+                            <span data-bind="visible: value() === 'lastMessage', text: $parent.lastMessage"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row-fluid" data-bind="visible: trucks().length === 0" style="display: none; padding: 20px;">
+        Loading Tow Truck Grid...
+    </div>
+</div>
+@Html.Partial("_TruckListColumnConfig")
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/KOAndSignarlR")
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/fspTruckList")
+}
+

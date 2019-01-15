@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Incidents";
+}
+<div class="row">
+    <div class="span12">
+        <a class="btn btn-info" data-bind="click: showConfig">Column Configuration</a>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="span12">
+        <h2>Incidents</h2>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="span12">
+        <legend>Dispatched and Acknowledged (<span data-bind="text: numberOfDispatchedAndAcked"></span>)</legend>
+        <table class="table table-condensed table-bordered table-striped tablesorter">
+            <thead>
+                <tr data-bind="foreach: columns">
+                    <th data-bind="visible: isVisible" class="span2">
+                        <span data-bind="click: sort, text: name()"></span>
+                        <img src='@Url.Content("~/Images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                        <img src='@Url.Content("~/Images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: incidents" style="cursor: pointer">
+                <tr data-bind="foreach: columns, visible: isAcked() === false" class="gridRow">
+                    <td data-bind="visible: isVisible" class="span2">
+                        <span class="span2" data-bind="visible: value() === 'beatNumber', text: $parent.beatNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'truckNumber', text: $parent.truckNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'driverName', text: $parent.driverName"></span>
+                        <span class="span2" data-bind="visible: value() === 'dispatchComments', text: $parent.dispatchComments"></span>
+                        <span class="span2" data-bind="visible: value() === 'timeStamp', text: $parent.timeStamp"></span>                      
+                        <span class="span2" data-bind="visible: value() === 'dispatchNumber', text: $parent.dispatchNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'state', text: $parent.state"></span>                        
+                    </td>
+                </tr>               
+            </tbody>
+        </table>
+    </div>
+    <div class="span12">
+        <legend>Active (<span data-bind="text: numberOfActive"></span>)</legend>
+        <table class="table table-condensed table-bordered table-striped tablesorter">
+            <thead>
+                <tr data-bind="foreach: columns">
+                    <th data-bind="visible: isVisible" class="span2">
+                        <span data-bind="click: sort, text: name()"></span>
+                        <img src='@Url.Content("~/Images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                        <img src='@Url.Content("~/Images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: incidents" style="cursor: pointer">
+                <tr data-bind="foreach: columns, visible: isAcked() === true && isIncidentComplete() === false" class="gridRow">
+                    <td data-bind="visible: isVisible" class="span2">
+                        <span class="span2" data-bind="visible: value() === 'beatNumber', text: $parent.beatNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'truckNumber', text: $parent.truckNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'driverName', text: $parent.driverName"></span>
+                        <span class="span2" data-bind="visible: value() === 'dispatchComments', text: $parent.dispatchComments"></span>
+                        <span class="span2" data-bind="visible: value() === 'timeStamp', text: $parent.timeStamp"></span>                      
+                        <span class="span2" data-bind="visible: value() === 'dispatchNumber', text: $parent.dispatchNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'state', text: $parent.state"></span>                        
+                    </td>
+                </tr>                       
+            </tbody>
+        </table>
+    </div>
+    <div class="span12">
+        <legend>Today's Completed (<span data-bind="text: numberOfCompleted"></span>)</legend>
+        <table class="table table-condensed table-bordered table-striped tablesorter">
+            <thead>
+                <tr data-bind="foreach: columns">
+                    <th data-bind="visible: isVisible" class="span2">
+                        <span data-bind="click: sort, text: name()"></span>
+                        <img src='@Url.Content("~/Images/arrow_down.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Desc'" />
+                        <img src='@Url.Content("~/Images/arrow_up.png")' data-bind="visible: currentSort() === value() && currentSortDirection() === 'Asc'" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: incidents" style="cursor: pointer">                
+                <tr data-bind="foreach: columns, visible: isIncidentComplete() === true" class="gridRow">
+                    <td data-bind="visible: isVisible" class="span2">
+                        <span class="span2" data-bind="visible: value() === 'beatNumber', text: $parent.beatNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'truckNumber', text: $parent.truckNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'driverName', text: $parent.driverName"></span>
+                        <span class="span2" data-bind="visible: value() === 'dispatchComments', text: $parent.dispatchComments"></span>
+                        <span class="span2" data-bind="visible: value() === 'timeStamp', text: $parent.timeStamp"></span>                      
+                        <span class="span2" data-bind="visible: value() === 'dispatchNumber', text: $parent.dispatchNumber"></span>
+                        <span class="span2" data-bind="visible: value() === 'state', text: $parent.state"></span>                        
+                    </td>
+                </tr>         
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.Partial("_TruckListColumnConfig")
+
+@section scripts{
+    @Scripts.Render("~/bundles/KO")
+    @Scripts.Render("~/bundles/fspIncident")
+}

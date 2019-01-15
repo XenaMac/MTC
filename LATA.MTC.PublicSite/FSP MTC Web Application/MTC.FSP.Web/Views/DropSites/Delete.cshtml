@@ -1,0 +1,72 @@
+﻿@model MTC.FSP.Web.Models.DropSite
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DropSite</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FriendlyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FriendlyId)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.BeatId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BeatId)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Freeway)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Freeway)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrossStreet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrossStreet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DropSiteArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DropSiteArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DropSiteNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DropSiteNumber)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

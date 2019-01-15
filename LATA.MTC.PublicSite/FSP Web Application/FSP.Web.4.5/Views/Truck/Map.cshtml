@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "LATATrax | Map";
+}
+
+<div class="row" style="padding-bottom: 3px;">
+    <div class="span6">
+        <table>
+            <tr>
+                <td style="white-space: nowrap"><a class="btn btn-info" data-bind="click: showFilter, text: filterText()"></a><span data-bind="    visible: trucksAreFiltered" class="label label-warning" style="position: relative; left: -8px; top: -10px; display: none">!</span></td>
+                <td style="white-space: nowrap">
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Beats
+                <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a>
+                                    <input type="checkbox" data-bind="checked: beatsVisible" />&nbsp;Beat Polygons</a></li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" data-bind="checked: beatsLabelsVisible" />&nbsp;Beat Labels</a></li>
+
+                        </ul>
+                    </div>
+                </td>
+                <td style="white-space: nowrap">
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Segments
+                <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a>
+                                    <input type="checkbox" data-bind="checked: beatSegmentsVisible" />&nbsp;Segment Polygons</a></li>
+                            <li>
+                                <a>
+                                    <input type="checkbox" data-bind="checked: beatSegmentsLabelsVisible" />&nbsp;Segment Labels</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td style="white-space: nowrap">
+                    <input type="checkbox" data-bind="checked: callBoxesVisible" />&nbsp;Call Boxes</td>
+                <td style="white-space: nowrap">
+                    <input type="checkbox" data-bind="checked: dropZonesVisible" />&nbsp;Drop Zones</td>
+                <td>
+                    <div data-bind="click: toggleDebug" style="width: 10px; height: 10px; background-color: white;"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="btn-toolbar" style="margin: 0;">
+            @*  <input type="text" data-bind="value: truckBeatToRemove, valueUpdate: 'afterkeydown'" />
+            <input type="button" value="Remove" data-bind="click: forceBeatRemoval, enable: truckBeatToRemove().length > 0" />*@
+        </div>
+    </div>
+    <div class="span6" style="text-align: right">
+        <a class="btn btn-danger" data-bind="click: stopFollowing, visible: followingTruck" style="display: none;">Stop Following</a>
+        <a id="alertScreenLink" class="btn btn-info" href="~/AlertMessages/Alerts" target="_blank">Alerts</a>
+        @*  <a class="btn btn-info" data-bind="click: showTruckList">Tow Truck List</a>*@
+        <a class="btn btn-info" href="~/Truck/Grid" target="_blank">Tow Truck List</a>
+        <a class="btn btn-info" href="http://38.124.164.211:9007/admin/Dashboard.aspx" target="_blank">Dashboard</a>
+    </div>
+</div>
+
+<div id="map" style="width: 100%; height: 500px; overflow: hidden;"></div>
+
+@*map markers custom ko binding*@
+<div data-bind="foreach: trucks">
+    <div data-bind="truckNumber: truckNumber,
+    beatNumber: beatNumber,
+    vehicleStateIconUrl: vehicleStateIconUrl,
+    heading: heading,
+    lat: lat,
+    lon: lon,
+    vehicleState: vehicleState,
+    id: id,
+    map: map">
+    </div>
+</div>
+
+@*details*@
+<div id="infoWindowContent" style="display: none; z-index: 5000; line-height:15px;">
+    <div data-bind="with: selectedTruck" style="line-height:15px;">
+        <span data-bind="text: 'Last Msg: ' + lastMessage()" class="truckDetailsPopup"></span>
+        <br />
+        <span data-bind="text: 'Beat ' + beatNumber()" class="truckDetailsPopup"></span>
+        <br />
+        <span data-bind="text: 'Truck ' + truckNumber " class="truckDetailsPopup"></span>
+        <br />
+        <span data-bind="text: contractorName()" class="truckDetailsPopup"></span>
+        <br />
+        <span data-bind="text: driverName()" class="truckDetailsPopup"></span>
+        <br />
+        <span data-bind="text: vehicleState()" class="truckDetailsPopup"></span>,&nbsp;<span data-bind="    text: speed() + ' MPH'" class="truckDetailsPopup"></span><br />
+        <input type="button" id="followButton" name="followButton" class="btn btn-info btn-mini btn-block" value="Follow" onclick="follow()" />
+    </div>
+</div>
+@*<div id="infoWindowContent" style="display: none; z-index: 5000">
+    <div data-bind="with: selectedTruck">
+        <span data-bind="text: 'Last Msg: ' + lastMessage()" class="truckDetailsPopup"></span><br />
+        <span data-bind="text: 'Beat ' + beatNumber()" class="truckDetailsPopup"></span><br />        
+        <input type="button" id="followButton" name="followButton" class="btn btn-info btn-mini btn-block" value="Follow" onclick="follow()" />                
+    </div>
+</div>*@
+@*<div id="infoWindowContent" style="display: none; z-index: 5000">
+    <table data-bind="with: selectedTruck">
+        <tr>
+            <td class="hoverDetailsFields">Last Msg.:</td>
+            <td><span data-bind="text: lastMessage()" class="hoverDetails"></span></td>
+        </tr>
+        <tr>
+            <td class="hoverDetailsFields">Beat:</td>
+            <td><span data-bind="text: beatNumber()" class="hoverDetails"></span></td>
+        </tr>       
+        <tr>
+            <td class="hoverDetailsFields">Contractor:</td>
+            <td><span data-bind="text: contractorName()" class="hoverDetails"></span></td>
+        </tr>
+        <tr>
+            <td class="hoverDetailsFields">Driver:</td>
+            <td><span data-bind="text: driverName()" class="hoverDetails"></span></td>
+        </tr>
+        <tr>
+            <td class="hoverDetailsFields">Truck:</td>
+            <td><span data-bind="text: truckNumber " class="hoverDetails"></span></td>
+        </tr>
+        <tr>
+            <td class="hoverDetailsFields">Speed:</td>
+            <td><span data-bind="text: speed() + ' MPH'" class="hoverDetails"></span></td>
+        </tr>
+        <tr>
+            <td class="hoverDetailsFields">State:</td>
+            <td><span data-bind="text: vehicleState()" class="hoverDetails"></span></td>
+        </tr>
+    </table>
+    <input type="button" id="followButton" name="followButton" class="btn btn-info" value="Follow" onclick="follow()" />
+</div>*@
+
+@*filter window*@
+<div class="modal hide fade" id="filterModal">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">
+            ×</button>
+        <h3>Filter</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row-fluid">
+            <div class="span6">
+                <input type="checkbox" data-bind="checked: showOnPatrol" />&nbsp;On Patrol<br />
+                <input type="checkbox" data-bind="checked: showDriverLoggedOn" />&nbsp;Driver Logged On<br />
+                <input type="checkbox" data-bind="checked: showOnAssist" />&nbsp;On Assist<br />
+                <input type="checkbox" data-bind="checked: showOnBreakLunch" />&nbsp;On Break/Lunch<br />
+                <input type="checkbox" data-bind="checked: showOnRollOutIn" />&nbsp;On Roll Out/Roll In<br />
+                <input type="checkbox" data-bind="checked: showNotLoggedIn" />&nbsp;Not Logged In<br />
+                <br />
+                <input type="checkbox" data-bind="checked: checkAllTruckStates" />&nbsp;Check All<br />
+            </div>
+            <div class="span6">
+                <table>
+                    <tr>
+                        <td>
+                            <h3>Tow Contractor</h3>
+                            <div class="span4">
+                                <input type="text" id="contractorsFilter" data-bind="value: contractorNameFilter" />
+                            </div>
+                        </td>
+                        <td>
+                            <div style="padding: 10px; cursor: pointer">
+                                <i data-bind="visible: contractorNameFilter().length > 0, click: clearContractorNameFilter" class="icon-remove"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a id="btnSaveFilter" href="#" class="btn btn-primary" data-dismiss="modal">Done</a>
+    </div>
+</div>
+
+<div data-bind="visible: showDebug() === true" style="position: absolute; bottom: 3px; left: 3px; width: 300px; height: 800px; overflow: scroll; display: none">
+    <ul data-bind="foreach: debugItems">
+        <li><span data-bind="text: $data"></span></li>
+    </ul>
+</div>
+
+<div data-bind="visible: showDebug() === true" style="position: absolute; bottom: 3px; right: 3px; width: 300px; height: 800px; overflow: scroll; display: none">
+    <ul data-bind="foreach: markersArray">
+        <li><span data-bind="text: id"></span></li>
+    </ul>
+</div>
+
+
+@section scripts{
+
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDUpSUrJujBkrtXscsS2kBWEhuBUadG1NU&sensor=false" type="text/javascript"></script>
+    <script src="http://jqueryrotate.googlecode.com/svn/trunk/jQueryRotate.js"></script>
+
+    @Scripts.Render("~/bundles/KOAndSignarlR")
+    <script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/fspMap")
+}

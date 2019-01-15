@@ -1,0 +1,189 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.FleetVehicle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FleetNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleMake)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LicensePlate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationExpireDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsuranceExpireDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastCHPInspection)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FAW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RAW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RAWR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GVW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GVWR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Wheelbase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Overhang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAXTW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MAXTWCALCDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FuelType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IPAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgreementNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contractor.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FleetNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleMake)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleModel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LicensePlate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegistrationExpireDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsuranceExpireDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastCHPInspection)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FAW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RAW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RAWR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GVW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GVWR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Wheelbase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Overhang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAXTW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MAXTWCALCDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FuelType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IPAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgreementNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contractor.Address)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FleetVehicleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FleetVehicleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FleetVehicleID })
+        </td>
+    </tr>
+}
+
+</table>

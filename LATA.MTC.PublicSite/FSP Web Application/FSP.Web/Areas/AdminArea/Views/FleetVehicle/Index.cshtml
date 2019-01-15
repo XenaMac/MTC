@@ -1,0 +1,75 @@
+﻿@model IEnumerable<FSP.Domain.Model.FleetVehicle>
+@{
+    ViewBag.Title = "Fleet Vehicles";
+}
+
+<p>
+    @Html.ActionLink("Add Fleet Vehicle", "Create")
+</p>
+<h2>Fleet Vehicles</h2>
+<table class="table table-bordered table-condensed table-striped sortable">
+    <thead>
+        <tr>
+            <th>Vehicle Number
+            </th>
+            <th>Fleet Number
+            </th>
+            <th>Contractor
+            </th>
+            <th>Type
+            </th>
+            <th>Year
+            </th>
+            <th>Make
+            </th>
+            <th>Model
+            </th>
+            <th>License Plate
+            </th>
+            <th>IP Address
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.VehicleNumber, "Edit", new { id = item.FleetVehicleID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FleetNumber)
+                </td>
+                <td>
+                    @Html.ActionLink(item.Contractor.ContractCompanyName, "Edit", "Contractor", null, null, null, new { id = item.Contractor.ContractorID }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleMake)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LicensePlate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.FleetVehicleID })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FleetVehicleID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

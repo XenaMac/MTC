@@ -1,0 +1,667 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75ED60C7-02C2-4D39-9E76-825E0903FA7C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FPSService</RootNamespace>
+    <AssemblyName>FPSService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ESRI.ArcGIS.Client, Version=2.4.0.851, Culture=neutral, PublicKeyToken=29c6dd6e8553d944, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ESRI.ArcGIS.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Esri.ArcGISRuntime">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\ArcGIS SDKs\DotNet10.2.3\WindowsDesktop\bin\Esri.ArcGISRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\icsharpcode-SharpZipLib-155ca22\net-20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\AddTruck.aspx" />
+    <Content Include="Admin\CadMessages.aspx" />
+    <Content Include="Admin\ControlMessages.aspx" />
+    <Content Include="Admin\CurrentBeats.aspx" />
+    <Content Include="Admin\CurrentBeatSchedules.aspx" />
+    <Content Include="Admin\CurrentIncidents.aspx" />
+    <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Admin\LogOffDriver.aspx" />
+    <Content Include="Admin\Logon.aspx" />
+    <Content Include="Admin\SetGPS.aspx" />
+    <Content Include="Admin\SetLeeways.aspx" />
+    <Content Include="Admin\speedTester.htm" />
+    <Content Include="Admin\SurveyControl.aspx" />
+    <Content Include="Admin\TestUtils.aspx" />
+    <Content Include="Admin\TimeChecker.aspx" />
+    <Content Include="Admin\TowTruckCheckList.aspx" />
+    <Content Include="Admin\TowTruckSetup.aspx" />
+    <Content Include="Admin\TruckAlarmStatus.aspx" />
+    <Content Include="Admin\TruckDetail.aspx" />
+    <Content Include="Admin\TruckMessages.aspx" />
+    <Content Include="Admin\WAZEFeed.aspx" />
+    <Content Include="Admin\Yards.aspx" />
+    <Content Include="AJAXFSPService.svc" />
+    <Content Include="Client\Assist.html" />
+    <Content Include="Client\css\ClientCSS.css" />
+    <Content Include="Client\css\jqModal.css" />
+    <Content Include="Client\css\reset.css" />
+    <Content Include="Client\images\LATAShort.jpg" />
+    <Content Include="Client\Logon.html" />
+    <Content Include="Client\scripts\AssistScript.js" />
+    <Content Include="Client\scripts\GlobalData.js" />
+    <Content Include="Client\scripts\jqm-datebox-1.1.0.core.js" />
+    <Content Include="Client\scripts\jqm-datebox-1.1.0.mode.flipbox.js" />
+    <Content Include="Client\scripts\jqModal.js" />
+    <Content Include="Client\scripts\jquery-1.8.2.min.js" />
+    <Content Include="Client\scripts\jquery.ui.map.full.min.js" />
+    <Content Include="Client\scripts\LogonScript.js" />
+    <Content Include="Client\scripts\StatusScreen.js" />
+    <Content Include="Client\scripts\StatusScript.js" />
+    <Content Include="Client\Status.html" />
+    <Content Include="Client\TimeTest.html" />
+    <Content Include="css\HoverTable.css" />
+    <Content Include="css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="css\images\ui-bg_flat_0_eeeeee_40x100.png" />
+    <Content Include="css\images\ui-bg_flat_55_c0402a_40x100.png" />
+    <Content Include="css\images\ui-bg_flat_55_eeeeee_40x100.png" />
+    <Content Include="css\images\ui-bg_glass_100_f8f8f8_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_35_dddddd_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_60_eeeeee_1x400.png" />
+    <Content Include="css\images\ui-bg_inset-hard_75_999999_1x100.png" />
+    <Content Include="css\images\ui-bg_inset-soft_50_c9c9c9_1x100.png" />
+    <Content Include="css\images\ui-icons_3383bb_256x240.png" />
+    <Content Include="css\images\ui-icons_454545_256x240.png" />
+    <Content Include="css\images\ui-icons_70b2e1_256x240.png" />
+    <Content Include="css\images\ui-icons_999999_256x240.png" />
+    <Content Include="css\images\ui-icons_fbc856_256x240.png" />
+    <Content Include="css\jquery-ui-1.8.23.custom.css" />
+    <Content Include="css\jquery.simple-dtpicker.css" />
+    <Content Include="css\SiteStyle.css" />
+    <Content Include="css\TowTruckCheckList.css" />
+    <Content Include="EsriService.svc" />
+    <Content Include="FSPService.svc" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\12-012 LOGO - LATA Trax_PNG-02.png" />
+    <Content Include="Images\LATA Trax_icon_checkbox.png" />
+    <Content Include="Images\LATAShort.jpg" />
+    <Content Include="Images\LATATRAX LOGO.png" />
+    <Content Include="Images\LATATRAX ScreenName.png" />
+    <Content Include="Images\LATATRAX Tire.png" />
+    <Content Include="Images\LATATRAX Tire2.png" />
+    <Content Include="Images\mtc ftt dashboard_v2_2-01.png" />
+    <Content Include="Images\mtc ftt dashboard_v2_alert icon.png" />
+    <Content Include="Images\mtc ftt dashboard_v2_bay area lata trax logo.png" />
+    <Content Include="Images\mtc ftt dashboard_v2_connected vehicle icon.png" />
+    <Content Include="Images\mtc ftt dashboard_v2_message vehicle icon.png" />
+    <Content Include="Images\mtc ftt dashboard_v2_mtc logo.png" />
+    <Content Include="Images\SmallVertBar.png" />
+    <Content Include="Images\topMenuImages.png" />
+    <Content Include="Images\VertBar.png" />
+    <Content Include="MTCDataFeed.aspx" />
+    <Content Include="MTCDataFeedXML.aspx" />
+    <Content Include="RSSFeeder.svc" />
+    <Content Include="Scripts\Ai2CanvasAnimation.js" />
+    <Content Include="Scripts\CurrentAssistsToTable.js" />
+    <Content Include="Scripts\CurrentConnectsJSONtoTable.js" />
+    <Content Include="Scripts\CurrentDrivers.js" />
+    <Content Include="Scripts\CurrentIncidentsToTable.js" />
+    <Content Include="Scripts\CurrentStateJSONtoTable.js" />
+    <Content Include="Scripts\jquery-1.8.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.23.custom.min.js" />
+    <Content Include="Scripts\bscHtml5.js" />
+    <Content Include="Scripts\jquery.simple-dtpicker.js" />
+    <Content Include="Scripts\jquery.tablesorter.min.js" />
+    <Content Include="Scripts\speedchecker.js" />
+    <Content Include="Scripts\TimeFixer.js" />
+    <Content Include="Scripts\TowTruckCheckList.js" />
+    <Content Include="Scripts\TowTruckSetup.js" />
+    <Content Include="Scripts\TruckDetail.js" />
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\DEV.pubxml" />
+    <None Include="Properties\PublishProfiles\FSPService.pubxml" />
+    <None Include="Properties\PublishProfiles\MTC FSP Service.pubxml" />
+    <None Include="Properties\PublishProfiles\MTCFSPService.pubxml" />
+    <None Include="Service References\srSecondaryService\FPSService.srSecondaryService.AlarmStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srSecondaryService\FPSService.srSecondaryService.AssistScreenData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srSecondaryService\FPSService.srSecondaryService.AssistTruck.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srSecondaryService\FPSService.srSecondaryService.IncidentDisplay.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srSecondaryService\FPSService.srSecondaryService.IncidentIn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srSecondaryService\FPSService.srSecondaryService.IncidentScreenData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srSecondaryService\FPSService.srSecondaryService.ListDrivers.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srSecondaryService\FPSService.srSecondaryService.TowTruckData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\srSecondaryService\configuration91.svcinfo" />
+    <None Include="Service References\srSecondaryService\configuration.svcinfo" />
+    <None Include="Service References\srSecondaryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\srSecondaryService\TowTruckService1.disco" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TabletClient\Assist.html" />
+    <Content Include="TabletClient\css\ClientCSS.css" />
+    <Content Include="TabletClient\css\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="TabletClient\css\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="TabletClient\css\images\ui-bg_glass_20_555555_1x400.png" />
+    <Content Include="TabletClient\css\images\ui-bg_glass_40_0078a3_1x400.png" />
+    <Content Include="TabletClient\css\images\ui-bg_glass_40_ffc73d_1x400.png" />
+    <Content Include="TabletClient\css\images\ui-bg_gloss-wave_25_333333_500x100.png" />
+    <Content Include="TabletClient\css\images\ui-bg_highlight-soft_80_eeeeee_1x100.png" />
+    <Content Include="TabletClient\css\images\ui-bg_inset-soft_25_000000_1x100.png" />
+    <Content Include="TabletClient\css\images\ui-bg_inset-soft_30_f58400_1x100.png" />
+    <Content Include="TabletClient\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="TabletClient\css\images\ui-icons_4b8e0b_256x240.png" />
+    <Content Include="TabletClient\css\images\ui-icons_a83300_256x240.png" />
+    <Content Include="TabletClient\css\images\ui-icons_cccccc_256x240.png" />
+    <Content Include="TabletClient\css\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="TabletClient\css\img\at.png" />
+    <Content Include="TabletClient\css\img\bars.png" />
+    <Content Include="TabletClient\css\img\book.png" />
+    <Content Include="TabletClient\css\img\calendar.png" />
+    <Content Include="TabletClient\css\img\camera.png" />
+    <Content Include="TabletClient\css\img\chart.png" />
+    <Content Include="TabletClient\css\img\chat.png" />
+    <Content Include="TabletClient\css\img\check.png" />
+    <Content Include="TabletClient\css\img\clock.png" />
+    <Content Include="TabletClient\css\img\cog.png" />
+    <Content Include="TabletClient\css\img\document.png" />
+    <Content Include="TabletClient\css\img\down.png" />
+    <Content Include="TabletClient\css\img\error.png" />
+    <Content Include="TabletClient\css\img\folder.png" />
+    <Content Include="TabletClient\css\img\heart.png" />
+    <Content Include="TabletClient\css\img\help.png" />
+    <Content Include="TabletClient\css\img\home.png" />
+    <Content Include="TabletClient\css\img\info.png" />
+    <Content Include="TabletClient\css\img\key.png" />
+    <Content Include="TabletClient\css\img\lamp.png" />
+    <Content Include="TabletClient\css\img\left.png" />
+    <Content Include="TabletClient\css\img\magnifier.png" />
+    <Content Include="TabletClient\css\img\mail.png" />
+    <Content Include="TabletClient\css\img\minus.png" />
+    <Content Include="TabletClient\css\img\pen.png" />
+    <Content Include="TabletClient\css\img\pin.png" />
+    <Content Include="TabletClient\css\img\plus.png" />
+    <Content Include="TabletClient\css\img\quote.png" />
+    <Content Include="TabletClient\css\img\reload.png" />
+    <Content Include="TabletClient\css\img\right.png" />
+    <Content Include="TabletClient\css\img\star.png" />
+    <Content Include="TabletClient\css\img\tag.png" />
+    <Content Include="TabletClient\css\img\trash.png" />
+    <Content Include="TabletClient\css\img\unlock.png" />
+    <Content Include="TabletClient\css\img\up.png" />
+    <Content Include="TabletClient\css\img\user.png" />
+    <Content Include="TabletClient\css\img\window.png" />
+    <Content Include="TabletClient\css\img\wrench.png" />
+    <Content Include="TabletClient\css\jqModal.css" />
+    <Content Include="TabletClient\css\jquery-fallr-1.3.css" />
+    <Content Include="TabletClient\css\jquery-ui-1.9.2.custom.min.css" />
+    <Content Include="TabletClient\css\jquery.ptTimeSelect.css" />
+    <Content Include="TabletClient\css\reset.css" />
+    <Content Include="TabletClient\EarlyRollIn.html" />
+    <Content Include="TabletClient\images\LATAShort.jpg" />
+    <Content Include="TabletClient\images\stripetile.png" />
+    <Content Include="TabletClient\js\Jplayer.swf" />
+    <Content Include="TabletClient\Logon.html" />
+    <Content Include="TabletClient\scripts\AssistScript.js" />
+    <Content Include="TabletClient\scripts\EarlyRollIn.js" />
+    <Content Include="TabletClient\scripts\GlobalData.js" />
+    <Content Include="TabletClient\scripts\jqModal.js" />
+    <Content Include="TabletClient\scripts\jquery-1.8.2.min.js" />
+    <Content Include="TabletClient\scripts\jquery-fallr-1.3.min.js" />
+    <Content Include="TabletClient\scripts\jquery-ui-1.9.1.custom.min.js" />
+    <Content Include="TabletClient\scripts\jquery.jplayer.min.js" />
+    <Content Include="TabletClient\scripts\jquery.ptTimeSelect.js" />
+    <Content Include="TabletClient\scripts\jquery.ui.map.full.min.js" />
+    <Content Include="TabletClient\scripts\LogonScript.js" />
+    <Content Include="TabletClient\scripts\playSounds.js" />
+    <Content Include="TabletClient\scripts\StatusScript.js" />
+    <Content Include="TabletClient\sounds\Alarm.mp3" />
+    <Content Include="TabletClient\SoundTest.html" />
+    <Content Include="TabletClient\Status.html" />
+    <Content Include="TowTruckService.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="WebSite\CurrentConnects.aspx" />
+    <None Include="Service References\srSecondaryService\TowTruckService1.wsdl" />
+    <None Include="Service References\srSecondaryService\TowTruckService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\srSecondaryService\TowTruckService41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\srSecondaryService\TowTruckService42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\srSecondaryService\TowTruckService43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\AddTruck.aspx.cs">
+      <DependentUpon>AddTruck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddTruck.aspx.designer.cs">
+      <DependentUpon>AddTruck.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CadMessages.aspx.cs">
+      <DependentUpon>CadMessages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CadMessages.aspx.designer.cs">
+      <DependentUpon>CadMessages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ControlMessages.aspx.cs">
+      <DependentUpon>ControlMessages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ControlMessages.aspx.designer.cs">
+      <DependentUpon>ControlMessages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CurrentBeats.aspx.cs">
+      <DependentUpon>CurrentBeats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CurrentBeats.aspx.designer.cs">
+      <DependentUpon>CurrentBeats.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CurrentBeatSchedules.aspx.cs">
+      <DependentUpon>CurrentBeatSchedules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CurrentBeatSchedules.aspx.designer.cs">
+      <DependentUpon>CurrentBeatSchedules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CurrentIncidents.aspx.cs">
+      <DependentUpon>CurrentIncidents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CurrentIncidents.aspx.designer.cs">
+      <DependentUpon>CurrentIncidents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\LogOffDriver.aspx.cs">
+      <DependentUpon>LogOffDriver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\LogOffDriver.aspx.designer.cs">
+      <DependentUpon>LogOffDriver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Logon.aspx.cs">
+      <DependentUpon>Logon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Logon.aspx.designer.cs">
+      <DependentUpon>Logon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SetGPS.aspx.cs">
+      <DependentUpon>SetGPS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SetGPS.aspx.designer.cs">
+      <DependentUpon>SetGPS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SetLeeways.aspx.cs">
+      <DependentUpon>SetLeeways.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SetLeeways.aspx.designer.cs">
+      <DependentUpon>SetLeeways.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\SurveyControl.aspx.cs">
+      <DependentUpon>SurveyControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SurveyControl.aspx.designer.cs">
+      <DependentUpon>SurveyControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TestUtils.aspx.cs">
+      <DependentUpon>TestUtils.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TestUtils.aspx.designer.cs">
+      <DependentUpon>TestUtils.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TimeChecker.aspx.cs">
+      <DependentUpon>TimeChecker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TimeChecker.aspx.designer.cs">
+      <DependentUpon>TimeChecker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TowTruckCheckList.aspx.cs">
+      <DependentUpon>TowTruckCheckList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TowTruckCheckList.aspx.designer.cs">
+      <DependentUpon>TowTruckCheckList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TowTruckSetup.aspx.cs">
+      <DependentUpon>TowTruckSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TowTruckSetup.aspx.designer.cs">
+      <DependentUpon>TowTruckSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TruckAlarmStatus.aspx.cs">
+      <DependentUpon>TruckAlarmStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TruckAlarmStatus.aspx.designer.cs">
+      <DependentUpon>TruckAlarmStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TruckDetail.aspx.cs">
+      <DependentUpon>TruckDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TruckDetail.aspx.designer.cs">
+      <DependentUpon>TruckDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TruckMessages.aspx.cs">
+      <DependentUpon>TruckMessages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TruckMessages.aspx.designer.cs">
+      <DependentUpon>TruckMessages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\WAZEFeed.aspx.cs">
+      <DependentUpon>WAZEFeed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\WAZEFeed.aspx.designer.cs">
+      <DependentUpon>WAZEFeed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Yards.aspx.cs">
+      <DependentUpon>Yards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Yards.aspx.designer.cs">
+      <DependentUpon>Yards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AJAXFSPService.svc.cs">
+      <DependentUpon>AJAXFSPService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="BeatData\Beats.cs" />
+    <Compile Include="BeatData\BeatSegments.cs" />
+    <Compile Include="BeatData\BeatsFreeways.cs" />
+    <Compile Include="BeatData\CallBoxes.cs" />
+    <Compile Include="BeatData\DropSites.cs" />
+    <Compile Include="BeatData\Haversine.cs" />
+    <Compile Include="BeatData\Yards.cs" />
+    <Compile Include="CADIntegration\CADHelpers.cs" />
+    <Compile Include="CADIntegration\CADListener.cs" />
+    <Compile Include="CADIntegration\CADLog.cs" />
+    <Compile Include="CADIntegration\CADQueue.cs" />
+    <Compile Include="CADIntegration\CADSender.cs" />
+    <Compile Include="CADIntegration\MessageParser.cs" />
+    <Compile Include="DataClasses\BulkLogger.cs" />
+    <Compile Include="DataClasses\ClientClasses.cs" />
+    <Compile Include="DataClasses\GlobalData.cs" />
+    <Compile Include="DataClasses\MakeUnixTime.cs" />
+    <Compile Include="DataClasses\SurveyControlChecker.cs" />
+    <Compile Include="DataClasses\TowTruckCleanser.cs" />
+    <Compile Include="DataClasses\TruckDumper.cs" />
+    <Compile Include="EsriService.svc.cs">
+      <DependentUpon>EsriService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="FSPService.svc.cs">
+      <DependentUpon>FSPService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IEsriService.cs" />
+    <Compile Include="ITowTruckService.cs" />
+    <Compile Include="Logging\EventLogger.cs" />
+    <Compile Include="Logging\MessageLogger.cs" />
+    <Compile Include="MiscData\Assist.cs" />
+    <Compile Include="MiscData\AssistView.cs" />
+    <Compile Include="MiscData\BeatSchedule.cs" />
+    <Compile Include="MiscData\CallSign.cs" />
+    <Compile Include="MiscData\ClientAssistData.cs" />
+    <Compile Include="MiscData\ClientBeat.cs" />
+    <Compile Include="MiscData\Code1098.cs" />
+    <Compile Include="MiscData\Contractors.cs" />
+    <Compile Include="MiscData\CoveredBeat.cs" />
+    <Compile Include="MiscData\DataDumper.cs" />
+    <Compile Include="MiscData\DropZone.cs" />
+    <Compile Include="MiscData\Freeway.cs" />
+    <Compile Include="MiscData\GPSTimeCheck.cs" />
+    <Compile Include="MiscData\HighwaysBeats.cs" />
+    <Compile Include="MiscData\Incident.cs" />
+    <Compile Include="MiscData\IncidentType.cs" />
+    <Compile Include="MiscData\IncidentView.cs" />
+    <Compile Include="MiscData\LocationCoding.cs" />
+    <Compile Include="MiscData\LogonCheck.cs" />
+    <Compile Include="MiscData\MTCIncident.cs" />
+    <Compile Include="MiscData\MTCAssist.cs" />
+    <Compile Include="MiscData\MTCPreAssistData.cs" />
+    <Compile Include="MiscData\PortableAssistRequest.cs" />
+    <Compile Include="MiscData\ServiceType.cs" />
+    <Compile Include="MiscData\TowLocation.cs" />
+    <Compile Include="MiscData\TrafficSpeed.cs" />
+    <Compile Include="MiscData\TruckPosition.cs" />
+    <Compile Include="MiscData\TrucksDrivers.cs" />
+    <Compile Include="MiscData\UnassignedAssist.cs" />
+    <Compile Include="MiscData\VehiclePosition.cs" />
+    <Compile Include="MiscData\VehicleType.cs" />
+    <Compile Include="MTCDataFeed.aspx.cs">
+      <DependentUpon>MTCDataFeed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MTCDataFeed.aspx.designer.cs">
+      <DependentUpon>MTCDataFeed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MTCDataFeedXML.aspx.cs">
+      <DependentUpon>MTCDataFeedXML.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MTCDataFeedXML.aspx.designer.cs">
+      <DependentUpon>MTCDataFeedXML.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RSSFeeder.svc.cs">
+      <DependentUpon>RSSFeeder.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\srSecondaryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="SQL\SQLCode.cs" />
+    <Compile Include="TowTruckService.svc.cs">
+      <DependentUpon>TowTruckService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="TowTruck\StatusTimer.cs" />
+    <Compile Include="TowTruck\SurveyTruck.cs" />
+    <Compile Include="TowTruck\TowTruckAlarms.cs" />
+    <Compile Include="TowTruck\AlarmTimer.cs" />
+    <Compile Include="TowTruck\AssignedBeat.cs" />
+    <Compile Include="TowTruck\AttributeNode.cs" />
+    <Compile Include="TowTruck\ClientTruckStatus.cs" />
+    <Compile Include="TowTruck\DashboardState.cs" />
+    <Compile Include="TowTruck\GPSMessage.cs" />
+    <Compile Include="TowTruck\MessageQueue.cs" />
+    <Compile Include="TowTruck\SequenceIdentifier.cs" />
+    <Compile Include="TowTruck\TowTruckDashboardState.cs" />
+    <Compile Include="TowTruck\TowTruckDriver.cs" />
+    <Compile Include="TowTruck\GPS.cs" />
+    <Compile Include="TowTruck\LastMessageRec.cs" />
+    <Compile Include="TowTruck\Messages.cs" />
+    <Compile Include="TowTruck\TowTruck.cs" />
+    <Compile Include="TowTruck\TowTruckMessage.cs" />
+    <Compile Include="TowTruck\TowTruckState.cs" />
+    <Compile Include="TowTruck\TowTruckStatus.cs" />
+    <Compile Include="TowTruck\TowTruckExtended.cs" />
+    <Compile Include="TowTruck\TowTruckGPS.cs" />
+    <Compile Include="TowTruck\TowTruckXMLWriter.cs" />
+    <Compile Include="TowTruck\TruckStatus.cs" />
+    <Compile Include="UDP\Ack.cs" />
+    <Compile Include="UDP\SendMessage.cs" />
+    <Compile Include="UDP\UDPServer.cs" />
+    <Compile Include="WAZE\GetWAZE.cs" />
+    <Compile Include="WAZE\PostWAZE.cs" />
+    <Compile Include="WAZE\WAZEClass.cs" />
+    <Compile Include="WebSite\CurrentConnects.aspx.cs">
+      <DependentUpon>CurrentConnects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebSite\CurrentConnects.aspx.designer.cs">
+      <DependentUpon>CurrentConnects.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Zips\Unzipped\" />
+    <Folder Include="Zips\Zipped\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\srSecondaryService\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>9007</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:9017/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

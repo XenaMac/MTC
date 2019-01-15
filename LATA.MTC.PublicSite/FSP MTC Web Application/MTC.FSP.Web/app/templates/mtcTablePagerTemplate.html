@@ -1,0 +1,13 @@
+﻿<div ng-hide="(isBusy || pagesCount < 2)">
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" ng-disabled="page == 0" ng-click="getRecords(0)"><i class="fa fa-angle-double-left"></i></button>
+        <button type="button" class="btn btn-default" ng-disabled="page == 0" ng-click="getRecords(page-1)"><i class="fa fa-angle-left"></i></button>
+
+        <button ng-repeat="n in range()" type="button" class="btn" ng-class="{'btn-primary':n===page, 'btn-default':n!==page}" ng-click="getRecords(n)">
+            {{n+1}}
+        </button>
+
+        <button type="button" class="btn btn-default" ng-disabled="page == pagesCount - 1" ng-click="getRecords(page+1)"><i class="fa fa-angle-right"></i></button>
+        <button type="button" class="btn btn-default" ng-disabled="page == pagesCount - 1" ng-click="getRecords(pagesCount - 1)"><i class="fa fa-angle-double-right"></i></button>
+    </div>
+</div>

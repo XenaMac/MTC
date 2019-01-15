@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Training Media";
+}
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<h2 class="col-lg-offset-2">@ViewBag.Title</h2>
+
+<br />
+
+<div ng-app="mtcApp">
+    <div ng-controller="reportsController" ng-cloak>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-2" ng-show="currentUserRoleName">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-class="{active:currentUserRoleName !== 'TowContractor'}"><a href="#" aria-controls="Admin" role="tab" data-toggle="tab" ng-hide="currentUserRoleName === 'TowContractor'">Admin/FSP Partners</a></li>
+                        <li role="presentation" ng-class="{active:currentUserRoleName === 'TowContractor'}"><a href="#" aria-controls="Contractors" role="tab" data-toggle="tab">Tow Contractors/Drivers</a></li>
+                    </ul>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    @*Everyone has access except TowContractor*@
+                    <div role="tabpanel" class="tab-pane fade in active" ng-class="{active:currentUserRoleName !== 'TowContractor'}" ng id="Admin" ng-disabled="currentUserRoleName!='TowContractor'">
+                        <br />
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                                <h4 class="list-group-item-heading">User Guide</h4>
+                                <p class="list-group-item-text">The Main UserGuide for this Application/System</p>
+                            </a>
+                        </div>
+                        <br />
+                    </div>
+
+                    @*Contractors only have access to this tab and only THEIR information*@
+                    <div role="tabpanel" class="tab-pane fade in" ng-class="{active:currentUserRoleName === 'TowContractor'}" id="Contractors">
+                        <br />
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                                <h4 class="list-group-item-heading">Video # 1</h4>
+                                <p class="list-group-item-text">How to ...</p>
+                            </a>
+                        </div>
+                        <br />
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/trainingMediaController.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a9bb4d47-1efc-4b4d-b859-758be46761b8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9017/TowTruckService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TowTruckService1.disco" MetadataType="Disco" ID="005802b3-b2b3-4806-993a-12fa99f6307f" SourceId="1" SourceUrl="http://localhost:9017/TowTruckService.svc?disco" />
+    <MetadataFile FileName="TowTruckService1.wsdl" MetadataType="Wsdl" ID="33cf1bdf-1b4a-4ae7-b3c5-091b0a0305fa" SourceId="1" SourceUrl="http://localhost:9017/TowTruckService.svc?wsdl" />
+    <MetadataFile FileName="TowTruckService3.xsd" MetadataType="Schema" ID="dfd4d5d1-2e88-4aec-a430-fa13a8a32f1d" SourceId="1" SourceUrl="http://localhost:9017/TowTruckService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TowTruckService4.xsd" MetadataType="Schema" ID="860525ec-ce59-4399-b0b6-8c92b9c423ba" SourceId="1" SourceUrl="http://localhost:9017/TowTruckService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TowTruckService6.xsd" MetadataType="Schema" ID="1ce28159-cce7-493f-a454-bf3e2f7ab447" SourceId="1" SourceUrl="http://localhost:9017/TowTruckService.svc?xsd=xsd3" />
+    <MetadataFile FileName="TowTruckService5.xsd" MetadataType="Schema" ID="6fe04dee-2c04-497f-b30d-c4efb92d3c97" SourceId="1" SourceUrl="http://localhost:9017/TowTruckService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
