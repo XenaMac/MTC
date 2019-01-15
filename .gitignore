@@ -1,0 +1,13 @@
+.vs
+.idea
+bower_components
+node_modules
+bin
+obj
+public
+packages
+Logs.txt
+Errors.txt
+**/*.mdf
+**/*.ldf
+*.cache

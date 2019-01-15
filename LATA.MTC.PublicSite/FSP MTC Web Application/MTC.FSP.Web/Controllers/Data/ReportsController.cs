@@ -34,7 +34,7 @@ namespace MTC.FSP.Web.Controllers.Data
 
         public async Task<ActionResult> ExportToExcel()
         {
-            var TwoMonthsAgo = DateTime.Now.AddMonths(-2);
+            var twoMonthsAgo = DateTime.Now.AddMonths(-2);
             var DSRS = new List<DSR>();
             var incidents = new List<MTCIncident>();
 
@@ -45,34 +45,34 @@ namespace MTC.FSP.Web.Controllers.Data
             {
                 ViewBag.Contractor = true;
                 ViewBag.Drivers = new SelectList(from w in _db.Drivers.Where(m => m.ContractorID == user.ContractorId)
-                    select new
-                    {
-                        Value = w.DriverID,
-                        Text = w.FirstName + " " + w.LastName
-                    }, "Value", "Text");
+                                                 select new
+                                                 {
+                                                     Value = w.DriverID,
+                                                     Text = w.FirstName + " " + w.LastName
+                                                 }, "Value", "Text");
 
                 incidents = (from inc in _db.MTCIncidents
-                    join pre in _db.MTCPreAssists on inc.IncidentID equals pre.IncidentID
-                    where inc.DatePosted >= TwoMonthsAgo &&
-                          pre.Driver.ContractorID == user.ContractorId
-                    select inc).ToList();
+                             join pre in _db.MTCPreAssists on inc.IncidentID equals pre.IncidentID
+                             where inc.DatePosted >= twoMonthsAgo &&
+                                   pre.Driver.ContractorID == user.ContractorId
+                             select inc).ToList();
             }
             else
             {
                 ViewBag.Contractor = false;
                 ViewBag.Contractors = new SelectList(_db.Contractors, "ContractorID", "ContractCompanyName");
                 ViewBag.Drivers = new SelectList(from w in _db.Drivers
-                    select new
-                    {
-                        Value = w.DriverID,
-                        Text = w.FirstName + " " + w.LastName
-                    }, "Value", "Text");
+                                                 select new
+                                                 {
+                                                     Value = w.DriverID,
+                                                     Text = w.FirstName + " " + w.LastName
+                                                 }, "Value", "Text");
 
                 incidents = (from inc in _db.MTCIncidents
-                    join pre in _db.MTCPreAssists on inc.IncidentID equals pre.IncidentID
-                    where inc.DatePosted >= TwoMonthsAgo &&
-                          pre.Driver.ContractorID == user.ContractorId
-                    select inc).ToList();
+                             join pre in _db.MTCPreAssists on inc.IncidentID equals pre.IncidentID
+                             where inc.DatePosted >= twoMonthsAgo &&
+                                   pre.Driver.ContractorID == user.ContractorId
+                             select inc).ToList();
             }
 
             #endregion
@@ -82,44 +82,43 @@ namespace MTC.FSP.Web.Controllers.Data
             foreach (var incident in incidents)
             {
                 var dsr = new DSR();
-                var PreAssists = (from pre in _db.MTCPreAssists
-                    where pre.IncidentID == incident.IncidentID
-                    select pre).ToList();
+                var preAssists = (from pre in _db.MTCPreAssists
+                                  where pre.IncidentID == incident.IncidentID
+                                  select pre).ToList();
 
-                var Assists = (from ass in _db.MTCAssists
-                    where ass.IncidentID == incident.IncidentID
-                    select ass).ToList();
+                var assists = (from ass in _db.MTCAssists
+                               where ass.IncidentID == incident.IncidentID
+                               select ass).ToList();
 
-                dsr.PreAssists = PreAssists;
-                dsr.Assists = Assists;
+                dsr.PreAssists = preAssists;
+                dsr.Assists = assists;
 
-                foreach (var assist in Assists)
+                foreach (var assist in assists)
                 {
-                    var Acts = (from act in _db.MTCActionTakens
-                        where act.MTCAssistID == assist.MTCAssistID
-                        select act).ToList();
+                    var acts = (from act in _db.MTCActionTakens
+                                where act.MTCAssistID == assist.MTCAssistID
+                                select act).ToList();
 
-                    dsr.ActionsTaken = Acts;
+                    dsr.ActionsTaken = acts;
                 }
 
-                var beatid = new Guid(Assists[0].DropSiteBeat);
+                var beatId = new Guid(assists[0].DropSiteBeat);
                 dsr.DatePosted = incident.DatePosted;
-                dsr.Callsign = Assists[0].CallSign;
-                dsr.CHPLogNumber = PreAssists[0].CHPLogNumber;
-                dsr.DriverFirstName = PreAssists[0].Driver.FirstName;
-                dsr.DriverLastName = PreAssists[0].Driver.LastName;
-                dsr.DriverID = PreAssists[0].DriverID;
-                dsr.DropSite = Assists[0].DropSite;
+                dsr.Callsign = assists[0].CallSign;
+                dsr.CHPLogNumber = preAssists[0].CHPLogNumber;
+                dsr.DriverFirstName = preAssists[0].Driver.FirstName;
+                dsr.DriverLastName = preAssists[0].Driver.LastName;
+                dsr.DriverID = preAssists[0].DriverID;
+                dsr.DropSite = assists[0].DropSite;
                 dsr.DropSiteBeat = (from beat in _db.BeatDatas
-                    where beat.ID == beatid
-                    select beat.BeatName).First();
-                dsr.EndODO = Assists[0].EndODO;
+                                    where beat.ID == beatId
+                                    select beat.BeatName).First();
+                dsr.EndODO = assists[0].EndODO;
                 dsr.fromTruck = incident.fromTruck;
-                dsr.IncidentSurveyNumber = PreAssists[0].IncidentSurveyNumber;
-                dsr.OTAuthorizationNumber = Assists[0].OTAuthorizationNumber;
-                dsr.StartODO = Assists[0].StartODO;
-                dsr.ContractCompany = PreAssists[0].Driver.Contractor.ContractCompanyName;
-
+                dsr.IncidentSurveyNumber = preAssists[0].IncidentSurveyNumber;
+                dsr.OTAuthorizationNumber = assists[0].OTAuthorizationNumber;
+                dsr.StartODO = assists[0].StartODO;
+                dsr.ContractCompany = preAssists[0].Driver.Contractor.ContractCompanyName;
                 DSRS.Add(dsr);
             }
 
@@ -130,7 +129,7 @@ namespace MTC.FSP.Web.Controllers.Data
             //static file name, can be changes as per requirement
             var sFileName = "DSR.xls";
 
-            if (incidents != null && incidents.Any())
+            if (incidents.Any())
             {
                 sb.Append("<table style='1px solid black; font-size:12px;'>");
                 sb.Append("<tr>");
@@ -333,35 +332,35 @@ namespace MTC.FSP.Web.Controllers.Data
             {
                 ViewBag.Contractor = true;
                 ViewBag.Drivers = new SelectList(from w in _db.Drivers.Where(m => m.ContractorID == user.ContractorId)
-                    select new
-                    {
-                        Value = w.DriverID,
-                        Text = w.FirstName + " " + w.LastName
-                    }, "Value", "Text");
+                                                 select new
+                                                 {
+                                                     Value = w.DriverID,
+                                                     Text = w.FirstName + " " + w.LastName
+                                                 }, "Value", "Text");
 
                 incidents = (from inc in _db.MTCIncidents
-                    join pre in _db.MTCPreAssists on inc.IncidentID equals pre.IncidentID
-                    join ass in _db.MTCAssists on inc.IncidentID equals ass.IncidentID
-                    where inc.DatePosted >= TwoMonthsAgo &&
-                          pre.Driver.ContractorID == user.ContractorId
-                    select inc).ToList();
+                             join pre in _db.MTCPreAssists on inc.IncidentID equals pre.IncidentID
+                             join ass in _db.MTCAssists on inc.IncidentID equals ass.IncidentID
+                             where inc.DatePosted >= TwoMonthsAgo &&
+                                   pre.Driver.ContractorID == user.ContractorId
+                             select inc).ToList();
             }
             else
             {
                 ViewBag.Contractor = false;
                 ViewBag.Contractors = new SelectList(_db.Contractors, "ContractorID", "ContractCompanyName");
                 ViewBag.Drivers = new SelectList(from w in _db.Drivers
-                    select new
-                    {
-                        Value = w.DriverID,
-                        Text = w.FirstName + " " + w.LastName
-                    }, "Value", "Text");
+                                                 select new
+                                                 {
+                                                     Value = w.DriverID,
+                                                     Text = w.FirstName + " " + w.LastName
+                                                 }, "Value", "Text");
 
                 incidents = (from inc in _db.MTCIncidents
-                    join pre in _db.MTCPreAssists on inc.IncidentID equals pre.IncidentID
-                    join ass in _db.MTCAssists on inc.IncidentID equals ass.IncidentID
-                    where inc.DatePosted >= TwoMonthsAgo
-                    select inc).ToList();
+                             join pre in _db.MTCPreAssists on inc.IncidentID equals pre.IncidentID
+                             join ass in _db.MTCAssists on inc.IncidentID equals ass.IncidentID
+                             where inc.DatePosted >= TwoMonthsAgo
+                             select inc).ToList();
             }
 
             #endregion
@@ -372,12 +371,12 @@ namespace MTC.FSP.Web.Controllers.Data
             {
                 var dsr = new DSR();
                 var PreAssists = (from pre in _db.MTCPreAssists
-                    where pre.IncidentID == incident.IncidentID
-                    select pre).ToList();
+                                  where pre.IncidentID == incident.IncidentID
+                                  select pre).ToList();
 
                 var Assists = (from ass in _db.MTCAssists
-                    where ass.IncidentID == incident.IncidentID
-                    select ass).ToList();
+                               where ass.IncidentID == incident.IncidentID
+                               select ass).ToList();
 
                 dsr.PreAssists = PreAssists;
                 dsr.Assists = Assists;
@@ -385,8 +384,8 @@ namespace MTC.FSP.Web.Controllers.Data
                 foreach (var assist in Assists)
                 {
                     var Acts = (from act in _db.MTCActionTakens
-                        where act.MTCAssistID == assist.MTCAssistID
-                        select act).ToList();
+                                where act.MTCAssistID == assist.MTCAssistID
+                                select act).ToList();
 
                     dsr.ActionsTaken = Acts;
                 }
@@ -457,47 +456,52 @@ namespace MTC.FSP.Web.Controllers.Data
         [HttpPost]
         public ActionResult GetAssistsLogged(AssistsLoggedQuery query)
         {
+            if (query == null)
+            {
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+
             var data = from i in _db.Incidents
-                //join pa in _db.MTCPreAssists on i.IncidentID equals pa.IncidentID
-                join a in _db.Assists on i.IncidentID equals a.IncidentID
-                //join at in _db.MTCActionTakens on a.MTCAssistID equals at.MTCAssistID
-                join cs in _db.MTCBeatsCallSigns on a.CallSign equals cs.CallSign
-                join b in _db.BeatDatas on i.Beat equals b.BeatID
-                join con in _db.Contracts on b.ID equals con.BeatId
-                join c in _db.Contractors on con.ContractorID equals c.ContractorID
-                orderby i.IncidentDatePosted descending
-                select new
-                {
-                    //DispatchType = pa.CHPIncidentType,
-                    DispatchType = i.UserPosted == "CHP CAD" ? "CAD" : "Driver",
-                    Date = i.IncidentDatePosted,
-                    BeatNumber = cs.BeatID,
-                    a.CallSign,
-                    i.TruckNumber,
-                    c.ContractCompanyName,
-                    DriverId = i.DriverID,
-                    i.DriverFIrstName,
-                    i.DriverLastName,
-                    CHPIncident = i.CHPIncidentType,
-                    x1097Time = i.IncidentDatePosted,
-                    x1098Time = a.AssistDatePosted,
-                    i.Direction,
-                    Highway = i.Freeway,
-                    i.PositionIncident,
-                    Area = i.FSPLocation,
-                    ProblemCode = i.CHPIncidentType,
-                    ActionCode = a.ActionTaken,
-                    TransportCode = a.TransportType,
-                    a.VehicleType,
-                    a.State,
-                    a.LicensePlate,
-                    SurveyId = i.IncidentSurveyNumber,
-                    OTNumber = a.OTAuthorizationNumber,
-                    AssistNotes = a.ProblemNote,
-                    AssistOtherNotes = a.OtherNote,
-                    AssistDetailNotes = a.DetailNote,
-                    PreAssistNotes = i.Comment
-                };
+                           //join pa in _db.MTCPreAssists on i.IncidentID equals pa.IncidentID
+                       join a in _db.Assists on i.IncidentID equals a.IncidentID
+                       //join at in _db.MTCActionTakens on a.MTCAssistID equals at.MTCAssistID
+                       join cs in _db.MTCBeatsCallSigns on a.CallSign equals cs.CallSign
+                       join b in _db.BeatDatas on i.Beat equals b.BeatID
+                       join con in _db.Contracts on b.ID equals con.BeatId
+                       join c in _db.Contractors on con.ContractorID equals c.ContractorID
+                       orderby i.IncidentDatePosted descending
+                       select new
+                       {
+                           //DispatchType = pa.CHPIncidentType,
+                           DispatchType = i.UserPosted == "CHP CAD" ? "CAD" : "Driver",
+                           Date = i.IncidentDatePosted,
+                           BeatNumber = cs.BeatID,
+                           a.CallSign,
+                           i.TruckNumber,
+                           c.ContractCompanyName,
+                           DriverId = i.DriverID,
+                           i.DriverFIrstName,
+                           i.DriverLastName,
+                           CHPIncident = i.CHPIncidentType,
+                           x1097Time = i.IncidentDatePosted,
+                           x1098Time = a.AssistDatePosted,
+                           i.Direction,
+                           Highway = i.Freeway,
+                           i.PositionIncident,
+                           Area = i.FSPLocation,
+                           ProblemCode = i.CHPIncidentType,
+                           ActionCode = a.ActionTaken,
+                           TransportCode = a.TransportType,
+                           a.VehicleType,
+                           a.State,
+                           a.LicensePlate,
+                           SurveyId = i.IncidentSurveyNumber,
+                           OTNumber = a.OTAuthorizationNumber,
+                           AssistNotes = a.ProblemNote,
+                           AssistOtherNotes = a.OtherNote,
+                           AssistDetailNotes = a.DetailNote,
+                           PreAssistNotes = i.Comment
+                       };
 
 
             if (!string.IsNullOrEmpty(UsersContractorCompanyName))
@@ -537,14 +541,25 @@ namespace MTC.FSP.Web.Controllers.Data
                     "\"ActionCode\",\"TransportCode\",\"VehicleType\",\"State\",\"LicensePlateNumber\",\"SurveyId\",\"OTNumber\",\"Notes\"");
 
                 foreach (var item in data)
+                {
+                    var notes = new StringBuilder();
+                    if (!string.IsNullOrEmpty(item.AssistNotes) && item.AssistNotes != "null")
+                        notes.Append($"{item.AssistNotes}-");
+                    if (!string.IsNullOrEmpty(item.AssistOtherNotes) && item.AssistOtherNotes != "null")
+                        notes.Append($"{item.AssistOtherNotes}-");
+                    if (!string.IsNullOrEmpty(item.AssistDetailNotes) && item.AssistDetailNotes != "null")
+                        notes.Append($"{item.AssistDetailNotes}-");
+                    if (!string.IsNullOrEmpty(item.PreAssistNotes) && item.PreAssistNotes != "null")
+                        notes.Append($"{item.PreAssistNotes}");
+
                     sw.WriteLine(
-                        "\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\",\"{15}\",\"{16}\",\"{17}\",\"{18}\",\"{19}\",\"{20}\",\"{21}\"",
+                        "\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",\"{13}\",\"{14}\",\"{15}\",\"{16}\",\"{17}\",\"{18}\",\"{19}\",\"{20}\",\"{21}\",\"{22}\"",
                         item.DispatchType, item.Date, item.BeatNumber, item.CallSign, item.TruckNumber,
-                        string.Format("{0}, {1}", item.DriverLastName, item.DriverFIrstName), item.ContractCompanyName,
+                        $"{item.DriverLastName}, {item.DriverFIrstName}", item.ContractCompanyName,
                         item.CHPIncident, item.x1097Time, item.x1098Time, item.Direction, item.Highway,
                         item.PositionIncident, item.Area, item.ProblemCode, item.ActionCode, item.TransportCode,
-                        item.VehicleType, item.State, item.LicensePlate, item.SurveyId, item.OTNumber,
-                        item.AssistNotes + item.AssistOtherNotes + item.AssistDetailNotes + item.PreAssistNotes);
+                        item.VehicleType, item.State, item.LicensePlate, item.SurveyId, item.OTNumber, notes.ToString());
+                }
 
 
                 Response.ClearContent();
@@ -560,25 +575,25 @@ namespace MTC.FSP.Web.Controllers.Data
         public async Task<ActionResult> GetSurveys()
         {
             var data = await (from s in _dbMs.Surveys
-                select new
-                {
-                    s.SurveyID,
-                    s.SurveyName
-                }).ToListAsync();
+                              select new
+                              {
+                                  s.SurveyID,
+                                  s.SurveyName
+                              }).ToListAsync();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> GetSurveyQuestions(Guid surveyId)
         {
             var data = await (from q in _dbMs.Questions
-                join sq in _dbMs.SurveysQuestions on q.QuestionID equals sq.QuestionID
-                where sq.SurveyID == surveyId
-                orderby sq.QuestionNumber
-                select new
-                {
-                    q.QuestionID,
-                    q.QuestionText
-                }).ToListAsync();
+                              join sq in _dbMs.SurveysQuestions on q.QuestionID equals sq.QuestionID
+                              where sq.SurveyID == surveyId
+                              orderby sq.QuestionNumber
+                              select new
+                              {
+                                  q.QuestionID,
+                                  q.QuestionText
+                              }).ToListAsync();
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -586,14 +601,14 @@ namespace MTC.FSP.Web.Controllers.Data
         public async Task<ActionResult> GetSurveyQuestionAnswers(Guid questionId)
         {
             var data = await (from a in _dbMs.Answers
-                join pa in _dbMs.PostedAnswers on a.AnswerID equals pa.AnswerID
-                where a.QuestionID == questionId
-                orderby a.SortOrder
-                select new
-                {
-                    a.AnswerText,
-                    AnswerValue = pa.AnswerVal
-                }).ToListAsync();
+                              join pa in _dbMs.PostedAnswers on a.AnswerID equals pa.AnswerID
+                              where a.QuestionID == questionId
+                              orderby a.SortOrder
+                              select new
+                              {
+                                  a.AnswerText,
+                                  AnswerValue = pa.AnswerVal
+                              }).ToListAsync();
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
@@ -603,18 +618,18 @@ namespace MTC.FSP.Web.Controllers.Data
             if (query.SurveyId != null)
             {
                 var data = await (from q in _dbMs.Questions
-                    join sq in _dbMs.SurveysQuestions on q.QuestionID equals sq.QuestionID
-                    join a in _dbMs.Answers on sq.QuestionID equals a.QuestionID
-                    join pa in _dbMs.PostedAnswers on a.AnswerID equals pa.AnswerID
-                    where sq.SurveyID == query.SurveyId
-                    orderby sq.QuestionNumber, a.SortOrder
-                    select new
-                    {
-                        q.QuestionID,
-                        q.QuestionText,
-                        a.AnswerText,
-                        AnswerValue = pa.AnswerVal
-                    }).ToListAsync();
+                                  join sq in _dbMs.SurveysQuestions on q.QuestionID equals sq.QuestionID
+                                  join a in _dbMs.Answers on sq.QuestionID equals a.QuestionID
+                                  join pa in _dbMs.PostedAnswers on a.AnswerID equals pa.AnswerID
+                                  where sq.SurveyID == query.SurveyId
+                                  orderby sq.QuestionNumber, a.SortOrder
+                                  select new
+                                  {
+                                      q.QuestionID,
+                                      q.QuestionText,
+                                      a.AnswerText,
+                                      AnswerValue = pa.AnswerVal
+                                  }).ToListAsync();
 
                 if (query.Format == "json")
                     return Json(data, JsonRequestBehavior.AllowGet);
@@ -641,38 +656,38 @@ namespace MTC.FSP.Web.Controllers.Data
         public async Task<ActionResult> GetAlarmReport(AlarmReportQuery query)
         {
             var data = from t in _db.TruckAlerts
-                join pa in _db.MTCPreAssists on t.runID equals pa.RunID into mtcPreAssists
-                from leftMtcPreAssists in mtcPreAssists.DefaultIfEmpty()
-                join i in _db.MTCIncidents on leftMtcPreAssists.IncidentID equals i.IncidentID into mtcIncidents
-                from leftMtcIncidents in mtcIncidents.DefaultIfEmpty()
-                join a in _db.MTCAssists on leftMtcIncidents.IncidentID equals a.IncidentID into mtcAssists
-                from leftMtcAssists in mtcAssists.DefaultIfEmpty()
-                join d in _db.Drivers on t.DriverName equals d.FirstName + " " + d.LastName into drivers
-                from leftDrivers in drivers.DefaultIfEmpty()
-                where t.AlertName == query.AlarmName
-                      && t.ScheduleType > 0
-                //&& t.AlertEnd > pa.datePosted
-                select new
-                {
-                    AlertId = t.AlertID,
-                    Date = t.AlertStart,
-                    BeatNumber = t.Beat,
-                    t.CallSign,
-                    DriverId = leftDrivers.FSPIDNumber,
-                    DriverName = leftDrivers.LastName + ", " + leftDrivers.FirstName,
-                    t.TruckNumber,
-                    ContractCompanyName = t.ContractorCompany,
-                    AlarmTime = t.AlertStart,
-                    AlarmDuration = t.AlertMins,
-                    AlarmLocation = t.location,
-                    LatLon = t.lat + "~" + t.lon,
-                    t.Heading,
-                    t.Speed,
-                    ScheduleId = t.ScheduleID,
-                    x1097 = leftMtcPreAssists.datePosted,
-                    x1098 = leftMtcAssists.datePosted,
-                    x1097Location = leftMtcPreAssists.FSPLocation
-                };
+                       join pa in _db.MTCPreAssists on t.runID equals pa.RunID into mtcPreAssists
+                       from leftMtcPreAssists in mtcPreAssists.DefaultIfEmpty()
+                       join i in _db.MTCIncidents on leftMtcPreAssists.IncidentID equals i.IncidentID into mtcIncidents
+                       from leftMtcIncidents in mtcIncidents.DefaultIfEmpty()
+                       join a in _db.MTCAssists on leftMtcIncidents.IncidentID equals a.IncidentID into mtcAssists
+                       from leftMtcAssists in mtcAssists.DefaultIfEmpty()
+                       join d in _db.Drivers on t.DriverName equals d.FirstName + " " + d.LastName into drivers
+                       from leftDrivers in drivers.DefaultIfEmpty()
+                       where t.AlertName == query.AlarmName
+                             && t.ScheduleType > 0
+                       //&& t.AlertEnd > pa.datePosted
+                       select new
+                       {
+                           AlertId = t.AlertID,
+                           Date = t.AlertStart,
+                           BeatNumber = t.Beat,
+                           t.CallSign,
+                           DriverId = leftDrivers.FSPIDNumber,
+                           DriverName = leftDrivers.LastName + ", " + leftDrivers.FirstName,
+                           t.TruckNumber,
+                           ContractCompanyName = t.ContractorCompany,
+                           AlarmTime = t.AlertStart,
+                           AlarmDuration = t.AlertMins,
+                           AlarmLocation = t.location,
+                           LatLon = t.lat + "~" + t.lon,
+                           t.Heading,
+                           t.Speed,
+                           ScheduleId = t.ScheduleID,
+                           x1097 = leftMtcPreAssists.datePosted,
+                           x1098 = leftMtcAssists.datePosted,
+                           x1097Location = leftMtcPreAssists.FSPLocation
+                       };
 
             if (!string.IsNullOrEmpty(UsersContractorCompanyName))
                 data = data.Where(p => p.ContractCompanyName == UsersContractorCompanyName);
@@ -826,74 +841,74 @@ namespace MTC.FSP.Web.Controllers.Data
                         #region Get fuel and payrate
 
                         var pNumb = (from setting in _dbc.MTCApplicationSettings
-                            where setting.Name == "FuelRate"
-                            select setting.Value).FirstOrDefault();
+                                     where setting.Name == "FuelRate"
+                                     select setting.Value).FirstOrDefault();
 
                         var pr = (from r in _db.MTCRateTables
-                            where r.BeatID == contract.BeatId
-                            select r).SingleOrDefault();
+                                  where r.BeatID == contract.BeatId
+                                  select r).SingleOrDefault();
 
                         switch (pNumb)
                         {
                             case "p100":
-                                ISVM.PayRate = (decimal) pr.p100;
-                                ISVM.FuelRate = (decimal) 1.0;
+                                ISVM.PayRate = (decimal)pr.p100;
+                                ISVM.FuelRate = (decimal)1.0;
                                 break;
                             case "p150":
-                                ISVM.PayRate = (decimal) pr.p150;
-                                ISVM.FuelRate = (decimal) 1.50;
+                                ISVM.PayRate = (decimal)pr.p150;
+                                ISVM.FuelRate = (decimal)1.50;
                                 break;
                             case "p200":
-                                ISVM.PayRate = (decimal) pr.p200;
-                                ISVM.FuelRate = (decimal) 2.00;
+                                ISVM.PayRate = (decimal)pr.p200;
+                                ISVM.FuelRate = (decimal)2.00;
                                 break;
                             case "p250":
-                                ISVM.PayRate = (decimal) pr.p250;
-                                ISVM.FuelRate = (decimal) 2.50;
+                                ISVM.PayRate = (decimal)pr.p250;
+                                ISVM.FuelRate = (decimal)2.50;
                                 break;
                             case "p300":
                                 ISVM.PayRate = pr.p300;
-                                ISVM.FuelRate = (decimal) 3.00;
+                                ISVM.FuelRate = (decimal)3.00;
                                 break;
                             case "p350":
                                 ISVM.PayRate = pr.p350;
-                                ISVM.FuelRate = (decimal) 3.50;
+                                ISVM.FuelRate = (decimal)3.50;
                                 break;
                             case "p400":
                                 ISVM.PayRate = pr.p400;
-                                ISVM.FuelRate = (decimal) 4.00;
+                                ISVM.FuelRate = (decimal)4.00;
                                 break;
                             case "p450":
                                 ISVM.PayRate = pr.p450;
-                                ISVM.FuelRate = (decimal) 4.50;
+                                ISVM.FuelRate = (decimal)4.50;
                                 break;
                             case "p500":
                                 ISVM.PayRate = pr.p500;
-                                ISVM.FuelRate = (decimal) 5.00;
+                                ISVM.FuelRate = (decimal)5.00;
                                 break;
                             case "p550":
                                 ISVM.PayRate = pr.p550;
-                                ISVM.FuelRate = (decimal) 5.50;
+                                ISVM.FuelRate = (decimal)5.50;
                                 break;
                             case "p600":
-                                ISVM.PayRate = (decimal) pr.p600;
-                                ISVM.FuelRate = (decimal) 6.00;
+                                ISVM.PayRate = (decimal)pr.p600;
+                                ISVM.FuelRate = (decimal)6.00;
                                 break;
                             case "p650":
-                                ISVM.PayRate = (decimal) pr.p650;
-                                ISVM.FuelRate = (decimal) 6.50;
+                                ISVM.PayRate = (decimal)pr.p650;
+                                ISVM.FuelRate = (decimal)6.50;
                                 break;
                             case "p700":
-                                ISVM.PayRate = (decimal) pr.p700;
-                                ISVM.FuelRate = (decimal) 7.00;
+                                ISVM.PayRate = (decimal)pr.p700;
+                                ISVM.FuelRate = (decimal)7.00;
                                 break;
                             case "p750":
-                                ISVM.PayRate = (decimal) pr.p750;
-                                ISVM.FuelRate = (decimal) 7.50;
+                                ISVM.PayRate = (decimal)pr.p750;
+                                ISVM.FuelRate = (decimal)7.50;
                                 break;
                             case "p800":
-                                ISVM.PayRate = (decimal) pr.p800;
-                                ISVM.FuelRate = (decimal) 8.00;
+                                ISVM.PayRate = (decimal)pr.p800;
+                                ISVM.FuelRate = (decimal)8.00;
                                 break;
                             default:
                                 Console.WriteLine("Default case");
@@ -931,29 +946,29 @@ namespace MTC.FSP.Web.Controllers.Data
                 #region get total additions
 
                 var CID = (from b in _db.Contracts
-                    where b.BeatId == contract.BeatId
-                    select b.ContractID).FirstOrDefault();
+                           where b.BeatId == contract.BeatId
+                           select b.ContractID).FirstOrDefault();
 
                 var Additions = new List<InvoiceAdditions>();
 
                 #region get overtime
 
                 var overtime = (from o in _db.OvertimeActivities
-                    join b in _db.BeatDatas on o.Beat equals b.BeatID
-                    where b.ID == contract.BeatId &&
-                          o.Confirmed == true &&
-                          o.timeStamp.Month == month &&
-                          o.timeStamp.Year == DateTime.Now.Year
-                    select new InvoiceAdditions
-                    {
-                        category = "Overtime",
-                        date = o.timeStamp.ToString(),
-                        description = o.OverTimeCode,
-                        TimeAdded = o.BlocksApproved ?? 1,
-                        Rate = ISVM.PayRate,
-                        shiftDay = o.Shift,
-                        Cost = (o.BlocksApproved ?? 1) * (ISVM.PayRate / 4)
-                    }).ToList();
+                                join b in _db.BeatDatas on o.Beat equals b.BeatID
+                                where b.ID == contract.BeatId &&
+                                      o.Confirmed == true &&
+                                      o.timeStamp.Month == month &&
+                                      o.timeStamp.Year == DateTime.Now.Year
+                                select new InvoiceAdditions
+                                {
+                                    category = "Overtime",
+                                    date = o.timeStamp.ToString(),
+                                    description = o.OverTimeCode,
+                                    TimeAdded = o.BlocksApproved ?? 1,
+                                    Rate = ISVM.PayRate,
+                                    shiftDay = o.Shift,
+                                    Cost = (o.BlocksApproved ?? 1) * (ISVM.PayRate / 4)
+                                }).ToList();
 
                 foreach (InvoiceAdditions addition in overtime)
                     Additions.Add(addition);
@@ -1047,41 +1062,41 @@ namespace MTC.FSP.Web.Controllers.Data
 
                 //InvoiceAppeals
                 var invoiceAppeals = (from a in _db.Appeals
-                    where a.AppealType == "Invoice" &&
-                          a.Beatid == contract.BeatId &&
-                          (a.AppealStatu.AppealStatusID.ToString() == "b2080cf8-da32-4cce-a4be-cc1b56e8b479" ||
-                           a.AppealStatu.AppealStatusID.ToString() == "bb0fe413-dd67-4cb8-b7de-d66d28faaebd")
-                    select new InvoiceAdditions
-                    {
-                        category = "Accepted Invoice Appeal",
-                        date = a.I_EventDate.ToString(),
-                        description = a.I_AppealReason,
-                        Cost = a.I_AppealDeduction ?? 0
-                    }).ToList();
+                                      where a.AppealType == "Invoice" &&
+                                            a.Beatid == contract.BeatId &&
+                                            (a.AppealStatu.AppealStatusID.ToString() == "b2080cf8-da32-4cce-a4be-cc1b56e8b479" ||
+                                             a.AppealStatu.AppealStatusID.ToString() == "bb0fe413-dd67-4cb8-b7de-d66d28faaebd")
+                                      select new InvoiceAdditions
+                                      {
+                                          category = "Accepted Invoice Appeal",
+                                          date = a.I_EventDate.ToString(),
+                                          description = a.I_AppealReason,
+                                          Cost = a.I_AppealDeduction ?? 0
+                                      }).ToList();
 
                 foreach (var a in invoiceAppeals)
                     Additions.Add(a);
 
                 //ViolationAppeals
                 var violationAppeals = (from a in _db.Appeals
-                    where a.AppealType == "Violation" &&
-                          a.Beatid == contract.BeatId &&
-                          (a.AppealStatu.AppealStatusID.ToString() == "b2080cf8-da32-4cce-a4be-cc1b56e8b479" ||
-                           a.AppealStatu.AppealStatusID.ToString() == "bb0fe413-dd67-4cb8-b7de-d66d28faaebd")
-                    select new InvoiceAdditions
-                    {
-                        category = "Accepted Violation Appeal",
-                        date = a.V_ViolationId.ToString(),
-                        description = a.V_ReasonForAppeal,
-                        Cost = a.V_AppropriateCharge ?? 0
-                    }).ToList();
+                                        where a.AppealType == "Violation" &&
+                                              a.Beatid == contract.BeatId &&
+                                              (a.AppealStatu.AppealStatusID.ToString() == "b2080cf8-da32-4cce-a4be-cc1b56e8b479" ||
+                                               a.AppealStatu.AppealStatusID.ToString() == "bb0fe413-dd67-4cb8-b7de-d66d28faaebd")
+                                        select new InvoiceAdditions
+                                        {
+                                            category = "Accepted Violation Appeal",
+                                            date = a.V_ViolationId.ToString(),
+                                            description = a.V_ReasonForAppeal,
+                                            Cost = a.V_AppropriateCharge ?? 0
+                                        }).ToList();
 
                 foreach (var a in violationAppeals)
                 {
                     var id = Convert.ToInt32(a.date);
                     var violation = (from v in _dbc.Violations
-                        where v.Id == id
-                        select v).FirstOrDefault();
+                                     where v.Id == id
+                                     select v).FirstOrDefault();
 
                     a.date = violation.DateTimeOfViolation.ToString();
 
@@ -1090,18 +1105,18 @@ namespace MTC.FSP.Web.Controllers.Data
 
                 //Overtime
                 var overtimeAppeals = (from a in _db.Appeals
-                    where a.AppealType == "Overtime" &&
-                          a.Beatid == contract.BeatId &&
-                          (a.AppealStatu.AppealStatusID.ToString() == "b2080cf8-da32-4cce-a4be-cc1b56e8b479" ||
-                           a.AppealStatu.AppealStatusID.ToString() == "bb0fe413-dd67-4cb8-b7de-d66d28faaebd")
-                    select new InvoiceAdditions
-                    {
-                        category = "Accepted Overtime Appeal",
-                        date = a.O_Datetime.ToString(),
-                        description = a.O_Detail,
-                        TimeAdded = a.O_BlocksInitGranted ?? 1,
-                        Rate = ISVM.PayRate
-                    }).ToList();
+                                       where a.AppealType == "Overtime" &&
+                                             a.Beatid == contract.BeatId &&
+                                             (a.AppealStatu.AppealStatusID.ToString() == "b2080cf8-da32-4cce-a4be-cc1b56e8b479" ||
+                                              a.AppealStatu.AppealStatusID.ToString() == "bb0fe413-dd67-4cb8-b7de-d66d28faaebd")
+                                       select new InvoiceAdditions
+                                       {
+                                           category = "Accepted Overtime Appeal",
+                                           date = a.O_Datetime.ToString(),
+                                           description = a.O_Detail,
+                                           TimeAdded = a.O_BlocksInitGranted ?? 1,
+                                           Rate = ISVM.PayRate
+                                       }).ToList();
 
                 foreach (var a in overtimeAppeals)
                 {
@@ -1115,7 +1130,7 @@ namespace MTC.FSP.Web.Controllers.Data
 
                 foreach (var add in Additions)
                 {
-                    var time = (decimal) add.TimeAdded / 4;
+                    var time = (decimal)add.TimeAdded / 4;
                     ISVM.OnPatrolHours += time;
                     ISVM.TotalAdditions += add.Cost;
                 }
@@ -1327,24 +1342,24 @@ namespace MTC.FSP.Web.Controllers.Data
         public async Task<ActionResult> GetWazeMessagesReport()
         {
             var data = await (from w in _db.WAZEIncomings
-                where w.AckTime != null &&
-                      w.AckMessage != null
-                select new
-                {
-                    w.PubDate,
-                    w.Type,
-                    w.SubType,
-                    w.Lat,
-                    lon = w.Lon,
-                    Realiability = w.Reliability,
-                    ThumbsUp = w.nThumbsUp,
-                    w.Confidence,
-                    w.Street,
-                    w.DispatchedTo,
-                    w.DispatchTime,
-                    w.AckTime,
-                    w.AckMessage
-                }).ToListAsync();
+                              where w.AckTime != null &&
+                                    w.AckMessage != null
+                              select new
+                              {
+                                  w.PubDate,
+                                  w.Type,
+                                  w.SubType,
+                                  w.Lat,
+                                  lon = w.Lon,
+                                  Realiability = w.Reliability,
+                                  ThumbsUp = w.nThumbsUp,
+                                  w.Confidence,
+                                  w.Street,
+                                  w.DispatchedTo,
+                                  w.DispatchTime,
+                                  w.AckTime,
+                                  w.AckMessage
+                              }).ToListAsync();
             ;
 
             return Json(data, JsonRequestBehavior.AllowGet);
