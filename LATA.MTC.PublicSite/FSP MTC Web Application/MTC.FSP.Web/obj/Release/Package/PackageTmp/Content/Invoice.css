@@ -1,0 +1,247 @@
+﻿body {
+}
+
+.summaryHeader {
+    background-color: #c1c1c1;
+    color: #000000;
+    font-size: large;
+    text-align: center;
+    padding: 2px;
+}
+
+.additionsHeader {
+    background-color: #1b6a27;
+    color: #ffffff;
+    font-size: large;
+    text-align: center;
+    padding: 2px;
+}
+
+.deductionsHeader {
+    background-color: #ff0000;
+    color: #ffffff;
+    font-size: large;
+    text-align: center;
+    padding: 2px;
+}
+
+.anamoliesHeader {
+    background-color: #ff6a00;
+    color: #ffffff;
+    font-size: large;
+    text-align: center;
+    padding: 2px;
+}
+
+.totalsHeader {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: large;
+    text-align: center;
+    padding: 2px;
+}
+
+.additionsTD {
+    color: #000000;
+    text-align: center;
+    padding: 2px;
+}
+
+.deductionsTD {
+    color: #000000;
+    text-align: center;
+    padding: 2px;
+}
+
+.anamoliesTD {
+    color: #000000;
+    text-align: center;
+    padding: 2px;
+}
+
+.summaryTD {
+    color: #000000;
+    text-align: right;
+    padding: 2px;
+}
+
+.summaryLblTD {
+    background-color: #CECECE;
+    color: #000000;
+    font-size: large;
+    text-align: left;
+    padding: 2px 2px 2px 7px;
+}
+
+.summaryTDTotal {
+    background-color: #67e265;
+    color: #000000;
+    text-align: right;
+    padding: 2px;
+    font-weight: bold;
+}
+
+.summaryLblTDTotal {
+    background-color: #67e265;
+    color: #000000;
+    font-size: large;
+    text-align: left;
+    padding: 2px 2px 2px 7px;
+    font-weight: bold;
+}
+
+.invoiceBox {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.highlight {
+    background-color: #ff6a00;
+}
+
+#MTCSafe{
+        visibility: hidden;
+}
+
+@media print {
+    body {
+        font-size: inherit;
+    }
+
+    #MTCSafe{
+        visibility: visible;
+}
+
+    legend {
+        display: block;
+        padding-left: 2px;
+        padding-right: 2px;
+        border: none;
+        font-size: x-small;
+    }
+
+    #header {
+        display: none;
+        visibility: hidden;
+    }
+
+    #spacer {
+        display: none;
+        visibility: hidden;
+    }
+
+    #progressDiv {
+        display: none;
+        visibility: hidden;
+    }
+
+    #saveInvoice1 {
+        display: none;
+        visibility: hidden;
+    }
+
+    #saveInvoice2 {
+        display: none;
+        visibility: hidden;
+    }
+
+    #saveInvoice3 {
+        display: none;
+        visibility: hidden;
+    }
+
+    #saveInvoice4 {
+        display: none;
+        visibility: hidden;
+    }
+
+    #openAdditionModal {
+        display: none;
+        visibility: collapse;
+    }
+
+    #openDeductionModal {
+        display: none;
+        visibility: collapse;
+    }
+
+    #anamoliesDiv {
+        display: none;
+        visibility: collapse;
+    }
+
+    .summaryHeader {
+        background-color: #c1c1c1;
+        color: #000000;
+        font-size: x-small;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .additionsHeader {
+        background-color: #1b6a27;
+        color: #ffffff;
+        font-size:  x-small;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .deductionsHeader {
+        background-color: #ff0000;
+        color: #ffffff;
+        font-size:  x-small;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .totalsHeader {
+        background-color: #000000;
+        color: #ffffff;
+        font-size:  x-small;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .additionsTD {
+        color: #000000;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .deductionsTD {
+        color: #000000;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .summaryTD {
+        color: #000000;
+        text-align: right;
+        padding: 2px;
+    }
+
+    .summaryLblTD {
+        background-color: #CECECE;
+        color: #000000;
+        font-size:  x-small;
+        text-align: left;
+        padding: 2px 2px 2px 7px;
+    }
+
+    .summaryTDTotal {
+        background-color: #67e265;
+        color: #000000;
+        text-align: right;
+        padding: 2px;
+        font-weight: bold;
+    }
+
+    .summaryLblTDTotal {
+        background-color: #67e265;
+        color: #000000;
+        font-size:  x-small;
+        text-align: left;
+        padding: 2px 2px 2px 7px;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,21 @@
+﻿<div id="columnConfigModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Configuration</h4>
+            </div>
+            <div class="modal-body">
+                <div class="checkbox" ng-repeat="column in columns | filter: {sortable:true} ">
+                    <label>
+                        <input type="checkbox" ng-model="column.visible" /><span>{{column.display}}</span>
+                    </label>
+                    <br />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>

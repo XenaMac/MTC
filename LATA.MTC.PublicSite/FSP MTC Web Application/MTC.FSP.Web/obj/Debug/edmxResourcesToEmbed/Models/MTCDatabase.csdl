@@ -1,0 +1,1481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MTCDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AEReportType">
+    <Key>
+      <PropertyRef Name="AEReportTypeID" />
+    </Key>
+    <Property Name="AEReportTypeID" Type="Guid" Nullable="false" />
+    <Property Name="AEReportTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContractorManager">
+    <Key>
+      <PropertyRef Name="ContractorManagerID" />
+    </Key>
+    <Property Name="ContractorManagerID" Type="Guid" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CellPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Contractor" Relationship="Self.FK_ContractorManagers_Contractors" FromRole="ContractorManagers" ToRole="Contractors" />
+  </EntityType>
+  <EntityType Name="Contractor">
+    <Key>
+      <PropertyRef Name="ContractorID" />
+    </Key>
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OfficeTelephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MCPNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MCPExpiration" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ContractCompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ContractorManagers" Relationship="Self.FK_ContractorManagers_Contractors" FromRole="Contractors" ToRole="ContractorManagers" />
+    <NavigationProperty Name="Drivers" Relationship="Self.FK_Drivers_Contractors" FromRole="Contractors" ToRole="Drivers" />
+    <NavigationProperty Name="FleetVehicles" Relationship="Self.FK_FleetVehicles_Contractors" FromRole="Contractors" ToRole="FleetVehicles" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorTypeId" Type="Int32" />
+    <NavigationProperty Name="ContractorType" Relationship="MTCDBModel.FK_Contractors_ContractorTypes" FromRole="Contractor" ToRole="ContractorType" />
+    <NavigationProperty Name="DriverInteractions" Relationship="MTCDBModel.FK_DriverInteractions_Contractors" FromRole="Contractor" ToRole="DriverInteraction" />
+    <Property Name="ContactFirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactLastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CHPInspections" Relationship="MTCDBModel.FK_CHPInspections_Contractors" FromRole="Contractor" ToRole="CHPInspection" />
+    <NavigationProperty Name="Contracts" Relationship="MTCDBModel.FK_Contracts_Contractors" FromRole="Contractor" ToRole="Contract" />
+    <NavigationProperty Name="Appeals" Relationship="MTCDBModel.FK_Appeals_Contractors" FromRole="Contractor" ToRole="Appeal" />
+  </EntityType>
+  <EntityType Name="ContractsBeat">
+    <Key>
+      <PropertyRef Name="ContractID" />
+      <PropertyRef Name="BeatID" />
+    </Key>
+    <Property Name="ContractID" Type="Guid" Nullable="false" />
+    <Property Name="BeatID" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DriverEvent">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="DriverID" Type="Guid" Nullable="false" />
+    <Property Name="EventType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Driver">
+    <Key>
+      <PropertyRef Name="DriverID" />
+    </Key>
+    <Property Name="DriverID" Type="Guid" Nullable="false" />
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FSPIDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProgramStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TrainingCompletionDate" Type="DateTime" Precision="0" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LicenseExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DL64ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MedicalCardExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LastPullNoticeDate" Type="DateTime" Precision="0" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UDF" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorEndDate" Type="DateTime" Precision="0" />
+    <Property Name="ProgramEndDate" Type="DateTime" Precision="0" />
+    <Property Name="ContractorStartDate" Type="DateTime" Precision="0" />
+    <Property Name="BeatID" Type="Guid" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DL64Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DriversLicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddedtoC3Database" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Contractor" Relationship="Self.FK_Drivers_Contractors" FromRole="Drivers" ToRole="Contractors" />
+    <NavigationProperty Name="DriverInteractions" Relationship="MTCDBModel.FK_DriverInteractions_Drivers" FromRole="Driver" ToRole="DriverInteraction" />
+    <NavigationProperty Name="MTCPreAssists" Relationship="MTCDBModel.FK_MTCPreAssists_Drivers" FromRole="Driver" ToRole="MTCPreAssist" />
+    <NavigationProperty Name="Appeals" Relationship="MTCDBModel.FK_Appeals_Drivers" FromRole="Driver" ToRole="Appeal" />
+  </EntityType>
+  <EntityType Name="FleetVehicle">
+    <Key>
+      <PropertyRef Name="FleetVehicleID" />
+    </Key>
+    <Property Name="FleetVehicleID" Type="Guid" Nullable="false" />
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <Property Name="ProgramStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FleetNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VehicleYear" Type="Int32" Nullable="false" />
+    <Property Name="VehicleMake" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VehicleModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LicensePlate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegistrationExpireDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="InsuranceExpireDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LastCHPInspection" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ProgramEndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FAW" Type="Int32" Nullable="false" />
+    <Property Name="RAW" Type="Int32" Nullable="false" />
+    <Property Name="RAWR" Type="Int32" Nullable="false" />
+    <Property Name="GVW" Type="Int32" Nullable="false" />
+    <Property Name="GVWR" Type="Int32" Nullable="false" />
+    <Property Name="Wheelbase" Type="Int32" Nullable="false" />
+    <Property Name="Overhang" Type="Int32" Nullable="false" />
+    <Property Name="MAXTW" Type="Int32" Nullable="false" />
+    <Property Name="MAXTWCALCDATE" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FuelType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VehicleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AgreementNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Contractor" Relationship="Self.FK_FleetVehicles_Contractors" FromRole="FleetVehicles" ToRole="Contractors" />
+    <NavigationProperty Name="CHPInspections" Relationship="MTCDBModel.FK_CHPInspections_FleetVehicles" FromRole="FleetVehicle" ToRole="CHPInspection" />
+    <Property Name="IsBackup" Type="Boolean" Nullable="false" />
+    <Property Name="TAIP" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Freeway">
+    <Key>
+      <PropertyRef Name="FreewayID" />
+    </Key>
+    <Property Name="FreewayID" Type="Int32" Nullable="false" />
+    <Property Name="FreewayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="BeatsFreeways" Relationship="MTCDBModel.FK_BeatsFreeways_Freeways" FromRole="Freeway" ToRole="BeatsFreeway" />
+  </EntityType>
+  <EntityType Name="GPSTrackingLog">
+    <Key>
+      <PropertyRef Name="GPSID" />
+    </Key>
+    <Property Name="GPSID" Type="Guid" Nullable="false" />
+    <Property Name="Direction" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VehicleStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="timeStamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BeatSegmentID" Type="Guid" Nullable="false" />
+    <Property Name="VehicleID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Speed" Type="Double" Nullable="false" />
+    <Property Name="Alarms" Type="Boolean" Nullable="false" />
+    <Property Name="DriverID" Type="Guid" Nullable="false" />
+    <Property Name="VehicleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BeatID" Type="Guid" Nullable="false" />
+    <Property Name="Position" Type="Geography" Nullable="false" />
+    <Property Name="SpeedingAlarm" Type="Boolean" Nullable="false" />
+    <Property Name="SpeedingValue" Type="Double" />
+    <Property Name="SpeedingTime" Type="DateTime" Precision="3" />
+    <Property Name="SpeedingLocation" Type="Geography" />
+    <Property Name="OutOfBoundsAlarm" Type="Boolean" Nullable="false" />
+    <Property Name="OutOfBoundsMessage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cell" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="runID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="Guid" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GroupCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GroupState" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="GroupAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GroupZip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="GroupPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="GroupContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="HeliosUnit">
+    <Key>
+      <PropertyRef Name="HeliosUnitID" />
+    </Key>
+    <Property Name="HeliosUnitID" Type="Guid" Nullable="false" />
+    <Property Name="HeliosID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="InspectionType">
+    <Key>
+      <PropertyRef Name="InspectionTypeID" />
+    </Key>
+    <Property Name="InspectionTypeID" Type="Guid" Nullable="false" />
+    <Property Name="InspectionType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InspectionTypeCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CHPInspections" Relationship="MTCDBModel.FK_CHPInspections_InspectionTypes" FromRole="InspectionType" ToRole="CHPInspection" />
+  </EntityType>
+  <EntityType Name="InteractionType">
+    <Key>
+      <PropertyRef Name="InteractionTypeID" />
+    </Key>
+    <Property Name="InteractionTypeID" Type="Guid" Nullable="false" />
+    <Property Name="InteractionType1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DriverInteractions" Relationship="MTCDBModel.FK_DriverInteractions_InteractionTypes" FromRole="InteractionType" ToRole="DriverInteraction" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="Guid" Nullable="false" />
+    <Property Name="LocationCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Location1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Report">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="ReportName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ConnString" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SQL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cmdType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="parameters" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TowTruckYard">
+    <Key>
+      <PropertyRef Name="TowTruckYardID" />
+    </Key>
+    <Property Name="TowTruckYardID" Type="Guid" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TowTruckYardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TowTruckYardDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TowTruckCompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TowTruckCompanyPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Position" Type="Geography" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TruckMessage">
+    <Key>
+      <PropertyRef Name="TruckMessageID" />
+    </Key>
+    <Property Name="TruckMessageID" Type="Guid" Nullable="false" />
+    <Property Name="TruckIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MessageText" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SentTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Acked" Type="Boolean" Nullable="false" />
+    <Property Name="AckedTime" Type="DateTime" Precision="3" />
+    <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TruckNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CallSign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DriverName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BeatNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Response" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Var">
+    <Key>
+      <PropertyRef Name="VarID" />
+    </Key>
+    <Property Name="VarID" Type="Guid" Nullable="false" />
+    <Property Name="VarName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VarValue" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Units" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsMTCAlarm" Type="Boolean" />
+    <Property Name="FriendlyVarName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="YearlyCalendar">
+    <Key>
+      <PropertyRef Name="DateID" />
+    </Key>
+    <Property Name="DateID" Type="Guid" Nullable="false" />
+    <Property Name="dayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="AEFrequency">
+    <Key>
+      <PropertyRef Name="AEFrequencyID" />
+      <PropertyRef Name="AEFrequencyName" />
+    </Key>
+    <Property Name="AEFrequencyID" Type="Guid" Nullable="false" />
+    <Property Name="AEFrequencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AEFrequencyDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AERecipient">
+    <Key>
+      <PropertyRef Name="AERecipientID" />
+      <PropertyRef Name="AERecipientEmail" />
+      <PropertyRef Name="AEIsContractor" />
+      <PropertyRef Name="AEReportID" />
+      <PropertyRef Name="AEFrequencyID" />
+      <PropertyRef Name="AEReportTypeID" />
+    </Key>
+    <Property Name="AERecipientID" Type="Guid" Nullable="false" />
+    <Property Name="AERecipientEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AEIsContractor" Type="Boolean" Nullable="false" />
+    <Property Name="AEReportID" Type="Guid" Nullable="false" />
+    <Property Name="AEFrequencyID" Type="Guid" Nullable="false" />
+    <Property Name="AEContractorID" Type="Guid" />
+    <Property Name="AEReportTypeID" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AEReport">
+    <Key>
+      <PropertyRef Name="AEReportID" />
+      <PropertyRef Name="AEReportName" />
+    </Key>
+    <Property Name="AEReportID" Type="Guid" Nullable="false" />
+    <Property Name="AEReportName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AEReportDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TowTruckSetup">
+    <Key>
+      <PropertyRef Name="MountedSecurely" />
+      <PropertyRef Name="ConnectedToCell" />
+      <PropertyRef Name="DCPowerConnected" />
+      <PropertyRef Name="RouterUnitMountedSecurely" />
+      <PropertyRef Name="MoistureFree" />
+      <PropertyRef Name="Speedtest" />
+      <PropertyRef Name="GPSSentProperly" />
+      <PropertyRef Name="InstallerName" />
+      <PropertyRef Name="InstallationDate" />
+      <PropertyRef Name="TowTruckCompany" />
+      <PropertyRef Name="VehicleID" />
+      <PropertyRef Name="SystemSerialNumber" />
+      <PropertyRef Name="IPAddress" />
+    </Key>
+    <Property Name="MountedSecurely" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ConnectedToCell" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DCPowerConnected" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RouterUnitMountedSecurely" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MoistureFree" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Speedtest" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GPSSentProperly" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstallerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstallationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TowTruckCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VehicleID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SystemSerialNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UploadSpeed" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DownloadSpeed" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TruckState">
+    <Key>
+      <PropertyRef Name="TruckStateID" />
+      <PropertyRef Name="TruckState1" />
+    </Key>
+    <Property Name="TruckStateID" Type="Guid" Nullable="false" />
+    <Property Name="TruckState1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TruckIcon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_ContractorManagers_Contractors">
+    <End Role="Contractors" Type="Self.Contractor" Multiplicity="1" />
+    <End Role="ContractorManagers" Type="Self.ContractorManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="ContractorManagers">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Drivers_Contractors">
+    <End Role="Contractors" Type="Self.Contractor" Multiplicity="1" />
+    <End Role="Drivers" Type="Self.Driver" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="Drivers">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FleetVehicles_Contractors">
+    <End Role="Contractors" Type="Self.Contractor" Multiplicity="1" />
+    <End Role="FleetVehicles" Type="Self.FleetVehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="FleetVehicles">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MTCDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AEReportTypes" EntityType="Self.AEReportType" />
+    <EntitySet Name="ContractorManagers" EntityType="Self.ContractorManager" />
+    <EntitySet Name="Contractors" EntityType="Self.Contractor" />
+    <EntitySet Name="ContractsBeats" EntityType="Self.ContractsBeat" />
+    <EntitySet Name="DriverEvents" EntityType="Self.DriverEvent" />
+    <EntitySet Name="Drivers" EntityType="Self.Driver" />
+    <EntitySet Name="FleetVehicles" EntityType="Self.FleetVehicle" />
+    <EntitySet Name="Freeways" EntityType="Self.Freeway" />
+    <EntitySet Name="GPSTrackingLogs" EntityType="Self.GPSTrackingLog" />
+    <EntitySet Name="Groups" EntityType="Self.Group" />
+    <EntitySet Name="HeliosUnits" EntityType="Self.HeliosUnit" />
+    <EntitySet Name="InspectionTypes" EntityType="Self.InspectionType" />
+    <EntitySet Name="InteractionTypes" EntityType="Self.InteractionType" />
+    <EntitySet Name="Locations" EntityType="Self.Location" />
+    <EntitySet Name="Reports" EntityType="Self.Report" />
+    <EntitySet Name="TowTruckYards" EntityType="Self.TowTruckYard" />
+    <EntitySet Name="TruckMessages" EntityType="Self.TruckMessage" />
+    <EntitySet Name="Vars" EntityType="Self.Var" />
+    <EntitySet Name="YearlyCalendars" EntityType="Self.YearlyCalendar" />
+    <EntitySet Name="AEFrequencies" EntityType="Self.AEFrequency" />
+    <EntitySet Name="AERecipients" EntityType="Self.AERecipient" />
+    <EntitySet Name="AEReports" EntityType="Self.AEReport" />
+    <EntitySet Name="TowTruckSetups" EntityType="Self.TowTruckSetup" />
+    <EntitySet Name="TruckStates" EntityType="Self.TruckState" />
+    <AssociationSet Name="FK_ContractorManagers_Contractors" Association="Self.FK_ContractorManagers_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="ContractorManagers" EntitySet="ContractorManagers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Drivers_Contractors" Association="Self.FK_Drivers_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="Drivers" EntitySet="Drivers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FleetVehicles_Contractors" Association="Self.FK_FleetVehicles_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="FleetVehicles" EntitySet="FleetVehicles" />
+    </AssociationSet>
+    <FunctionImport Name="GetBeatSchedules" ReturnType="Collection(MTCDBModel.GetBeatSchedules_Result)" />
+    <FunctionImport Name="GetDailySchedules" ReturnType="Collection(MTCDBModel.GetDailySchedules_Result)" />
+    <EntitySet Name="ContractorTypes" EntityType="MTCDBModel.ContractorType" />
+    <AssociationSet Name="FK_Contractors_ContractorTypes" Association="MTCDBModel.FK_Contractors_ContractorTypes">
+      <End Role="ContractorType" EntitySet="ContractorTypes" />
+      <End Role="Contractor" EntitySet="Contractors" />
+    </AssociationSet>
+    <EntitySet Name="MTCSchedules" EntityType="MTCDBModel.MTCSchedule" />
+    <EntitySet Name="DriverInteractions" EntityType="MTCDBModel.DriverInteraction" />
+    <AssociationSet Name="FK_DriverInteractions_Contractors" Association="MTCDBModel.FK_DriverInteractions_Contractors">
+      <End Role="Contractor" EntitySet="Contractors" />
+      <End Role="DriverInteraction" EntitySet="DriverInteractions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverInteractions_Drivers" Association="MTCDBModel.FK_DriverInteractions_Drivers">
+      <End Role="Driver" EntitySet="Drivers" />
+      <End Role="DriverInteraction" EntitySet="DriverInteractions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverInteractions_InteractionTypes" Association="MTCDBModel.FK_DriverInteractions_InteractionTypes">
+      <End Role="InteractionType" EntitySet="InteractionTypes" />
+      <End Role="DriverInteraction" EntitySet="DriverInteractions" />
+    </AssociationSet>
+    <EntitySet Name="InsuranceCarriers" EntityType="MTCDBModel.InsuranceCarrier" />
+    <EntitySet Name="TruckAlerts" EntityType="MTCDBModel.TruckAlert" />
+    <EntitySet Name="CHPOfficerBeats" EntityType="MTCDBModel.CHPOfficerBeat" />
+    <EntitySet Name="CHPInspections" EntityType="MTCDBModel.CHPInspection" />
+    <EntitySet Name="CHPOfficers" EntityType="MTCDBModel.CHPOfficer" />
+    <AssociationSet Name="FK_CHPInspections_CHPOfficer" Association="MTCDBModel.FK_CHPInspections_CHPOfficer">
+      <End Role="CHPOfficer" EntitySet="CHPOfficers" />
+      <End Role="CHPInspection" EntitySet="CHPInspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHPInspections_Contractors" Association="MTCDBModel.FK_CHPInspections_Contractors">
+      <End Role="Contractor" EntitySet="Contractors" />
+      <End Role="CHPInspection" EntitySet="CHPInspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHPInspections_FleetVehicles" Association="MTCDBModel.FK_CHPInspections_FleetVehicles">
+      <End Role="FleetVehicle" EntitySet="FleetVehicles" />
+      <End Role="CHPInspection" EntitySet="CHPInspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHPInspections_InspectionTypes" Association="MTCDBModel.FK_CHPInspections_InspectionTypes">
+      <End Role="InspectionType" EntitySet="InspectionTypes" />
+      <End Role="CHPInspection" EntitySet="CHPInspections" />
+    </AssociationSet>
+    <EntitySet Name="MTCBeatsCallSigns" EntityType="MTCDBModel.MTCBeatsCallSign" />
+    <EntitySet Name="Contracts" EntityType="MTCDBModel.Contract" />
+    <AssociationSet Name="FK_Contracts_Contractors" Association="MTCDBModel.FK_Contracts_Contractors">
+      <End Role="Contractor" EntitySet="Contractors" />
+      <End Role="Contract" EntitySet="Contracts" />
+    </AssociationSet>
+    <EntitySet Name="VehicleTypeLUs" EntityType="MTCDBModel.VehicleTypeLU" />
+    <EntitySet Name="OvertimeActivities" EntityType="MTCDBModel.OvertimeActivity" />
+    <EntitySet Name="BeatBeatSchedules" EntityType="MTCDBModel.BeatBeatSchedule" />
+    <EntitySet Name="BeatSchedules" EntityType="MTCDBModel.BeatSchedule" />
+    <EntitySet Name="BeatBeatSegments" EntityType="MTCDBModel.BeatBeatSegment" />
+    <EntitySet Name="MTC_Invoice_Addition" EntityType="MTCDBModel.MTC_Invoice_Addition" />
+    <EntitySet Name="MTC_Invoice_Deductions" EntityType="MTCDBModel.MTC_Invoice_Deductions" />
+    <EntitySet Name="MTC_Invoice_Summary" EntityType="MTCDBModel.MTC_Invoice_Summary" />
+    <EntitySet Name="MTC_Invoice_Anomalies" EntityType="MTCDBModel.MTC_Invoice_Anomalies" />
+    <FunctionImport Name="SchedulesSearch" ReturnType="Collection(MTCDBModel.SchedulesSearch_Result)">
+      <Parameter Name="dt" Mode="In" Type="DateTime" />
+      <Parameter Name="beatid" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <EntitySet Name="TruckStatus" EntityType="MTCDBModel.TruckStatu" />
+    <EntitySet Name="MTC_Invoice" EntityType="MTCDBModel.MTC_Invoice" />
+    <AssociationSet Name="FK_MTC_Invoice_Addition_MTC_Invoice" Association="MTCDBModel.FK_MTC_Invoice_Addition_MTC_Invoice">
+      <End Role="MTC_Invoice" EntitySet="MTC_Invoice" />
+      <End Role="MTC_Invoice_Addition" EntitySet="MTC_Invoice_Addition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTC_Invoice_Anomalies_MTC_Invoice" Association="MTCDBModel.FK_MTC_Invoice_Anomalies_MTC_Invoice">
+      <End Role="MTC_Invoice" EntitySet="MTC_Invoice" />
+      <End Role="MTC_Invoice_Anomalies" EntitySet="MTC_Invoice_Anomalies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTC_Invoice_Deductions_MTC_Invoice" Association="MTCDBModel.FK_MTC_Invoice_Deductions_MTC_Invoice">
+      <End Role="MTC_Invoice" EntitySet="MTC_Invoice" />
+      <End Role="MTC_Invoice_Deductions" EntitySet="MTC_Invoice_Deductions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTC_Invoice_Summary_MTC_Invoice" Association="MTCDBModel.FK_MTC_Invoice_Summary_MTC_Invoice">
+      <End Role="MTC_Invoice" EntitySet="MTC_Invoice" />
+      <End Role="MTC_Invoice_Summary" EntitySet="MTC_Invoice_Summary" />
+    </AssociationSet>
+    <EntitySet Name="MTCActionTakens" EntityType="MTCDBModel.MTCActionTaken" />
+    <EntitySet Name="MTCAssists" EntityType="MTCDBModel.MTCAssist" />
+    <EntitySet Name="MTCIncidents" EntityType="MTCDBModel.MTCIncident" />
+    <AssociationSet Name="FK_MTCActionTaken_MTCAssists" Association="MTCDBModel.FK_MTCActionTaken_MTCAssists">
+      <End Role="MTCAssist" EntitySet="MTCAssists" />
+      <End Role="MTCActionTaken" EntitySet="MTCActionTakens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTCAssists_MTCIncidents" Association="MTCDBModel.FK_MTCAssists_MTCIncidents">
+      <End Role="MTCIncident" EntitySet="MTCIncidents" />
+      <End Role="MTCAssist" EntitySet="MTCAssists" />
+    </AssociationSet>
+    <EntitySet Name="MTCPreAssists" EntityType="MTCDBModel.MTCPreAssist" />
+    <AssociationSet Name="FK_MTCPreAssists_Drivers" Association="MTCDBModel.FK_MTCPreAssists_Drivers">
+      <End Role="Driver" EntitySet="Drivers" />
+      <End Role="MTCPreAssist" EntitySet="MTCPreAssists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTCPreAssists_MTCIncidents" Association="MTCDBModel.FK_MTCPreAssists_MTCIncidents">
+      <End Role="MTCIncident" EntitySet="MTCIncidents" />
+      <End Role="MTCPreAssist" EntitySet="MTCPreAssists" />
+    </AssociationSet>
+    <EntitySet Name="Assists" EntityType="MTCDBModel.Assist" />
+    <EntitySet Name="Incidents" EntityType="MTCDBModel.Incident" />
+    <EntitySet Name="BeatDatas" EntityType="MTCDBModel.BeatData" />
+    <EntitySet Name="BeatsFreeways" EntityType="MTCDBModel.BeatsFreeway" />
+    <AssociationSet Name="FK_BeatsFreeways_BeatData" Association="MTCDBModel.FK_BeatsFreeways_BeatData">
+      <End Role="BeatData" EntitySet="BeatDatas" />
+      <End Role="BeatsFreeway" EntitySet="BeatsFreeways" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeatsFreeways_Freeways" Association="MTCDBModel.FK_BeatsFreeways_Freeways">
+      <End Role="Freeway" EntitySet="Freeways" />
+      <End Role="BeatsFreeway" EntitySet="BeatsFreeways" />
+    </AssociationSet>
+    <EntitySet Name="WAZEDatas" EntityType="MTCDBModel.WAZEData" />
+    <EntitySet Name="WAZEIncomings" EntityType="MTCDBModel.WAZEIncoming" />
+    <EntitySet Name="Appeals" EntityType="MTCDBModel.Appeal" />
+    <EntitySet Name="AppealStatus" EntityType="MTCDBModel.AppealStatu" />
+    <AssociationSet Name="FK_Appeals_AppealStatus" Association="MTCDBModel.FK_Appeals_AppealStatus">
+      <End Role="AppealStatu" EntitySet="AppealStatus" />
+      <End Role="Appeal" EntitySet="Appeals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appeals_BeatData" Association="MTCDBModel.FK_Appeals_BeatData">
+      <End Role="BeatData" EntitySet="BeatDatas" />
+      <End Role="Appeal" EntitySet="Appeals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appeals_Contractors" Association="MTCDBModel.FK_Appeals_Contractors">
+      <End Role="Contractor" EntitySet="Contractors" />
+      <End Role="Appeal" EntitySet="Appeals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appeals_Drivers" Association="MTCDBModel.FK_Appeals_Drivers">
+      <End Role="Driver" EntitySet="Drivers" />
+      <End Role="Appeal" EntitySet="Appeals" />
+    </AssociationSet>
+    <EntitySet Name="MTCRateTables" EntityType="MTCDBModel.MTCRateTable" />
+  </EntityContainer>
+  <ComplexType Name="GetBeatSchedules_Result">
+    <Property Type="Guid" Name="BeatID" Nullable="false" />
+    <Property Type="String" Name="BeatNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Guid" Name="BeatScheduleID" Nullable="false" />
+    <Property Type="String" Name="ScheduleName" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="Weekday" Nullable="false" />
+    <Property Type="Time" Name="Logon" Nullable="false" />
+    <Property Type="Time" Name="RollOut" Nullable="false" />
+    <Property Type="Time" Name="OnPatrol" Nullable="false" />
+    <Property Type="Time" Name="RollIn" Nullable="false" />
+    <Property Type="Time" Name="LogOff" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GetDailySchedules_Result">
+    <Property Type="String" Name="beatnumber" Nullable="false" MaxLength="51" />
+    <Property Type="String" Name="ScheduleName" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="ScheduleTimeTable" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Supervisor" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="CellPhone" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="ContractCompanyName" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="Weekday" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <EntityType Name="ContractorType">
+    <Key>
+      <PropertyRef Name="ContractorTypeId" />
+    </Key>
+    <Property Name="ContractorTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContractorTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Contractors" Relationship="MTCDBModel.FK_Contractors_ContractorTypes" FromRole="ContractorType" ToRole="Contractor" />
+  </EntityType>
+  <Association Name="FK_Contractors_ContractorTypes">
+    <End Type="MTCDBModel.ContractorType" Role="ContractorType" Multiplicity="0..1" />
+    <End Type="MTCDBModel.Contractor" Role="Contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContractorType">
+        <PropertyRef Name="ContractorTypeId" />
+      </Principal>
+      <Dependent Role="Contractor">
+        <PropertyRef Name="ContractorTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MTCSchedule">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+    </Key>
+    <Property Name="ScheduleID" Type="Guid" Nullable="false" />
+    <Property Name="ScheduleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <Property Name="BeatID" Type="Guid" Nullable="false" />
+    <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+  </EntityType>
+  <EntityType Name="DriverInteraction">
+    <Key>
+      <PropertyRef Name="InteractionID" />
+    </Key>
+    <Property Name="InteractionID" Type="Guid" Nullable="false" />
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <Property Name="DriverID" Type="Guid" Nullable="false" />
+    <Property Name="InteractionTypeID" Type="Guid" Nullable="false" />
+    <Property Name="InteractionArea" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InteractionDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="InspectionPassFail" Type="Boolean" Nullable="false" />
+    <Property Name="AccidentPreventable" Type="Boolean" Nullable="false" />
+    <Property Name="FollowupRequired" Type="Boolean" Nullable="false" />
+    <Property Name="FollowupDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="FollowupDate" Type="DateTime" Precision="0" />
+    <Property Name="FollowupCompletionDate" Type="DateTime" Precision="0" />
+    <Property Name="FollowupComments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CloseDate" Type="DateTime" Precision="0" />
+    <Property Name="BadgeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InteractionDate" Type="DateTime" Precision="3" />
+    <Property Name="VehicleNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BeatNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Contractor" Relationship="MTCDBModel.FK_DriverInteractions_Contractors" FromRole="DriverInteraction" ToRole="Contractor" />
+    <NavigationProperty Name="Driver" Relationship="MTCDBModel.FK_DriverInteractions_Drivers" FromRole="DriverInteraction" ToRole="Driver" />
+    <NavigationProperty Name="InteractionType" Relationship="MTCDBModel.FK_DriverInteractions_InteractionTypes" FromRole="DriverInteraction" ToRole="InteractionType" />
+  </EntityType>
+  <Association Name="FK_DriverInteractions_Contractors">
+    <End Type="MTCDBModel.Contractor" Role="Contractor" Multiplicity="1" />
+    <End Type="MTCDBModel.DriverInteraction" Role="DriverInteraction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractor">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="DriverInteraction">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverInteractions_Drivers">
+    <End Type="MTCDBModel.Driver" Role="Driver" Multiplicity="1" />
+    <End Type="MTCDBModel.DriverInteraction" Role="DriverInteraction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Driver">
+        <PropertyRef Name="DriverID" />
+      </Principal>
+      <Dependent Role="DriverInteraction">
+        <PropertyRef Name="DriverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverInteractions_InteractionTypes">
+    <End Type="MTCDBModel.InteractionType" Role="InteractionType" Multiplicity="1" />
+    <End Type="MTCDBModel.DriverInteraction" Role="DriverInteraction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InteractionType">
+        <PropertyRef Name="InteractionTypeID" />
+      </Principal>
+      <Dependent Role="DriverInteraction">
+        <PropertyRef Name="InteractionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="InsuranceCarrier">
+    <Key>
+      <PropertyRef Name="InsuranceID" />
+    </Key>
+    <Property Name="InsuranceID" Type="Guid" Nullable="false" />
+    <Property Name="CarrierName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="InsurancePolicyNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PolicyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TruckAlert">
+    <Key>
+      <PropertyRef Name="AlertID" />
+    </Key>
+    <Property Name="AlertID" Type="Guid" Nullable="false" />
+    <Property Name="DriverName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorCompany" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Beat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlertName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlertStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AlertEnd" Type="DateTime" Precision="3" />
+    <Property Name="AlertMins" Type="Int32" />
+    <Property Name="TruckNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="lon" Type="Double" />
+    <Property Name="runID" Type="Guid" />
+    <Property Name="ExcuseTime" Type="DateTime" Precision="3" />
+    <Property Name="DismissTime" Type="DateTime" Precision="3" />
+    <Property Name="ExcusedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Speed" Type="Double" />
+    <Property Name="Heading" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CallSign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ScheduleID" Type="Guid" />
+    <Property Name="ScheduleType" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CHPOfficerBeat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CHPOfficerId" Type="Int32" Nullable="false" />
+    <Property Name="BeatId" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CHPInspection">
+    <Key>
+      <PropertyRef Name="InspectionID" />
+    </Key>
+    <Property Name="InspectionID" Type="Guid" Nullable="false" />
+    <Property Name="FleetVehicleID" Type="Guid" Nullable="false" />
+    <Property Name="InspectionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InspectionTypeID" Type="Guid" Nullable="false" />
+    <Property Name="InspectionNotes" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <Property Name="CHPOfficerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CHPOfficer" Relationship="MTCDBModel.FK_CHPInspections_CHPOfficer" FromRole="CHPInspection" ToRole="CHPOfficer" />
+    <NavigationProperty Name="Contractor" Relationship="MTCDBModel.FK_CHPInspections_Contractors" FromRole="CHPInspection" ToRole="Contractor" />
+    <NavigationProperty Name="FleetVehicle" Relationship="MTCDBModel.FK_CHPInspections_FleetVehicles" FromRole="CHPInspection" ToRole="FleetVehicle" />
+    <NavigationProperty Name="InspectionType" Relationship="MTCDBModel.FK_CHPInspections_InspectionTypes" FromRole="CHPInspection" ToRole="InspectionType" />
+  </EntityType>
+  <EntityType Name="CHPOfficer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="BadgeID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OfficerLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OfficerFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="CHPInspections" Relationship="MTCDBModel.FK_CHPInspections_CHPOfficer" FromRole="CHPOfficer" ToRole="CHPInspection" />
+  </EntityType>
+  <Association Name="FK_CHPInspections_CHPOfficer">
+    <End Type="MTCDBModel.CHPOfficer" Role="CHPOfficer" Multiplicity="1" />
+    <End Type="MTCDBModel.CHPInspection" Role="CHPInspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHPOfficer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CHPInspection">
+        <PropertyRef Name="CHPOfficerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHPInspections_Contractors">
+    <End Type="MTCDBModel.Contractor" Role="Contractor" Multiplicity="1" />
+    <End Type="MTCDBModel.CHPInspection" Role="CHPInspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractor">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="CHPInspection">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHPInspections_FleetVehicles">
+    <End Type="MTCDBModel.FleetVehicle" Role="FleetVehicle" Multiplicity="1" />
+    <End Type="MTCDBModel.CHPInspection" Role="CHPInspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FleetVehicle">
+        <PropertyRef Name="FleetVehicleID" />
+      </Principal>
+      <Dependent Role="CHPInspection">
+        <PropertyRef Name="FleetVehicleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHPInspections_InspectionTypes">
+    <End Type="MTCDBModel.InspectionType" Role="InspectionType" Multiplicity="1" />
+    <End Type="MTCDBModel.CHPInspection" Role="CHPInspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InspectionType">
+        <PropertyRef Name="InspectionTypeID" />
+      </Principal>
+      <Dependent Role="CHPInspection">
+        <PropertyRef Name="InspectionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MTCBeatsCallSign">
+    <Key>
+      <PropertyRef Name="BeatID" />
+      <PropertyRef Name="CallSign" />
+    </Key>
+    <Property Name="BeatID" Type="Int32" Nullable="false" />
+    <Property Name="CallSign" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Contract">
+    <Key>
+      <PropertyRef Name="ContractID" />
+    </Key>
+    <Property Name="ContractID" Type="Guid" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MaxObligation" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="AgreementNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <Property Name="TruckCount" Type="Int32" />
+    <Property Name="BackupTruckCount" Type="Int32" />
+    <NavigationProperty Name="Contractor" Relationship="MTCDBModel.FK_Contracts_Contractors" FromRole="Contract" ToRole="Contractor" />
+    <Property Name="BeatId" Type="Guid" />
+  </EntityType>
+  <Association Name="FK_Contracts_Contractors">
+    <End Type="MTCDBModel.Contractor" Role="Contractor" Multiplicity="1" />
+    <End Type="MTCDBModel.Contract" Role="Contract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractor">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="Contract">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VehicleTypeLU">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OvertimeActivity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timeStamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Shift" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CallSign" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="OverTimeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BlocksApproved" Type="Int32" />
+    <Property Name="Beat" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Contractor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Confirmed" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="BeatBeatSchedule">
+    <Key>
+      <PropertyRef Name="BeatBeatScheduleID" />
+    </Key>
+    <Property Name="BeatBeatScheduleID" Type="Guid" Nullable="false" />
+    <Property Name="BeatID" Type="Guid" Nullable="false" />
+    <Property Name="BeatScheduleID" Type="Guid" Nullable="false" />
+    <Property Name="NumberOfTrucks" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BeatSchedule">
+    <Key>
+      <PropertyRef Name="BeatScheduleID" />
+    </Key>
+    <Property Name="BeatScheduleID" Type="Guid" Nullable="false" />
+    <Property Name="ScheduleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Sunday" Type="Boolean" />
+    <Property Name="Monday" Type="Boolean" />
+    <Property Name="Tuesday" Type="Boolean" />
+    <Property Name="Wednesday" Type="Boolean" />
+    <Property Name="Thursday" Type="Boolean" />
+    <Property Name="Friday" Type="Boolean" />
+    <Property Name="Saturday" Type="Boolean" />
+    <Property Name="StartTime" Type="Time" Precision="7" />
+    <Property Name="EndTime" Type="Time" Precision="7" />
+    <Property Name="NumberOfTrucks" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BeatBeatSegment">
+    <Key>
+      <PropertyRef Name="BeatBeatSegmentID" />
+    </Key>
+    <Property Name="BeatBeatSegmentID" Type="Guid" Nullable="false" />
+    <Property Name="BeatNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="BeatSegmentNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ObjectID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="SchedulesSearch_Result">
+    <Property Type="String" Name="ContractCompanyName" Nullable="false" />
+    <Property Type="Guid" Name="ContractorID" Nullable="false" />
+    <Property Type="String" Name="BScheduleType" Nullable="false" />
+    <Property Type="String" Name="BScheduleName" Nullable="false" />
+    <Property Type="Time" Name="StartTime" Nullable="false" />
+    <Property Type="Time" Name="EndTime" Nullable="false" />
+    <Property Type="Decimal" Name="TotalShiftHours" Nullable="false" />
+    <Property Type="String" Name="BeatNumber" Nullable="false" />
+    <Property Type="Guid" Name="BeatID" Nullable="false" />
+    <Property Type="Guid" Name="ScheduleID" Nullable="false" />
+    <Property Type="Int32" Name="ScheduleType" Nullable="false" />
+    <Property Type="Int32" Name="NumberOfTrucks" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="MTC_Invoice_Addition">
+    <Key>
+      <PropertyRef Name="AdditionID" />
+    </Key>
+    <Property Name="AdditionID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TimeAdded" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Double" Nullable="false" />
+    <Property Name="Cost" Type="Double" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MTC_Invoice" Relationship="MTCDBModel.FK_MTC_Invoice_Addition_MTC_Invoice" FromRole="MTC_Invoice_Addition" ToRole="MTC_Invoice" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice_Deductions">
+    <Key>
+      <PropertyRef Name="DeductionID" />
+    </Key>
+    <Property Name="DeductionID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TimeAdded" Type="Int32" Nullable="false" />
+    <Property Name="Rate" Type="Double" Nullable="false" />
+    <Property Name="Cost" Type="Double" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MTC_Invoice" Relationship="MTCDBModel.FK_MTC_Invoice_Deductions_MTC_Invoice" FromRole="MTC_Invoice_Deductions" ToRole="MTC_Invoice" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice_Summary">
+    <Key>
+      <PropertyRef Name="SummaryID" />
+    </Key>
+    <Property Name="SummaryID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Row" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Days" Type="Double" Nullable="false" />
+    <Property Name="Shifts" Type="Double" Nullable="false" />
+    <Property Name="ContractHours" Type="Double" Nullable="false" />
+    <Property Name="OnPatrolHours" Type="Double" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MTC_Invoice" Relationship="MTCDBModel.FK_MTC_Invoice_Summary_MTC_Invoice" FromRole="MTC_Invoice_Summary" ToRole="MTC_Invoice" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice_Anomalies">
+    <Key>
+      <PropertyRef Name="AnomalyID" />
+    </Key>
+    <Property Name="AnomalyID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MTC_Invoice" Relationship="MTCDBModel.FK_MTC_Invoice_Anomalies_MTC_Invoice" FromRole="MTC_Invoice_Anomalies" ToRole="MTC_Invoice" />
+  </EntityType>
+  <EntityType Name="TruckStatu">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Guid" Nullable="false" />
+    <Property Name="DriverName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorCompany" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Beat" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StatusStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusEnd" Type="DateTime" Precision="3" />
+    <Property Name="StatusMins" Type="Int32" />
+    <Property Name="TruckNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="lon" Type="Double" />
+    <Property Name="runID" Type="Guid" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Speed" Type="Double" />
+    <Property Name="Heading" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ScheduleID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContractorID" Type="Guid" Nullable="false" />
+    <Property Name="Month" Type="Int32" Nullable="false" />
+    <Property Name="BeatID" Type="Guid" Nullable="false" />
+    <Property Name="FuelRate" Type="Double" Nullable="false" />
+    <Property Name="BaseRate" Type="Double" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MTC_Invoice_Addition" Relationship="MTCDBModel.FK_MTC_Invoice_Addition_MTC_Invoice" FromRole="MTC_Invoice" ToRole="MTC_Invoice_Addition" />
+    <NavigationProperty Name="MTC_Invoice_Anomalies" Relationship="MTCDBModel.FK_MTC_Invoice_Anomalies_MTC_Invoice" FromRole="MTC_Invoice" ToRole="MTC_Invoice_Anomalies" />
+    <NavigationProperty Name="MTC_Invoice_Deductions" Relationship="MTCDBModel.FK_MTC_Invoice_Deductions_MTC_Invoice" FromRole="MTC_Invoice" ToRole="MTC_Invoice_Deductions" />
+    <NavigationProperty Name="MTC_Invoice_Summary" Relationship="MTCDBModel.FK_MTC_Invoice_Summary_MTC_Invoice" FromRole="MTC_Invoice" ToRole="MTC_Invoice_Summary" />
+  </EntityType>
+  <Association Name="FK_MTC_Invoice_Addition_MTC_Invoice">
+    <End Type="MTCDBModel.MTC_Invoice" Role="MTC_Invoice" Multiplicity="1" />
+    <End Type="MTCDBModel.MTC_Invoice_Addition" Role="MTC_Invoice_Addition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTC_Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="MTC_Invoice_Addition">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTC_Invoice_Anomalies_MTC_Invoice">
+    <End Type="MTCDBModel.MTC_Invoice" Role="MTC_Invoice" Multiplicity="1" />
+    <End Type="MTCDBModel.MTC_Invoice_Anomalies" Role="MTC_Invoice_Anomalies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTC_Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="MTC_Invoice_Anomalies">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTC_Invoice_Deductions_MTC_Invoice">
+    <End Type="MTCDBModel.MTC_Invoice" Role="MTC_Invoice" Multiplicity="1" />
+    <End Type="MTCDBModel.MTC_Invoice_Deductions" Role="MTC_Invoice_Deductions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTC_Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="MTC_Invoice_Deductions">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTC_Invoice_Summary_MTC_Invoice">
+    <End Type="MTCDBModel.MTC_Invoice" Role="MTC_Invoice" Multiplicity="1" />
+    <End Type="MTCDBModel.MTC_Invoice_Summary" Role="MTC_Invoice_Summary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTC_Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="MTC_Invoice_Summary">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MTCActionTaken">
+    <Key>
+      <PropertyRef Name="MTCActionTakenID" />
+    </Key>
+    <Property Name="MTCActionTakenID" Type="Guid" Nullable="false" />
+    <Property Name="MTCAssistID" Type="Guid" Nullable="false" />
+    <Property Name="ActionTaken" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MTCAssist" Relationship="MTCDBModel.FK_MTCActionTaken_MTCAssists" FromRole="MTCActionTaken" ToRole="MTCAssist" />
+  </EntityType>
+  <EntityType Name="MTCAssist">
+    <Key>
+      <PropertyRef Name="MTCAssistID" />
+    </Key>
+    <Property Name="MTCAssistID" Type="Guid" Nullable="false" />
+    <Property Name="IncidentID" Type="Guid" Nullable="false" />
+    <Property Name="TrafficCollision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DebrisOnly" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Breakdown" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Other" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProblemNote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="OtherNote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TransportType" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="StartODO" Type="Double" />
+    <Property Name="EndODO" Type="Double" />
+    <Property Name="DropSiteBeat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DropSite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LicensePlateNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="OTAuthorizationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DetailNote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Lat" Type="Double" />
+    <Property Name="Lon" Type="Double" />
+    <Property Name="DropSiteOther" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="datePosted" Type="DateTime" Precision="3" />
+    <Property Name="CallSign" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TimeOnInc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TimeOffInc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MTCActionTakens" Relationship="MTCDBModel.FK_MTCActionTaken_MTCAssists" FromRole="MTCAssist" ToRole="MTCActionTaken" />
+    <NavigationProperty Name="MTCIncident" Relationship="MTCDBModel.FK_MTCAssists_MTCIncidents" FromRole="MTCAssist" ToRole="MTCIncident" />
+  </EntityType>
+  <EntityType Name="MTCIncident">
+    <Key>
+      <PropertyRef Name="IncidentID" />
+    </Key>
+    <Property Name="IncidentID" Type="Guid" Nullable="false" />
+    <Property Name="DatePosted" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserPosted" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fromTruck" Type="Int32" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="Lon" Type="Double" Nullable="false" />
+    <Property Name="Canceled" Type="Boolean" Nullable="false" />
+    <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Beat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TruckNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MTCAssists" Relationship="MTCDBModel.FK_MTCAssists_MTCIncidents" FromRole="MTCIncident" ToRole="MTCAssist" />
+    <NavigationProperty Name="MTCPreAssists" Relationship="MTCDBModel.FK_MTCPreAssists_MTCIncidents" FromRole="MTCIncident" ToRole="MTCPreAssist" />
+  </EntityType>
+  <Association Name="FK_MTCActionTaken_MTCAssists">
+    <End Type="MTCDBModel.MTCAssist" Role="MTCAssist" Multiplicity="1" />
+    <End Type="MTCDBModel.MTCActionTaken" Role="MTCActionTaken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTCAssist">
+        <PropertyRef Name="MTCAssistID" />
+      </Principal>
+      <Dependent Role="MTCActionTaken">
+        <PropertyRef Name="MTCAssistID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTCAssists_MTCIncidents">
+    <End Type="MTCDBModel.MTCIncident" Role="MTCIncident" Multiplicity="1" />
+    <End Type="MTCDBModel.MTCAssist" Role="MTCAssist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTCIncident">
+        <PropertyRef Name="IncidentID" />
+      </Principal>
+      <Dependent Role="MTCAssist">
+        <PropertyRef Name="IncidentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MTCPreAssist">
+    <Key>
+      <PropertyRef Name="PreAssistID" />
+    </Key>
+    <Property Name="PreAssistID" Type="Guid" Nullable="false" />
+    <Property Name="IncidentID" Type="Guid" Nullable="false" />
+    <Property Name="Direction" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="FSPLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DispatchLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LaneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CHPIncidentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CHPLogNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IncidentSurveyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lat" Type="Double" />
+    <Property Name="Lon" Type="Double" />
+    <Property Name="datePosted" Type="DateTime" Precision="3" />
+    <Property Name="DispatchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CrossStreet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Freeway" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DriverLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DriverFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DriverID" Type="Guid" />
+    <Property Name="RunID" Type="Guid" />
+    <NavigationProperty Name="Driver" Relationship="MTCDBModel.FK_MTCPreAssists_Drivers" FromRole="MTCPreAssist" ToRole="Driver" />
+    <NavigationProperty Name="MTCIncident" Relationship="MTCDBModel.FK_MTCPreAssists_MTCIncidents" FromRole="MTCPreAssist" ToRole="MTCIncident" />
+  </EntityType>
+  <Association Name="FK_MTCPreAssists_Drivers">
+    <End Type="MTCDBModel.Driver" Role="Driver" Multiplicity="0..1" />
+    <End Type="MTCDBModel.MTCPreAssist" Role="MTCPreAssist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Driver">
+        <PropertyRef Name="DriverID" />
+      </Principal>
+      <Dependent Role="MTCPreAssist">
+        <PropertyRef Name="DriverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTCPreAssists_MTCIncidents">
+    <End Type="MTCDBModel.MTCIncident" Role="MTCIncident" Multiplicity="1" />
+    <End Type="MTCDBModel.MTCPreAssist" Role="MTCPreAssist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTCIncident">
+        <PropertyRef Name="IncidentID" />
+      </Principal>
+      <Dependent Role="MTCPreAssist">
+        <PropertyRef Name="IncidentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Assist">
+    <Key>
+      <PropertyRef Name="AssistID" />
+    </Key>
+    <Property Name="AssistID" Type="Guid" Nullable="false" />
+    <Property Name="IncidentID" Type="Guid" Nullable="false" />
+    <Property Name="AssistDatePosted" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastAssistInIncidentReport" Type="Boolean" Nullable="false" />
+    <Property Name="ProblemType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProblemDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProblemNote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="OtherNote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TransportType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StartODO" Type="Double" />
+    <Property Name="EndODO" Type="Double" />
+    <Property Name="DropSite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LicensePlate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OTAuthorizationNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DetailNote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="AssistLat" Type="Double" />
+    <Property Name="AssistLon" Type="Double" />
+    <Property Name="DropSiteOther" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CallSign" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TimeOnAssist" Type="DateTime" Precision="3" />
+    <Property Name="TimeOffAssist" Type="DateTime" Precision="3" />
+    <Property Name="ActionTaken" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DropSiteBeat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PTN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Incident">
+    <Key>
+      <PropertyRef Name="IncidentID" />
+    </Key>
+    <Property Name="IncidentID" Type="Guid" Nullable="false" />
+    <Property Name="IncidentDatePosted" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserPosted" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CallSign" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FromTruck" Type="Boolean" Nullable="false" />
+    <Property Name="Lat" Type="Double" Nullable="false" />
+    <Property Name="Lon" Type="Double" Nullable="false" />
+    <Property Name="Canceled" Type="Boolean" Nullable="false" />
+    <Property Name="ReasonCanceled" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Beat" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TruckNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LogID" Type="Guid" />
+    <Property Name="WazeID" Type="Guid" Nullable="true" />
+    <Property Name="TruckStatusID" Type="Guid" />
+    <Property Name="FSPLocation" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DispatchLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Direction" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="PositionIncident" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LaneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CHPIncidentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="briefUpdateLat" Type="Double" />
+    <Property Name="briefUpdateLon" Type="Double" />
+    <Property Name="Freeway" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="BriefUpdatePosted" Type="Boolean" Nullable="false" />
+    <Property Name="TimeofBriefUpdate" Type="DateTime" Precision="3" />
+    <Property Name="CHPLogNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IncidentSurveyNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DriverLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DriverFIrstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DriverID" Type="Guid" />
+    <Property Name="RunID" Type="Guid" />
+    <Property Name="TimeOnIncident" Type="DateTime" Precision="3" />
+    <Property Name="TimeOffIncident" Type="DateTime" Precision="3" />
+    <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Acked" Type="Boolean" />
+    <Property Name="CrossStreet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="BeatData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="BeatName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BeatID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Notes" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="UserCreated" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserModified" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BeatsFreeways" Relationship="MTCDBModel.FK_BeatsFreeways_BeatData" FromRole="BeatData" ToRole="BeatsFreeway" />
+    <NavigationProperty Name="Appeals" Relationship="MTCDBModel.FK_Appeals_BeatData" FromRole="BeatData" ToRole="Appeal" />
+  </EntityType>
+  <EntityType Name="BeatsFreeway">
+    <Key>
+      <PropertyRef Name="BeatFreewayID" />
+    </Key>
+    <Property Name="BeatFreewayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BeatID" Type="Guid" Nullable="false" />
+    <Property Name="FreewayID" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="BeatData" Relationship="MTCDBModel.FK_BeatsFreeways_BeatData" FromRole="BeatsFreeway" ToRole="BeatData" />
+    <NavigationProperty Name="Freeway" Relationship="MTCDBModel.FK_BeatsFreeways_Freeways" FromRole="BeatsFreeway" ToRole="Freeway" />
+  </EntityType>
+  <Association Name="FK_BeatsFreeways_BeatData">
+    <End Type="MTCDBModel.BeatData" Role="BeatData" Multiplicity="1" />
+    <End Type="MTCDBModel.BeatsFreeway" Role="BeatsFreeway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BeatData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BeatsFreeway">
+        <PropertyRef Name="BeatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeatsFreeways_Freeways">
+    <End Type="MTCDBModel.Freeway" Role="Freeway" Multiplicity="1" />
+    <End Type="MTCDBModel.BeatsFreeway" Role="BeatsFreeway" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Freeway">
+        <PropertyRef Name="FreewayID" />
+      </Principal>
+      <Dependent Role="BeatsFreeway">
+        <PropertyRef Name="FreewayID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="WAZEData">
+    <Key>
+      <PropertyRef Name="WazeID" />
+    </Key>
+    <Property Name="WazeID" Type="Guid" Nullable="false" />
+    <Property Name="Direction" Type="Boolean" Nullable="false" />
+    <Property Name="SentTo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SentFrom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SentBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="timeStamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="wazeRawData" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="WAZEIncoming">
+    <Key>
+      <PropertyRef Name="UUID" />
+    </Key>
+    <Property Name="UUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PubDate" Type="DateTime" Precision="3" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SubType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lat" Type="Double" />
+    <Property Name="Lon" Type="Double" />
+    <Property Name="RoadType" Type="Int32" />
+    <Property Name="Reliability" Type="Int32" />
+    <Property Name="nThumbsUp" Type="Int32" />
+    <Property Name="Confidence" Type="Int32" />
+    <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Segment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DispatchedTo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DispatchTime" Type="DateTime" Precision="3" />
+    <Property Name="Accepted" Type="Boolean" />
+    <Property Name="AckTime" Type="DateTime" Precision="3" />
+    <Property Name="AckMessage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Appeal">
+    <Key>
+      <PropertyRef Name="AppealID" />
+    </Key>
+    <Property Name="AppealID" Type="Guid" Nullable="false" />
+    <Property Name="AppealType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AppealStatusID" Type="Guid" Nullable="false" />
+    <Property Name="ContactName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPhone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContractorId" Type="Guid" Nullable="false" />
+    <Property Name="Beatid" Type="Guid" Nullable="false" />
+    <Property Name="DriverId" Type="Guid" Nullable="false" />
+    <Property Name="V_ViolationId" Type="Int32" />
+    <Property Name="V_ReasonForAppeal" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="V_BlocksGranted" Type="Int32" />
+    <Property Name="V_BlocksClaimed" Type="Int32" />
+    <Property Name="V_AppropriateCharge" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="O_Datetime" Type="DateTime" Precision="3" />
+    <Property Name="O_CallSign" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="O_CHPOTNumber" Type="Int32" />
+    <Property Name="O_NumOfBlocks" Type="Int32" />
+    <Property Name="O_BlocksInitGranted" Type="Int32" />
+    <Property Name="O_Detail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="I_EventDate" Type="DateTime" Precision="3" />
+    <Property Name="I_InvoiceReason" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="I_AppealReason" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="I_InvoiceDeduction" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="I_AppealDeduction" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="MTCNote" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AppealStatu" Relationship="MTCDBModel.FK_Appeals_AppealStatus" FromRole="Appeal" ToRole="AppealStatu" />
+    <NavigationProperty Name="BeatData" Relationship="MTCDBModel.FK_Appeals_BeatData" FromRole="Appeal" ToRole="BeatData" />
+    <NavigationProperty Name="Contractor" Relationship="MTCDBModel.FK_Appeals_Contractors" FromRole="Appeal" ToRole="Contractor" />
+    <NavigationProperty Name="Driver" Relationship="MTCDBModel.FK_Appeals_Drivers" FromRole="Appeal" ToRole="Driver" />
+  </EntityType>
+  <EntityType Name="AppealStatu">
+    <Key>
+      <PropertyRef Name="AppealStatusID" />
+    </Key>
+    <Property Name="AppealStatusID" Type="Guid" Nullable="false" />
+    <Property Name="AppealStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Appeals" Relationship="MTCDBModel.FK_Appeals_AppealStatus" FromRole="AppealStatu" ToRole="Appeal" />
+  </EntityType>
+  <Association Name="FK_Appeals_AppealStatus">
+    <End Type="MTCDBModel.AppealStatu" Role="AppealStatu" Multiplicity="1" />
+    <End Type="MTCDBModel.Appeal" Role="Appeal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppealStatu">
+        <PropertyRef Name="AppealStatusID" />
+      </Principal>
+      <Dependent Role="Appeal">
+        <PropertyRef Name="AppealStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appeals_BeatData">
+    <End Type="MTCDBModel.BeatData" Role="BeatData" Multiplicity="1" />
+    <End Type="MTCDBModel.Appeal" Role="Appeal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BeatData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Appeal">
+        <PropertyRef Name="Beatid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appeals_Contractors">
+    <End Type="MTCDBModel.Contractor" Role="Contractor" Multiplicity="1" />
+    <End Type="MTCDBModel.Appeal" Role="Appeal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractor">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="Appeal">
+        <PropertyRef Name="ContractorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appeals_Drivers">
+    <End Type="MTCDBModel.Driver" Role="Driver" Multiplicity="1" />
+    <End Type="MTCDBModel.Appeal" Role="Appeal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Driver">
+        <PropertyRef Name="DriverID" />
+      </Principal>
+      <Dependent Role="Appeal">
+        <PropertyRef Name="DriverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MTCRateTable">
+    <Key>
+      <PropertyRef Name="RateTableID" />
+    </Key>
+    <Property Name="RateTableID" Type="Guid" Nullable="false" />
+    <Property Name="BeatID" Type="Guid" Nullable="false" />
+    <Property Name="CurrentMonthRate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="p100" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="p150" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="p200" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="p250" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="p300" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="p350" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="p400" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="p450" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="p500" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="p550" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="p600" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="p650" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="p700" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="p750" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="p800" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+</Schema>

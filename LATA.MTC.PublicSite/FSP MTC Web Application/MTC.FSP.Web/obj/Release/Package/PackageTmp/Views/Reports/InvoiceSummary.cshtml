@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Invoice Summary";
+}
+
+<br />
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<p>
+    <a href="~/Reports/Index">Back to Reports</a>
+</p>
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="reportInvoiceSummaryController">
+        <h3>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h3>
+        <span ng-show="isBusy"><small><em>This report/export is large with many calculations. Please have patience while loading ... </em></small></span>
+        <br /><br />
+        <div class="col-sm-10 col-sm-offset-1">
+            <form class="form-inline">
+                <select class="form-control"
+                        ng-model="month"
+                        ng-change="getInvoiceSummary()">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <button ng-click="exportReportData()"
+                        class="btn btn-success pull-right"
+                        ng-disabled="isBusy || isBusyExporting" title="export">
+                    <i class="fa fa-file-excel-o" ng-hide="isBusyExporting"></i>
+                    <i class="fa fa-spinner fa-spin" ng-show="isBusyExporting"></i> Export
+                </button>
+            </form>
+            <br />
+        </div>
+        <div class="row text-center">
+            <div class="col-sm-10 col-sm-offset-1">
+                <table id="smryTable" border="1" class="table table-hover footable">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Beat Number</th>
+                            <th class="text-center">Invoice Number</th>
+                            <th class="text-center">Total Days</th>
+                            <th class="text-center">Total Shifts</th>
+                            <th class="text-center">Contract Hours</th>
+                            <th class="text-center">On Patrol Hours</th>
+                            <th class="text-center">Fuel Rate</th>
+                            <th class="text-center">Pay Rate</th>
+                            <th class="text-center">Base Pay</th>
+                            <th class="text-center">Total Additions</th>
+                            <th class="text-center">Total Deductions</th>
+                            <th class="text-center">Total Invoice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="s in summaries">
+                            <td class="text-center">{{s.BeatNumber}}</td>
+                            <td class="text-center">{{s.InvoiceNumber}}</td>
+                            <td class="text-center">{{s.TotalDays}}</td>
+                            <td class="text-center">{{s.TotalShifts}}</td>
+                            <td class="text-center">{{s.ContractHours}}</td>
+                            <td class="text-center">{{s.OnPatrolHours}}</td>
+                            <td class="text-center">{{s.FuelRate | currency}}</td>
+                            <td class="text-center">{{s.PayRate | currency}}</td>
+                            <td class="text-center">{{s.BasePay | currency}}</td>
+                            <td class="text-center">{{s.TotalAdditions | currency}}</td>
+                            <td class="text-center">{{s.TotalDeductions | currency}}</td>
+                            <td class="text-center">{{s.TotalInvoice | currency}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+       
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/reportInvoiceSummaryController.js"></script>
+    <script src="~/app/services/reportService.js"></script>
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

@@ -1,0 +1,185 @@
+﻿@{
+    ViewBag.Title = "Order";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="merchandiseOrderController" ng-cloak>
+        <form name="merchandiseOrderForm">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>{{header}}</h2>
+                </div>
+                <div class="col-sm-6">
+                    <br />
+                    <div class="pull-right">
+                        <a class="btn btn-info" href="~/Merchandise/OrderHistory" title="order history"><i class="fa fa-history"></i> Orders</a>
+                        <a class="btn btn-success" href="~/MerchandiseProducts/IndexNG" title="merchandise store" ng-show="canEdit"><i class="fa fa-gears"></i> Store</a>
+                    </div>
+                </div>
+            </div>
+            <br />          
+            <div class="row">
+                <div class="col-md-12" show-errors>
+                    Contractor
+                    <select class="form-control" name="selectedContractorId" ng-model="selectedContractorId" ng-options="a.Id as a.Text for a in contractors" ng-disabled="busyGettingContractors || userIsContractor || !canEdit" required>
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    Contact Name <i class="fa fa-exclamation-circle" title="required"></i>
+                    <input type="text" ng-model="contactName" class="form-control" ng-required="true" ng-disabled="!canEdit" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    Contact Number <i class="fa fa-exclamation-circle" title="required"></i>
+                    <input type="text" ng-model="contactNumber" class="form-control" ng-required="true" ng-disabled="!canEdit" />
+                </div>
+            </div>
+            <br />
+            <h3>Merchandise</h3>
+            <br />
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Description
+                                </th>
+                                <th>
+                                    Units in Stock
+                                </th>
+                                <th>
+                                    Unit Cost
+                                </th>
+                                <th>Quantity</th>
+                                <th>Total Cost</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="product in products">
+                                <td>{{product.DisplayName}}</td>
+                                <td>{{product.UnitsInStock}}</td>
+                                <td>{{product.UnitCost | currency}}</td>
+                                <td><input type="number" ng-model="product.Quantity" min="0" class="form-control" ng-disabled="product.UnitsInStock===0 || !canEdit" ng-blur="product.updateTotalCost()" /></td>
+                                <td>{{product.TotalCost | currency}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th class="text-right">Total</th>
+                                <th>{{TotalCost | currency}}</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    Pickup Date <i class="fa fa-exclamation-circle" title="required"></i>
+                    <input type="text" ng-model="pickupDate" class="form-control" mtc-date-picker min-date-from-today="2" ng-required="true" ng-disabled="!canEdit" />
+                    <br />
+                    <div class="alert alert-info">
+                        Pick-ups must be scheduled two day in advance and are not available on Weekends or Holidays. MTC will confirm your requested pick-up time.
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    Pickup Time <i class="fa fa-exclamation-circle" title="required"></i><br />
+                    <label class="radio-inline">
+                        <input type="radio" name="pickupTime" ng-model="pickupTime" value="9" ng-required="true" />9 AM
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="pickupTime" ng-model="pickupTime" value="10" ng-required="true" />10 AM
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="pickupTime" ng-model="pickupTime" value="11" ng-required="true" />11 AM
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="pickupTime" ng-model="pickupTime" value="1" ng-required="true" />1 PM
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="pickupTime" ng-model="pickupTime" value="2" ng-required="true" />2 PM
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="pickupTime" ng-model="pickupTime" value="3" ng-required="true" />3 PM
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="pickupTime" ng-model="pickupTime" value="4" ng-required="true" />4 PM
+                    </label>
+
+                </div>
+            </div>
+            <br />
+            <h3>
+                Select one of the following
+                <small><i>NO CASH WILL BE ACCEPTED</i></small>
+            </h3>
+            <br />
+            <div class="row">
+                <div class="col-sm-12">
+                    Payment Type <i class="fa fa-exclamation-circle" title="required"></i><br /><br />
+                    <label class="radio-inline">
+                        <input type="radio" name="paymentType" ng-model="paymentType" value="check" ng-required="true" /> Will bring payment by check
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="paymentType" ng-model="paymentType" value="invoice" ng-required="true" /> Please deduct above amount ({{TotalCost | currency}}) from tow invoice
+                    </label>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="pull-right">
+                        <button class="btn btn-success btn-lg" ng-click="submit()" ng-disabled="merchandiseOrderForm.$invalid || isBusy || !canEdit"><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i>Submit</button>
+                    </div>                    
+                </div>
+            </div>
+            <br />
+            <br />
+        </form>
+        <div id="orderConfirmationModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Order Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Congratulations!</h3>
+                        <h4>Your order has been successfully submitted.</h4>
+                        <p>Confirmation and Order Number:&nbsp;<a ng-href='@Url.Content("~/Merchandise/OrderDetails?id="){{orderId}}'>{{orderId}}</a></p>
+                        <p>An email has been sent to your associated LATATrax email account.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/merchandiseOrderController.js"></script>
+    <script src="~/app/services/merchandiseService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script src="~/app/directives/showInputErrorDirective.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+}

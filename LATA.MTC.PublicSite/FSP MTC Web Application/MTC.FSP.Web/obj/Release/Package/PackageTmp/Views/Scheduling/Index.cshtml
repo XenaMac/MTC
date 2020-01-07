@@ -1,0 +1,976 @@
+﻿@{
+    ViewBag.Title = "Scheduling";
+}
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<br />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="schedulingController" ng-cloak>
+        <h3>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h3>
+        <br />
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#holidayDates" aria-controls="holidayDates" role="tab" data-toggle="tab">Holiday Dates <span ng-show="!isBusyWithHolidayDates">({{holidayDates.length}})</span><i class="fa fa-spinner fa-spin" ng-show="isBusyWithHolidayDates"></i></a></li>
+                <li role="presentation"><a href="#holiday" aria-controls="holiday" role="tab" data-toggle="tab">Holiday <span ng-show="!isBusyWithHolidaySchedules">({{holidaySchedules.length}})</span><i class="fa fa-spinner fa-spin" ng-show="isBusyWithHolidaySchedules"></i></a></li>
+                <li role="presentation"><a href="#weekDay" aria-controls="weekDay" role="tab" data-toggle="tab">Weekday <span ng-show="!isBusyWithSchedules">({{(schedules | filter:{IsWeekday: true}).length }})</span><i class="fa fa-spinner fa-spin" ng-show="isBusyWithSchedules"></i></a></li>
+                <li role="presentation"><a href="#weekEnd" aria-controls="weekEnd" role="tab" data-toggle="tab">Weekend <span ng-show="!isBusyWithSchedules">({{(schedules | filter:{IsWeekday: false}).length }})</span><i class="fa fa-spinner fa-spin" ng-show="isBusyWithSchedules"></i></a></li>
+                <li role="presentation"><a href="#customDates" aria-controls="customDates" role="tab" data-toggle="tab">Custom Dates <span ng-show="!isBusyWithCustomDates">({{customDates.length}})</span><i class="fa fa-spinner fa-spin" ng-show="isBusyWithCustomDates"></i></a></li>
+                <li role="presentation"><a href="#customSchedule" aria-controls="custom" role="tab" data-toggle="tab">Custom Schedule <span ng-show="!isBusyWithCustomSchedules">({{customSchedules.length}})</span><i class="fa fa-spinner fa-spin" ng-show="isBusyWithCustomSchedules"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="holidayDates">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchHolidayDates" placeholder="search" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-hover footable" ng-show="holidayDates.length > 0" data-filter="#searchHolidayDates" data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th>Holiday</th>
+                                <th>Abbreviation</th>
+                                <th data-sort-initial="true" data-type="numeric">Date</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="h in holidayDates">
+                                <td>
+                                    {{h.Name}}
+                                </td>
+                                <td>
+                                    {{h.Abbreviation}}
+                                </td>
+                                <td data-value="{{h.DateTicks}}">
+                                    {{h.DateFriendly}}
+                                </td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button title="edit" class="btn btn-sm btn-primary" ng-click="manageHolidayDate(h)" ng-show="canEdit"><i class="fa fa-pencil"></i></button>
+                                        <button title="remove" class="btn btn-sm btn-danger" ng-click="removeHolidayDate(h)" ng-show="canEdit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div class="paging">
+                                        <ul class="pagination pagination-sm"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+                    <div class="alert alert-warning">
+                        <button ng-click="addHolidayDate()" class="btn btn-primary" ng-show="canEdit"><i class="fa fa-plus"></i> Add Holiday Date</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="holiday">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchHolidaySearch" placeholder="search" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-hover footable" ng-show="holidaySchedules.length>0" data-filter="#searchHolidaySearch" data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th data-type="numeric" data-sort-initial="true">Beat</th>
+                                <th>Contractor</th>
+                                <th>Holiday</th>
+                                <th data-toggle="true" data-sort-initial="true">Schedule</th>
+
+                                <th>On Patrol</th>
+                                <th>Roll In</th>
+                                <th># Trucks</th>
+                                <th>Schedule Start Date</th>
+                                <th>Schedule End Date</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in holidaySchedules">
+                                <td>
+                                    {{s.BeatNumber}}
+                                </td>
+                                <td ng-bind="s.ContractCompanyName"></td>
+                                <td ng-bind="s.HolidayDay"></td>
+                                <td ng-bind="s.ScheduleName"></td>
+                                <td ng-bind="s.StartTimeFriendly"></td>
+                                <td ng-bind="s.EndTimeFriendly"></td>
+                                <td ng-bind="s.NumberOfTrucks"></td>
+                                <td ng-bind="s.StartDateFriendly"></td>
+                                <td ng-bind="s.EndDateFriendly"></td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button title="edit" class="btn btn-sm btn-primary" ng-click="manageHolidaySchedule(s)" ng-show="canEdit"><i class="fa fa-pencil"></i></button>
+                                        <button title="remove" class="btn btn-sm btn-danger" ng-click="removeHolidaySchedule(s)" ng-show="canEdit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div class="paging">
+                                        <ul class="pagination pagination-sm"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+                    <div class="alert alert-warning">
+                        <button ng-click="addHolidaySchedule()" class="btn btn-primary" ng-show="canEdit"><i class="fa fa-plus"></i> Add Holiday Schedule</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="weekDay">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchWeekdaySchedule" placeholder="search" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-hover footable" ng-show="schedules.length > 0" data-filter="#searchWeekdaySchedule" data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th data-type="numeric" data-sort-initial="true">Beat</th>
+                                <th>Contractor</th>
+                                <th data-toggle="true" data-sort-initial="true">Schedule</th>
+
+                                <th>On Patrol</th>
+                                <th>Roll In</th>
+
+                                <th>M</th>
+                                <th>T</th>
+                                <th>W</th>
+                                <th>T</th>
+                                <th>F</th>
+
+                                <th># Trucks</th>
+
+                                <th>Schedule Start Date</th>
+                                <th>Schedule End Date</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in schedules | filter:{IsWeekday: true} ">
+                                <td>
+                                    {{s.BeatNumber}}
+                                </td>
+                                <td>
+                                    {{s.ContractCompanyName}}
+                                </td>
+                                <td>
+                                    {{s.ScheduleName}}
+                                </td>
+                                <td ng-bind="s.StartTimeFriendly"></td>
+                                <td ng-bind="s.EndTimeFriendly"></td>
+
+                                <td>
+                                    <input type="checkbox" disabled="disabled" ng-checked="s.Monday===true" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" disabled="disabled" ng-checked="s.Tuesday===true" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" disabled="disabled" ng-checked="s.Wednesday===true" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" disabled="disabled" ng-checked="s.Thursday===true" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" disabled="disabled" ng-checked="s.Friday===true" />
+                                </td>
+
+                                <td ng-bind="s.NumberOfTrucks"></td>
+
+                                <td ng-bind="s.StartDateFriendly"></td>
+                                <td ng-bind="s.EndDateFriendly"></td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button title="edit" class="btn btn-sm btn-primary" ng-click="manageSchedule(s, true)" ng-show="canEdit"><i class="fa fa-pencil"></i></button>
+                                        <button title="remove" class="btn btn-sm btn-danger" ng-click="removeSchedule(s)" ng-show="canEdit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="14" class="text-center">
+                                    <div class="paging">
+                                        <ul class="pagination pagination-sm"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+                    <div class="alert alert-warning">
+                        <button ng-click="addSchedule(true)" class="btn btn-primary" ng-show="canEdit"><i class="fa fa-plus"></i> Add Schedule</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="weekEnd">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchWeekendSchedule" placeholder="search" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-hover footable" ng-show="schedules.length > 0" data-filter="#searchWeekendSchedule" data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th data-type="numeric" data-sort-initial="true">Beat</th>
+                                <th>Contractor</th>
+                                <th data-toggle="true" data-sort-initial="true">Schedule</th>
+
+                                <th>On Patrol</th>
+                                <th>Roll In</th>
+
+                                <th>Sat</th>
+                                <th>Sun</th>
+
+                                <th># Trucks</th>
+
+                                <th>Schedule Start Date</th>
+                                <th>Schedule End Date</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in schedules | filter:{IsWeekday: false} ">
+                                <td>
+                                    {{s.BeatNumber}}
+                                </td>
+                                <td>
+                                    {{s.ContractCompanyName}}
+                                </td>
+                                <td>
+                                    {{s.ScheduleName}}
+                                </td>
+                                <td ng-bind="s.StartTimeFriendly"></td>
+                                <td ng-bind="s.EndTimeFriendly"></td>
+                                <td>
+                                    <input type="checkbox" disabled="disabled" ng-checked="s.Saturday===true" />
+                                </td>
+                                <td>
+                                    <input type="checkbox" disabled="disabled" ng-checked="s.Sunday===true" />
+                                </td>
+
+                                <td ng-bind="s.NumberOfTrucks"></td>
+
+                                <td ng-bind="s.StartDateFriendly"></td>
+                                <td ng-bind="s.EndDateFriendly"></td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button title="edit" class="btn btn-sm btn-primary" ng-click="manageSchedule(s,false)" ng-show="canEdit"><i class="fa fa-pencil"></i></button>
+                                        <button title="remove" class="btn btn-sm btn-danger" ng-click="removeSchedule(s)" ng-show="canEdit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div class="paging">
+                                        <ul class="pagination pagination-sm"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+                    <div class="alert alert-warning">
+                        <button ng-click="addSchedule(false)" class="btn btn-primary" ng-show="canEdit"><i class="fa fa-plus"></i> Add Schedule</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="customDates">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchCustomDates" placeholder="search" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-hover footable" ng-show="customDates.length > 0" data-filter="#searchCustomDates" data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Abbreviation</th>
+                                <th data-type="numeric">Start Date</th>
+                                <th data-type="numeric">End Date</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="h in customDates">
+                                <td>
+                                    {{h.Name}}
+                                </td>
+                                <td>
+                                    {{h.Abbreviation}}
+                                </td>
+                                <td data-value="{{h.DateTicks}}">
+                                    {{h.DateFriendly}}
+                                </td>
+                                <td data-value="{{h.DateTicks}}">
+                                    {{h.EndDateFriendly}}
+                                </td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button title="edit" class="btn btn-sm btn-primary" ng-click="manageCustomDate(h)" ng-show="canEdit"><i class="fa fa-pencil"></i></button>
+                                        <button title="remove" class="btn btn-sm btn-danger" ng-click="removeCustomDate(h)" ng-show="canEdit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div class="paging">
+                                        <ul class="pagination pagination-sm"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+                    <div class="alert alert-warning">
+                        <button ng-click="addCustomDate()" class="btn btn-primary" ng-show="canEdit"><i class="fa fa-plus"></i> Add Custom Date</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="customSchedule">
+                    <br />
+                    <div class="row">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="searchCustomSearch" placeholder="search" class="form-control" />
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-hover footable" ng-show="customSchedules.length>0" data-filter="#searchCustomSearch" data-filter-text-only="true" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th data-type="numeric" data-sort-initial="true">Beat</th>
+                                <th>Contractor</th>
+                                <th>Custom</th>
+                                <th data-toggle="true" data-sort-initial="true">Schedule</th>
+                                <th>On Patrol</th>
+                                <th>Roll In</th>
+                                <th># Trucks</th>
+                                <th>Contract Start Date</th>
+                                <th>Contract End Date</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in customSchedules ">
+                                <td ng-bind="s.BeatNumber"></td>
+                                <td ng-bind="s.ContractCompanyName"></td>
+                                <td>
+                                    {{s.CustomDate.Abbreviation}}<br/>
+                                    {{s.CustomDate.Date | datefilter}} - {{s.CustomDate.EndDate | datefilter}}
+                                </td>
+                                <td ng-bind="s.ScheduleName"></td>
+                                <td ng-bind="s.StartTimeFriendly"></td>
+                                <td ng-bind="s.EndTimeFriendly"></td>
+                                <td ng-bind="s.NumberOfTrucks"></td>
+                                <td ng-bind="s.StartDate | datefilter"></td>
+                                <td ng-bind="s.EndDate | datefilter"></td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button title="edit" class="btn btn-sm btn-primary" ng-click="manageCustomSchedule(s)" ng-show="canEdit"><i class="fa fa-pencil"></i></button>
+                                        <button title="remove" class="btn btn-sm btn-danger" ng-click="removeCustomSchedule(s)" ng-show="canEdit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="12" class="text-center">
+                                    <div class="paging">
+                                        <ul class="pagination pagination-sm"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+                    <div class="alert alert-warning">
+                        <button ng-click="addCustomSchedule()" class="btn btn-primary" ng-show="canEdit"><i class="fa fa-plus"></i> Add Custom Schedule</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="manageHolidayDateModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Holiday Date <i class="fa fa-spinner fa-spin" ng-show="isBusyWithHolidayDates"></i></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="holidayDateForm" role="form" class="form-horizontal">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
+                                <li role="presentation"><a href="#times" aria-controls="times" role="tab" data-toggle="tab">Times</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="general">
+                                    <br />
+                                    <div class="form-group" ng-class="{'has-error': holidayDateForm.Name.$invalid}">
+                                        <label for="Name" class="col-sm-3 control-label">Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Name" ng-model="holidayDate.Name" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error': holidayDateForm.Abbreviation.$invalid}">
+                                        <label for="Abbreviation" class="col-sm-3 control-label">Abbreviation</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Abbreviation" ng-model="holidayDate.Abbreviation" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error': holidayDateForm.Date.$invalid}">
+                                        <label for="Date" class="col-sm-3 control-label">Date</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Date" ng-model="holidayDate.DateFriendly" required mtc-date-picker>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="times">
+                                    <br />                                 
+                                    <div class="form-group" ng-repeat="t in holidayDate.Times">
+                                        <label for="Name" class="col-sm-3 control-label">{{t.ScheduleName}}</label>
+                                        <div class="col-sm-4">                                           
+                                            <timepicker ng-model="t.StartTime"></timepicker>
+                                        </div>
+                                        <div class="col-sm-4">                                           
+                                            <timepicker ng-model="t.EndTime"></timepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveHolidayDate()" ng-disabled="holidayDateForm.$invalid || isBusyWithHolidaySchedules"><i class="fa fa-spinner fa-spin" ng-show="isBusyWithHolidaySchedules"></i><i class="fa fa-save" ng-hide="isBusyWithHolidaySchedules"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="manageHolidayScheduleModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Holiday Schedule <i class="fa fa-spinner fa-spin" ng-show="isBusyWithHolidaySchedules"></i></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="holidayScheduleForm" role="form" class="form-horizontal">
+
+                            <div class="form-group" ng-class="{'has-error': holidayScheduleForm.ContractorId.$invalid}">
+                                <label for="Name" class="col-sm-3 control-label">Contractor</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" 
+                                            name="ContractorId" 
+                                            ng-model="holidaySchedule.ContractorId" 
+                                            ng-change="getContractorBeats(holidaySchedule.ContractorId)" 
+                                            ng-options="a.Id as a.Text for a in contractors" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': holidayScheduleForm.BeatId.$invalid}">
+                                <label for="Name" class="col-sm-3 control-label">Beat <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingContractorBeats"></i></label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" 
+                                            name="BeatId" 
+                                            ng-model="holidaySchedule.BeatId" 
+                                            ng-options="a.Id as a.Text for a in contractorBeatNumbers" 
+                                            ng-disabled="!holidaySchedule.ContractorId" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': holidayScheduleForm.holidayDate.$invalid}">
+                                <label for="Name" class="col-sm-3 control-label">Holiday</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" 
+                                            name="holidayDate" 
+                                            ng-change="getHolidayScheduleTimes()" 
+                                            ng-model="holidaySchedule.HolidayDateId" 
+                                            ng-options="a.Id as a.Name for a in holidayDates" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': holidayScheduleForm.selectedSchedule.$invalid}">
+                                <label for="Name" class="col-sm-3 control-label">Schedule (Times) <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingHolidayScheduleTimes"></i></label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="selectedSchedule" 
+                                            ng-model="holidaySchedule.HolidayScheduleId" 
+                                            ng-options="a.Id as a.Name for a in holidayScheduleTimes" 
+                                            ng-disabled="!holidaySchedule.HolidayDateId" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': holidayScheduleForm.numberOfTrucks.$invalid}">
+                                <label for="Name" class="col-sm-3 control-label"># Trucks</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="numberOfTrucks" ng-model="holidaySchedule.NumberOfTrucks" required />
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveHolidaySchedule()" ng-disabled="holidayScheduleForm.$invalid || isBusyWithHolidaySchedules"><i class="fa fa-spinner fa-spin" ng-show="isBusyWithHolidaySchedules"></i><i class="fa fa-save" ng-hide="isBusyWithHolidaySchedules"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="manageScheduleModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Schedule <i class="fa fa-spinner fa-spin" ng-show="isBusyWithSchedules"></i></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="scheduleForm" role="form" class="form-horizontal">
+
+                            <div class="form-group" ng-class="{'has-error': scheduleForm.ContractorId.$invalid}">
+                                <label for="ContractorId" class="col-sm-3 control-label">Contractor</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" 
+                                            name="ContractorId" 
+                                            ng-model="schedule.ContractorId" 
+                                            ng-change="getContractorBeats(schedule.ContractorId)" 
+                                            ng-options="a.Id as a.Text for a in contractors" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': scheduleForm.BeatId.$invalid}">
+                                <label for="BeatId" class="col-sm-3 control-label">Beat <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingContractorBeats"></i></label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="BeatId" 
+                                            ng-model="schedule.BeatId" 
+                                            ng-options="a.Id as a.Text for a in contractorBeatNumbers" 
+                                            ng-disabled="!schedule.ContractorId" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': scheduleForm.ScheduleName.$invalid}">
+                                <label for="ScheduleName" class="col-sm-3 control-label">Schedule Name</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" name="ScheduleName" ng-model="schedule.ScheduleName"  required />
+                                </div>
+                            </div>
+                            <div class="form-group" ng-hide="isWeekday">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="schedule.Sunday"> Sunday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="isWeekday">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="schedule.Monday"> Monday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="isWeekday">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="schedule.Tuesday"> Tuesday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="isWeekday">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="schedule.Wednesday"> Wednesday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="isWeekday">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="schedule.Thursday"> Thursday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="isWeekday">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="schedule.Friday"> Friday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-hide="isWeekday">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="schedule.Saturday"> Saturday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': scheduleForm.numberOfTrucks.$invalid}">
+                                <label for="Name" class="col-sm-3 control-label"># Trucks</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="numberOfTrucks" ng-model="schedule.NumberOfTrucks" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="StartTime" class="col-sm-3 control-label">Start Time</label>
+                                <div class="col-sm-9">
+                                    <timepicker ng-model="schedule.StartTime"></timepicker>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="EndTime" class="col-sm-3 control-label">End Time</label>
+                                <div class="col-sm-9">
+                                    <timepicker ng-model="schedule.EndTime"></timepicker>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveSchedule()" ng-disabled="scheduleForm.$invalid || isBusyWithSchedules"><i class="fa fa-spinner fa-spin" ng-show="isBusyWithSchedules"></i><i class="fa fa-save" ng-hide="isBusyWithSchedules"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="manageBeatScheduleModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{selectedBeatSchedule.ScheduleName}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="beatScheduleForm" role="form" class="form-horizontal">
+
+                            <div class="form-group" ng-class="{'has-error': beatScheduleForm.ScheduleName.$invalid}">
+                                <label for="ScheduleName" class="col-sm-3 control-label">Schedule Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="ScheduleName" ng-model="selectedBeatSchedule.ScheduleName" required disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="selectedBeatSchedule.Sunday"> Sunday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="selectedBeatSchedule.Monday"> Monday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="selectedBeatSchedule.Tuesday"> Tuesday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="selectedBeatSchedule.Wednesday"> Wednesday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="selectedBeatSchedule.Thursday"> Thursday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="selectedBeatSchedule.Friday"> Friday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="selectedBeatSchedule.Saturday"> Saturday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': beatScheduleForm.numberOfTrucks.$invalid}">
+                                <label for="Name" class="col-sm-3 control-label"># Trucks</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="numberOfTrucks" ng-model="selectedBeatSchedule.NumberOfTrucks" required />
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': beatScheduleForm.StartTime.$invalid}">
+                                <label for="StartTime" class="col-sm-3 control-label">Start Time</label>
+                                <div class="col-sm-9">
+                                    <timepicker ng-model="selectedBeatSchedule.StartTimeDate"></timepicker>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': beatScheduleForm.EndTime.$invalid}">
+                                <label for="EndTime" class="col-sm-3 control-label">End Time</label>
+                                <div class="col-sm-9">
+                                    <timepicker ng-model="selectedBeatSchedule.EndTimeDate"></timepicker>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveBeatSchedule()" ng-disabled="beatScheduleForm.$invalid || isBusySavingBeatSchedule"><i class="fa fa-spinner fa-spin" ng-show="isBusySavingBeatSchedule"></i><i class="fa fa-save" ng-hide="isBusySavingBeatSchedule"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="manageCustomDateModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Custom Date <i class="fa fa-spinner fa-spin" ng-show="isBusyWithCustomDates"></i></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="customDateForm" role="form" class="form-horizontal">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#customDateGeneral" aria-controls="customDateGeneral" role="tab" data-toggle="tab">General</a></li>
+                                <li role="presentation"><a href="#customDateTimes" aria-controls="customDateTimes" role="tab" data-toggle="tab">Times</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="customDateGeneral">
+                                    <br />
+                                    <div class="form-group" ng-class="{'has-error': customDateForm.Name.$invalid}">
+                                        <label for="Name" class="col-sm-3 control-label">Name</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Name" ng-model="customDate.Name" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error': customDateForm.Abbreviation.$invalid}">
+                                        <label for="Abbreviation" class="col-sm-3 control-label">Abbreviation</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Abbreviation" ng-model="customDate.Abbreviation" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error': customDateForm.Date.$invalid}">
+                                        <label for="Date" class="col-sm-3 control-label">Start Date</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Date" ng-model="customDate.DateFriendly" required mtc-date-picker>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-class="{'has-error': customDateForm.EndDate.$invalid}">
+                                        <label for="EndDate" class="col-sm-3 control-label">End Date</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="EndDate" ng-model="customDate.EndDateFriendly" required mtc-date-picker>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="customDateTimes">
+                                    <br />
+                                    <div class="form-group" ng-repeat="t in customDate.Times">
+                                        <label for="Name" class="col-sm-3 control-label">{{t.ScheduleName}}</label>
+                                        <div class="col-sm-4">
+                                            <timepicker ng-model="t.StartTime"></timepicker>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <timepicker ng-model="t.EndTime"></timepicker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveCustomDate()" ng-disabled="customDateForm.$invalid || isBusyWithCustomDates"><i class="fa fa-spinner fa-spin" ng-show="isBusyWithCustomDates"></i><i class="fa fa-save" ng-hide="isBusyWithCustomDates"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="manageCustomScheduleModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Custom Schedule <i class="fa fa-spinner fa-spin" ng-show="isBusyWithCustomSchedules"></i></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="customScheduleForm" role="form" class="form-horizontal">
+
+                            <div class="form-group" ng-class="{'has-error': customScheduleForm.ContractorId.$invalid}">
+                                <label for="ContractorId" class="col-sm-3 control-label">Contractor</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" 
+                                            name="ContractorId" 
+                                            ng-model="customSchedule.ContractorId" 
+                                            ng-change="getContractorBeats(customSchedule.ContractorId)" 
+                                            ng-options="a.Id as a.Text for a in contractors" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': customScheduleForm.BeatId.$invalid}">
+                                <label for="BeatId" class="col-sm-3 control-label">Beat <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingContractorBeats"></i></label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" 
+                                            name="BeatId" 
+                                            ng-model="customSchedule.BeatId" 
+                                            ng-options="a.Id as a.Text for a in contractorBeatNumbers" 
+                                            ng-disabled="!customSchedule.ContractorId" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': customScheduleForm.customDate.$invalid}">
+                                <label for="customDate" class="col-sm-3 control-label">Custom Date</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" 
+                                            name="customDate" 
+                                            ng-change="getCustomScheduleTimes()" 
+                                            ng-model="customSchedule.CustomDate.Id" 
+                                            ng-options="a.Id as a.Name for a in customDates" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': customScheduleForm.selectedCustomSchedule.$invalid}">
+                                <label for="selectedCustomSchedule" class="col-sm-3 control-label">Schedule (Times) <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingCustomScheduleTimes"></i></label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" 
+                                            name="selectedCustomSchedule" 
+                                            ng-model="customSchedule.CustomScheduleId" 
+                                            ng-options="a.Id as a.Name for a in customScheduleTimes" 
+                                            ng-disabled="!customSchedule.CustomDate.Id" 
+                                            required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': customScheduleForm.numberOfTrucks.$invalid}">
+                                <label for="Name" class="col-sm-3 control-label"># Trucks</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="numberOfTrucks" ng-model="customSchedule.NumberOfTrucks" required />
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveCustomSchedule()" ng-disabled="customScheduleForm.$invalid || isBusyWithCustomSchedules"><i class="fa fa-spinner fa-spin" ng-show="isBusyWithCustomSchedules"></i><i class="fa fa-save" ng-hide="isBusyWithCustomSchedules"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/schedulingController.js"></script>
+    <script src="~/app/services/schedulingService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}
+

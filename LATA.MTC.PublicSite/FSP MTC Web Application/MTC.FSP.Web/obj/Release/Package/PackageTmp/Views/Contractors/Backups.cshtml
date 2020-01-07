@@ -1,0 +1,259 @@
+﻿@{
+    ViewBag.Title = "Contractors Beats & Backups";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="backupResourcesController" ng-cloak>
+        <h3>Contractors Beats & Backups <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h3>
+    @Html.ActionLink("Back To Tables", "Index", "Tables")
+    <br />
+        <hr />
+
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#backupBeats" aria-controls="backupBeats" role="tab" data-toggle="tab">Back-up Beats <i ng-show="isBusyGettingBackupBeats" class="fa fa-spinner fa-spin"></i></a></li>
+                <li role="presentation"><a href="#backupProviders" aria-controls="backupProviders" role="tab" data-toggle="tab">Back-up Providers <i ng-show="isBusyGettingBackupProviders" class="fa fa-spinner fa-spin"></i></a></li>
+                <li role="presentation"><a href="#backupCoverage" aria-controls="backupCoverage" role="tab" data-toggle="tab">Back-up Coverage <i ng-show="isBusyGettingBackupAssignments" class="fa fa-spinner fa-spin"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="backupBeats">
+                    <br />
+                    <div class="alert alert-info">
+                        <p>
+                            <b>Beats</b> with back-up trucks.
+                        </p>
+                    </div>
+                    <table class="table table-hover footable" ng-show="backupBeats.length>0">
+                        <thead>
+                            <tr>
+                                <th data-toggle="true" data-sort-initial="true">Beat</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="a in backupBeats">
+                                <td data-type="numeric" ng-bind="a.BeatNumber"></td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary" ng-click="editBackupBeat(a)" ng-show="isAdmin===true" title="edit"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger" ng-click="removeBackupBeat(a)" ng-show="isAdmin===true" title="edit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="alert alert-warning">
+                        <button class="btn btn-primary" ng-show="backupBeats.length < 9 && isAdmin===true" ng-click="showManageBackupBeatModal()"><i class="fa fa-plus"></i> Add</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="backupProviders">
+                    <br />
+                    <div class="alert alert-info">
+                        <p>
+                            Here, assign a <b>Contractor and Truck</b> to a <b>Beat</b> with back-up.
+                        </p>
+                    </div>
+                    <table class="table table-hover footable" ng-show="backupProviders.length>0">
+                        <thead>
+                            <tr>
+                                <th data-type="numeric" data-toggle="true" data-sort-initial="true">Back-up Beat</th>
+                                <th>Contractor</th>
+                                <th>Truck #</th>
+                                <th>Status</th>                                
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="a in backupProviders">
+                                <td ng-bind="a.Beat.BeatNumber"></td>
+                                <td ng-bind="a.Contractor.ContractorCompanyName"></td>
+                                <td ng-bind="a.FleetVehicle.VehicleNumber"></td>
+                                <td ng-bind="a.Status"></td>                               
+                                <td>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary" ng-click="editBackupProvider(a)" ng-show="isAdmin===true" title="edit"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger" ng-click="removeBackupProvider(a)" ng-show="isAdmin===true" title="edit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="alert alert-warning">
+                        <button class="btn btn-primary" ng-show="backupProviders.length<9 && isAdmin===true" ng-click="showManageBackupProviderModal()"><i class="fa fa-plus"></i> Add</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="backupCoverage">
+                    <br />
+                    <div class="alert alert-info">
+                        <p>
+                            This page is used to assign back-up services to a specific beat.
+                        </p>
+                    </div>
+                    <table class="table table-hover footable" ng-show="backupAssignments.length>0">
+                        <thead>
+                            <tr>
+                                <th data-type="numeric" data-toggle="true" data-sort-initial="true">Beat</th>
+                                <th>Primary Beat</th>
+                                <th>Secondary Beat</th>
+                                <th>Tertiary Beat</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="a in backupAssignments">
+                                <td ng-bind="a.BeatNumber"></td>
+                                <td>
+                                    Beat {{a.PrimaryBackupBeatNumber}}-Back-up Truck
+                                </td>
+                                <td>
+                                    Beat {{a.SecondaryBackupBeatNumber}}-Back-up Truck
+                                </td>
+                                <td>
+                                    Beat {{a.TertiaryBackupBeatNumber}}-Back-up Truck
+                                </td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary" ng-click="editBackupAssignment(a)" ng-show="isAdmin===true" title="edit"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger" ng-click="removeBackupAssignment(a)" ng-show="isAdmin===true" title="edit"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="alert alert-warning">
+                        <button class="btn btn-primary" ng-click="showManageBackupAssigmentModal()" ng-show="isAdmin===true"><i class="fa fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="manageBackBeatModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Back-up Beat</h4>
+                    </div>
+                    <form role="form" name="manageBackupBeatForm">
+                        <div class="modal-body">
+                            <div class="form-group" show-errors>
+                                <label for="selectedBeatId">Beat <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedBeatId" ng-model="selectedBeatId" ng-options="a.Id as a.Text for a in beatNumbers" ng-disabled="isBusyGettingBeatNumbers" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-disabled="manageBackupBeatForm.$invalid" ng-click="saveBackupBeat()"><i class="fa fa-save"></i> Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="manageBackProviderModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Back-up Provider</h4>
+                    </div>
+                    <form role="form" name="manageBackupProviderForm">
+                        <div class="modal-body">
+                            <div class="form-group" show-errors>
+                                <label for="selectedBeatId">Back-up Beat <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedBackupBeatId" ng-model="selectedBackupBeatId" ng-options="a.Id as a.BeatNumber for a in backupBeats" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <div class="form-group" show-errors>
+                                <label for="selectedContractorId">Contractor <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedContractorId" ng-model="selectedContractorId" ng-change="getContractorVehicles()" ng-options="a.Id as a.Text for a in contractors" ng-disabled="isBusyGettingContractors" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <div class="form-group" show-errors>
+                                <label for="selectedFleetVehicleId">Vehicle <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedFleetVehicleId" ng-model="selectedFleetVehicleId" ng-options="a.Id as a.Text for a in contractorfleetVehicles" ng-disabled="isBusyGettingFleetVehicles" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-disabled="manageBackupProviderForm.$invalid" ng-click="saveBackupProvider()"><i class="fa fa-save"></i> Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="manageBackAssignemtnModal" class="modal fade bs-example-modal-lg">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Back-up Coverage</h4>
+                    </div>
+                    <form role="form" name="manageBackupAssignmentForm">
+                        <div class="modal-body">
+                            <div class="form-group" show-errors>
+                                <label for="selectedBeatId">Beat <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedBeatId" ng-model="selectedBeatId" ng-options="a.Id as a.Text for a in beatNumbers" ng-disabled="isBusyGettingBeatNumbers" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <div class="form-group" show-errors>
+                                <label for="selectedPrimaryBackupContractorId">Primary Beat <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedPrimaryBackupBeatId" ng-model="selectedPrimaryBackupBeatId" ng-options="a.Id as a.BeatNumber for a in backupBeats" ng-disabled="isBusyGettingContractors || !selectedBeatId" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <div class="form-group" show-errors>
+                                <label for="selectedSecondaryBackupContractorId">Secondary Beat <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedSecondaryBackupBeatId" ng-model="selectedSecondaryBackupBeatId" ng-options="a.Id as a.BeatNumber for a in backupBeats" ng-disabled="isBusyGettingContractors || !selectedBeatId" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <div class="form-group" show-errors>
+                                <label for="selectedTertiaryBackupContractorId">Tertiary Beat <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedTertiaryBackupBeatId" ng-model="selectedTertiaryBackupBeatId" ng-options="a.Id as a.BeatNumber for a in backupBeats" ng-disabled="isBusyGettingContractors || !selectedBeatId" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-disabled="manageBackupAssignmentForm.$invalid || manageBackupAssignmentForm.$pristine" ng-click="saveBackupAssignment()"><i class="fa fa-save"></i> Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/backupResourcesController.js"></script>
+    <script src="~/app/services/backupTruckService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script src="~/app/directives/showInputErrorDirective.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

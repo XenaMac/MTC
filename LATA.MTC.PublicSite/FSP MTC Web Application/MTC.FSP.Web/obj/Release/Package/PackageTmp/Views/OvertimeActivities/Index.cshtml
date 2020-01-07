@@ -1,0 +1,146 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.OvertimeActivity>
+
+@{
+    ViewBag.Title = "Overtime Activities";
+}
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+<style type="text/css">
+    .True {
+        background-color: green;
+    }
+
+    .False {
+        background-color: red;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="col-xs-6">
+        <br />
+        <div class="form-inline pull-right">
+            <input type="text" class="form-control" id="filter" placeholder="Filter Grid" />
+            <a class="btn btn-success" href="~/OvertimeActivities/Create" title="Create Appeal"><i class="fa fa-plus"></i> Overtime</a>
+        </div>
+    </div>
+</div>
+<hr />
+<table class="table table-hover footable" data-filter=#filter data-filter-text-only="true" id="overtimes" data-page-size="15" data-limit-navigation="10">
+    <thead>
+        <tr>
+            <th data-sort-initial="true" class="text-center">
+                @Html.DisplayNameFor(model => model.timeStamp)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Shift)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.CallSign)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.OverTimeCode)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.BlocksApproved)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Beat)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Contractor)
+            </th>
+            <th class="text-left">
+                @Html.DisplayNameFor(model => model.Confirmed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.timeStamp)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Shift)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.CallSign)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.OverTimeCode)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.BlocksApproved)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Beat)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Contractor)
+                </td>
+                <td>
+                    @if (@item.Confirmed.ToString() == "True")
+                    {
+                        <span class="label label-success">Yes</span>
+                    }
+                    else if (@item.Confirmed.ToString() == "False")
+                    {
+                        <span class="label label-danger">No</span>
+                    }
+                    else if (@item.Confirmed == null)
+                    {
+                        <span class="label label-default">Not Set</span>
+                    }
+
+
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "OverTimeActivities", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Edit">
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                    </a>
+                    <a href="@Url.Action("Details", "OverTimeActivities", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Details">
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                        </button>
+                    </a>
+                    <a href="@Url.Action("Delete", "OverTimeActivities", new { id = item.ID })" data-toggle="tooltip" data-placement="top" title="Delete">
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                    </a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12" class="text-center">
+                <div class="paging">
+                    <ul class="pagination pagination-sm"></ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+@section scripts{
+    <script src="~/Scripts/footable.all.min.js"></script>
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+
+        //$('#confFilter').change(function (e) {
+        //    var footableFilter = $('#overtimes').data('footable-filter');
+        //    footableFilter.filter($('#confFilter'))
+        //});
+    </script>
+}

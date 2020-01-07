@@ -1,0 +1,117 @@
+﻿<div ng-show="!isAdding">
+    <div class="form-group"
+        ng-hide="dropSites.length > 0">
+        Loading Drop Sites...<i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <div class="form-group">
+        <select class="form-control"
+            ng-model="selectedDropSite"
+            ng-options="a as a.dropSiteID for a in dropSites"
+            ng-change="setSelected()"
+            ng-disabled="dropSites.length === 0 || isEditing">
+            <option value="">
+                --Select Drop Site--
+            </option>
+        </select>
+    </div>
+</div>
+
+<div ng-show="selectedDropSite">
+    <div class="form-group">
+        ID
+        <input ng-model="selectedDropSite.dropSiteID"
+            type="text"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+    <div class="form-group">
+        Description
+        <textarea ng-model="selectedDropSite.dropSiteDescription"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding"></textarea>
+    </div>
+    <div class="form-group">
+        Beat
+        <select class="form-control"
+            ng-model="selectedDropSite.beatID"
+            ng-options="a.Value as a.Value for a in beats"
+            ng-disabled="!isEditing && !isAdding">
+            <option value="">
+                --Select Beat--
+            </option>        
+        </select>
+    </div>
+    <div class="form-group">
+        Color
+        <input type="text"
+            minicolors="colorPickerSettings"
+            ng-model="selectedDropSite.Color"
+            class="form-control"
+            ng-disabled="!isEditing && !isAdding" />
+    </div>
+</div>
+
+<div class="form-group"
+    ng-show="selectedDropSite && !isAdding">
+    <button ng-show="!isEditing"
+        ng-click="setEdit()"
+        class="btn btn-primary btn-sm">
+        <i class="fa fa-pencil">
+        </i> Edit Drop Site
+    </button>
+    <button ng-show="isEditing"
+        ng-click="save()"
+        ng-disabled="isBusySaving || isBusyDeleting"
+        class="btn btn-primary btn-sm">
+        <i class="fa fa-check"
+        ng-hide="isBusySaving">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+        ng-show="isBusySaving">
+        </i>
+        Save
+    </button>
+    <button ng-show="isEditing"
+        ng-click="delete()"
+        ng-disabled="isBusySaving || isBusyDeleting"
+        class="btn btn-danger btn-sm">
+        <i class="fa fa-trash"
+        ng-hide="isBusyDeleting">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+        ng-show="isBusyDeleting">
+        </i>
+        Delete
+    </button>
+    <button ng-show="isEditing"
+        ng-click="cancelEdit()"
+        class="btn btn-default btn-sm">
+        Cancel
+    </button>
+</div>
+
+<div class="form-group"
+    ng-show="!isEditing">
+    <button ng-show="!selectedDropSite"
+        ng-click="prepareNew()"
+        class="btn btn-success btn-sm">
+        <i class="fa fa-plus"></i> New Drop Site
+    </button>
+    <button ng-show="!isEditing && isAdding"
+        ng-click="add()"
+        ng-disabled="isBusyAdding"
+        class="btn btn-success btn-sm">
+        <i class="fa fa-check"
+        ng-hide="isBusyAdding">
+        </i>
+        <i class="fa fa-refresh fa-spin"
+        ng-show="isBusyAdding">
+        </i>
+        Save
+    </button>
+    <button ng-show="!isEditing && isAdding"
+        ng-click="cancelAdd()"
+        class="btn btn-default btn-sm">
+        Cancel
+    </button>
+</div>

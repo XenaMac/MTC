@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.DropSite>
+
+@{
+    ViewBag.Title = "Drop Sites";
+}
+
+<h2>Drop Sites</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FriendlyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeatNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Freeway)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrossStreet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DropSiteArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DropSiteNumber)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FriendlyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BeatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Freeway)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrossStreet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DropSiteArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DropSiteNumber)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |            
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>*@
+    </tr>
+}
+
+</table>

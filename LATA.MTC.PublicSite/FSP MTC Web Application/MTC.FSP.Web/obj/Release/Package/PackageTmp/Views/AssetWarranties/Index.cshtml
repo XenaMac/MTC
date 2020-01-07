@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Warranty & Configuration Tracker";
+}
+
+
+<br />
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="assetWarrantyConfigurationController" ng-cloak>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingAssetWarranties"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <a class="btn btn-success" href="~/AssetWarranties/Create" title="add" ng-show="canEdit"><i class="fa fa-plus"></i> Add</a>
+                    <a class="btn btn-primary" href="~/AssetStatusLocations/Index">Status & Location Tracker</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" ng-show="assetWarranties.length > 0" data-page-size="10" data-limit-navigation="10">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>LATA ID #</th>
+                            <th>OEM Serial #</th>
+                            <th>Warranty End Date</th>
+                            <th>Operating System</th>
+                            <th>OEM Software</th>
+                            <th>LATA Software</th>
+                            <th>Notes</th>
+                            <th data-sort-ignore="true"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="a in assetWarranties">
+                            <td ng-bind="a.Item"></td>
+                            <td ng-bind="a.LATAIDNumber"></td>
+                            <td ng-bind="a.OEMSerialNumber"></td>
+                            <td ng-bind="a.WarrantyEndDate"></td>
+                            <td ng-bind="a.OperatingSystem"></td>
+                            <td ng-bind="a.OEMSoftware"></td>
+                            <td ng-bind="a.LATASoftware"></td>
+                            <td ng-bind="a.Notes"></td>
+                            <td>
+                                <div class="pull-right">
+                                    <a ng-href='@Url.Content("~/AssetWarranties/Edit/"){{a.Id}}' class="btn btn-info btn-sm" title="edit" ng-show="canEdit"><i class="fa fa-pencil"></i></a>
+                                    <a ng-href='@Url.Content("~/AssetWarranties/Delete/"){{a.Id}}' class="btn btn-danger btn-sm" title="delete" ng-show="canEdit"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="25" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+
+
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script src="~/app/controllers/assetWarrantyConfigurationController.js"></script>
+    <script src="~/app/services/assetsService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

@@ -1,0 +1,1345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MTCDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mtcdb.dbo.AEFrequencies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AEFrequencies">
+    <Key>
+      <PropertyRef Name="AEFrequencyID" />
+      <PropertyRef Name="AEFrequencyName" />
+    </Key>
+    <Property Name="AEFrequencyID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AEFrequencyName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AEFrequencyDescription" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mtcdb.dbo.AERecipients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AERecipients">
+    <Key>
+      <PropertyRef Name="AERecipientID" />
+      <PropertyRef Name="AERecipientEmail" />
+      <PropertyRef Name="AEIsContractor" />
+      <PropertyRef Name="AEReportID" />
+      <PropertyRef Name="AEFrequencyID" />
+      <PropertyRef Name="AEReportTypeID" />
+    </Key>
+    <Property Name="AERecipientID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AERecipientEmail" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="AEIsContractor" Type="bit" Nullable="false" />
+    <Property Name="AEReportID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AEFrequencyID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AEContractorID" Type="uniqueidentifier" />
+    <Property Name="AEReportTypeID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mtcdb.dbo.AEReports' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AEReports">
+    <Key>
+      <PropertyRef Name="AEReportID" />
+      <PropertyRef Name="AEReportName" />
+    </Key>
+    <Property Name="AEReportID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AEReportName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AEReportDescription" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="AEReportTypes">
+    <Key>
+      <PropertyRef Name="AEReportTypeID" />
+    </Key>
+    <Property Name="AEReportTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AEReportTypeName" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Appeals">
+    <Key>
+      <PropertyRef Name="AppealID" />
+    </Key>
+    <Property Name="AppealID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AppealType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AppealStatusID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ContactName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContactPhone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContractorId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Beatid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DriverId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="V_ViolationId" Type="int" />
+    <Property Name="V_ReasonForAppeal" Type="varchar" MaxLength="500" />
+    <Property Name="V_BlocksGranted" Type="int" />
+    <Property Name="V_BlocksClaimed" Type="int" />
+    <Property Name="V_AppropriateCharge" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="O_Datetime" Type="datetime" />
+    <Property Name="O_CallSign" Type="varchar" MaxLength="10" />
+    <Property Name="O_CHPOTNumber" Type="int" />
+    <Property Name="O_NumOfBlocks" Type="int" />
+    <Property Name="O_BlocksInitGranted" Type="int" />
+    <Property Name="O_Detail" Type="varchar" MaxLength="500" />
+    <Property Name="I_EventDate" Type="datetime" />
+    <Property Name="I_InvoiceReason" Type="varchar" MaxLength="500" />
+    <Property Name="I_AppealReason" Type="varchar" MaxLength="500" />
+    <Property Name="I_InvoiceDeduction" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="I_AppealDeduction" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="MTCNote" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppealStatus">
+    <Key>
+      <PropertyRef Name="AppealStatusID" />
+    </Key>
+    <Property Name="AppealStatusID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AppealStatus" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Assists">
+    <Key>
+      <PropertyRef Name="AssistID" />
+    </Key>
+    <Property Name="AssistID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IncidentID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AssistDatePosted" Type="datetime" Nullable="false" />
+    <Property Name="LastAssistInIncidentReport" Type="bit" Nullable="false" />
+    <Property Name="ProblemType" Type="varchar" MaxLength="50" />
+    <Property Name="ProblemDetail" Type="varchar" MaxLength="50" />
+    <Property Name="ProblemNote" Type="varchar" MaxLength="500" />
+    <Property Name="OtherNote" Type="varchar" MaxLength="500" />
+    <Property Name="TransportType" Type="varchar" MaxLength="50" />
+    <Property Name="StartODO" Type="float" />
+    <Property Name="EndODO" Type="float" />
+    <Property Name="DropSite" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="10" />
+    <Property Name="LicensePlate" Type="varchar" MaxLength="10" />
+    <Property Name="VehicleType" Type="varchar" MaxLength="50" />
+    <Property Name="OTAuthorizationNumber" Type="varchar" MaxLength="20" />
+    <Property Name="DetailNote" Type="varchar" MaxLength="500" />
+    <Property Name="AssistLat" Type="float" />
+    <Property Name="AssistLon" Type="float" />
+    <Property Name="DropSiteOther" Type="varchar" MaxLength="50" />
+    <Property Name="CallSign" Type="varchar" MaxLength="20" />
+    <Property Name="TimeOnAssist" Type="datetime" />
+    <Property Name="TimeOffAssist" Type="datetime" />
+    <Property Name="ActionTaken" Type="varchar" MaxLength="100" />
+    <Property Name="DropSiteBeat" Type="varchar" MaxLength="50" />
+    <Property Name="PTN" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BeatBeatSchedules">
+    <Key>
+      <PropertyRef Name="BeatBeatScheduleID" />
+    </Key>
+    <Property Name="BeatBeatScheduleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BeatID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BeatScheduleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="NumberOfTrucks" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BeatBeatSegments">
+    <Key>
+      <PropertyRef Name="BeatBeatSegmentID" />
+    </Key>
+    <Property Name="BeatBeatSegmentID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BeatNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="BeatSegmentNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ObjectID" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="BeatData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BeatName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BeatID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Notes" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="UserCreated" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserModified" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="DateModified" Type="datetime" Nullable="false" />
+    <Property Name="Color" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BeatSchedules">
+    <Key>
+      <PropertyRef Name="BeatScheduleID" />
+    </Key>
+    <Property Name="BeatScheduleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ScheduleName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sunday" Type="bit" />
+    <Property Name="Monday" Type="bit" />
+    <Property Name="Tuesday" Type="bit" />
+    <Property Name="Wednesday" Type="bit" />
+    <Property Name="Thursday" Type="bit" />
+    <Property Name="Friday" Type="bit" />
+    <Property Name="Saturday" Type="bit" />
+    <Property Name="StartTime" Type="time" Precision="7" />
+    <Property Name="EndTime" Type="time" Precision="7" />
+    <Property Name="NumberOfTrucks" Type="int" />
+  </EntityType>
+  <EntityType Name="BeatsFreeways">
+    <Key>
+      <PropertyRef Name="BeatFreewayID" />
+    </Key>
+    <Property Name="BeatFreewayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BeatID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FreewayID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="CHPInspections">
+    <Key>
+      <PropertyRef Name="InspectionID" />
+    </Key>
+    <Property Name="InspectionID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FleetVehicleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InspectionDate" Type="datetime" Nullable="false" />
+    <Property Name="InspectionTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InspectionNotes" Type="varchar" MaxLength="500" />
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CHPOfficerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CHPOfficer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="BadgeID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OfficerLastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OfficerFirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CHPOfficerBeats">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CHPOfficerId" Type="int" Nullable="false" />
+    <Property Name="BeatId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContractorManagers">
+    <Key>
+      <PropertyRef Name="ContractorManagerID" />
+    </Key>
+    <Property Name="ContractorManagerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CellPhone" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contractors">
+    <Key>
+      <PropertyRef Name="ContractorID" />
+    </Key>
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="OfficeTelephone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MCPNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MCPExpiration" Type="date" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="500" />
+    <Property Name="ContractCompanyName" Type="varchar" MaxLength="100" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="2" />
+    <Property Name="Zip" Type="varchar" MaxLength="10" />
+    <Property Name="Email" Type="varchar" MaxLength="150" />
+    <Property Name="ContactFirstName" Type="varchar" MaxLength="150" />
+    <Property Name="ContractorTypeId" Type="int" />
+    <Property Name="ContactLastName" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="ContractorTypes">
+    <Key>
+      <PropertyRef Name="ContractorTypeId" />
+    </Key>
+    <Property Name="ContractorTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContractorTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contracts">
+    <Key>
+      <PropertyRef Name="ContractID" />
+    </Key>
+    <Property Name="ContractID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="MaxObligation" Type="money" Nullable="false" />
+    <Property Name="AgreementNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TruckCount" Type="int" />
+    <Property Name="BackupTruckCount" Type="int" />
+    <Property Name="BeatId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="ContractsBeats">
+    <Key>
+      <PropertyRef Name="ContractID" />
+      <PropertyRef Name="BeatID" />
+    </Key>
+    <Property Name="ContractID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BeatID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DriverEvents">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DriverID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EventType" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DriverInteractions">
+    <Key>
+      <PropertyRef Name="InteractionID" />
+    </Key>
+    <Property Name="InteractionID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DriverID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InteractionTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InteractionArea" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="InteractionDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="InspectionPassFail" Type="bit" Nullable="false" />
+    <Property Name="AccidentPreventable" Type="bit" Nullable="false" />
+    <Property Name="FollowupRequired" Type="bit" Nullable="false" />
+    <Property Name="FollowupDescription" Type="varchar" MaxLength="500" />
+    <Property Name="FollowupDate" Type="date" />
+    <Property Name="FollowupCompletionDate" Type="date" />
+    <Property Name="FollowupComments" Type="varchar" MaxLength="500" />
+    <Property Name="CloseDate" Type="date" />
+    <Property Name="BadgeID" Type="varchar" MaxLength="50" />
+    <Property Name="InteractionDate" Type="datetime" />
+    <Property Name="VehicleNumber" Type="varchar" MaxLength="50" />
+    <Property Name="BeatNumber" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Drivers">
+    <Key>
+      <PropertyRef Name="DriverID" />
+    </Key>
+    <Property Name="DriverID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FSPIDNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProgramStartDate" Type="date" Nullable="false" />
+    <Property Name="TrainingCompletionDate" Type="date" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="LicenseExpirationDate" Type="date" Nullable="false" />
+    <Property Name="DL64ExpirationDate" Type="date" Nullable="false" />
+    <Property Name="MedicalCardExpirationDate" Type="date" Nullable="false" />
+    <Property Name="LastPullNoticeDate" Type="date" />
+    <Property Name="DateAdded" Type="date" Nullable="false" />
+    <Property Name="UDF" Type="varchar" MaxLength="500" />
+    <Property Name="Comments" Type="varchar" MaxLength="500" />
+    <Property Name="ContractorEndDate" Type="date" />
+    <Property Name="ProgramEndDate" Type="date" />
+    <Property Name="ContractorStartDate" Type="date" />
+    <Property Name="BeatID" Type="uniqueidentifier" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DL64Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="DriversLicenseNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddedtoC3Database" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FleetVehicles">
+    <Key>
+      <PropertyRef Name="FleetVehicleID" />
+    </Key>
+    <Property Name="FleetVehicleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProgramStartDate" Type="date" Nullable="false" />
+    <Property Name="FleetNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VehicleType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VehicleYear" Type="int" Nullable="false" />
+    <Property Name="VehicleMake" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VehicleModel" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VIN" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LicensePlate" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="RegistrationExpireDate" Type="date" Nullable="false" />
+    <Property Name="InsuranceExpireDate" Type="date" Nullable="false" />
+    <Property Name="LastCHPInspection" Type="date" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="500" />
+    <Property Name="ProgramEndDate" Type="date" Nullable="false" />
+    <Property Name="FAW" Type="int" Nullable="false" />
+    <Property Name="RAW" Type="int" Nullable="false" />
+    <Property Name="RAWR" Type="int" Nullable="false" />
+    <Property Name="GVW" Type="int" Nullable="false" />
+    <Property Name="GVWR" Type="int" Nullable="false" />
+    <Property Name="Wheelbase" Type="int" Nullable="false" />
+    <Property Name="Overhang" Type="int" Nullable="false" />
+    <Property Name="MAXTW" Type="int" Nullable="false" />
+    <Property Name="MAXTWCALCDATE" Type="date" Nullable="false" />
+    <Property Name="FuelType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="VehicleNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="AgreementNumber" Type="varchar" MaxLength="50" />
+    <Property Name="IsBackup" Type="bit" Nullable="false" />
+    <Property Name="TAIP" Type="nvarchar" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="Freeways">
+    <Key>
+      <PropertyRef Name="FreewayID" />
+    </Key>
+    <Property Name="FreewayID" Type="int" Nullable="false" />
+    <Property Name="FreewayName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GPSTrackingLog">
+    <Key>
+      <PropertyRef Name="GPSID" />
+    </Key>
+    <Property Name="GPSID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Direction" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="VehicleStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+    <Property Name="timeStamp" Type="datetime" Nullable="false" />
+    <Property Name="BeatSegmentID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VehicleID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Speed" Type="float" Nullable="false" />
+    <Property Name="Alarms" Type="bit" Nullable="false" />
+    <Property Name="DriverID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VehicleNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BeatID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Position" Type="geography" Nullable="false" />
+    <Property Name="SpeedingAlarm" Type="bit" Nullable="false" />
+    <Property Name="SpeedingValue" Type="float" />
+    <Property Name="SpeedingTime" Type="datetime" />
+    <Property Name="SpeedingLocation" Type="geography" />
+    <Property Name="OutOfBoundsAlarm" Type="bit" Nullable="false" />
+    <Property Name="OutOfBoundsMessage" Type="varchar" MaxLength="50" />
+    <Property Name="Cell" Type="varchar" MaxLength="100" />
+    <Property Name="runID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="GroupCity" Type="varchar" MaxLength="50" />
+    <Property Name="GroupState" Type="char" MaxLength="2" />
+    <Property Name="GroupAddress" Type="varchar" MaxLength="100" />
+    <Property Name="GroupZip" Type="varchar" MaxLength="10" />
+    <Property Name="GroupPhone" Type="varchar" MaxLength="20" />
+    <Property Name="GroupContactName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HeliosUnits">
+    <Key>
+      <PropertyRef Name="HeliosUnitID" />
+    </Key>
+    <Property Name="HeliosUnitID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="HeliosID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+    <Property Name="DateAdded" Type="datetime" Nullable="false" />
+    <Property Name="DateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Incidents">
+    <Key>
+      <PropertyRef Name="IncidentID" />
+    </Key>
+    <Property Name="IncidentID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IncidentDatePosted" Type="datetime" Nullable="false" />
+    <Property Name="UserPosted" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CallSign" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FromTruck" Type="bit" Nullable="false" />
+    <Property Name="Lat" Type="float" Nullable="false" />
+    <Property Name="Lon" Type="float" Nullable="false" />
+    <Property Name="Canceled" Type="bit" Nullable="false" />
+    <Property Name="ReasonCanceled" Type="varchar" MaxLength="50" />
+    <Property Name="Beat" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TruckNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="LogID" Type="uniqueidentifier" />
+    <Property Name="WazeID" Type="uniqueidentifier" />
+    <Property Name="TruckStatusID" Type="uniqueidentifier" />
+    <Property Name="FSPLocation" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="DispatchLocation" Type="varchar" MaxLength="200" />
+    <Property Name="Direction" Type="varchar" MaxLength="10" />
+    <Property Name="PositionIncident" Type="varchar" MaxLength="10" />
+    <Property Name="LaneNumber" Type="varchar" MaxLength="10" />
+    <Property Name="CHPIncidentType" Type="varchar" MaxLength="50" />
+    <Property Name="briefUpdateLat" Type="float" />
+    <Property Name="briefUpdateLon" Type="float" />
+    <Property Name="Freeway" Type="varchar" MaxLength="20" />
+    <Property Name="BriefUpdatePosted" Type="bit" Nullable="false" />
+    <Property Name="TimeofBriefUpdate" Type="datetime" />
+    <Property Name="CHPLogNumber" Type="varchar" MaxLength="20" />
+    <Property Name="IncidentSurveyNumber" Type="varchar" MaxLength="20" />
+    <Property Name="DriverLastName" Type="varchar" MaxLength="50" />
+    <Property Name="DriverFIrstName" Type="varchar" MaxLength="50" />
+    <Property Name="DriverID" Type="uniqueidentifier" />
+    <Property Name="RunID" Type="uniqueidentifier" />
+    <Property Name="TimeOnIncident" Type="datetime" />
+    <Property Name="TimeOffIncident" Type="datetime" />
+    <Property Name="Comment" Type="varchar" MaxLength="500" />
+    <Property Name="Acked" Type="bit" />
+    <Property Name="CrossStreet" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="InspectionTypes">
+    <Key>
+      <PropertyRef Name="InspectionTypeID" />
+    </Key>
+    <Property Name="InspectionTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InspectionType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="InspectionTypeCode" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InsuranceCarriers">
+    <Key>
+      <PropertyRef Name="InsuranceID" />
+    </Key>
+    <Property Name="InsuranceID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CarrierName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="InsurancePolicyNumber" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ExpirationDate" Type="date" Nullable="false" />
+    <Property Name="PolicyName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Fax" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InteractionTypes">
+    <Key>
+      <PropertyRef Name="InteractionTypeID" />
+    </Key>
+    <Property Name="InteractionTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InteractionType" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="LocationCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Location" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Month" Type="int" Nullable="false" />
+    <Property Name="BeatID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FuelRate" Type="float" Nullable="false" />
+    <Property Name="BaseRate" Type="float" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice_Addition">
+    <Key>
+      <PropertyRef Name="AdditionID" />
+    </Key>
+    <Property Name="AdditionID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="TimeAdded" Type="int" Nullable="false" />
+    <Property Name="Rate" Type="float" Nullable="false" />
+    <Property Name="Cost" Type="float" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice_Anomalies">
+    <Key>
+      <PropertyRef Name="AnomalyID" />
+    </Key>
+    <Property Name="AnomalyID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice_Deductions">
+    <Key>
+      <PropertyRef Name="DeductionID" />
+    </Key>
+    <Property Name="DeductionID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="TimeAdded" Type="int" Nullable="false" />
+    <Property Name="Rate" Type="float" Nullable="false" />
+    <Property Name="Cost" Type="float" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MTC_Invoice_Summary">
+    <Key>
+      <PropertyRef Name="SummaryID" />
+    </Key>
+    <Property Name="SummaryID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Row" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Days" Type="float" Nullable="false" />
+    <Property Name="Shifts" Type="float" Nullable="false" />
+    <Property Name="ContractHours" Type="float" Nullable="false" />
+    <Property Name="OnPatrolHours" Type="float" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mtcdb.dbo.MTCActionTaken' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MTCActionTaken">
+    <Key>
+      <PropertyRef Name="MTCActionTakenID" />
+    </Key>
+    <Property Name="MTCActionTakenID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="MTCAssistID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ActionTaken" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MTCAssists">
+    <Key>
+      <PropertyRef Name="MTCAssistID" />
+    </Key>
+    <Property Name="MTCAssistID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IncidentID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TrafficCollision" Type="varchar" MaxLength="50" />
+    <Property Name="DebrisOnly" Type="varchar" MaxLength="50" />
+    <Property Name="Breakdown" Type="varchar" MaxLength="50" />
+    <Property Name="Other" Type="varchar" MaxLength="50" />
+    <Property Name="ProblemNote" Type="varchar" MaxLength="500" />
+    <Property Name="OtherNote" Type="varchar" MaxLength="500" />
+    <Property Name="TransportType" Type="varchar" MaxLength="500" />
+    <Property Name="StartODO" Type="float" />
+    <Property Name="EndODO" Type="float" />
+    <Property Name="DropSiteBeat" Type="varchar" MaxLength="50" />
+    <Property Name="DropSite" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="10" />
+    <Property Name="LicensePlateNumber" Type="varchar" MaxLength="20" />
+    <Property Name="VehicleType" Type="varchar" MaxLength="20" />
+    <Property Name="OTAuthorizationNumber" Type="varchar" MaxLength="50" />
+    <Property Name="DetailNote" Type="varchar" MaxLength="500" />
+    <Property Name="Lat" Type="float" />
+    <Property Name="Lon" Type="float" />
+    <Property Name="DropSiteOther" Type="varchar" MaxLength="100" />
+    <Property Name="datePosted" Type="datetime" />
+    <Property Name="CallSign" Type="varchar" MaxLength="100" />
+    <Property Name="TimeOnInc" Type="varchar" MaxLength="50" />
+    <Property Name="TimeOffInc" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MTCBeatsCallSigns">
+    <Key>
+      <PropertyRef Name="BeatID" />
+      <PropertyRef Name="CallSign" />
+    </Key>
+    <Property Name="BeatID" Type="int" Nullable="false" />
+    <Property Name="CallSign" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MTCIncidents">
+    <Key>
+      <PropertyRef Name="IncidentID" />
+    </Key>
+    <Property Name="IncidentID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DatePosted" Type="datetime" Nullable="false" />
+    <Property Name="UserPosted" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fromTruck" Type="int" Nullable="false" />
+    <Property Name="Lat" Type="float" Nullable="false" />
+    <Property Name="Lon" Type="float" Nullable="false" />
+    <Property Name="Canceled" Type="bit" Nullable="false" />
+    <Property Name="Reason" Type="varchar" MaxLength="50" />
+    <Property Name="Beat" Type="varchar" MaxLength="50" />
+    <Property Name="TruckNumber" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MTCPreAssists">
+    <Key>
+      <PropertyRef Name="PreAssistID" />
+    </Key>
+    <Property Name="PreAssistID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IncidentID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Direction" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="FSPLocation" Type="varchar" MaxLength="100" />
+    <Property Name="DispatchLocation" Type="varchar" MaxLength="100" />
+    <Property Name="Position" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="LaneNumber" Type="varchar" MaxLength="50" />
+    <Property Name="CHPIncidentType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CHPLogNumber" Type="varchar" MaxLength="50" />
+    <Property Name="IncidentSurveyNumber" Type="varchar" MaxLength="50" />
+    <Property Name="Lat" Type="float" />
+    <Property Name="Lon" Type="float" />
+    <Property Name="datePosted" Type="datetime" />
+    <Property Name="DispatchCode" Type="varchar" MaxLength="50" />
+    <Property Name="Comments" Type="varchar" MaxLength="500" />
+    <Property Name="CrossStreet" Type="varchar" MaxLength="100" />
+    <Property Name="Freeway" Type="varchar" MaxLength="50" />
+    <Property Name="DriverLastName" Type="varchar" MaxLength="100" />
+    <Property Name="DriverFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="DriverID" Type="uniqueidentifier" />
+    <Property Name="RunID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="MTCRateTable">
+    <Key>
+      <PropertyRef Name="RateTableID" />
+    </Key>
+    <Property Name="RateTableID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BeatID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CurrentMonthRate" Type="money" Nullable="false" />
+    <Property Name="p100" Type="money" />
+    <Property Name="p150" Type="money" />
+    <Property Name="p200" Type="money" />
+    <Property Name="p250" Type="money" />
+    <Property Name="p300" Type="money" Nullable="false" />
+    <Property Name="p350" Type="money" Nullable="false" />
+    <Property Name="p400" Type="money" Nullable="false" />
+    <Property Name="p450" Type="money" Nullable="false" />
+    <Property Name="p500" Type="money" Nullable="false" />
+    <Property Name="p550" Type="money" Nullable="false" />
+    <Property Name="p600" Type="money" />
+    <Property Name="p650" Type="money" />
+    <Property Name="p700" Type="money" />
+    <Property Name="p750" Type="money" />
+    <Property Name="p800" Type="money" />
+  </EntityType>
+  <EntityType Name="MTCSchedules">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+    </Key>
+    <Property Name="ScheduleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ScheduleName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContractorID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BeatID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OvertimeActivity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="timeStamp" Type="datetime" Nullable="false" />
+    <Property Name="Shift" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CallSign" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="OverTimeCode" Type="varchar" MaxLength="50" />
+    <Property Name="BlocksApproved" Type="int" />
+    <Property Name="Beat" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Contractor" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Confirmed" Type="bit" />
+  </EntityType>
+  <EntityType Name="Reports">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ReportName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ConnString" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="SQL" Type="varchar(max)" Nullable="false" />
+    <Property Name="cmdType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="parameters" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mtcdb.dbo.TowTruckSetup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TowTruckSetup">
+    <Key>
+      <PropertyRef Name="MountedSecurely" />
+      <PropertyRef Name="ConnectedToCell" />
+      <PropertyRef Name="DCPowerConnected" />
+      <PropertyRef Name="RouterUnitMountedSecurely" />
+      <PropertyRef Name="MoistureFree" />
+      <PropertyRef Name="Speedtest" />
+      <PropertyRef Name="GPSSentProperly" />
+      <PropertyRef Name="InstallerName" />
+      <PropertyRef Name="InstallationDate" />
+      <PropertyRef Name="TowTruckCompany" />
+      <PropertyRef Name="VehicleID" />
+      <PropertyRef Name="SystemSerialNumber" />
+      <PropertyRef Name="IPAddress" />
+    </Key>
+    <Property Name="MountedSecurely" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="ConnectedToCell" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="DCPowerConnected" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="RouterUnitMountedSecurely" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="MoistureFree" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="Speedtest" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="GPSSentProperly" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="InstallerName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="InstallationDate" Type="datetime" Nullable="false" />
+    <Property Name="TowTruckCompany" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="VehicleID" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SystemSerialNumber" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UploadSpeed" Type="varchar" MaxLength="10" />
+    <Property Name="DownloadSpeed" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="TowTruckYard">
+    <Key>
+      <PropertyRef Name="TowTruckYardID" />
+    </Key>
+    <Property Name="TowTruckYardID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Location" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Comments" Type="varchar" MaxLength="500" />
+    <Property Name="TowTruckYardNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TowTruckYardDescription" Type="varchar" MaxLength="500" />
+    <Property Name="TowTruckCompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TowTruckCompanyPhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Position" Type="geography" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TruckAlerts">
+    <Key>
+      <PropertyRef Name="AlertID" />
+    </Key>
+    <Property Name="AlertID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DriverName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContractorCompany" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Beat" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AlertName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AlertStart" Type="datetime" Nullable="false" />
+    <Property Name="AlertEnd" Type="datetime" />
+    <Property Name="AlertMins" Type="int" />
+    <Property Name="TruckNumber" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="lat" Type="float" />
+    <Property Name="lon" Type="float" />
+    <Property Name="runID" Type="uniqueidentifier" />
+    <Property Name="ExcuseTime" Type="datetime" />
+    <Property Name="DismissTime" Type="datetime" />
+    <Property Name="ExcusedBy" Type="varchar" MaxLength="100" />
+    <Property Name="Comment" Type="varchar" MaxLength="1000" />
+    <Property Name="location" Type="varchar" MaxLength="50" />
+    <Property Name="Speed" Type="float" />
+    <Property Name="Heading" Type="char" MaxLength="1" />
+    <Property Name="CallSign" Type="varchar" MaxLength="50" />
+    <Property Name="ScheduleID" Type="uniqueidentifier" />
+    <Property Name="ScheduleType" Type="int" />
+  </EntityType>
+  <EntityType Name="TruckMessages">
+    <Key>
+      <PropertyRef Name="TruckMessageID" />
+    </Key>
+    <Property Name="TruckMessageID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TruckIP" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MessageText" Type="varchar" MaxLength="2000" Nullable="false" />
+    <Property Name="SentTime" Type="datetime" Nullable="false" />
+    <Property Name="UserEmail" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Acked" Type="bit" Nullable="false" />
+    <Property Name="AckedTime" Type="datetime" />
+    <Property Name="TruckNumber" Type="varchar" MaxLength="50" />
+    <Property Name="CallSign" Type="varchar" MaxLength="50" />
+    <Property Name="DriverName" Type="varchar" MaxLength="100" />
+    <Property Name="BeatNumber" Type="varchar" MaxLength="20" />
+    <Property Name="Response" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mtcdb.dbo.TruckStates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="TruckStates">
+    <Key>
+      <PropertyRef Name="TruckStateID" />
+      <PropertyRef Name="TruckState" />
+    </Key>
+    <Property Name="TruckStateID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TruckState" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TruckIcon" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TruckStatus">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DriverName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContractorCompany" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Beat" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StatusName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StatusStart" Type="datetime" Nullable="false" />
+    <Property Name="StatusEnd" Type="datetime" />
+    <Property Name="StatusMins" Type="int" />
+    <Property Name="TruckNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lat" Type="float" />
+    <Property Name="lon" Type="float" />
+    <Property Name="runID" Type="uniqueidentifier" />
+    <Property Name="location" Type="varchar" MaxLength="50" />
+    <Property Name="Speed" Type="float" />
+    <Property Name="Heading" Type="char" MaxLength="1" />
+    <Property Name="ScheduleID" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Vars">
+    <Key>
+      <PropertyRef Name="VarID" />
+    </Key>
+    <Property Name="VarID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="VarName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="VarValue" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Units" Type="varchar" MaxLength="50" />
+    <Property Name="IsMTCAlarm" Type="bit" />
+    <Property Name="FriendlyVarName" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="VehicleTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar(max)" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="WAZEData">
+    <Key>
+      <PropertyRef Name="WazeID" />
+    </Key>
+    <Property Name="WazeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Direction" Type="bit" Nullable="false" />
+    <Property Name="SentTo" Type="varchar" MaxLength="20" />
+    <Property Name="SentFrom" Type="varchar" MaxLength="20" />
+    <Property Name="SentBy" Type="varchar" MaxLength="50" />
+    <Property Name="timeStamp" Type="datetime" Nullable="false" />
+    <Property Name="wazeRawData" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WAZEIncoming">
+    <Key>
+      <PropertyRef Name="UUID" />
+    </Key>
+    <Property Name="UUID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="PubDate" Type="datetime" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="SubType" Type="varchar" MaxLength="50" />
+    <Property Name="Lat" Type="float" />
+    <Property Name="Lon" Type="float" />
+    <Property Name="RoadType" Type="int" />
+    <Property Name="Reliability" Type="int" />
+    <Property Name="nThumbsUp" Type="int" />
+    <Property Name="Confidence" Type="int" />
+    <Property Name="Street" Type="varchar" MaxLength="100" />
+    <Property Name="City" Type="varchar" MaxLength="100" />
+    <Property Name="Segment" Type="varchar" MaxLength="50" />
+    <Property Name="DispatchedTo" Type="varchar" MaxLength="20" />
+    <Property Name="DispatchTime" Type="datetime" />
+    <Property Name="Accepted" Type="bit" />
+    <Property Name="AckTime" Type="datetime" />
+    <Property Name="AckMessage" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="YearlyCalendar">
+    <Key>
+      <PropertyRef Name="DateID" />
+    </Key>
+    <Property Name="DateID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="dayName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Appeals_AppealStatus">
+    <End Role="AppealStatus" Type="Self.AppealStatus" Multiplicity="1" />
+    <End Role="Appeals" Type="Self.Appeals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppealStatus">
+        <PropertyRef Name="AppealStatusID" />
+      </Principal>
+      <Dependent Role="Appeals">
+        <PropertyRef Name="AppealStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appeals_Contractors">
+    <End Role="Contractors" Type="Self.Contractors" Multiplicity="1" />
+    <End Role="Appeals" Type="Self.Appeals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="Appeals">
+        <PropertyRef Name="ContractorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Appeals_Drivers">
+    <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+    <End Role="Appeals" Type="Self.Appeals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drivers">
+        <PropertyRef Name="DriverID" />
+      </Principal>
+      <Dependent Role="Appeals">
+        <PropertyRef Name="DriverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeatsFreeways_Freeways">
+    <End Role="Freeways" Type="Self.Freeways" Multiplicity="1" />
+    <End Role="BeatsFreeways" Type="Self.BeatsFreeways" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Freeways">
+        <PropertyRef Name="FreewayID" />
+      </Principal>
+      <Dependent Role="BeatsFreeways">
+        <PropertyRef Name="FreewayID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHPInspections_CHPOfficer">
+    <End Role="CHPOfficer" Type="Self.CHPOfficer" Multiplicity="1" />
+    <End Role="CHPInspections" Type="Self.CHPInspections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHPOfficer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CHPInspections">
+        <PropertyRef Name="CHPOfficerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHPInspections_Contractors">
+    <End Role="Contractors" Type="Self.Contractors" Multiplicity="1" />
+    <End Role="CHPInspections" Type="Self.CHPInspections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="CHPInspections">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHPInspections_FleetVehicles">
+    <End Role="FleetVehicles" Type="Self.FleetVehicles" Multiplicity="1" />
+    <End Role="CHPInspections" Type="Self.CHPInspections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FleetVehicles">
+        <PropertyRef Name="FleetVehicleID" />
+      </Principal>
+      <Dependent Role="CHPInspections">
+        <PropertyRef Name="FleetVehicleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHPInspections_InspectionTypes">
+    <End Role="InspectionTypes" Type="Self.InspectionTypes" Multiplicity="1" />
+    <End Role="CHPInspections" Type="Self.CHPInspections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InspectionTypes">
+        <PropertyRef Name="InspectionTypeID" />
+      </Principal>
+      <Dependent Role="CHPInspections">
+        <PropertyRef Name="InspectionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContractorManagers_Contractors">
+    <End Role="Contractors" Type="Self.Contractors" Multiplicity="1" />
+    <End Role="ContractorManagers" Type="Self.ContractorManagers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="ContractorManagers">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contractors_ContractorTypes">
+    <End Role="ContractorTypes" Type="Self.ContractorTypes" Multiplicity="0..1" />
+    <End Role="Contractors" Type="Self.Contractors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContractorTypes">
+        <PropertyRef Name="ContractorTypeId" />
+      </Principal>
+      <Dependent Role="Contractors">
+        <PropertyRef Name="ContractorTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverInteractions_Contractors">
+    <End Role="Contractors" Type="Self.Contractors" Multiplicity="1" />
+    <End Role="DriverInteractions" Type="Self.DriverInteractions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="DriverInteractions">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverInteractions_Drivers">
+    <End Role="Drivers" Type="Self.Drivers" Multiplicity="1" />
+    <End Role="DriverInteractions" Type="Self.DriverInteractions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drivers">
+        <PropertyRef Name="DriverID" />
+      </Principal>
+      <Dependent Role="DriverInteractions">
+        <PropertyRef Name="DriverID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DriverInteractions_InteractionTypes">
+    <End Role="InteractionTypes" Type="Self.InteractionTypes" Multiplicity="1" />
+    <End Role="DriverInteractions" Type="Self.DriverInteractions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InteractionTypes">
+        <PropertyRef Name="InteractionTypeID" />
+      </Principal>
+      <Dependent Role="DriverInteractions">
+        <PropertyRef Name="InteractionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Drivers_Contractors">
+    <End Role="Contractors" Type="Self.Contractors" Multiplicity="1" />
+    <End Role="Drivers" Type="Self.Drivers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="Drivers">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FleetVehicles_Contractors">
+    <End Role="Contractors" Type="Self.Contractors" Multiplicity="1" />
+    <End Role="FleetVehicles" Type="Self.FleetVehicles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractors">
+        <PropertyRef Name="ContractorID" />
+      </Principal>
+      <Dependent Role="FleetVehicles">
+        <PropertyRef Name="ContractorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTC_Invoice_Addition_MTC_Invoice">
+    <End Role="MTC_Invoice" Type="Self.MTC_Invoice" Multiplicity="1" />
+    <End Role="MTC_Invoice_Addition" Type="Self.MTC_Invoice_Addition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTC_Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="MTC_Invoice_Addition">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTC_Invoice_Anomalies_MTC_Invoice">
+    <End Role="MTC_Invoice" Type="Self.MTC_Invoice" Multiplicity="1" />
+    <End Role="MTC_Invoice_Anomalies" Type="Self.MTC_Invoice_Anomalies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTC_Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="MTC_Invoice_Anomalies">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTC_Invoice_Deductions_MTC_Invoice">
+    <End Role="MTC_Invoice" Type="Self.MTC_Invoice" Multiplicity="1" />
+    <End Role="MTC_Invoice_Deductions" Type="Self.MTC_Invoice_Deductions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTC_Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="MTC_Invoice_Deductions">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MTC_Invoice_Summary_MTC_Invoice">
+    <End Role="MTC_Invoice" Type="Self.MTC_Invoice" Multiplicity="1" />
+    <End Role="MTC_Invoice_Summary" Type="Self.MTC_Invoice_Summary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MTC_Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="MTC_Invoice_Summary">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetBeatSchedules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetDailySchedules" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SchedulesSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dt" Type="datetime" Mode="In" />
+    <Parameter Name="beatid" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <EntityContainer Name="MTCDBModelStoreContainer">
+    <EntitySet Name="AEReportTypes" EntityType="Self.AEReportTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Appeals" EntityType="Self.Appeals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppealStatus" EntityType="Self.AppealStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Assists" EntityType="Self.Assists" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeatBeatSchedules" EntityType="Self.BeatBeatSchedules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeatBeatSegments" EntityType="Self.BeatBeatSegments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeatData" EntityType="Self.BeatData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeatSchedules" EntityType="Self.BeatSchedules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeatsFreeways" EntityType="Self.BeatsFreeways" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHPInspections" EntityType="Self.CHPInspections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHPOfficer" EntityType="Self.CHPOfficer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHPOfficerBeats" EntityType="Self.CHPOfficerBeats" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContractorManagers" EntityType="Self.ContractorManagers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contractors" EntityType="Self.Contractors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContractorTypes" EntityType="Self.ContractorTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContractsBeats" EntityType="Self.ContractsBeats" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DriverEvents" EntityType="Self.DriverEvents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DriverInteractions" EntityType="Self.DriverInteractions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Drivers" EntityType="Self.Drivers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FleetVehicles" EntityType="Self.FleetVehicles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Freeways" EntityType="Self.Freeways" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GPSTrackingLog" EntityType="Self.GPSTrackingLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HeliosUnits" EntityType="Self.HeliosUnits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Incidents" EntityType="Self.Incidents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InspectionTypes" EntityType="Self.InspectionTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InsuranceCarriers" EntityType="Self.InsuranceCarriers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InteractionTypes" EntityType="Self.InteractionTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTC_Invoice" EntityType="Self.MTC_Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTC_Invoice_Addition" EntityType="Self.MTC_Invoice_Addition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTC_Invoice_Anomalies" EntityType="Self.MTC_Invoice_Anomalies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTC_Invoice_Deductions" EntityType="Self.MTC_Invoice_Deductions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTC_Invoice_Summary" EntityType="Self.MTC_Invoice_Summary" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTCAssists" EntityType="Self.MTCAssists" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTCBeatsCallSigns" EntityType="Self.MTCBeatsCallSigns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTCIncidents" EntityType="Self.MTCIncidents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTCPreAssists" EntityType="Self.MTCPreAssists" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTCRateTable" EntityType="Self.MTCRateTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MTCSchedules" EntityType="Self.MTCSchedules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OvertimeActivity" EntityType="Self.OvertimeActivity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TowTruckYard" EntityType="Self.TowTruckYard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruckAlerts" EntityType="Self.TruckAlerts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruckMessages" EntityType="Self.TruckMessages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TruckStatus" EntityType="Self.TruckStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vars" EntityType="Self.Vars" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WAZEData" EntityType="Self.WAZEData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WAZEIncoming" EntityType="Self.WAZEIncoming" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YearlyCalendar" EntityType="Self.YearlyCalendar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AEFrequencies" EntityType="Self.AEFrequencies" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AEFrequencies].[AEFrequencyID] AS [AEFrequencyID], 
+    [AEFrequencies].[AEFrequencyName] AS [AEFrequencyName], 
+    [AEFrequencies].[AEFrequencyDescription] AS [AEFrequencyDescription]
+    FROM [dbo].[AEFrequencies] AS [AEFrequencies]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AERecipients" EntityType="Self.AERecipients" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AERecipients].[AERecipientID] AS [AERecipientID], 
+    [AERecipients].[AERecipientEmail] AS [AERecipientEmail], 
+    [AERecipients].[AEIsContractor] AS [AEIsContractor], 
+    [AERecipients].[AEReportID] AS [AEReportID], 
+    [AERecipients].[AEFrequencyID] AS [AEFrequencyID], 
+    [AERecipients].[AEContractorID] AS [AEContractorID], 
+    [AERecipients].[AEReportTypeID] AS [AEReportTypeID]
+    FROM [dbo].[AERecipients] AS [AERecipients]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="AEReports" EntityType="Self.AEReports" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AEReports].[AEReportID] AS [AEReportID], 
+    [AEReports].[AEReportName] AS [AEReportName], 
+    [AEReports].[AEReportDescription] AS [AEReportDescription]
+    FROM [dbo].[AEReports] AS [AEReports]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MTCActionTaken" EntityType="Self.MTCActionTaken" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MTCActionTaken].[MTCActionTakenID] AS [MTCActionTakenID], 
+    [MTCActionTaken].[MTCAssistID] AS [MTCAssistID], 
+    [MTCActionTaken].[ActionTaken] AS [ActionTaken]
+    FROM [dbo].[MTCActionTaken] AS [MTCActionTaken]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TowTruckSetup" EntityType="Self.TowTruckSetup" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TowTruckSetup].[MountedSecurely] AS [MountedSecurely], 
+    [TowTruckSetup].[ConnectedToCell] AS [ConnectedToCell], 
+    [TowTruckSetup].[DCPowerConnected] AS [DCPowerConnected], 
+    [TowTruckSetup].[RouterUnitMountedSecurely] AS [RouterUnitMountedSecurely], 
+    [TowTruckSetup].[MoistureFree] AS [MoistureFree], 
+    [TowTruckSetup].[Speedtest] AS [Speedtest], 
+    [TowTruckSetup].[GPSSentProperly] AS [GPSSentProperly], 
+    [TowTruckSetup].[InstallerName] AS [InstallerName], 
+    [TowTruckSetup].[InstallationDate] AS [InstallationDate], 
+    [TowTruckSetup].[TowTruckCompany] AS [TowTruckCompany], 
+    [TowTruckSetup].[VehicleID] AS [VehicleID], 
+    [TowTruckSetup].[SystemSerialNumber] AS [SystemSerialNumber], 
+    [TowTruckSetup].[IPAddress] AS [IPAddress], 
+    [TowTruckSetup].[UploadSpeed] AS [UploadSpeed], 
+    [TowTruckSetup].[DownloadSpeed] AS [DownloadSpeed]
+    FROM [dbo].[TowTruckSetup] AS [TowTruckSetup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TruckStates" EntityType="Self.TruckStates" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TruckStates].[TruckStateID] AS [TruckStateID], 
+    [TruckStates].[TruckState] AS [TruckState], 
+    [TruckStates].[TruckIcon] AS [TruckIcon]
+    FROM [dbo].[TruckStates] AS [TruckStates]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Appeals_AppealStatus" Association="Self.FK_Appeals_AppealStatus">
+      <End Role="AppealStatus" EntitySet="AppealStatus" />
+      <End Role="Appeals" EntitySet="Appeals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appeals_Contractors" Association="Self.FK_Appeals_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="Appeals" EntitySet="Appeals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Appeals_Drivers" Association="Self.FK_Appeals_Drivers">
+      <End Role="Drivers" EntitySet="Drivers" />
+      <End Role="Appeals" EntitySet="Appeals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeatsFreeways_Freeways" Association="Self.FK_BeatsFreeways_Freeways">
+      <End Role="Freeways" EntitySet="Freeways" />
+      <End Role="BeatsFreeways" EntitySet="BeatsFreeways" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHPInspections_CHPOfficer" Association="Self.FK_CHPInspections_CHPOfficer">
+      <End Role="CHPOfficer" EntitySet="CHPOfficer" />
+      <End Role="CHPInspections" EntitySet="CHPInspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHPInspections_Contractors" Association="Self.FK_CHPInspections_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="CHPInspections" EntitySet="CHPInspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHPInspections_FleetVehicles" Association="Self.FK_CHPInspections_FleetVehicles">
+      <End Role="FleetVehicles" EntitySet="FleetVehicles" />
+      <End Role="CHPInspections" EntitySet="CHPInspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHPInspections_InspectionTypes" Association="Self.FK_CHPInspections_InspectionTypes">
+      <End Role="InspectionTypes" EntitySet="InspectionTypes" />
+      <End Role="CHPInspections" EntitySet="CHPInspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContractorManagers_Contractors" Association="Self.FK_ContractorManagers_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="ContractorManagers" EntitySet="ContractorManagers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contractors_ContractorTypes" Association="Self.FK_Contractors_ContractorTypes">
+      <End Role="ContractorTypes" EntitySet="ContractorTypes" />
+      <End Role="Contractors" EntitySet="Contractors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverInteractions_Contractors" Association="Self.FK_DriverInteractions_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="DriverInteractions" EntitySet="DriverInteractions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverInteractions_Drivers" Association="Self.FK_DriverInteractions_Drivers">
+      <End Role="Drivers" EntitySet="Drivers" />
+      <End Role="DriverInteractions" EntitySet="DriverInteractions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DriverInteractions_InteractionTypes" Association="Self.FK_DriverInteractions_InteractionTypes">
+      <End Role="InteractionTypes" EntitySet="InteractionTypes" />
+      <End Role="DriverInteractions" EntitySet="DriverInteractions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Drivers_Contractors" Association="Self.FK_Drivers_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="Drivers" EntitySet="Drivers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FleetVehicles_Contractors" Association="Self.FK_FleetVehicles_Contractors">
+      <End Role="Contractors" EntitySet="Contractors" />
+      <End Role="FleetVehicles" EntitySet="FleetVehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTC_Invoice_Addition_MTC_Invoice" Association="Self.FK_MTC_Invoice_Addition_MTC_Invoice">
+      <End Role="MTC_Invoice" EntitySet="MTC_Invoice" />
+      <End Role="MTC_Invoice_Addition" EntitySet="MTC_Invoice_Addition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTC_Invoice_Anomalies_MTC_Invoice" Association="Self.FK_MTC_Invoice_Anomalies_MTC_Invoice">
+      <End Role="MTC_Invoice" EntitySet="MTC_Invoice" />
+      <End Role="MTC_Invoice_Anomalies" EntitySet="MTC_Invoice_Anomalies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTC_Invoice_Deductions_MTC_Invoice" Association="Self.FK_MTC_Invoice_Deductions_MTC_Invoice">
+      <End Role="MTC_Invoice" EntitySet="MTC_Invoice" />
+      <End Role="MTC_Invoice_Deductions" EntitySet="MTC_Invoice_Deductions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MTC_Invoice_Summary_MTC_Invoice" Association="Self.FK_MTC_Invoice_Summary_MTC_Invoice">
+      <End Role="MTC_Invoice" EntitySet="MTC_Invoice" />
+      <End Role="MTC_Invoice_Summary" EntitySet="MTC_Invoice_Summary" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

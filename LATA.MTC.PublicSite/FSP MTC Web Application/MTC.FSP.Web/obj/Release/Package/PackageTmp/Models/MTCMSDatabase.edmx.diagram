@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="697d0ce036394c599cbb0fe835283a79" Name="Diagram1">
+        <EntityTypeShape EntityType="MTCMotoristSurveysModel.Answer" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCMotoristSurveysModel.PostedAnswer" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCMotoristSurveysModel.PostedSurvey" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCMotoristSurveysModel.Question" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCMotoristSurveysModel.QuestionType" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCMotoristSurveysModel.Survey" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCMotoristSurveysModel.SurveysQuestion" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MTCMotoristSurveysModel.FK_Answers_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="MTCMotoristSurveysModel.FK_PostedSurveys_Surveys" ManuallyRouted="false" />
+        <AssociationConnector Association="MTCMotoristSurveysModel.FK_Questions_QuestionTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="MTCMotoristSurveysModel.FK_SurveysQuestions_Questions" ManuallyRouted="false" />
+        <AssociationConnector Association="MTCMotoristSurveysModel.FK_SurveysQuestions_Surveys" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.MTCApplicationSetting>
+
+@{
+    ViewBag.Title = "Application Settings";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<h2>Application Settings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover footable" data-page-size="20" data-limit-navigation="10">
+    <thead>
+        <tr>
+            <th data-toggle="true" data-sort-initial="true">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.ModifiedOn)
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+            </th>
+            <th data-sort-ignore="true"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedBy)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12" class="text-center">
+                <div class="paging">
+                    <ul class="pagination pagination-sm"></ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

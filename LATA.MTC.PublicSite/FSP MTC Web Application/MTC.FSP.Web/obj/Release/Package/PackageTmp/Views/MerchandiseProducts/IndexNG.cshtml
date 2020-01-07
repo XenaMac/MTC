@@ -1,0 +1,101 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.MerchandiseProduct>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="merchandiseProductsController" ng-cloak>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Products <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingProducts"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <a class="btn btn-info" ng-click="showColumnConfig()">Column Configuration</a>
+                    <a class="btn btn-success" href="~/MerchandiseProducts/Create" title="add product"><i class="fa fa-plus"></i> Product</a>
+                </div>
+            </div>
+        </div>
+        <br />
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in columns | filter: {visible:true}">
+                                <span>{{column.display}}</span>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="product in products | orderBy:'OrderNumber'">
+                            <td>{{$index+1}}</td>
+                            <td ng-show="columns[0].visible===true">{{product.DisplayName}}</td>
+                            <td ng-show="columns[1].visible===true">
+                                <i class="fa fa-arrow-down"
+                                   ng-click="moveDown(product)"
+                                   ng-hide="$index === (products.length-1) || product.isBusy"
+                                   title="move down"
+                                   style="cursor:pointer"></i>
+                                <i class="fa fa-arrow-up"
+                                   ng-click="moveUp(product)"
+                                   ng-hide="$index === 0 || product.isBusy"
+                                   title="move up"
+                                   style="cursor:pointer"></i>
+                            </td>
+                            <td ng-show="columns[2].visible===true">{{product.UnitCost | currency}}</td>
+                            <td ng-show="columns[3].visible===true">{{product.UnitsInStock}}</td>
+                            <td ng-show="columns[4].visible===true">{{product.MerchandiseProductSize.Size}}</td>
+                            <td ng-show="columns[5].visible===true">{{product.Description}}</td>
+                            <td>
+
+                                <div class="pull-right">
+                                    <a ng-href='@Url.Content("~/MerchandiseProducts/Edit/"){{product.Id}}' 
+                                       class="btn btn-info btn-sm" title="edit"><i class="fa fa-pencil"></i></a>
+                                    <a ng-href='@Url.Content("~/MerchandiseProducts/Delete/"){{product.Id}}' 
+                                       class="btn btn-danger btn-sm" title="delete"><i class="fa fa-remove"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        @Html.Partial("_ColumnConfig")
+
+    </div>
+</div>
+@section scripts{
+
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/merchandiseProductsController.js"></script>
+    <script src="~/app/services/merchandiseService.js"></script>
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}
+

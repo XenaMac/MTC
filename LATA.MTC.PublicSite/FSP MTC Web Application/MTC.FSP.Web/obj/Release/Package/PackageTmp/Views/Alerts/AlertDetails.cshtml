@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Alarms Details";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="alertDetailsController" ng-cloak>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingAlertDetails"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <a class="btn btn-danger" href="~/Alerts/Index">Current Alarms</a>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-2">
+                <select class="form-control" name="selectedBeatNumberId" ng-model="selectedBeatNumberId" ng-options="a.Id as a.Text for a in beatNumbers" ng-disabled="busyGettingBeatNumbers">
+                    <option value="">--All Beats--</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="selectedDriverId" ng-model="selectedDriverId" ng-options="a.Id as a.Text for a in drivers" ng-disabled="busyGettingDrivers">
+                    <option value="">--All Drivers--</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="selectedAlert" ng-model="selectedAlert">
+                    <option value="">--All Alarms--</option>
+                    <option value="LONGBREAK">LONGBREAK</option>
+                    <option value="LONGLUNCH">LONGLUNCH</option>
+                    <option value="STATIONARY">STATIONARY</option>
+                    <option value="OFFBEAT">OFFBEAT</option>
+                    <option value="LATEONPATROL">LATEONPATROL</option>
+                    <option value="EARLYOUTOFSERVICE">EARLYOUTOFSERVICE</option>
+                    <option value="SPEEDING">SPEEDING</option>
+                    <option value="GPSISSUE">GPSISSUE</option>
+                    <option value="LONGINCIDENT">LONGINCIDENT</option>
+                    <option value="OVERTIMEACTIVITY">OVERTIMEACTIVITY</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="selectedExcusedState" ng-model="selectedExcusedState">
+                    <option value="">--All--</option>
+                    <option value="true">Excused</option>
+                    <option value="false">Not Excused</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-primary" ng-click="getAlertDetails()">Filter</button>
+                <button class="btn btn-default" ng-click="reset()"><i class="fa fa-refresh"></i> Reset</button>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" data-page-size="10000" data-limit-navigation="10000">
+                    <thead>
+                        <tr>
+                            <th data-type="numeric" data-sort-initial="true">
+                                Beat #
+                            </th>
+                            <th>
+                                Call Sign
+                            </th>
+                            <th>
+                                Truck #
+                            </th>
+                            <th>
+                                Contractor
+                            </th>
+                            <th>
+                                Driver
+                            </th>
+                            <th>
+                                Alarm Time
+                            </th>
+                            <th>
+                                Alarm Duration
+                            </th>
+                            <th>
+                                Alarm Type
+                            </th>
+                            <th>
+                                Excused?
+                            </th>
+                            <th>
+                                Excused By
+                            </th>
+                            <th>
+                                CHP/MTC Comments
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="a in alertDetails" ng-cloak>
+                            <td ng-bind="a.BeatNumber"></td>
+                            <td ng-bind="a.CallSign"></td>
+                            <td ng-bind="a.VehicleNumber"></td>
+                            <td ng-bind="a.ContractCompanyName"></td>
+                            <td ng-bind="a.DriverName"></td>
+                            <td ng-bind="a.AlarmTime"></td>
+                            <td>
+                                {{a.AlarmDuration}} min
+                            </td>
+                            <td ng-bind="a.AlarmType"></td>
+                            <td>
+                                <input type="checkbox" ng-model="a.IsExcused" />
+                            </td>
+                            <td ng-bind="a.ExcusedBy"></td>
+                            <td>
+                                <input type="text" ng-model="a.Comments" class="form-control"></input>
+                            </td>
+                            <td>
+                                <button class="btn btn-success" ng-click="updateAlertDetail(a)" ng-disabled="!a.Comments">Update</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/alertDetailsController.js"></script>
+    <script src="~/app/services/alertsService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+
+}

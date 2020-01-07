@@ -1,0 +1,329 @@
+﻿@{
+    ViewBag.Title = "MTC Map Interface";
+    Layout = "~/Views/Shared/_Layout_Map.cshtml";
+}
+
+<link href="~/Content/googleMap.css"
+      rel="stylesheet" />
+<link href="~/Content/titatoggle-dist-min.css"
+      rel="stylesheet" />
+<link href="~/Content/toastr.css" rel="stylesheet" />
+<link href="~/Content/jquery.minicolors.css" rel="stylesheet" />
+
+<div ng-app="mtcApp"
+     ng-cloak>
+    <div ng-controller="mapController"
+         ng-cloak>
+
+        <div class="mapTopNavigation">
+            <form class="form-inline">
+                <button class="btn btn-default"
+                        ng-click="showLegend()">
+                    <img src="~/Content/Images/mtc_map_ui_v3_2_legend.png" /> Legend
+                </button>
+                <a href="~/Alerts/Index"
+                   target="_blank"
+                   class="btn btn-default">
+                    <img src="~/Content/Images/mtc_map_ui_v3_6_alerts.png" /> Alarms
+                </a>
+                <a href="~/TruckStatus/Index"
+                   target="_blank"
+                   class="btn btn-default">
+                    <img src="~/Content/Images/mtc_map_ui_v3_6_truck status.png" /> Truck Status
+                </a>
+                <a href="~/ShiftLog/Index?truckNumber={{selectedTruck.TruckNumber}}"
+                   target="_blank"
+                   ng-disabled="!selectedTruck"
+                   class="btn btn-default">
+                    <img src="~/Content/Images/mtc_map_ui_v3_2_scratchpad.png" /> Truck Shift Logs
+                </a>
+            </form>
+        </div>
+
+        <div class="mapSideNavigation" id="googleMapSideNavigation">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTowTruckYards">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#towTruckYards" aria-expanded="false" aria-controls="towTruckYards">
+                                Tow Truck Yards
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="towTruckYards" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTowTruckYards">
+                        <div class="panel-body">
+                            <map-tow-yard reset-map="resetMap()"
+                                          display-map-data="displayMapData(polygons, markers)"
+                                          set-map-location="setMapLocation(lat, lon, zoom)"
+                                          set-edit-polygon="setEditPolygon(id)"
+                                          set-cancel-edit-polygon="setCancelEditPolygon(id, color)"
+                                          hide-map-data="hideMapData()"
+                                          visible="towTruckYardsVisible"
+                                          selected-polygon="selectedPolygon"
+                                          set-new-polygon="setNewPolygon(color)"></map-tow-yard>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingSegment">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#segments" aria-expanded="false" aria-controls="segments">
+                                Segments
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="segments" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSegment">
+                        <div class="panel-body">
+                            <map-segment reset-map="resetMap()"
+                                         display-map-data="displayMapData(polygons, markers)"
+                                         set-map-location="setMapLocation(lat, lon, zoom)"
+                                         set-edit-polygon="setEditPolygon(id)"
+                                         set-cancel-edit-polygon="setCancelEditPolygon(id, color)"
+                                         hide-map-data="hideMapData()"
+                                         visible="segmentsVisible"
+                                         selected-polygon="selectedPolygon"
+                                         make-all-polygons-uneditable="makeAllPolygonsUneditable()"
+                                         set-new-polygon="setNewPolygon(color)"></map-segment>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingBeats">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#beats" aria-expanded="false" aria-controls="collapseThree">
+                                Beats
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="beats" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBeats">
+                        <div class="panel-body">
+                            <map-beat reset-map="resetMap()"
+                                      display-map-data="displayMapData(polygons, markers)"
+                                      set-map-location="setMapLocation(lat, lon, zoom)"
+                                      set-edit-polygons="setEditPolygons()"
+                                      set-cancel-edit-polygons="setCancelEditPolygons()"
+                                      hide-map-data="hideMapData()"
+                                      hide-map-markers="hideMapMarkers()"
+                                      visible="beatsVisible"
+                                      selected-polygon="selectedPolygon"
+                                      make-all-polygons-uneditable="makeAllPolygonsUneditable()"
+                                      set-new-polygon="setNewPolygon(color)"></map-beat>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingDropSites">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#dropSites" aria-expanded="false" aria-controls="collapseThree">
+                                Drop Sites
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="dropSites" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDropSites">
+                        <div class="panel-body">
+                            <map-drop-site reset-map="resetMap()"
+                                           display-map-data="displayMapData(polygons, markers)"
+                                           set-map-location="setMapLocation(lat, lon, zoom)"
+                                           set-edit-polygon="setEditPolygon(id)"
+                                           set-cancel-edit-polygon="setCancelEditPolygon(id, color)"
+                                           hide-map-data="hideMapData()"
+                                           visible="dropSitesVisible"
+                                           selected-polygon="selectedPolygon"
+                                           set-new-polygon="setNewPolygon(color)"></map-drop-site>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingCallSigns">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#callBoxes" aria-expanded="false" aria-controls="collapseThree">
+                                Call Boxes
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="callBoxes" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingCallSigns">
+                        <div class="panel-body">
+
+                            <map-call-sign reset-map="resetMap()"
+                                           display-map-data="displayMapData(polygons, markers)"
+                                           set-map-location="setMapLocation(lat, lon, zoom)"
+                                           set-edit-polygon="setEditPolygon(id)"
+                                           set-cancel-edit-polygon="setCancelEditPolygon(id, color)"
+                                           hide-map-data="hideMapData()"
+                                           visible="callSignsVisible"
+                                           selected-polygon="selectedPolygon"
+                                           set-new-polygon="setNewPolygon(color)"></map-call-sign>
+
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            
+            @*<pre>{{polygons.length}}</pre>
+            <pre>{{markers.length}}</pre>*@
+        </div>
+
+        <div id="googleMap"
+             class="googleMap">
+        </div>
+
+        <div id="loadingModal"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             data-backdrop="static">
+            <div class="modal-dialog"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            Loading...
+                        </h4>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="legendModal"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog">
+            <div class="modal-dialog"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                        </button>
+                        <h4 class="modal-title">
+                            Truck Legend
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <tr>
+                                <td>Awaiting Driver Log On</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_gray.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Logged On</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_purple.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rolled Out</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_lt_blue.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>On Patrol</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_green.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>On Break/Lunch</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_lt_blue.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Enroute to Incident</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_orange.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>On Incident</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_blue.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Towing</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_yellow.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Rolling In</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_lt_blue.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Logged Off</td>
+                                <td>
+                                    <img src="~/Content/Images/mtc_icons_v2_gray.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <hr />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Alarmed (Red Borders)</td>
+                                <td>
+
+                                    <img src="~/Content/Images/mtc_icons_v2_gray_alert.png" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Backup (White Arrows)</td>
+                                <td>
+
+                                    <img src="~/Content/Images/mtc_icons_v2_gray_backup.png" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/googleMap/jQueryRotateCompressed.2.1.js"></script>
+    <script src="~/Scripts/googleMap/RichMarker.js"></script>
+    <script src="~/Scripts/googleMap/markerwithlabel.js"></script>
+    <script src="~/Scripts/googleMap/markerclusterer.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+ 
+    <script src="~/app/directives/mapTowYardDirective.js"></script>
+    <script src="~/app/directives/mapSegmentDirective.js"></script>
+    <script src="~/app/directives/mapBeatDirective.js"></script>
+    <script src="~/app/directives/mapDropSiteDirective.js"></script>
+    <script src="~/app/directives/mapCallSignDirective.js"></script>
+
+    <script src="~/app/controllers/mapController.js"></script>
+    <script src="~/app/services/trucksService.js"></script>
+    <script src="~/app/services/mapService.js"></script>
+    <script src="~/app/services/utilService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+}

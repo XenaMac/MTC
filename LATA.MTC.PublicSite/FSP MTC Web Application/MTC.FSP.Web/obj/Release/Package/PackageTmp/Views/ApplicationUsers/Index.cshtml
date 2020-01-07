@@ -1,0 +1,108 @@
+﻿@model IEnumerable<MTC.FSP.Web.ViewModels.UserListViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<h2>Users</h2>
+
+<table class="table table-hover footable" data-page-size="20" data-limit-navigation="10">
+    <thead>
+        <tr>
+            <th data-toggle="true">
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th data-hide="all">
+                Nick Name
+            </th>
+            <th data-sort-initial="true">
+                Email and User Name
+            </th>
+            @*<th>
+                User Name
+            </th>*@
+            <th>
+                Contractor
+            </th>
+            <th>
+                Role
+            </th>
+            <th data-hide="all">
+                Cell
+            </th>
+            <th data-hide="all">
+                Phone Number
+            </th>
+
+            <th data-sort-ignore="true"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NickName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>*@
+                <th>
+                    @if (item.SelectedRoleName == "TowContractor" || item.SelectedRoleName == "InVehicleContractor")
+                    {
+                        @Html.DropDownListFor(p => item.ContractorId, new SelectList(ViewBag.Contractors, "ContractorID", "ContractCompanyName", item.ContractorId), new { @class = "form-control", disabled = "disabled" })
+                    }
+                </th>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SelectedRoleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12" class="text-center">
+                <div class="paging">
+                    <ul class="pagination pagination-sm"></ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

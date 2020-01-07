@@ -1,0 +1,282 @@
+﻿@{
+    ViewBag.Title = "Status";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<br />
+
+<div class="btn-group">
+    <a href="~/BackupTrucks/MtcInstructions" class="btn btn-default btn-lg">MTC Instructions</a>
+    <a href="~/BackupTrucks/BackupResources" class="btn btn-default btn-lg">Back-up Resources</a>
+    <a href="~/BackupTrucks/RequestBackup" class="btn btn-default btn-lg">Request a Back-up</a>
+    <a href="~/BackupTrucks/ResponseBackup" class="btn btn-default btn-lg">Respond to Request</a>
+    <a href="~/BackupTrucks/Status" class="btn btn-primary btn-lg">Back-up Request Status</a>
+</div>
+
+<br />
+<br />
+
+
+<div ng-app="mtcApp">
+    <div ng-controller="backupStatusController" ng-cloak>
+        <h3>{{header}}&nbsp;<i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h3>
+        <br />
+
+        <div role="tabpanel">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#unresolved" aria-controls="unresolved" role="tab" data-toggle="tab">Unresolved <span>({{(backupRequestStatuses | filter: {IsResolved:false} | filter:{IsCancelled:false} | filter:{IsPartiallyResolved:false}).length}})</span></a></li>
+                <li role="presentation"><a href="#partiallyResolved" aria-controls="partiallyResolved" role="tab" data-toggle="tab">Partially Resolved (Qualified Responses) ({{(backupRequestStatuses | filter: {IsPartiallyResolved:true} | filter:{IsCancelled:false} | filter:{IsResolved:false}).length}})</a></li>
+                <li role="presentation"><a href="#resolved" aria-controls="resolved" role="tab" data-toggle="tab">Resolved ({{(backupRequestStatuses | filter: {IsResolved:true} | filter:{IsCancelled:false}).length}})</a></li>
+                <li role="presentation"><a href="#cancelled" aria-controls="cancelled" role="tab" data-toggle="tab">Cancelled ({{(backupRequestStatuses | filter: {IsCancelled:true}).length}})</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="unresolved">
+                    <div class="col-sm-offset-6">
+                        <h3>Responses</h3>
+                    </div>
+                    <table class="table table-hover footable" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1" data-toggle="true" data-sort-initial="true">Request #</th>
+                                <th class="col-sm-1">Requestor</th>
+                                <th class="col-sm-1">Request Date</th>
+                                <th class="col-sm-1">Beat</th>
+
+                                <th class="col-sm-2">Needed Dates and Shifts</th>
+                                <th data-hide="phone,tablet">Primary</th>
+                                <th data-hide="phone,tablet">Secondary</th>
+                                <th data-hide="phone,tablet">Tertiary</th>
+                                <th data-hide="phone,tablet">Other</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in backupRequestStatuses | filter: {IsResolved:false} | filter:{IsCancelled:false} | filter:{IsPartiallyResolved:false}">
+                                <td ng-bind="s.RequestNumber"></td>
+                                <td ng-bind="s.ContractorCompanyName"></td>
+                                <td ng-bind="s.CreatedOn"></td>
+                                <td ng-bind="s.BeatNumber"></td>
+                                <td>
+                                    <div ng-repeat="d in s.BackupRequestShiftsAndDates">
+                                        <span>{{d.BackupDate}}</span>&nbsp;<span ng-show="d.AMRequested">AM</span>&nbsp;<span ng-show="d.MIDRequested">MID</span>&nbsp;<span ng-show="d.PMRequested">PM</span>
+                                    </div>
+                                </td>
+                                <td>                                   
+                                    <div>{{s.PrimaryContractorCompanyName}}</div>
+                                    <div>{{s.PrimaryComments}}</div>
+                                </td>
+                                <td>                                    
+                                    <div>{{s.SecondaryContractorCompanyName}}</div>
+                                    <div>{{s.SecondaryComments}}</div>
+                                </td>
+                                <td>                                  
+                                    <div>{{s.TertiaryContractorCompanyName}}</div>
+                                    <div>{{s.TertiaryComments}}</div>
+                                </td>
+                                <td>
+                                    <div>{{s.OtherContractorCompanyName}}</div>
+                                    <div>{{s.OtherComments}}</div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <button ng-show="s.HasPermissionToCancel" class="btn btn-danger btn-sm" ng-click="prepareCancelRequest(s.Id)" title="Cancel Back-up Request"><i class="fa fa-remove"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="partiallyResolved">
+                    <div class="col-sm-offset-6">
+                        <h3>Responses</h3>
+                    </div>
+                    <table class="table table-hover footable" data-page-size="10" data-limit-navigation="10">
+
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1" data-toggle="true" data-sort-initial="true">Request #</th>
+                                <th class="col-sm-1">Requestor</th>
+                                <th class="col-sm-1">Request Date</th>
+                                <th class="col-sm-1">Beat</th>
+
+                                <th class="col-sm-2">Needed Dates and Shifts</th>
+                                <th data-hide="phone,tablet">Primary</th>
+                                <th data-hide="phone,tablet">Secondary</th>
+                                <th data-hide="phone,tablet">Tertiary</th>
+                                <th data-hide="phone,tablet">Other</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in backupRequestStatuses | filter: {IsPartiallyResolved:true } | filter:{IsCancelled:false} | filter:{IsResolved:false} ">
+                                <td ng-bind="s.RequestNumber"></td>
+                                <td ng-bind="s.ContractorCompanyName"></td>
+                                <td ng-bind="s.CreatedOn"></td>
+                                <td ng-bind="s.BeatNumber"></td>
+                                <td>
+                                    <div ng-repeat="d in s.BackupRequestShiftsAndDates">
+                                        <span>{{d.BackupDate}}</span>&nbsp;<span ng-show="d.AMRequested">AM</span>&nbsp;<span ng-show="d.MIDRequested">MID</span>&nbsp;<span ng-show="d.PMRequested">PM</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>{{s.PrimaryContractorCompanyName}}</div>
+                                    <div>{{s.PrimaryComments}}</div>
+                                </td>
+                                <td>
+                                    <div>{{s.SecondaryContractorCompanyName}}</div>
+                                    <div>{{s.SecondaryComments}}</div>
+                                </td>
+                                <td>
+                                    <div>{{s.TertiaryContractorCompanyName}}</div>
+                                    <div>{{s.TertiaryComments}}</div>
+                                </td>
+                                <td>
+                                    <div>{{s.OtherContractorCompanyName}}</div>
+                                    <div>{{s.OtherComments}}</div>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <button ng-show="s.HasPermissionToCancel" class="btn btn-danger btn-sm" ng-click="prepareCancelRequest(s.Id)" title="Cancel Back-up Request"><i class="fa fa-remove"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="resolved">
+                    <div class="col-sm-offset-6">
+                        <h3>Responses</h3>
+                    </div>
+                    <table class="table table-hover footable" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1" data-toggle="true" data-sort-initial="true">Request #</th>
+                                <th class="col-sm-1">Requestor</th>
+                                <th class="col-sm-1">Request Date</th>
+                                <th class="col-sm-1">Beat</th>
+
+                                <th class="col-sm-2">Needed Dates and Shifts</th>
+                                <th data-hide="phone,tablet">Primary</th>
+                                <th data-hide="phone,tablet">Secondary</th>
+                                <th data-hide="phone,tablet">Tertiary</th>
+                                <th data-hide="phone,tablet">Other</th>
+                                <th data-sort-ignore="true"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in backupRequestStatuses | filter: {IsResolved:true} | filter:{IsCancelled:false}">
+                                <td ng-bind="s.RequestNumber"></td>
+                                <td ng-bind="s.ContractorCompanyName"></td>
+                                <td ng-bind="s.CreatedOn"></td>
+                                <td ng-bind="s.BeatNumber"></td>
+                                <td>
+                                    <div ng-repeat="d in s.BackupRequestShiftsAndDates">
+                                        <span>{{d.BackupDate}}</span>&nbsp;<span ng-show="d.AMRequested">AM</span>&nbsp;<span ng-show="d.MIDRequested">MID</span>&nbsp;<span ng-show="d.PMRequested">PM</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>{{s.PrimaryContractorCompanyName}}</div>
+                                    <div>{{s.PrimaryComments}}</div>
+                                </td>
+                                <td>
+                                    <div>{{s.SecondaryContractorCompanyName}}</div>
+                                    <div>{{s.SecondaryComments}}</div>
+                                </td>
+                                <td>
+                                    <div>{{s.TertiaryContractorCompanyName}}</div>
+                                    <div>{{s.TertiaryComments}}</div>
+                                </td>
+                                <td>
+                                    <div>{{s.OtherContractorCompanyName}}</div>
+                                    <div>{{s.OtherComments}}</div>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="cancelled">
+                    <table class="table table-hover footable" data-page-size="10" data-limit-navigation="10">
+                        <thead>
+                            <tr>
+                                <th class="col-sm-1" data-toggle="true" data-sort-initial="true">Request #</th>
+                                <th class="col-sm-1">Requestor</th>
+                                <th class="col-sm-1">Request Date</th>
+                                <th class="col-sm-1">Cancellation Date</th>
+
+                                <th data-hide="phone,tablet">Reason for Cancellation</th>
+                                <th data-hide="phone,tablet">Cancelled By</th>
+                                <th data-hide="phone,tablet">Comments</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in backupRequestStatuses | filter: {IsCancelled:true}">
+                                <td ng-bind="s.RequestNumber"></td>
+                                <td ng-bind="s.ContractorCompanyName"></td>
+                                <td ng-bind="s.CreatedOn"></td>
+                                <td ng-bind="s.CancelledOn"></td>
+                                <td ng-bind="s.BackupCancellationReason"></td>
+                                <td ng-bind="s.CancelledBy"></td>
+                                <td ng-bind="s.CancellationComment"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="cancelRequestModal" class="modal fade bs-example-modal-lg">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Cancel Back-up Request</h4>
+                    </div>
+                    <form role="form" name="cancelBackupRequestForm">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="selectedCancellationReasonId">Reason <i class="fa fa-exclamation-circle" title="required"></i></label>
+                                <select class="form-control" name="selectedCancellationReasonId" ng-model="selectedCancellationReasonId" ng-options="a.Id as a.Text for a in cancellationReasons" ng-disabled="isBusyGettingCancellationReasons" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cancellationComments">Comments</label>
+                                <textarea class="form-control" name="cancellationComments" ng-model="cancellationComments"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-disabled="cancelBackupRequestForm.$invalid" ng-click="cancelRequest()"><i class="fa fa-save"></i> Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/backupStatusController.js"></script>
+    <script src="~/app/services/backupTruckService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

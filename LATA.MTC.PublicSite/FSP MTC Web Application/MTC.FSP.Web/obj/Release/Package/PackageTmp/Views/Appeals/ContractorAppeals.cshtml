@@ -1,0 +1,359 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.Appeal>
+
+@{
+    ViewBag.Title = "Contractor Appeals Portal";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-xs-6">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="col-xs-6">
+        <br />
+        <div class="form-inline pull-right">
+            <input type="text" class="form-control" id="filter" placeholder="Filter Grid" />
+            <a class="btn btn-success" href="~/Appeals/Create" title="Create Appeal"><i class="fa fa-plus"></i> Appeal</a>
+        </div>
+    </div>
+</div>
+<br />
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#violationAppeals" aria-controls="holidayDates" role="tab" data-toggle="tab">Violation Appeals (@Model.Where(v => v.AppealType == "Violation").ToList().Count) </a></li>
+    <li role="presentation"><a href="#overtimeAppeals" aria-controls="holidayDates" role="tab" data-toggle="tab">Overtime Appeals (@Model.Where(v => v.AppealType == "Overtime").ToList().Count) </a></li>
+    <li role="presentation"><a href="#invoiceAppeals" aria-controls="holidayDates" role="tab" data-toggle="tab">Invoice Appeals (@Model.Where(v => v.AppealType == "Invoice").ToList().Count) </a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="violationAppeals">
+        <br />
+        <table class="table table-hover footable" data-filter=#filter data-filter-text-only="true" id="violationAppealTable" data-page-size="20" data-limit-navigation="10">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Status")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Beat")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Driver")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Violation Type")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Violation Date/Time")
+                    </th>
+                    <th data-sort-ignore="true"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Where(m => m.AppealType == "Violation"))
+                {
+                    <tr>
+                        @if (item.AppealStatu.AppealStatus == "Submitted")
+                        {
+                            <td>
+                                <span class="label label-primary">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Deliberation")
+                        {
+                            <td>
+                                <span class="label label-warning">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Accepted")
+                        {
+                            <td>
+                                <span class="label label-success">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Accepted-Modified")
+                        {
+                            <td>
+                                <span class="label label-info">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Declined")
+                        {
+                            <td>
+                                <span class="label label-danger">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BeatData.BeatName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Driver.LastName)
+                        </td>
+
+                        @foreach (var v in ViewBag.Violations)
+                        {
+                            if (v.Id == item.V_ViolationId)
+                            {
+                                <td>@Html.Raw(v.AlarmName)</td>
+                                <td>@Html.Raw(v.DateTimeOfViolation.ToString())</td>
+                            }
+                        }
+
+                        <td>
+                            <a href="@Url.Action("Edit", "Appeals", new { id = item.AppealID})" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </a>
+                            @*<a href="@Url.Action("Details", "Appeals", new { id = item.AppealID })" data-toggle="tooltip" data-placement="top" title="Details">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                                </button>
+                            </a>*@
+                            <a href="@Url.Action("Delete", "Appeals", new { id = item.AppealID })" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </a>
+                            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="12" class="text-center">
+                        <div class="paging">
+                            <ul class="pagination pagination-sm"></ul>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div role="tabpanel" class="tab-pane fade in" id="overtimeAppeals">
+        <br />
+        <table class="table table-hover footable" data-filter=#filter data-filter-text-only="true" id="overimeAppealTable" data-page-size="20" data-limit-navigation="10">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Status")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Beat")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Driver")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Blocks Granted")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Blocks Claimed")
+                    </th>
+                    <th data-sort-ignore="true"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Where(m => m.AppealType == "Overtime"))
+                {
+                    <tr>
+                        @if (item.AppealStatu.AppealStatus == "Submitted")
+                        {
+                            <td>
+                                <span class="label label-primary">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Deliberation")
+                        {
+                            <td>
+                                <span class="label label-warning">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Accepted")
+                        {
+                            <td>
+                                <span class="label label-success">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Accepted-Modified")
+                        {
+                            <td>
+                                <span class="label label-info">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Declined")
+                        {
+                            <td>
+                                <span class="label label-danger">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BeatData.BeatName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Driver.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.O_BlocksInitGranted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.O_NumOfBlocks)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Appeals", new { id = item.AppealID})" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </a>
+                            @*<a href="@Url.Action("Details", "Appeals", new { id = item.AppealID })" data-toggle="tooltip" data-placement="top" title="Details">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                                </button>
+                            </a>*@
+                            <a href="@Url.Action("Delete", "Appeals", new { id = item.AppealID })" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </a>
+                            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="12" class="text-center">
+                        <div class="paging">
+                            <ul class="pagination pagination-sm"></ul>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div role="tabpanel" class="tab-pane fade in" id="invoiceAppeals">
+        <br />
+        <table class="table table-hover footable" data-filter=#filter data-filter-text-only="true" id="invoiceAppealTable" data-page-size="20" data-limit-navigation="10">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Status")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Date of Event")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Beat")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Driver")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Invoice Amount")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Amount Requested")
+                    </th>
+                    <th data-sort-ignore="true"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Where(m => m.AppealType == "Invoice"))
+                {
+                    <tr>
+                        @if (item.AppealStatu.AppealStatus == "Submitted")
+                        {
+                            <td>
+                                <span class="label label-primary">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Deliberation")
+                        {
+                            <td>
+                                <span class="label label-warning">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Accepted")
+                        {
+                            <td>
+                                <span class="label label-success">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Accepted-Modified")
+                        {
+                            <td>
+                                <span class="label label-info">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        else if (item.AppealStatu.AppealStatus == "Denied")
+                        {
+                            <td>
+                                <span class="label label-danger">@Html.DisplayFor(modelItem => item.AppealStatu.AppealStatus)</span>
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.I_EventDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BeatData.BeatName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Driver.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.I_InvoiceDeduction)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.I_AppealDeduction)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Appeals", new { id = item.AppealID})" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </button>
+                            </a>
+                            @*<a href="@Url.Action("Details", "Appeals", new { id = item.AppealID })" data-toggle="tooltip" data-placement="top" title="Details">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                                </button>
+                            </a>*@
+                            <a href="@Url.Action("Delete", "Appeals", new { id = item.AppealID })" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <button type="button" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </a>
+                            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="12" class="text-center">
+                        <div class="paging">
+                            <ul class="pagination pagination-sm"></ul>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/footable.all.min.js"></script>
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

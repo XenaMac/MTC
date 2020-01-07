@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.InteractionType>
+
+@{
+    ViewBag.Title = "Interaction Types";
+}
+
+<h2>Interaction Types</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+           Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteractionType1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.InteractionTypeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.InteractionTypeID })
+            </td>
+        </tr>
+    }
+
+</table>

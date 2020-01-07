@@ -19,10 +19,11 @@ namespace MTC.FSP.Web.Controllers.Administration.Tables
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RateTableID,BeatID,CurrentMonthRate,p100,p150,p200,p250,p300,p350,p400,p450,p500,p550,p600,p650,p700,p750,p800")] MTCRateTable mTCRateTable)
+        public ActionResult Create([Bind(Include = "RateTableID,BeatID,CurrentMonthRate,p100,p150,p200,p250,p300,p350,p400,p450,p500,p550,p600,p650,p700,p750,p800")] MTCRateTable mTCRateTable, FormCollection form)
         {
             if (ModelState.IsValid)
             {
+                mTCRateTable.BeatID = new Guid(form["Beats"].ToString());
                 mTCRateTable.RateTableID = Guid.NewGuid();
                 _db.MTCRateTables.Add(mTCRateTable);
                 _db.SaveChanges();

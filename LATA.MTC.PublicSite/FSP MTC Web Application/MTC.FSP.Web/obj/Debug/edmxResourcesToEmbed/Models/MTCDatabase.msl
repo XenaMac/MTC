@@ -1,0 +1,984 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MTCDBModelStoreContainer" CdmEntityContainer="MTCDBEntities">
+    <EntitySetMapping Name="AEReportTypes">
+      <EntityTypeMapping TypeName="MTCDBModel.AEReportType">
+        <MappingFragment StoreEntitySet="AEReportTypes">
+          <ScalarProperty Name="AEReportTypeID" ColumnName="AEReportTypeID" />
+          <ScalarProperty Name="AEReportTypeName" ColumnName="AEReportTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContractorManagers">
+      <EntityTypeMapping TypeName="MTCDBModel.ContractorManager">
+        <MappingFragment StoreEntitySet="ContractorManagers">
+          <ScalarProperty Name="ContractorManagerID" ColumnName="ContractorManagerID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contractors">
+      <EntityTypeMapping TypeName="MTCDBModel.Contractor">
+        <MappingFragment StoreEntitySet="Contractors">
+          <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+          <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+          <ScalarProperty Name="ContractorTypeId" ColumnName="ContractorTypeId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="OfficeTelephone" ColumnName="OfficeTelephone" />
+          <ScalarProperty Name="MCPNumber" ColumnName="MCPNumber" />
+          <ScalarProperty Name="MCPExpiration" ColumnName="MCPExpiration" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="ContractCompanyName" ColumnName="ContractCompanyName" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContractsBeats">
+      <EntityTypeMapping TypeName="MTCDBModel.ContractsBeat">
+        <MappingFragment StoreEntitySet="ContractsBeats">
+          <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverEvents">
+      <EntityTypeMapping TypeName="MTCDBModel.DriverEvent">
+        <MappingFragment StoreEntitySet="DriverEvents">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drivers">
+      <EntityTypeMapping TypeName="MTCDBModel.Driver">
+        <MappingFragment StoreEntitySet="Drivers">
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="FSPIDNumber" ColumnName="FSPIDNumber" />
+          <ScalarProperty Name="ProgramStartDate" ColumnName="ProgramStartDate" />
+          <ScalarProperty Name="TrainingCompletionDate" ColumnName="TrainingCompletionDate" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="LicenseExpirationDate" ColumnName="LicenseExpirationDate" />
+          <ScalarProperty Name="DL64ExpirationDate" ColumnName="DL64ExpirationDate" />
+          <ScalarProperty Name="MedicalCardExpirationDate" ColumnName="MedicalCardExpirationDate" />
+          <ScalarProperty Name="LastPullNoticeDate" ColumnName="LastPullNoticeDate" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="UDF" ColumnName="UDF" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="ContractorEndDate" ColumnName="ContractorEndDate" />
+          <ScalarProperty Name="ProgramEndDate" ColumnName="ProgramEndDate" />
+          <ScalarProperty Name="ContractorStartDate" ColumnName="ContractorStartDate" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="DL64Number" ColumnName="DL64Number" />
+          <ScalarProperty Name="DriversLicenseNumber" ColumnName="DriversLicenseNumber" />
+          <ScalarProperty Name="AddedtoC3Database" ColumnName="AddedtoC3Database" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FleetVehicles">
+      <EntityTypeMapping TypeName="MTCDBModel.FleetVehicle">
+        <MappingFragment StoreEntitySet="FleetVehicles">
+          <ScalarProperty Name="TAIP" ColumnName="TAIP" />
+          <ScalarProperty Name="IsBackup" ColumnName="IsBackup" />
+          <ScalarProperty Name="FleetVehicleID" ColumnName="FleetVehicleID" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+          <ScalarProperty Name="ProgramStartDate" ColumnName="ProgramStartDate" />
+          <ScalarProperty Name="FleetNumber" ColumnName="FleetNumber" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+          <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+          <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+          <ScalarProperty Name="VIN" ColumnName="VIN" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="RegistrationExpireDate" ColumnName="RegistrationExpireDate" />
+          <ScalarProperty Name="InsuranceExpireDate" ColumnName="InsuranceExpireDate" />
+          <ScalarProperty Name="LastCHPInspection" ColumnName="LastCHPInspection" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="ProgramEndDate" ColumnName="ProgramEndDate" />
+          <ScalarProperty Name="FAW" ColumnName="FAW" />
+          <ScalarProperty Name="RAW" ColumnName="RAW" />
+          <ScalarProperty Name="RAWR" ColumnName="RAWR" />
+          <ScalarProperty Name="GVW" ColumnName="GVW" />
+          <ScalarProperty Name="GVWR" ColumnName="GVWR" />
+          <ScalarProperty Name="Wheelbase" ColumnName="Wheelbase" />
+          <ScalarProperty Name="Overhang" ColumnName="Overhang" />
+          <ScalarProperty Name="MAXTW" ColumnName="MAXTW" />
+          <ScalarProperty Name="MAXTWCALCDATE" ColumnName="MAXTWCALCDATE" />
+          <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+          <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Freeways">
+      <EntityTypeMapping TypeName="MTCDBModel.Freeway">
+        <MappingFragment StoreEntitySet="Freeways">
+          <ScalarProperty Name="FreewayID" ColumnName="FreewayID" />
+          <ScalarProperty Name="FreewayName" ColumnName="FreewayName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GPSTrackingLogs">
+      <EntityTypeMapping TypeName="MTCDBModel.GPSTrackingLog">
+        <MappingFragment StoreEntitySet="GPSTrackingLog">
+          <ScalarProperty Name="runID" ColumnName="runID" />
+          <ScalarProperty Name="GPSID" ColumnName="GPSID" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="VehicleStatus" ColumnName="VehicleStatus" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="timeStamp" ColumnName="timeStamp" />
+          <ScalarProperty Name="BeatSegmentID" ColumnName="BeatSegmentID" />
+          <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+          <ScalarProperty Name="Speed" ColumnName="Speed" />
+          <ScalarProperty Name="Alarms" ColumnName="Alarms" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="SpeedingAlarm" ColumnName="SpeedingAlarm" />
+          <ScalarProperty Name="SpeedingValue" ColumnName="SpeedingValue" />
+          <ScalarProperty Name="SpeedingTime" ColumnName="SpeedingTime" />
+          <ScalarProperty Name="SpeedingLocation" ColumnName="SpeedingLocation" />
+          <ScalarProperty Name="OutOfBoundsAlarm" ColumnName="OutOfBoundsAlarm" />
+          <ScalarProperty Name="OutOfBoundsMessage" ColumnName="OutOfBoundsMessage" />
+          <ScalarProperty Name="Cell" ColumnName="Cell" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="MTCDBModel.Group">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="GroupCity" ColumnName="GroupCity" />
+          <ScalarProperty Name="GroupState" ColumnName="GroupState" />
+          <ScalarProperty Name="GroupAddress" ColumnName="GroupAddress" />
+          <ScalarProperty Name="GroupZip" ColumnName="GroupZip" />
+          <ScalarProperty Name="GroupPhone" ColumnName="GroupPhone" />
+          <ScalarProperty Name="GroupContactName" ColumnName="GroupContactName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeliosUnits">
+      <EntityTypeMapping TypeName="MTCDBModel.HeliosUnit">
+        <MappingFragment StoreEntitySet="HeliosUnits">
+          <ScalarProperty Name="HeliosUnitID" ColumnName="HeliosUnitID" />
+          <ScalarProperty Name="HeliosID" ColumnName="HeliosID" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InspectionTypes">
+      <EntityTypeMapping TypeName="MTCDBModel.InspectionType">
+        <MappingFragment StoreEntitySet="InspectionTypes">
+          <ScalarProperty Name="InspectionTypeID" ColumnName="InspectionTypeID" />
+          <ScalarProperty Name="InspectionType1" ColumnName="InspectionType" />
+          <ScalarProperty Name="InspectionTypeCode" ColumnName="InspectionTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InteractionTypes">
+      <EntityTypeMapping TypeName="MTCDBModel.InteractionType">
+        <MappingFragment StoreEntitySet="InteractionTypes">
+          <ScalarProperty Name="InteractionTypeID" ColumnName="InteractionTypeID" />
+          <ScalarProperty Name="InteractionType1" ColumnName="InteractionType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="MTCDBModel.Location">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
+          <ScalarProperty Name="Location1" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="MTCDBModel.Report">
+        <MappingFragment StoreEntitySet="Reports">
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+          <ScalarProperty Name="ConnString" ColumnName="ConnString" />
+          <ScalarProperty Name="SQL" ColumnName="SQL" />
+          <ScalarProperty Name="cmdType" ColumnName="cmdType" />
+          <ScalarProperty Name="parameters" ColumnName="parameters" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TowTruckYards">
+      <EntityTypeMapping TypeName="MTCDBModel.TowTruckYard">
+        <MappingFragment StoreEntitySet="TowTruckYard">
+          <ScalarProperty Name="TowTruckYardID" ColumnName="TowTruckYardID" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="TowTruckYardNumber" ColumnName="TowTruckYardNumber" />
+          <ScalarProperty Name="TowTruckYardDescription" ColumnName="TowTruckYardDescription" />
+          <ScalarProperty Name="TowTruckCompanyName" ColumnName="TowTruckCompanyName" />
+          <ScalarProperty Name="TowTruckCompanyPhoneNumber" ColumnName="TowTruckCompanyPhoneNumber" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TruckMessages">
+      <EntityTypeMapping TypeName="MTCDBModel.TruckMessage">
+        <MappingFragment StoreEntitySet="TruckMessages">
+          <ScalarProperty Name="Response" ColumnName="Response" />
+          <ScalarProperty Name="BeatNumber" ColumnName="BeatNumber" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="CallSign" ColumnName="CallSign" />
+          <ScalarProperty Name="TruckNumber" ColumnName="TruckNumber" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="TruckMessageID" ColumnName="TruckMessageID" />
+          <ScalarProperty Name="TruckIP" ColumnName="TruckIP" />
+          <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+          <ScalarProperty Name="SentTime" ColumnName="SentTime" />
+          <ScalarProperty Name="Acked" ColumnName="Acked" />
+          <ScalarProperty Name="AckedTime" ColumnName="AckedTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vars">
+      <EntityTypeMapping TypeName="MTCDBModel.Var">
+        <MappingFragment StoreEntitySet="Vars">
+          <ScalarProperty Name="FriendlyVarName" ColumnName="FriendlyVarName" />
+          <ScalarProperty Name="IsMTCAlarm" ColumnName="IsMTCAlarm" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="VarID" ColumnName="VarID" />
+          <ScalarProperty Name="VarName" ColumnName="VarName" />
+          <ScalarProperty Name="VarValue" ColumnName="VarValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YearlyCalendars">
+      <EntityTypeMapping TypeName="MTCDBModel.YearlyCalendar">
+        <MappingFragment StoreEntitySet="YearlyCalendar">
+          <ScalarProperty Name="DateID" ColumnName="DateID" />
+          <ScalarProperty Name="dayName" ColumnName="dayName" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AEFrequencies">
+      <EntityTypeMapping TypeName="MTCDBModel.AEFrequency">
+        <MappingFragment StoreEntitySet="AEFrequencies">
+          <ScalarProperty Name="AEFrequencyID" ColumnName="AEFrequencyID" />
+          <ScalarProperty Name="AEFrequencyName" ColumnName="AEFrequencyName" />
+          <ScalarProperty Name="AEFrequencyDescription" ColumnName="AEFrequencyDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AERecipients">
+      <EntityTypeMapping TypeName="MTCDBModel.AERecipient">
+        <MappingFragment StoreEntitySet="AERecipients">
+          <ScalarProperty Name="AERecipientID" ColumnName="AERecipientID" />
+          <ScalarProperty Name="AERecipientEmail" ColumnName="AERecipientEmail" />
+          <ScalarProperty Name="AEIsContractor" ColumnName="AEIsContractor" />
+          <ScalarProperty Name="AEReportID" ColumnName="AEReportID" />
+          <ScalarProperty Name="AEFrequencyID" ColumnName="AEFrequencyID" />
+          <ScalarProperty Name="AEContractorID" ColumnName="AEContractorID" />
+          <ScalarProperty Name="AEReportTypeID" ColumnName="AEReportTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AEReports">
+      <EntityTypeMapping TypeName="MTCDBModel.AEReport">
+        <MappingFragment StoreEntitySet="AEReports">
+          <ScalarProperty Name="AEReportID" ColumnName="AEReportID" />
+          <ScalarProperty Name="AEReportName" ColumnName="AEReportName" />
+          <ScalarProperty Name="AEReportDescription" ColumnName="AEReportDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TowTruckSetups">
+      <EntityTypeMapping TypeName="MTCDBModel.TowTruckSetup">
+        <MappingFragment StoreEntitySet="TowTruckSetup">
+          <ScalarProperty Name="MountedSecurely" ColumnName="MountedSecurely" />
+          <ScalarProperty Name="ConnectedToCell" ColumnName="ConnectedToCell" />
+          <ScalarProperty Name="DCPowerConnected" ColumnName="DCPowerConnected" />
+          <ScalarProperty Name="RouterUnitMountedSecurely" ColumnName="RouterUnitMountedSecurely" />
+          <ScalarProperty Name="MoistureFree" ColumnName="MoistureFree" />
+          <ScalarProperty Name="Speedtest" ColumnName="Speedtest" />
+          <ScalarProperty Name="GPSSentProperly" ColumnName="GPSSentProperly" />
+          <ScalarProperty Name="InstallerName" ColumnName="InstallerName" />
+          <ScalarProperty Name="InstallationDate" ColumnName="InstallationDate" />
+          <ScalarProperty Name="TowTruckCompany" ColumnName="TowTruckCompany" />
+          <ScalarProperty Name="VehicleID" ColumnName="VehicleID" />
+          <ScalarProperty Name="SystemSerialNumber" ColumnName="SystemSerialNumber" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="UploadSpeed" ColumnName="UploadSpeed" />
+          <ScalarProperty Name="DownloadSpeed" ColumnName="DownloadSpeed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TruckStates">
+      <EntityTypeMapping TypeName="MTCDBModel.TruckState">
+        <MappingFragment StoreEntitySet="TruckStates">
+          <ScalarProperty Name="TruckStateID" ColumnName="TruckStateID" />
+          <ScalarProperty Name="TruckState1" ColumnName="TruckState" />
+          <ScalarProperty Name="TruckIcon" ColumnName="TruckIcon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetBeatSchedules" FunctionName="MTCDBModel.Store.GetBeatSchedules">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MTCDBModel.GetBeatSchedules_Result">
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="BeatNumber" ColumnName="BeatNumber" />
+          <ScalarProperty Name="BeatScheduleID" ColumnName="BeatScheduleID" />
+          <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
+          <ScalarProperty Name="Weekday" ColumnName="Weekday" />
+          <ScalarProperty Name="Logon" ColumnName="Logon" />
+          <ScalarProperty Name="RollOut" ColumnName="RollOut" />
+          <ScalarProperty Name="OnPatrol" ColumnName="OnPatrol" />
+          <ScalarProperty Name="RollIn" ColumnName="RollIn" />
+          <ScalarProperty Name="LogOff" ColumnName="LogOff" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDailySchedules" FunctionName="MTCDBModel.Store.GetDailySchedules">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MTCDBModel.GetDailySchedules_Result">
+          <ScalarProperty Name="beatnumber" ColumnName="beatnumber" />
+          <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
+          <ScalarProperty Name="ScheduleTimeTable" ColumnName="ScheduleTimeTable" />
+          <ScalarProperty Name="Supervisor" ColumnName="Supervisor" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="ContractCompanyName" ColumnName="ContractCompanyName" />
+          <ScalarProperty Name="Weekday" ColumnName="Weekday" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="ContractorTypes">
+      <EntityTypeMapping TypeName="MTCDBModel.ContractorType">
+        <MappingFragment StoreEntitySet="ContractorTypes">
+          <ScalarProperty Name="ContractorTypeName" ColumnName="ContractorTypeName" />
+          <ScalarProperty Name="ContractorTypeId" ColumnName="ContractorTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTCSchedules">
+      <EntityTypeMapping TypeName="MTCDBModel.MTCSchedule">
+        <MappingFragment StoreEntitySet="MTCSchedules">
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+          <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverInteractions">
+      <EntityTypeMapping TypeName="MTCDBModel.DriverInteraction">
+        <MappingFragment StoreEntitySet="DriverInteractions">
+          <ScalarProperty Name="BeatNumber" ColumnName="BeatNumber" />
+          <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+          <ScalarProperty Name="InteractionDate" ColumnName="InteractionDate" />
+          <ScalarProperty Name="BadgeID" ColumnName="BadgeID" />
+          <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+          <ScalarProperty Name="FollowupComments" ColumnName="FollowupComments" />
+          <ScalarProperty Name="FollowupCompletionDate" ColumnName="FollowupCompletionDate" />
+          <ScalarProperty Name="FollowupDate" ColumnName="FollowupDate" />
+          <ScalarProperty Name="FollowupDescription" ColumnName="FollowupDescription" />
+          <ScalarProperty Name="FollowupRequired" ColumnName="FollowupRequired" />
+          <ScalarProperty Name="AccidentPreventable" ColumnName="AccidentPreventable" />
+          <ScalarProperty Name="InspectionPassFail" ColumnName="InspectionPassFail" />
+          <ScalarProperty Name="InteractionDescription" ColumnName="InteractionDescription" />
+          <ScalarProperty Name="InteractionArea" ColumnName="InteractionArea" />
+          <ScalarProperty Name="InteractionTypeID" ColumnName="InteractionTypeID" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+          <ScalarProperty Name="InteractionID" ColumnName="InteractionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InsuranceCarriers">
+      <EntityTypeMapping TypeName="MTCDBModel.InsuranceCarrier">
+        <MappingFragment StoreEntitySet="InsuranceCarriers">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="InsurancePolicyNumber" ColumnName="InsurancePolicyNumber" />
+          <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+          <ScalarProperty Name="InsuranceID" ColumnName="InsuranceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TruckAlerts">
+      <EntityTypeMapping TypeName="MTCDBModel.TruckAlert">
+        <MappingFragment StoreEntitySet="TruckAlerts">
+          <ScalarProperty Name="ScheduleType" ColumnName="ScheduleType" />
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="CallSign" ColumnName="CallSign" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Speed" ColumnName="Speed" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ExcusedBy" ColumnName="ExcusedBy" />
+          <ScalarProperty Name="DismissTime" ColumnName="DismissTime" />
+          <ScalarProperty Name="ExcuseTime" ColumnName="ExcuseTime" />
+          <ScalarProperty Name="runID" ColumnName="runID" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="TruckNumber" ColumnName="TruckNumber" />
+          <ScalarProperty Name="AlertMins" ColumnName="AlertMins" />
+          <ScalarProperty Name="AlertEnd" ColumnName="AlertEnd" />
+          <ScalarProperty Name="AlertStart" ColumnName="AlertStart" />
+          <ScalarProperty Name="AlertName" ColumnName="AlertName" />
+          <ScalarProperty Name="Beat" ColumnName="Beat" />
+          <ScalarProperty Name="ContractorCompany" ColumnName="ContractorCompany" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="AlertID" ColumnName="AlertID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHPOfficerBeats">
+      <EntityTypeMapping TypeName="MTCDBModel.CHPOfficerBeat">
+        <MappingFragment StoreEntitySet="CHPOfficerBeats">
+          <ScalarProperty Name="BeatId" ColumnName="BeatId" />
+          <ScalarProperty Name="CHPOfficerId" ColumnName="CHPOfficerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHPInspections">
+      <EntityTypeMapping TypeName="MTCDBModel.CHPInspection">
+        <MappingFragment StoreEntitySet="CHPInspections">
+          <ScalarProperty Name="CHPOfficerId" ColumnName="CHPOfficerId" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+          <ScalarProperty Name="InspectionNotes" ColumnName="InspectionNotes" />
+          <ScalarProperty Name="InspectionTypeID" ColumnName="InspectionTypeID" />
+          <ScalarProperty Name="InspectionDate" ColumnName="InspectionDate" />
+          <ScalarProperty Name="FleetVehicleID" ColumnName="FleetVehicleID" />
+          <ScalarProperty Name="InspectionID" ColumnName="InspectionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHPOfficers">
+      <EntityTypeMapping TypeName="MTCDBModel.CHPOfficer">
+        <MappingFragment StoreEntitySet="CHPOfficer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="OfficerFirstName" ColumnName="OfficerFirstName" />
+          <ScalarProperty Name="OfficerLastName" ColumnName="OfficerLastName" />
+          <ScalarProperty Name="BadgeID" ColumnName="BadgeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTCBeatsCallSigns">
+      <EntityTypeMapping TypeName="MTCDBModel.MTCBeatsCallSign">
+        <MappingFragment StoreEntitySet="MTCBeatsCallSigns">
+          <ScalarProperty Name="CallSign" ColumnName="CallSign" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contracts">
+      <EntityTypeMapping TypeName="MTCDBModel.Contract">
+        <MappingFragment StoreEntitySet="Contracts">
+          <ScalarProperty Name="BeatId" ColumnName="BeatId" />
+          <ScalarProperty Name="BackupTruckCount" ColumnName="BackupTruckCount" />
+          <ScalarProperty Name="TruckCount" ColumnName="TruckCount" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+          <ScalarProperty Name="AgreementNumber" ColumnName="AgreementNumber" />
+          <ScalarProperty Name="MaxObligation" ColumnName="MaxObligation" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleTypeLUs">
+      <EntityTypeMapping TypeName="MTCDBModel.VehicleTypeLU">
+        <MappingFragment StoreEntitySet="VehicleTypes">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OvertimeActivities">
+      <EntityTypeMapping TypeName="MTCDBModel.OvertimeActivity">
+        <MappingFragment StoreEntitySet="OvertimeActivity">
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+          <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+          <ScalarProperty Name="Beat" ColumnName="Beat" />
+          <ScalarProperty Name="BlocksApproved" ColumnName="BlocksApproved" />
+          <ScalarProperty Name="OverTimeCode" ColumnName="OverTimeCode" />
+          <ScalarProperty Name="CallSign" ColumnName="CallSign" />
+          <ScalarProperty Name="Shift" ColumnName="Shift" />
+          <ScalarProperty Name="timeStamp" ColumnName="timeStamp" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeatBeatSchedules">
+      <EntityTypeMapping TypeName="MTCDBModel.BeatBeatSchedule">
+        <MappingFragment StoreEntitySet="BeatBeatSchedules">
+          <ScalarProperty Name="NumberOfTrucks" ColumnName="NumberOfTrucks" />
+          <ScalarProperty Name="BeatScheduleID" ColumnName="BeatScheduleID" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="BeatBeatScheduleID" ColumnName="BeatBeatScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeatSchedules">
+      <EntityTypeMapping TypeName="MTCDBModel.BeatSchedule">
+        <MappingFragment StoreEntitySet="BeatSchedules">
+          <ScalarProperty Name="NumberOfTrucks" ColumnName="NumberOfTrucks" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Saturday" ColumnName="Saturday" />
+          <ScalarProperty Name="Friday" ColumnName="Friday" />
+          <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+          <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+          <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+          <ScalarProperty Name="Monday" ColumnName="Monday" />
+          <ScalarProperty Name="Sunday" ColumnName="Sunday" />
+          <ScalarProperty Name="ScheduleName" ColumnName="ScheduleName" />
+          <ScalarProperty Name="BeatScheduleID" ColumnName="BeatScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeatBeatSegments">
+      <EntityTypeMapping TypeName="MTCDBModel.BeatBeatSegment">
+        <MappingFragment StoreEntitySet="BeatBeatSegments">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="BeatSegmentNumber" ColumnName="BeatSegmentNumber" />
+          <ScalarProperty Name="BeatNumber" ColumnName="BeatNumber" />
+          <ScalarProperty Name="BeatBeatSegmentID" ColumnName="BeatBeatSegmentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTC_Invoice_Addition">
+      <EntityTypeMapping TypeName="MTCDBModel.MTC_Invoice_Addition">
+        <MappingFragment StoreEntitySet="MTC_Invoice_Addition">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="TimeAdded" ColumnName="TimeAdded" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="AdditionID" ColumnName="AdditionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTC_Invoice_Deductions">
+      <EntityTypeMapping TypeName="MTCDBModel.MTC_Invoice_Deductions">
+        <MappingFragment StoreEntitySet="MTC_Invoice_Deductions">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="TimeAdded" ColumnName="TimeAdded" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="DeductionID" ColumnName="DeductionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTC_Invoice_Summary">
+      <EntityTypeMapping TypeName="MTCDBModel.MTC_Invoice_Summary">
+        <MappingFragment StoreEntitySet="MTC_Invoice_Summary">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="OnPatrolHours" ColumnName="OnPatrolHours" />
+          <ScalarProperty Name="ContractHours" ColumnName="ContractHours" />
+          <ScalarProperty Name="Shifts" ColumnName="Shifts" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="Row" ColumnName="Row" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="SummaryID" ColumnName="SummaryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTC_Invoice_Anomalies">
+      <EntityTypeMapping TypeName="MTCDBModel.MTC_Invoice_Anomalies">
+        <MappingFragment StoreEntitySet="MTC_Invoice_Anomalies">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="AnomalyID" ColumnName="AnomalyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SchedulesSearch" FunctionName="MTCDBModel.Store.SchedulesSearch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MTCDBModel.SchedulesSearch_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="TruckStatus">
+      <EntityTypeMapping TypeName="MTCDBModel.TruckStatu">
+        <MappingFragment StoreEntitySet="TruckStatus">
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="Heading" ColumnName="Heading" />
+          <ScalarProperty Name="Speed" ColumnName="Speed" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="runID" ColumnName="runID" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="TruckNumber" ColumnName="TruckNumber" />
+          <ScalarProperty Name="StatusMins" ColumnName="StatusMins" />
+          <ScalarProperty Name="StatusEnd" ColumnName="StatusEnd" />
+          <ScalarProperty Name="StatusStart" ColumnName="StatusStart" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="Beat" ColumnName="Beat" />
+          <ScalarProperty Name="ContractorCompany" ColumnName="ContractorCompany" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTC_Invoice">
+      <EntityTypeMapping TypeName="MTCDBModel.MTC_Invoice">
+        <MappingFragment StoreEntitySet="MTC_Invoice">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="BaseRate" ColumnName="BaseRate" />
+          <ScalarProperty Name="FuelRate" ColumnName="FuelRate" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="ContractorID" ColumnName="ContractorID" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTCActionTakens">
+      <EntityTypeMapping TypeName="MTCDBModel.MTCActionTaken">
+        <MappingFragment StoreEntitySet="MTCActionTaken">
+          <ScalarProperty Name="ActionTaken" ColumnName="ActionTaken" />
+          <ScalarProperty Name="MTCAssistID" ColumnName="MTCAssistID" />
+          <ScalarProperty Name="MTCActionTakenID" ColumnName="MTCActionTakenID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTCAssists">
+      <EntityTypeMapping TypeName="MTCDBModel.MTCAssist">
+        <MappingFragment StoreEntitySet="MTCAssists">
+          <ScalarProperty Name="TimeOffInc" ColumnName="TimeOffInc" />
+          <ScalarProperty Name="TimeOnInc" ColumnName="TimeOnInc" />
+          <ScalarProperty Name="CallSign" ColumnName="CallSign" />
+          <ScalarProperty Name="datePosted" ColumnName="datePosted" />
+          <ScalarProperty Name="DropSiteOther" ColumnName="DropSiteOther" />
+          <ScalarProperty Name="Lon" ColumnName="Lon" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="DetailNote" ColumnName="DetailNote" />
+          <ScalarProperty Name="OTAuthorizationNumber" ColumnName="OTAuthorizationNumber" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="LicensePlateNumber" ColumnName="LicensePlateNumber" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="DropSite" ColumnName="DropSite" />
+          <ScalarProperty Name="DropSiteBeat" ColumnName="DropSiteBeat" />
+          <ScalarProperty Name="EndODO" ColumnName="EndODO" />
+          <ScalarProperty Name="StartODO" ColumnName="StartODO" />
+          <ScalarProperty Name="TransportType" ColumnName="TransportType" />
+          <ScalarProperty Name="OtherNote" ColumnName="OtherNote" />
+          <ScalarProperty Name="ProblemNote" ColumnName="ProblemNote" />
+          <ScalarProperty Name="Other" ColumnName="Other" />
+          <ScalarProperty Name="Breakdown" ColumnName="Breakdown" />
+          <ScalarProperty Name="DebrisOnly" ColumnName="DebrisOnly" />
+          <ScalarProperty Name="TrafficCollision" ColumnName="TrafficCollision" />
+          <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+          <ScalarProperty Name="MTCAssistID" ColumnName="MTCAssistID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTCIncidents">
+      <EntityTypeMapping TypeName="MTCDBModel.MTCIncident">
+        <MappingFragment StoreEntitySet="MTCIncidents">
+          <ScalarProperty Name="TruckNumber" ColumnName="TruckNumber" />
+          <ScalarProperty Name="Beat" ColumnName="Beat" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Canceled" ColumnName="Canceled" />
+          <ScalarProperty Name="Lon" ColumnName="Lon" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="fromTruck" ColumnName="fromTruck" />
+          <ScalarProperty Name="UserPosted" ColumnName="UserPosted" />
+          <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+          <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTCPreAssists">
+      <EntityTypeMapping TypeName="MTCDBModel.MTCPreAssist">
+        <MappingFragment StoreEntitySet="MTCPreAssists">
+          <ScalarProperty Name="RunID" ColumnName="RunID" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="DriverFirstName" ColumnName="DriverFirstName" />
+          <ScalarProperty Name="DriverLastName" ColumnName="DriverLastName" />
+          <ScalarProperty Name="Freeway" ColumnName="Freeway" />
+          <ScalarProperty Name="CrossStreet" ColumnName="CrossStreet" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="DispatchCode" ColumnName="DispatchCode" />
+          <ScalarProperty Name="datePosted" ColumnName="datePosted" />
+          <ScalarProperty Name="Lon" ColumnName="Lon" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="IncidentSurveyNumber" ColumnName="IncidentSurveyNumber" />
+          <ScalarProperty Name="CHPLogNumber" ColumnName="CHPLogNumber" />
+          <ScalarProperty Name="CHPIncidentType" ColumnName="CHPIncidentType" />
+          <ScalarProperty Name="LaneNumber" ColumnName="LaneNumber" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="DispatchLocation" ColumnName="DispatchLocation" />
+          <ScalarProperty Name="FSPLocation" ColumnName="FSPLocation" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+          <ScalarProperty Name="PreAssistID" ColumnName="PreAssistID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Assists">
+      <EntityTypeMapping TypeName="MTCDBModel.Assist">
+        <MappingFragment StoreEntitySet="Assists">
+          <ScalarProperty Name="PTN" ColumnName="PTN" />
+          <ScalarProperty Name="DropSiteBeat" ColumnName="DropSiteBeat" />
+          <ScalarProperty Name="ActionTaken" ColumnName="ActionTaken" />
+          <ScalarProperty Name="TimeOffAssist" ColumnName="TimeOffAssist" />
+          <ScalarProperty Name="TimeOnAssist" ColumnName="TimeOnAssist" />
+          <ScalarProperty Name="CallSign" ColumnName="CallSign" />
+          <ScalarProperty Name="DropSiteOther" ColumnName="DropSiteOther" />
+          <ScalarProperty Name="AssistLon" ColumnName="AssistLon" />
+          <ScalarProperty Name="AssistLat" ColumnName="AssistLat" />
+          <ScalarProperty Name="DetailNote" ColumnName="DetailNote" />
+          <ScalarProperty Name="OTAuthorizationNumber" ColumnName="OTAuthorizationNumber" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="DropSite" ColumnName="DropSite" />
+          <ScalarProperty Name="EndODO" ColumnName="EndODO" />
+          <ScalarProperty Name="StartODO" ColumnName="StartODO" />
+          <ScalarProperty Name="TransportType" ColumnName="TransportType" />
+          <ScalarProperty Name="OtherNote" ColumnName="OtherNote" />
+          <ScalarProperty Name="ProblemNote" ColumnName="ProblemNote" />
+          <ScalarProperty Name="ProblemDetail" ColumnName="ProblemDetail" />
+          <ScalarProperty Name="ProblemType" ColumnName="ProblemType" />
+          <ScalarProperty Name="LastAssistInIncidentReport" ColumnName="LastAssistInIncidentReport" />
+          <ScalarProperty Name="AssistDatePosted" ColumnName="AssistDatePosted" />
+          <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+          <ScalarProperty Name="AssistID" ColumnName="AssistID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Incidents">
+      <EntityTypeMapping TypeName="MTCDBModel.Incident">
+        <MappingFragment StoreEntitySet="Incidents">
+          <ScalarProperty Name="CrossStreet" ColumnName="CrossStreet" />
+          <ScalarProperty Name="Acked" ColumnName="Acked" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="TimeOffIncident" ColumnName="TimeOffIncident" />
+          <ScalarProperty Name="TimeOnIncident" ColumnName="TimeOnIncident" />
+          <ScalarProperty Name="RunID" ColumnName="RunID" />
+          <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+          <ScalarProperty Name="DriverFIrstName" ColumnName="DriverFIrstName" />
+          <ScalarProperty Name="DriverLastName" ColumnName="DriverLastName" />
+          <ScalarProperty Name="IncidentSurveyNumber" ColumnName="IncidentSurveyNumber" />
+          <ScalarProperty Name="CHPLogNumber" ColumnName="CHPLogNumber" />
+          <ScalarProperty Name="TimeofBriefUpdate" ColumnName="TimeofBriefUpdate" />
+          <ScalarProperty Name="BriefUpdatePosted" ColumnName="BriefUpdatePosted" />
+          <ScalarProperty Name="Freeway" ColumnName="Freeway" />
+          <ScalarProperty Name="briefUpdateLon" ColumnName="briefUpdateLon" />
+          <ScalarProperty Name="briefUpdateLat" ColumnName="briefUpdateLat" />
+          <ScalarProperty Name="CHPIncidentType" ColumnName="CHPIncidentType" />
+          <ScalarProperty Name="LaneNumber" ColumnName="LaneNumber" />
+          <ScalarProperty Name="PositionIncident" ColumnName="PositionIncident" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="DispatchLocation" ColumnName="DispatchLocation" />
+          <ScalarProperty Name="FSPLocation" ColumnName="FSPLocation" />
+          <ScalarProperty Name="TruckStatusID" ColumnName="TruckStatusID" />
+          <ScalarProperty Name="WazeID" ColumnName="WazeID" />
+          <ScalarProperty Name="LogID" ColumnName="LogID" />
+          <ScalarProperty Name="TruckNumber" ColumnName="TruckNumber" />
+          <ScalarProperty Name="Beat" ColumnName="Beat" />
+          <ScalarProperty Name="ReasonCanceled" ColumnName="ReasonCanceled" />
+          <ScalarProperty Name="Canceled" ColumnName="Canceled" />
+          <ScalarProperty Name="Lon" ColumnName="Lon" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="FromTruck" ColumnName="FromTruck" />
+          <ScalarProperty Name="CallSign" ColumnName="CallSign" />
+          <ScalarProperty Name="UserPosted" ColumnName="UserPosted" />
+          <ScalarProperty Name="IncidentDatePosted" ColumnName="IncidentDatePosted" />
+          <ScalarProperty Name="IncidentID" ColumnName="IncidentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeatDatas">
+      <EntityTypeMapping TypeName="MTCDBModel.BeatData">
+        <MappingFragment StoreEntitySet="BeatData">
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserModified" ColumnName="UserModified" />
+          <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="BeatName" ColumnName="BeatName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeatsFreeways">
+      <EntityTypeMapping TypeName="MTCDBModel.BeatsFreeway">
+        <MappingFragment StoreEntitySet="BeatsFreeways">
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="FreewayID" ColumnName="FreewayID" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="BeatFreewayID" ColumnName="BeatFreewayID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WAZEDatas">
+      <EntityTypeMapping TypeName="MTCDBModel.WAZEData">
+        <MappingFragment StoreEntitySet="WAZEData">
+          <ScalarProperty Name="wazeRawData" ColumnName="wazeRawData" />
+          <ScalarProperty Name="timeStamp" ColumnName="timeStamp" />
+          <ScalarProperty Name="SentBy" ColumnName="SentBy" />
+          <ScalarProperty Name="SentFrom" ColumnName="SentFrom" />
+          <ScalarProperty Name="SentTo" ColumnName="SentTo" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="WazeID" ColumnName="WazeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WAZEIncomings">
+      <EntityTypeMapping TypeName="MTCDBModel.WAZEIncoming">
+        <MappingFragment StoreEntitySet="WAZEIncoming">
+          <ScalarProperty Name="AckMessage" ColumnName="AckMessage" />
+          <ScalarProperty Name="AckTime" ColumnName="AckTime" />
+          <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+          <ScalarProperty Name="DispatchTime" ColumnName="DispatchTime" />
+          <ScalarProperty Name="DispatchedTo" ColumnName="DispatchedTo" />
+          <ScalarProperty Name="Segment" ColumnName="Segment" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="Confidence" ColumnName="Confidence" />
+          <ScalarProperty Name="nThumbsUp" ColumnName="nThumbsUp" />
+          <ScalarProperty Name="Reliability" ColumnName="Reliability" />
+          <ScalarProperty Name="RoadType" ColumnName="RoadType" />
+          <ScalarProperty Name="Lon" ColumnName="Lon" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="SubType" ColumnName="SubType" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="PubDate" ColumnName="PubDate" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appeals">
+      <EntityTypeMapping TypeName="MTCDBModel.Appeal">
+        <MappingFragment StoreEntitySet="Appeals">
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="MTCNote" ColumnName="MTCNote" />
+          <ScalarProperty Name="I_AppealDeduction" ColumnName="I_AppealDeduction" />
+          <ScalarProperty Name="I_InvoiceDeduction" ColumnName="I_InvoiceDeduction" />
+          <ScalarProperty Name="I_AppealReason" ColumnName="I_AppealReason" />
+          <ScalarProperty Name="I_InvoiceReason" ColumnName="I_InvoiceReason" />
+          <ScalarProperty Name="I_EventDate" ColumnName="I_EventDate" />
+          <ScalarProperty Name="O_Detail" ColumnName="O_Detail" />
+          <ScalarProperty Name="O_BlocksInitGranted" ColumnName="O_BlocksInitGranted" />
+          <ScalarProperty Name="O_NumOfBlocks" ColumnName="O_NumOfBlocks" />
+          <ScalarProperty Name="O_CHPOTNumber" ColumnName="O_CHPOTNumber" />
+          <ScalarProperty Name="O_CallSign" ColumnName="O_CallSign" />
+          <ScalarProperty Name="O_Datetime" ColumnName="O_Datetime" />
+          <ScalarProperty Name="V_AppropriateCharge" ColumnName="V_AppropriateCharge" />
+          <ScalarProperty Name="V_BlocksClaimed" ColumnName="V_BlocksClaimed" />
+          <ScalarProperty Name="V_BlocksGranted" ColumnName="V_BlocksGranted" />
+          <ScalarProperty Name="V_ReasonForAppeal" ColumnName="V_ReasonForAppeal" />
+          <ScalarProperty Name="V_ViolationId" ColumnName="V_ViolationId" />
+          <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+          <ScalarProperty Name="Beatid" ColumnName="Beatid" />
+          <ScalarProperty Name="ContractorId" ColumnName="ContractorId" />
+          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="AppealStatusID" ColumnName="AppealStatusID" />
+          <ScalarProperty Name="AppealType" ColumnName="AppealType" />
+          <ScalarProperty Name="AppealID" ColumnName="AppealID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppealStatus">
+      <EntityTypeMapping TypeName="MTCDBModel.AppealStatu">
+        <MappingFragment StoreEntitySet="AppealStatus">
+          <ScalarProperty Name="AppealStatus" ColumnName="AppealStatus" />
+          <ScalarProperty Name="AppealStatusID" ColumnName="AppealStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MTCRateTables">
+      <EntityTypeMapping TypeName="MTCDBModel.MTCRateTable">
+        <MappingFragment StoreEntitySet="MTCRateTable">
+          <ScalarProperty Name="p800" ColumnName="p800" />
+          <ScalarProperty Name="p750" ColumnName="p750" />
+          <ScalarProperty Name="p700" ColumnName="p700" />
+          <ScalarProperty Name="p650" ColumnName="p650" />
+          <ScalarProperty Name="p600" ColumnName="p600" />
+          <ScalarProperty Name="p550" ColumnName="p550" />
+          <ScalarProperty Name="p500" ColumnName="p500" />
+          <ScalarProperty Name="p450" ColumnName="p450" />
+          <ScalarProperty Name="p400" ColumnName="p400" />
+          <ScalarProperty Name="p350" ColumnName="p350" />
+          <ScalarProperty Name="p300" ColumnName="p300" />
+          <ScalarProperty Name="p250" ColumnName="p250" />
+          <ScalarProperty Name="p200" ColumnName="p200" />
+          <ScalarProperty Name="p150" ColumnName="p150" />
+          <ScalarProperty Name="p100" ColumnName="p100" />
+          <ScalarProperty Name="CurrentMonthRate" ColumnName="CurrentMonthRate" />
+          <ScalarProperty Name="BeatID" ColumnName="BeatID" />
+          <ScalarProperty Name="RateTableID" ColumnName="RateTableID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

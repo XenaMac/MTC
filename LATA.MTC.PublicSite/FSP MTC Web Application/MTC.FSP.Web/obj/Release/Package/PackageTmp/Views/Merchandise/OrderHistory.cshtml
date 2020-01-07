@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Order History";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="merchandiseOrderHistoryController" ng-cloak>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Order History <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingOrders"></i></h2>                
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="form-inline pull-right">
+                    <input type="text" class="form-control" id="filter" placeholder="search" />
+                    <a class="btn btn-success" href="~/Merchandise/Order" title="new order" ng-show="canEdit"><i class="fa fa-plus"></i> Order</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" data-filter="#filter" data-filter-text-only="true" data-page-size="20" data-limit-navigation="10">
+                    <thead>
+                        <tr>
+                            <th data-toggle="true" data-sort-initial="true">Id</th>
+                            <th>Contractor</th>
+                            <th data-hide="phone">Contact Name</th>
+                            <th data-hide="phone">Contact Number</th>
+                            <th data-hide="phone,tablet">Pick-up Date</th>
+                            <th data-hide="phone,tablet">Pick-up Time</th>
+                            <th>Total Cost</th>
+                            <th data-hide="phone,tablet">Submitted By</th>
+                            <th data-hide="phone,tablet">Submitted On</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="order in orders">
+                            <td data-value="{{order.Id}}">
+                                <a ng-href='@Url.Content("~/Merchandise/OrderDetails?id="){{order.Id}}'>{{order.FriendlyId}}</a>
+                            </td>
+                            <td ng-bind="order.Contractor"></td>
+                            <td ng-bind="order.ContactName"></td>
+                            <td ng-bind="order.ContactNumber"></td>
+                            <td ng-bind="order.PickupDate"></td>
+                            <td ng-bind="order.PickupTimeFriendly"></td>
+                            <td ng-bind="order.TotalCost | currency"></td>
+                            <td ng-bind="order.CreatedBy"></td>
+                            <td ng-bind="order.CreatedOn"></td>
+                            <td>
+                                <label class="label" ng-class="{'label-success': order.MerchandiseOrderStatus===0 || order.MerchandiseOrderStatus===1 ,'label-warning': order.MerchandiseOrderStatus===2,'label-danger': order.MerchandiseOrderStatus===3 }">{{order.OrderStatus}}</label>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/merchandiseOrderHistoryController.js"></script>
+    <script src="~/app/services/merchandiseService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script src="~/app/directives/showInputErrorDirective.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}
+

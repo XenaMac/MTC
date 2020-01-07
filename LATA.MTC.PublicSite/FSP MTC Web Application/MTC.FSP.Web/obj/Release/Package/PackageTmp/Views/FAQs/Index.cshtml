@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MTC.FSP.Web.ViewModels.FAQViewModel>
+
+@{
+    ViewBag.Title = "FAQs";
+}
+
+<h2>FAQs</h2>
+
+<p>
+    @Html.ActionLink("New Question", "Create")
+</p>
+<p>
+    <a href="~/Administration/AboutReport">About/Report a Bug</a>
+</p>
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        @foreach (var item in Model)
+        {
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <div style="display: inline-block">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#@item.FAQ.Id">
+                            @item.FAQ.Question (@item.FAQAnswer.Count() answers)
+                        </a>
+                    </div>                    
+                    @if (User.IsInRole("MTC") || User.IsInRole("Admin"))
+                    {
+                        <div style="display: inline-block">                            
+                            <a href="~/FAQs/Delete/@item.FAQ.Id" class="btn btn-danger btn-sm" title="delete FAQ"><i class="fa fa fa-trash-o"></i></a>
+                        </div>
+                    }
+                    
+                </h4>
+            </div>
+            <div id="@item.FAQ.Id" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    @foreach (var answer in item.FAQAnswer)
+                    {
+                        <p><strong>Modified on:</strong> @answer.CreatedOn</p>
+                        <p><strong>Modified by:</strong> @answer.CreatedBy</p>
+                        <p>@Html.Raw(answer.Answer)</p>
+                        if (User.Identity.Name == answer.CreatedBy || User.IsInRole("MTC") || User.IsInRole("Admin"))
+                        {
+                            <p>
+                                <a href="~/FAQAnswers/Edit/@answer.Id" class="btn btn-primary btn-sm" title="edit answer"><i class="fa fa fa-pencil"></i></a>
+                                <a href="~/FAQAnswers/Delete/@answer.Id" class="btn btn-danger btn-sm" title="delete answer"><i class="fa fa fa-trash-o"></i></a>
+                            </p>
+                        }
+                        <hr />
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="~/FAQAnswers/Create?faqId=@item.FAQ.Id" class="btn btn-success btn-sm" title="answer this question"><i class="fa fa-plus"></i> Answer</a>
+                    }
+
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $('.collapse').collapse()
+    </script>
+
+}

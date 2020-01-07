@@ -1,0 +1,42 @@
+﻿@model MTC.FSP.Web.Models.BeatsFreeway
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BeatsFreeway</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Beat Number:")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BeatData.BeatName)
+        </dd>
+        
+        <dt>
+            @Html.DisplayName("Highway ID:")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Freeway.FreewayID)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Highway Name:")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Freeway.FreewayName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BeatFreewayID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

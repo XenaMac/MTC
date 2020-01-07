@@ -1,0 +1,141 @@
+﻿@model MTC.FSP.Web.Models.UserReport
+
+@{
+    ViewBag.Title = "About/Report";
+}
+
+<div class="row">
+    <div class="col-md-12 splash1 center-block">
+        <div class="col-md-2">
+            <img src="~/Content/Images/mtcLataTraxLogoLarge.png" class="center-block" />
+        </div>
+        <div class="col-md-10" style="color:black">
+            <h3>Bay Area LATATrax</h3>
+            <p>Bay Area LATATrax is a Freeway Service Patrol (FSP) solution developed by Los Alamos Technical Associates, Inc. (LATA) for the Metropolitan Transportation Commission (MTC).  LATATrax is a Cloud-based solution that provides a Common Operating Picture, integrated communications and situational awareness aids to support FSP operations in the nine county San Francisco Bay Area. LATATrax users and stakeholders include the Bay Area Public, MTC, Caltrans, California Highway Patrol Officers, Dispatchers, FSP Tow Truck Companies and drivers.</p>
+            <p>
+                The effectiveness of LATATrax depends on the participation of users who are proficient in using the system and are willing to provide feedback. System improvement requires correcting bugs/deficiencies and receiving recommendations for changes to existing features and for new features that will enhance FSP operations and management.
+            </p>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-offset-1 col-md-10">
+
+        <div class="col-md-1">
+            <br />
+            <br />
+            <img src="~/Content/Images/mtcBug.png" />
+        </div>
+        <div class="col-md-5" style="border-right:2px solid #4d4d4d">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>Report a Bug: </h4>
+                </div>
+            </div>
+            @using (Html.BeginForm("ReportBug", "Administration", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", requried = "required", placeholder = "Name (required)" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", requried = "required", placeholder = "Email (required)" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", requried = "required", placeholder = "Phone (optional)" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Comment, new { @class = "form-control", requried = "required", placeholder = "Comments", rows="5" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                </div>
+            </div>
+            }
+        </div>
+        <div class="col-md-1">
+            <br />
+            <br />
+            <img src="~/Content/Images/mtcRecommend.png" />
+        </div>
+        <div class="col-md-5">
+            @using (Html.BeginForm("ReportRequest", "Administration", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="customControlGroup">
+                        <span class="headerH4">Recommend: </span>
+                        <label class="radio-inline customCheckBox">
+                            <input type="radio" name="isImprovement" id="isImprovement" value="true" checked> Improvement
+                        </label>
+                        <label class="checkbox-inline customCheckBox">
+                            <input type="radio" name="isImprovement" id="isNewFeature" value="false"> New Feature
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", requried = "required", placeholder = "Name (required)" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", requried = "required", placeholder = "Email (required)" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", requried = "required", placeholder = "Phone (optional)" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Comment, new { @class = "form-control", requried = "required", placeholder = "Comments", rows = "5" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="submit" value="Submit" class="btn btn-info" />
+                </div>
+            </div>
+            }
+        </div>
+
+
+    </div>
+</div>
+
+<br />
+
+@Html.Partial("_footer")
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

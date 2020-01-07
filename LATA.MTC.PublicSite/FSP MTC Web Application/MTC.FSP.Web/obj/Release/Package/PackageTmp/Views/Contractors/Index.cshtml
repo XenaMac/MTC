@@ -1,0 +1,132 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.Contractor>
+
+@{
+    ViewBag.Title = "Contractors & Trucks & Drivers";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Contractors & Trucks & Drivers</h2>
+        @Html.ActionLink("Back to Tables", "Index", "Tables")
+    </div>
+    <div class="col-md-6">
+        <br />
+        <a href="~/Contractors/Manage" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add</a>
+    </div>
+</div>
+<br />
+<hr />
+
+<table class="table table-hover footable" data-page-size="20" data-limit-navigation="10">
+    <thead>
+        <tr>
+            <th data-toggle="true" data-sort-initial="true">
+                Contract Company Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th data-hide="all">
+                MCP Number
+            </th>
+            <th data-hide="all">
+                MCP Expiration
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                Contact Name
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.Zip)
+            </th>
+            <th data-hide="all">
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th data-sort-ignore="true"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractCompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContractorType.ContractorTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MCPNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MCPExpiration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficeTelephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactLastName), @Html.DisplayFor(modelItem => item.ContactFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Zip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Manage", new { id = item.ContractorID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ContractorID })
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12" class="text-center">
+                <div class="paging">
+                    <ul class="pagination pagination-sm"></ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+
+</table>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

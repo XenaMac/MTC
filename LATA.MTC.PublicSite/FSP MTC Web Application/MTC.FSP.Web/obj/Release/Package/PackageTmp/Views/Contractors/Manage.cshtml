@@ -1,0 +1,568 @@
+﻿@{
+    ViewBag.Title = "Manage Contractor";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="contractorController" ng-init="init('@ViewBag.ContractorId')" ng-cloak>
+        <h3>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h3>
+    @Html.ActionLink("Back To Contractors", "Index", "Contractors")
+    <br />
+        <hr />
+
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
+                <li role="presentation"><a href="#fleetVehicles" aria-controls="fleetVehicles" role="tab" data-toggle="tab" ng-show="contractorId">Fleet Vehicles ({{FleetVehicles.length}})</a></li>
+                <li role="presentation"><a href="#drivers" aria-controls="drivers" role="tab" data-toggle="tab" ng-show="contractorId">Drivers ({{Drivers.length}})</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="general">
+                    <br />
+                    <form name="contractorForm" role="form" class="form-horizontal">
+                        <div class="form-group" ng-class="{'has-error': contractorForm.ContractorType.$invalid}">
+                            <label for="ContractorType" class="col-sm-2 control-label">Contractor Type</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="ContractorType" ng-model="selectedContractorType" ng-options="a.ContractorTypeId as a.ContractorTypeName for a in contractorTypes" required>
+                                    <option value="">--Select--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': contractorForm.ContractCompanyName.$invalid}">
+                            <label for="ContractCompanyName" class="col-sm-2 control-label">Contract Company Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="ContractCompanyName" ng-model="ContractCompanyName" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error has-feedback': contractorForm.ContactFirstName.$invalid}">
+                            <label for="ContactFirstName" class="col-sm-2 control-label">Contact First Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="ContactFirstName" ng-model="ContactFirstName" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error has-feedback': contractorForm.ContactLastName.$invalid}">
+                            <label for="ContactLastName" class="col-sm-2 control-label">Contact Last Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="ContactLastName" ng-model="ContactLastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error has-feedback': contractorForm.Email.$invalid}">
+                            <label for="Email" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="Email" ng-model="Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error has-feedback': contractorForm.OfficeTelephone.$invalid}">
+                            <label for="OfficeTelephone" class="col-sm-2 control-label">Office Telephone</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="OfficeTelephone" ng-model="OfficeTelephone" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': contractorForm.MCPNumber.$invalid}">
+                            <label for="MCPNumber" class="col-sm-2 control-label">MCP Number</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="MCPNumber" ng-model="MCPNumber" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': contractorForm.MCPExpiration.$invalid}">
+                            <label for="MCPExpiration" class="col-sm-2 control-label">MCP Expiration</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="MCPExpiration" ng-model="MCPExpiration" mtc-date-picker required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': contractorForm.Address.$invalid}">
+                            <label for="Address" class="col-sm-2 control-label">Address</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="Address" ng-model="Address" required>
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" name="City" ng-model="City" placeholder="city">
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" name="State" ng-model="State" placeholder="state">
+                            </div>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" name="Zip" ng-model="Zip" placeholder="zip">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Comments" class="col-sm-2 control-label">Comments</label>
+                            <div class="col-sm-10">
+                                <textarea rows="3" class="form-control" name="Comments" ng-model="Comments"></textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <div class="pull-right">
+                                    <button class="btn btn-success" ng-disabled="contractorForm.$invalid || contractorForm.$pristine || isBusy" ng-click="saveContractor()"><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i><i class="fa fa-save" ng-hide="isBusy"></i> Save</button>
+                                    <a href="~/Contractors/Index" class="btn btn-default">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="fleetVehicles">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Vehicle Number</th>
+                                <th>Make</th>
+                                <th>Model</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="f in FleetVehicles">
+                                <td>
+                                    {{f.VehicleNumber}}
+                                </td>
+                                <td>
+                                    {{f.VehicleMake}}
+                                </td>
+                                <td>
+                                    {{f.VehicleModel}}
+                                </td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button title="edit" class="btn btn-sm btn-primary" ng-click="manageFleetVehicle(f)"><i class="fa fa-pencil"></i></button>
+                                        <button title="remove" class="btn btn-sm btn-danger" ng-click="removeFleetVehicle(f)"><i class="fa fa-remove"></i></button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <div class="alert alert-warning">
+                        <button ng-click="addFleetVehicle()" class="btn btn-primary"><i class="fa fa-plus"></i> Add Fleet Vehicle</button>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="drivers">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>FSPID Number</th>
+                                <th>Driver Name</th>
+                                <th>Driver License Number</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="d in Drivers">
+                                <td>
+                                    {{d.FSPIDNumber}}
+                                </td>
+                                <td>
+                                    {{d.LastName}}, {{d.FirstName}}
+                                </td>
+                                <td>
+                                    {{d.DriverLicenseNumber}}
+                                </td>
+                                <td>
+                                    <div class="pull-right">
+                                        <button title="edit" class="btn btn-sm btn-primary" ng-click="manageDriver(d)"><i class="fa fa-pencil"></i></button>
+                                        <button title="remove" class="btn btn-sm btn-danger" ng-click="removeDriver(d)"><i class="fa fa-remove"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <div class="alert alert-warning">
+                        <button href="#" ng-click="addDriver()" class="btn btn-primary"><i class="fa fa-plus"></i> Add Driver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @*add/edit fehicle modal*@
+        <div id="manageFleetVehicleModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" ng-controller="fleetVehicleController">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{fleetVehicleHeader}} <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="fleetVehicleForm" role="form" class="form-horizontal">
+
+                            <div class="form-group text-right" ng-class="{'has-error': fleetVehicleForm.VehicleNumber.$invalid}">
+                                <button type="button" class="btn btn-primary" ng-click="saveFleetVehicle()" ng-disabled="fleetVehicleForm.$invalid"><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i><i class="fa fa-save" ng-hide="isBusy"></i> Save</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.VehicleNumber.$invalid}">
+                                <label for="VehicleNumber" class="col-sm-3 control-label">Vehicle Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="VehicleNumber" ng-model="VehicleNumber" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.TAIP.$invalid}">
+                                <label for="IPAddress" class="col-sm-3 control-label">TAIP</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="TAIP" ng-model="TAIP">
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.FleetNumber.$invalid}">
+                                <label for="FleetNumber" class="col-sm-3 control-label">Fleet Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="FleetNumber" ng-model="FleetNumber" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.VehicleType.$invalid}">
+                                <label for="VehicleType" class="col-sm-3 control-label">Vehicle Type</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="VehicleType" ng-model="VehicleType" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.VehicleYear.$invalid}">
+                                <label for="VehicleYear" class="col-sm-3 control-label">Vehicle Year</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="VehicleYear" ng-model="VehicleYear" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.VehicleMake.$invalid}">
+                                <label for="VehicleMake" class="col-sm-3 control-label">Vehicle Make</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="VehicleMake" ng-model="VehicleMake" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.VehicleModel.$invalid}">
+                                <label for="VehicleModel" class="col-sm-3 control-label">Vehicle Model</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="VehicleModel" ng-model="VehicleModel" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.VIN.$invalid}">
+                                <label for="VIN" class="col-sm-3 control-label">VIN</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="VIN" ng-model="VIN" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.LicensePlate.$invalid}">
+                                <label for="LicensePlate" class="col-sm-3 control-label">License Plate</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="LicensePlate" ng-model="LicensePlate" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.RegistrationExpireDate.$invalid}">
+                                <label for="RegistrationExpireDate" class="col-sm-3 control-label">Registration Expire Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="RegistrationExpireDate" ng-model="RegistrationExpireDate" required mtc-date-picker>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.InsuranceExpireDate.$invalid}">
+                                <label for="InsuranceExpireDate" class="col-sm-3 control-label">Insurance Expire Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="InsuranceExpireDate" ng-model="InsuranceExpireDate" required mtc-date-picker>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.LastCHPInspection.$invalid}">
+                                <label for="LastCHPInspection" class="col-sm-3 control-label">Last CHP Inspection</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="LastCHPInspection" ng-model="LastCHPInspection" required mtc-date-picker>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.ProgramStartDate.$invalid}">
+                                <label for="ProgramStartDate" class="col-sm-3 control-label">Program Start Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="ProgramStartDate" ng-model="ProgramStartDate" required mtc-date-picker>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.ProgramEndDate.$invalid}">
+                                <label for="ProgramEndDate" class="col-sm-3 control-label">Program End Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="ProgramEndDate" ng-model="ProgramEndDate" required mtc-date-picker>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.FAW.$invalid}">
+                                <label for="FAW" class="col-sm-3 control-label">FAW</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="FAW" ng-model="FAW" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.RAW.$invalid}">
+                                <label for="RAW" class="col-sm-3 control-label">RAW</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="RAW" ng-model="RAW" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.RAWR.$invalid}">
+                                <label for="RAWR" class="col-sm-3 control-label">RAWR</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="RAWR" ng-model="RAWR" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.GVW.$invalid}">
+                                <label for="GVW" class="col-sm-3 control-label">GVW</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="GVW" ng-model="GVW" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.GVWR.$invalid}">
+                                <label for="GVWR" class="col-sm-3 control-label">GVWR</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="GVWR" ng-model="GVWR" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.Wheelbase.$invalid}">
+                                <label for="Wheelbase" class="col-sm-3 control-label">Wheel base</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="Wheelbase" ng-model="Wheelbase" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.Overhang.$invalid}">
+                                <label for="Overhang" class="col-sm-3 control-label">Overhang</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="Overhang" ng-model="Overhang" required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.MAXTW.$invalid}">
+                                <label for="MAXTW" class="col-sm-3 control-label">MAXTW</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="MAXTW" ng-model="MAXTW" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.MAXTWCALCDATE.$invalid}">
+                                <label for="MAXTWCALCDATE" class="col-sm-3 control-label">MAXTWCALCDATE</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="MAXTWCALCDATE" ng-model="MAXTWCALCDATE" required mtc-date-picker>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.FuelType.$invalid}">
+                                <label for="FuelType" class="col-sm-3 control-label">Fuel Type</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="FuelType" ng-model="FuelType" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-class="{'has-error': fleetVehicleForm.IPAddress.$invalid}">
+                                <label for="IPAddress" class="col-sm-3 control-label">IP Address</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="IPAddress" ng-model="IPAddress" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="AgreementNumber" class="col-sm-3 control-label">Agreement Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="AgreementNumber" ng-model="AgreementNumber">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="IsBackup" class="col-sm-3 control-label"></label>
+                                <div class="col-sm-9">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="IsBackup" ng-model="IsBackup" /> Is Backup
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="Comments" class="col-sm-3 control-label">Comments</label>
+                                <div class="col-sm-9">
+                                    <textarea rows="3" class="form-control" name="Comments" ng-model="Comments"></textarea>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveFleetVehicle()" ng-disabled="fleetVehicleForm.$invalid"><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i><i class="fa fa-save" ng-hide="isBusy"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*add/edit driver modal*@
+        <div id="manageDriverModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" ng-controller="driverController">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{driverHeader}} <i class="fa fa-spinner fa-spin" ng-show="isBusy"></i></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="driverForm" role="form" class="form-horizontal">
+
+                            <div class="form-group" ng-class="{'has-error': driverForm.FSPIDNumber.$invalid}">
+                                <label for="FSPIDNumber" class="col-sm-3 control-label">FSPID Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="FSPIDNumber" ng-model="FSPIDNumber" required>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': driverForm.Password.$invalid}">
+                                <label for="Password" class="col-sm-3 control-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" name="Password" ng-model="Password" required>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': driverForm.FirstName.$invalid}">
+                                <label for="FirstName" class="col-sm-3 control-label">First Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="FirstName" ng-model="FirstName" required>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': driverForm.LastName.$invalid}">
+                                <label for="LastName" class="col-sm-3 control-label">Last Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="LastName" ng-model="LastName" required>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': driverForm.DOB.$invalid}">
+                                <label for="DOB" class="col-sm-3 control-label">DOB</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="DOB" ng-model="DOB" required mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="DriversLicenseNumber" class="col-sm-3 control-label">Drivers License Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="DriversLicenseNumber" ng-model="DriversLicenseNumber">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': driverForm.ProgramStartDate.$invalid}">
+                                <label for="ProgramStartDate" class="col-sm-3 control-label">Program Start Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="ProgramStartDate" ng-model="ProgramStartDate" required mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ProgramEndDate" class="col-sm-3 control-label">Program End Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="ProgramEndDate" ng-model="ProgramEndDate" mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="TrainingCompletionDate" class="col-sm-3 control-label">Program End Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="TrainingCompletionDate" ng-model="TrainingCompletionDate" mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': driverForm.LicenseExpirationDate.$invalid}">
+                                <label for="LicenseExpirationDate" class="col-sm-3 control-label">License Expiration Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="LicenseExpirationDate" ng-model="LicenseExpirationDate" required mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="DL64Number" class="col-sm-3 control-label">DL64 Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="DL64Number" ng-model="DL64Number">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': driverForm.DL64ExpirationDate.$invalid}">
+                                <label for="DL64ExpirationDate" class="col-sm-3 control-label">DL64 Expiration Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="DL64ExpirationDate" ng-model="DL64ExpirationDate" required mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': driverForm.MedicalCardExpirationDate.$invalid}">
+                                <label for="MedicalCardExpirationDate" class="col-sm-3 control-label">Medical Card Expiration Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="MedicalCardExpirationDate" ng-model="MedicalCardExpirationDate" required mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="LastPullNoticeDate" class="col-sm-3 control-label">Last Pull Notice Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="LastPullNoticeDate" ng-model="LastPullNoticeDate" mtc-date-picker>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ContractorStartDate" class="col-sm-3 control-label">Contractor Start Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="ContractorStartDate" ng-model="ContractorStartDate" mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ContractorEndDate" class="col-sm-3 control-label">Contractor End Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="ContractorEndDate" ng-model="ContractorEndDate" mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="AddedtoC3Database" class="col-sm-3 control-label">Added to C3 Database</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="AddedtoC3Database" ng-model="AddedtoC3Database" mtc-date-picker>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="UDF" class="col-sm-3 control-label">UDF</label>
+                                <div class="col-sm-9">
+                                    <textarea rows="3" class="form-control" name="UDF" ng-model="UDF" maxlength="500"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Comments" class="col-sm-3 control-label">Comments</label>
+                                <div class="col-sm-9">
+                                    <textarea rows="3" class="form-control" name="Comments" ng-model="Comments" maxlength="500"></textarea>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveDriver()" ng-disabled="driverForm.$invalid"><i class="fa fa-spinner fa-spin" ng-show="isBusy"></i><i class="fa fa-save" ng-hide="isBusy"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/contractorController.js"></script>
+    <script src="~/app/controllers/fleetVehicleController.js"></script>
+    <script src="~/app/controllers/driverController.js"></script>
+
+    <script src="~/app/services/contractorService.js"></script>
+    <script src="~/app/services/driverService.js"></script>
+    <script src="~/app/services/fleeetVehicleService.js"></script>
+
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+
+}

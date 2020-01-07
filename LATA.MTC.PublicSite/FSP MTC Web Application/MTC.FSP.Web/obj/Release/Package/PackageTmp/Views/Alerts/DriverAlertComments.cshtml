@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Driver Alarms Comments";
+}
+
+<div ng-app="mtcApp">
+    <div ng-controller="driverAlertCommentsController" ng-cloak>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>{{header}} <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingDriverAlertComments"></i></h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <a class="btn btn-info" ng-click="showColumnConfig()">Column Configuration</a>
+                    <a class="btn btn-danger" href="~/Alerts/Index">Current Alarms</a>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-sm-2">
+                <select class="form-control" name="selectedBeatNumberId" ng-model="selectedBeatNumberId" ng-options="a.Id as a.Text for a in beatNumbers" ng-disabled="busyGettingBeatNumbers">
+                    <option value="">--All Beats--</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="selectedDriverId" ng-model="selectedDriverId" ng-options="a.Id as a.Text for a in drivers" ng-disabled="busyGettingDrivers">
+                    <option value="">--All Drivers--</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="selectedAlert" ng-model="selectedAlert">
+                    <option value="">--All Alarms--</option>
+                    <option value="LOGON">LOGON</option>
+                    <option value="ROLLIN">ROLLIN</option>
+                    <option value="ONPATROL">ONPATROL</option>
+                    <option value="LOGOFF">LOGOFF</option>
+                    <option value="INCIDENT">INCIDENT</option>
+                    <option value="GPSISSUE">GPSISSUE</option>
+                    <option value="STATIONARY">STATIONARY</option>
+                    <option value="LONGBREAK">LONGBREAK</option>
+                    <option value="OVERTIMEACTIVITY">OVERTIME</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-primary" ng-click="getDriverAlertComments()">Filter</button>
+                <button class="btn btn-default" ng-click="reset()">Reset</button>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in columns | filter: {visible:true}">
+                                <a href="" ng-click="reverse=!reverse;order(column.name,reverse)">{{column.display}}</a>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="alertDetail in alertDetails">
+                            <td ng-show="columns[0].visible===true">{{alertDetail.BeatNumber}}</td>
+                            <td ng-show="columns[2].visible===true">{{alertDetail.VehicleNumber}}</td>
+                            <td ng-show="columns[3].visible===true">{{alertDetail.DriverName}}</td>
+                            <td ng-show="columns[5].visible===true">{{alertDetail.Datestamp}}</td>
+                            <td ng-show="columns[6].visible===true">{{alertDetail.Comment}}</td>
+                            <td ng-show="columns[8].visible===true">{{alertDetail.ExceptionType}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @Html.Partial("_ColumnConfig")
+
+
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/driverAlertCommentsController.js"></script>
+    <script src="~/app/services/alertsService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+}
+

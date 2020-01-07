@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1183fec149fd4166ba932e19ed39c8fe" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="MTCDBModel.AEReportType" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.ContractorManager" Width="1.5" PointX="4.875" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.Contractor" Width="1.5" PointX="1.5" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.ContractsBeat" Width="1.5" PointX="10.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.DriverEvent" Width="1.5" PointX="12.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.Driver" Width="2.625" PointX="10.625" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.FleetVehicle" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.Freeway" Width="1.5" PointX="2.625" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.GPSTrackingLog" Width="1.5" PointX="16.625" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.Group" Width="1.5" PointX="10.375" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.HeliosUnit" Width="1.5" PointX="16.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.InspectionType" Width="1.5" PointX="6.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.InteractionType" Width="1.5" PointX="6" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.Location" Width="1.5" PointX="3.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.Report" Width="1.5" PointX="10.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.TowTruckYard" Width="1.5" PointX="18.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.TruckMessage" Width="1.5" PointX="18.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.Var" Width="1.5" PointX="18.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.YearlyCalendar" Width="1.5" PointX="20.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.AEFrequency" Width="1.5" PointX="20.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.AERecipient" Width="1.5" PointX="20.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.AEReport" Width="1.5" PointX="12.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.TowTruckSetup" Width="1.5" PointX="20.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MTCDBModel.TruckState" Width="1.5" PointX="16.75" PointY="25.125" IsExpanded="true" />
+        <AssociationConnector Association="MTCDBModel.FK_ContractorManagers_Contractors" ManuallyRouted="false" />
+        <AssociationConnector Association="MTCDBModel.FK_Drivers_Contractors" ManuallyRouted="false" />
+        <AssociationConnector Association="MTCDBModel.FK_FleetVehicles_Contractors" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MTCDBModel.ContractorType" Width="1.5" PointX="4.375" PointY="25.125" />
+        <AssociationConnector Association="MTCDBModel.FK_Contractors_ContractorTypes" />
+        <EntityTypeShape EntityType="MTCDBModel.MTCSchedule" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MTCDBModel.DriverInteraction" Width="1.5" PointX="14" PointY="28.625" />
+        <AssociationConnector Association="MTCDBModel.FK_DriverInteractions_Contractors" />
+        <AssociationConnector Association="MTCDBModel.FK_DriverInteractions_Drivers" />
+        <AssociationConnector Association="MTCDBModel.FK_DriverInteractions_InteractionTypes" />
+        <EntityTypeShape EntityType="MTCDBModel.InsuranceCarrier" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MTCDBModel.TruckAlert" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MTCDBModel.CHPOfficerBeat" Width="1.5" PointX="2.625" PointY="8.375" />
+        <EntityTypeShape EntityType="MTCDBModel.CHPInspection" Width="1.5" PointX="13.75" PointY="18.375" />
+        <EntityTypeShape EntityType="MTCDBModel.CHPOfficer" Width="1.5" PointX="11.5" PointY="7.75" />
+        <AssociationConnector Association="MTCDBModel.FK_CHPInspections_CHPOfficer" />
+        <AssociationConnector Association="MTCDBModel.FK_CHPInspections_Contractors" />
+        <AssociationConnector Association="MTCDBModel.FK_CHPInspections_FleetVehicles" />
+        <AssociationConnector Association="MTCDBModel.FK_CHPInspections_InspectionTypes" />
+        <EntityTypeShape EntityType="MTCDBModel.MTCBeatsCallSign" Width="1.5" PointX="8.375" PointY="3.75" />
+        <EntityTypeShape EntityType="MTCDBModel.Contract" Width="1.5" PointX="3.75" PointY="34.25" />
+        <AssociationConnector Association="MTCDBModel.FK_Contracts_Contractors" />
+        <EntityTypeShape EntityType="MTCDBModel.VehicleTypeLU" Width="1.5" PointX="8.5" PointY="10.625" />
+        <EntityTypeShape EntityType="MTCDBModel.OvertimeActivity" Width="1.5" PointX="13.375" PointY="13.75" />
+        <EntityTypeShape EntityType="MTCDBModel.BeatBeatSchedule" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MTCDBModel.BeatSchedule" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="MTCDBModel.BeatBeatSegment" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MTCDBModel.MTC_Invoice_Addition" Width="1.5" PointX="25.625" PointY="9" />
+        <EntityTypeShape EntityType="MTCDBModel.MTC_Invoice_Deductions" Width="1.5" PointX="25.625" PointY="13.25" />
+        <EntityTypeShape EntityType="MTCDBModel.MTC_Invoice_Summary" Width="1.5" PointX="25.625" PointY="1.625" />
+        <EntityTypeShape EntityType="MTCDBModel.MTC_Invoice_Anomalies" Width="1.5" PointX="25.625" PointY="17.875" />
+        <EntityTypeShape EntityType="MTCDBModel.TruckStatu" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MTCDBModel.MTC_Invoice" Width="1.5" PointX="23" PointY="5" />
+        <AssociationConnector Association="MTCDBModel.FK_MTC_Invoice_Addition_MTC_Invoice" />
+        <AssociationConnector Association="MTCDBModel.FK_MTC_Invoice_Anomalies_MTC_Invoice" />
+        <AssociationConnector Association="MTCDBModel.FK_MTC_Invoice_Deductions_MTC_Invoice" />
+        <AssociationConnector Association="MTCDBModel.FK_MTC_Invoice_Summary_MTC_Invoice" />
+        <EntityTypeShape EntityType="MTCDBModel.MTCActionTaken" Width="1.5" PointX="27.875" PointY="30.625" />
+        <EntityTypeShape EntityType="MTCDBModel.MTCAssist" Width="1.5" PointX="25.625" PointY="28.375" />
+        <EntityTypeShape EntityType="MTCDBModel.MTCIncident" Width="1.5" PointX="23.375" PointY="26.875" />
+        <AssociationConnector Association="MTCDBModel.FK_MTCActionTaken_MTCAssists" />
+        <AssociationConnector Association="MTCDBModel.FK_MTCAssists_MTCIncidents" />
+        <EntityTypeShape EntityType="MTCDBModel.MTCPreAssist" Width="1.5" PointX="28.625" PointY="23.875" />
+        <AssociationConnector Association="MTCDBModel.FK_MTCPreAssists_Drivers" />
+        <AssociationConnector Association="MTCDBModel.FK_MTCPreAssists_MTCIncidents" />
+        <EntityTypeShape EntityType="MTCDBModel.Assist" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MTCDBModel.Incident" Width="1.5" PointX="28.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MTCDBModel.BeatData" Width="1.5" PointX="20.25" PointY="30.125" />
+        <AssociationConnector Association="MTCDBModel.FK_Appeals_BeatData" />
+        <EntityTypeShape EntityType="MTCDBModel.BeatsFreeway" Width="1.5" PointX="22.5" PointY="18.5" />
+        <AssociationConnector Association="MTCDBModel.FK_BeatsFreeways_BeatData" />
+        <AssociationConnector Association="MTCDBModel.FK_BeatsFreeways_Freeways" />
+        <EntityTypeShape EntityType="MTCDBModel.WAZEData" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MTCDBModel.WAZEIncoming" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MTCDBModel.Appeal" Width="1.5" PointX="22.5" PointY="31" />
+        <EntityTypeShape EntityType="MTCDBModel.AppealStatu" Width="1.5" PointX="20.25" PointY="34.875" />
+        <AssociationConnector Association="MTCDBModel.FK_Appeals_AppealStatus" />
+        <AssociationConnector Association="MTCDBModel.FK_Appeals_Contractors" />
+        <AssociationConnector Association="MTCDBModel.FK_Appeals_Drivers" />
+        <EntityTypeShape EntityType="MTCDBModel.MTCRateTable" Width="1.5" PointX="3.75" PointY="13.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

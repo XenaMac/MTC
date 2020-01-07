@@ -1,0 +1,34 @@
+﻿@model MTC.FSP.Web.ViewModels.UserListViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(p => p.UserId)
+
+    <div class="form-horizontal">
+        <h4>"@Model.Email"</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Assigned Role</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SelectedRoleId, new SelectList(Model.Roles, "RoleId", "RoleName", Model.SelectedRoleId), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedRoleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a href="~/ApplicationUsers/Index" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </div>
+}
+

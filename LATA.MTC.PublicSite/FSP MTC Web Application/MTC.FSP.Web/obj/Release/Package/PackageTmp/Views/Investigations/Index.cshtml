@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "Investigations";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="investigationsController" ng-cloak>
+        <div class="row">
+            <div class="col-xs-6">
+                <h2>Investigations <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingInvestigations"></i></h2>
+            </div>
+            <div class="col-xs-6">
+                <br />
+                <div class="form-inline pull-right">
+                    <input type="text" class="form-control" id="filter" placeholder="search" />
+                    <button type="button" class="btn btn-success" title="new investigation" ng-click="addInvestigation()"><i class="fa fa-plus"></i> Investigation</button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable" data-filter="#filter" data-filter-text-only="true" data-page-size="20" data-limit-navigation="10">
+                    <thead>
+                        <tr>
+                            <th data-toggle="true" data-sort-initial="true">Date</th>
+                            <th>Driver</th>
+                            <th>Beat</th>
+                            <th>Contractor</th>
+                            <th>Type of Violation</th>
+                            <th >Comments</th>
+                            <th>Investigating Officer</th>
+                            <th data-sort-ignore="true"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="i in investigations">
+                            <td ng-bind="i.DateFriendly"></td>
+                            <td ng-bind="i.DriverName"></td>
+                            <td ng-bind="i.BeatNumber"></td>
+                            <td ng-bind="i.ContractCompanyName"></td>
+                            <td ng-bind="i.ViolationTypeName"></td>
+                            <td ng-bind="i.Summary" style="max-width:200px; text-overflow: ellipsis;overflow: hidden;white-space: nowrap;"></td>
+                            <td ng-bind="i.InvestigatingOfficer"></td>
+                            <td>
+                                <div class="pull-right">
+                                    <button title="edit" class="btn btn-sm btn-primary" ng-click="manageInvestigation(i)"><i class="fa fa-pencil"></i></button>
+                                    <button title="remove" class="btn btn-sm btn-danger" ng-click="removeInvestigation(i)"><i class="fa fa-remove"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="12" class="text-center">
+                                <div class="paging">
+                                    <ul class="pagination pagination-sm"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+        <div id="manageInvestigationModal" class="modal fade bs-example-modal-lg" data-backdrop="static">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Investigation <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingInvestigations"></i></h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="investigationForm" role="form" class="form-horizontal">
+                            <div class="form-group" ng-class="{'has-error': investigationForm.Name.$invalid}">
+                                <label for="Date" class="col-sm-3 control-label">Date</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="Date" ng-model="investigation.DateFriendly" required mtc-date-picker>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': investigationForm.ContractorId.$invalid}">
+                                <label for="ContractorId" class="col-sm-3 control-label">Contractor</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="ContractorId" ng-model="investigation.ContractorId" ng-change="getContractorData(investigation.ContractorId)" ng-options="a.Id as a.Text for a in contractors" required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': investigationForm.BeatId.$invalid}">
+                                <label for="BeatId" class="col-sm-3 control-label">Beat</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="BeatId" ng-model="investigation.BeatId" ng-options="a.Id as a.Text for a in contractorBeatNumbers" required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': investigationForm.DriverId.$invalid}">
+                                <label for="DriverId" class="col-sm-3 control-label">Driver</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="DriverId" ng-model="investigation.DriverId" ng-options="a.Id as a.Text for a in contractorDrivers" ng-disabled="!investigation.ContractorId" required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': investigationForm.ViolationTypeId.$invalid}">
+                                <label for="ViolationTypeId" class="col-sm-3 control-label">Violation</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="ViolationTypeId" ng-model="investigation.ViolationTypeId" ng-options="a.Id as a.Text for a in violationTypes" required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Summary" class="col-sm-3 control-label">Comments</label>
+                                <div class="col-sm-9">
+                                    <textarea name="Summary" ng-model="investigation.Summary" rows="3" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': investigationForm.CHPOfficerId.$invalid}">
+                                <label for="CHPOfficerId" class="col-sm-3 control-label">Investigating Officer</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="CHPOfficerId" ng-model="investigation.CHPOfficerId" ng-options="a.Id as a.Text for a in chpOfficers" required>
+                                        <option value="">--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="saveInvestigation()" ng-disabled="investigationForm.$invalid"><i class="fa fa-spinner fa-spin" ng-show="isBusyGettingInvestigations"></i><i class="fa fa-save" ng-hide="isBusyGettingInvestigations"></i> Save</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/investigationsController.js"></script>
+    <script src="~/app/services/investigationsService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script src="~/app/directives/showInputErrorDirective.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

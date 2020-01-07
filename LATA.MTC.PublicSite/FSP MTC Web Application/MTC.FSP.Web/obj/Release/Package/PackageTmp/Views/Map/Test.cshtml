@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery-ui-1.11.3.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+
+        $(function () {
+
+            var userId;
+
+            $.get($(".websiteUrl").text().trim() +  '/Home/GetCurrentUser',
+            function (value) {
+
+                console.log('Test Page. Current User ' + value.UserName);
+                userId = value.UserName;
+
+                var mtcHub = $.connection.mtcHub;
+
+                mtcHub.client.setSelectedTruck = function (truckId, userId) {
+                    console.log('Test Page. Truck selected: ' + truckId + ' by user ' + userId);
+
+                    if (userId === userId) {
+                        //only execute if requesting user is the same. In other words, don't center truck for other users.
+                        console.log('Test Page. Center on truck');
+                    }
+                };
+
+                $.connection.hub.start().done(function () {
+                    console.log('Test Page. hub started..');
+                });
+
+            }, "json");
+
+           
+        });
+
+    </script>
+
+}
+

@@ -1441,10 +1441,16 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
             Guid CID = new Guid(contractorid);
             InvoiceSummaryViewModel ISVM = GetBaseRateMethod(beatid);
             List<InvoiceDeductions> Deductions = new List<InvoiceDeductions>();
+            int year = DateTime.Now.Year;
+
+            if(month == 11 || month == 12)
+            {
+                year = DateTime.Now.Year - 1;
+            }
 
             #region get all violations
 
-            List<Violation> violations = dbc.Violations.Where(v => v.ContractorId == CID).Where(v => v.BeatId == BID).Where(v => v.DateTimeOfViolation.Month == month).Where(v => v.DateTimeOfViolation.Year == DateTime.Now.Year).Where(v => v.ViolationStatusTypeId == 2).ToList();
+            List<Violation> violations = dbc.Violations.Where(v => v.ContractorId == CID).Where(v => v.BeatId == BID).Where(v => v.DateTimeOfViolation.Month == month).Where(v => v.DateTimeOfViolation.Year == year).Where(v => v.ViolationStatusTypeId == 2).ToList();
 
             foreach(Violation vio in violations)
             {

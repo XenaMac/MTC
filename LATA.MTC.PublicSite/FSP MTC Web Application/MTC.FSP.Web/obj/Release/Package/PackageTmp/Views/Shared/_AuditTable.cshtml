@@ -1,0 +1,24 @@
+﻿<table class="table table-hover" ng-show="auditItems">
+    <thead>
+        <tr>
+            <th>Change</th>
+            <th>Changed On</th>
+            <th>Changed By</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in auditItems">
+            <td class="col-sm-6">
+                <div ng-bind-html="c.ChangeContent"></div>
+            </td>
+            <td class="col-sm-3">
+                {{c.ChangeDate | datetimefilter}}
+            </td>
+            <td class="col-sm-3">{{c.ChangedBy}}</td>
+        </tr>
+    </tbody>
+</table>
+<p ng-show="auditItems.length===0">
+    No audit records found
+</p>
+

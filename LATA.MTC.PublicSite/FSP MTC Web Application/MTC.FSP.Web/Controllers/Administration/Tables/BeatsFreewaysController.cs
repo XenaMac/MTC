@@ -12,7 +12,7 @@ namespace MTC.FSP.Web.Controllers.Administration.Tables
 
         public ActionResult Create()
         {
-            ViewBag.BeatID = new SelectList(_db.BeatDatas, "BeatID", "BeatNumber").OrderBy(d => d.Text);
+            ViewBag.BeatID = new SelectList(_db.BeatDatas, "ID", "BeatName").OrderBy(d => d.Text);
             ViewBag.FreewayID = new SelectList(_db.Freeways, "FreewayID", "FreewayID");
             return View();
         }

@@ -1,0 +1,328 @@
+﻿@{
+    ViewBag.Title = "Alarms";
+}
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div ng-app="mtcApp">
+    <div ng-controller="alertsController" ng-cloak>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>
+                    <span ng-bind="header"></span> <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingAlerts"></i>
+                </h2>
+            </div>
+            <div class="col-sm-6">
+                <br />
+                <div class="pull-right">
+                    <a class="btn btn-danger" href="~/Alerts/AlertDetails">Alarms Today</a>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover footable">
+                    <thead>
+                        <tr>
+                            <th data-type="numeric" data-sort-initial="true">
+                                Beat #
+                            </th>
+                            <th data-sort-ignore="true">
+                                Call Sign
+                            </th>
+                            <th data-sort-ignore="true">
+                                Truck #
+                            </th>
+                            <th data-sort-ignore="true">
+                                Contractor
+                            </th>
+                            <th data-sort-ignore="true">
+                                Driver
+                            </th>
+                            <th data-sort-ignore="true">
+                                Early Out of Service
+                            </th>
+                            <th data-sort-ignore="true">
+                                GPS Issue
+                            </th>
+                            <th data-sort-ignore="true">
+                                Late on Patrol
+                            </th>
+                            <th data-sort-ignore="true">
+                                Long Break
+                            </th>
+                            <th data-sort-ignore="true">
+                                Long Incident
+                            </th>
+                            <th data-sort-ignore="true">
+                                Off Beat
+                            </th>
+                            <th data-sort-ignore="true">
+                                Overtime
+                            </th>
+                            <th data-sort-ignore="true">
+                                Speeding
+                            </th>
+                            <th data-sort-ignore="true">
+                                Stationary
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="a in alerts">
+                            <td ng-bind="a.BeatNumber"></td>
+                            <td ng-bind="a.CallSign"></td>
+                            <td ng-bind="a.VehicleNumber"></td>
+                            <td ng-bind="a.ContractCompanyName"></td>
+                            <td ng-bind="a.DriverName"></td>
+
+                            <td>
+                                <div ng-show="a.RollInAlarm===true">
+                                    <div ng-show="a.RollInAlarmTime">
+                                        Time: <span ng-bind="a.RollInAlarmTime | datetimeHourMinute"></span>
+                                    </div>
+                                    <div ng-show="a.RollInAlarmDuration">
+                                        Total: <span ng-bind="a.RollInAlarmDuration"></span>
+                                    </div>
+                                    <div ng-show="a.RollInAlarmSpecial">
+                                        <span ng-bind="a.RollInAlarmSpecial"></span>
+                                    </div>
+                                    <button ng-click="excuseAlert(a, 'EARLYOUTOFSERVICE')"
+                                            ng-show="(a.RollInAlarmExcused | datefilter)  === defaultDate"
+                                            class="btn btn-info btn-small" title="excuse">
+                                        X
+                                    </button>
+                                    <button ng-show="(a.RollInAlarmExcused | datefilter)  !== defaultDate"
+                                            class="btn btn-primary btn-small"
+                                            title="excused"
+                                            disabled="disabled">
+                                        X
+                                    </button>
+                                    <button ng-click="clearAlert(a, 'EARLYOUTOFSERVICE')" class="btn btn-danger btn-small" title="clear">C</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="a.GPSIssueAlarm===true">
+                                    <div ng-show="a.GPSIssueAlarmStart">
+                                        Time: <span ng-bind="a.GPSIssueAlarmStart | datetimeHourMinute"></span>
+                                    </div>
+                                    <div ng-show="a.GPSIssueDuration">
+                                        Total: <span ng-bind="a.GPSIssueDuration"></span>
+                                    </div>
+                                    <button ng-click="excuseAlert(a, 'GPSISSUE')"
+                                            ng-show="(a.GPSIssueAlarmExcused | datefilter)  === defaultDate"
+                                            class="btn btn-info btn-small"
+                                            title="excuse">
+                                        X
+                                    </button>
+                                    <button ng-show="(a.GPSIssueAlarmExcused | datefilter)  !== defaultDate"
+                                            class="btn btn-primary btn-small"
+                                            title="excused"
+                                            disabled="disabled">
+                                        X
+                                    </button>
+                                    <button ng-click="clearAlert(a, 'GPSISSUE')" class="btn btn-danger btn-small" title="clear">C</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="a.OnPatrolAlarm===true">
+                                    <div ng-show="a.OnPatrolAlarmTime">
+                                        Time: <span ng-bind="(a.OnPatrolAlarmTime | datetimeHourMinute)"></span>
+                                    </div>
+                                    <div ng-show="a.OnPatrolDuration">
+                                        Total: <span ng-bind="a.OnPatrolDuration"></span>
+                                    </div>
+                                    <div ng-show="a.OnPatrolSpecial">
+                                        <span ng-bind="a.OnPatrolSpecial"></span>
+                                    </div>
+                                    <br />
+                                    <button ng-click="excuseAlert(a, 'LATEONPATROL')"
+                                            ng-show="(a.OnPatrolAlarmExcused  | datefilter) === defaultDate"
+                                            class="btn btn-info btn-small"
+                                            title="excuse">
+                                        X
+                                    </button>
+                                    <button ng-show="(a.OnPatrolAlarmExcused  | datefilter) !== defaultDate"
+                                            class="btn btn-primary btn-small"
+                                            title="excused"
+                                            disabled="disabled">
+                                        X
+                                    </button>
+                                    <button ng-click="clearAlert(a, 'LATEONPATROL')" 
+                                            class="btn btn-danger btn-small" 
+                                            title="clear">C</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="a.LongBreakAlarm===true">
+                                    <div ng-show="a.LongBreakAlarmStart">
+                                        Time: <span ng-bind="a.LongBreakAlarmStart | datetimeHourMinute"></span>
+                                    </div>
+                                    <div ng-show="a.LongBreakDuration">
+                                        Total: <span ng-bind="a.LongBreakDuration"></span>
+                                    </div>
+                                    <br />
+                                    <button ng-click="excuseAlert(a, 'LONGBREAK')"
+                                            ng-show="(a.LongBreakAlarmExcused  | datefilter) === defaultDate"
+                                            class="btn btn-info btn-small"
+                                            title="excuse">
+                                        X
+                                    </button>
+                                    <button ng-show="(a.LongBreakAlarmExcused  | datefilter) !== defaultDate"
+                                            class="btn btn-primary btn-small"
+                                            title="excused"
+                                            disabled="disabled">
+                                        X
+                                    </button>
+                                    <button ng-click="clearAlert(a, 'LONGBREAK')" class="btn btn-danger btn-small" title="clear">C</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="a.IncidentAlarm===true">
+                                    <div ng-show="a.IncidentAlarmTime">
+                                        Time: <span ng-bind="a.IncidentAlarmTime | datetimeHourMinute"></span>
+                                    </div>
+                                    <div ng-show="a.IncidentDuration">
+                                        Total: <span ng-bind="a.IncidentDuration"></span>
+                                    </div>
+                                    <br />
+                                    <button ng-click="excuseAlert(a, 'LONGINCIDENT')"
+                                            ng-show="(a.IncidentAlarmExcused  | datefilter) === defaultDate"
+                                            class="btn btn-info btn-small"
+                                            title="excuse">
+                                        X
+                                    </button>
+                                    <button ng-show="(a.IncidentAlarmExcused  | datefilter) !== defaultDate"
+                                            class="btn btn-primary btn-small"
+                                            title="excused"
+                                            disabled="disabled">
+                                        X
+                                    </button>
+                                    <button ng-click="clearAlert(a, 'LONGINCIDENT')" class="btn btn-danger btn-small" title="clear">C</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="a.OutOfBoundsAlarm===true">
+                                    <div ng-show="a.OutOfBoundsStartTime">
+                                        Time: <span ng-bind="a.OutOfBoundsStartTime | datetimeHourMinute"></span>
+                                    </div>
+                                    <div ng-show="a.OutOfBoundsDuration">
+                                        Total: <span>{{a.OutOfBoundsDuration}} mins</span>
+                                    </div>
+                                    <br />
+                                    <button ng-click="excuseAlert(a, 'OFFBEAT')"
+                                            ng-show="(a.OutOfBoundsExcused  | datefilter) === defaultDate"
+                                            class="btn btn-info btn-small"
+                                            title="excuse">
+                                        X
+                                    </button>
+                                    <button ng-show="(a.OutOfBoundsExcused  | datefilter) !== defaultDate"
+                                            class="btn btn-disabled btn-small"
+                                            title="excused"
+                                            disabled="disabled">
+                                        X
+                                    </button>
+                                    <button ng-click="clearAlert(a, 'OFFBEAT')" class="btn btn-danger btn-small" title="clear">C</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="a.OvertimeAlarm===true">
+                                    <div ng-show="a.OvertimeAlarmStart">
+                                        Time: <span ng-bind="a.OvertimeAlarmStart | datetimeHourMinute"></span>
+                                    </div>
+                                    <div ng-show="a.OvertimeAlarmDuration">
+                                        Total: <span ng-bind="a.OvertimeAlarmDuration"></span>
+                                    </div>
+                                    <br />
+                                    <button ng-click="excuseAlert(a, 'OVERTIMEACTIVITY')"
+                                            ng-show="(a.OvertimeAlarmExcused  | datefilter) === defaultDate"
+                                            class="btn btn-info btn-small"
+                                            title="excuse">
+                                        X
+                                    </button>
+                                    <button ng-show="(a.OvertimeAlarmExcused  | datefilter) !== defaultDate"
+                                            class="btn btn-primary btn-small"
+                                            title="excused"
+                                            disabled="disabled">
+                                        X
+                                    </button>
+                                    <button ng-click="clearAlert(a, 'OVERTIMEACTIVITY')" class="btn btn-danger btn-small" title="clear">C</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="a.SpeedingAlarm===true">
+                                    {{a.SpeedingTime | datetimeHourMinute}}
+                                    {{a.SpeedingAlarmTime | datetimeHourMinute}}
+                                    @*CAN'T BE EXCUSED RIGHT NOW*@
+                                </div>
+                            </td>
+                            <td>
+                                <div ng-show="a.StationaryAlarm===true">
+                                    <div ng-show="a.StationaryAlarmStart">
+                                        Time: <span ng-bind="a.StationaryAlarmStart | datetimeHourMinute"></span>
+                                    </div>
+                                    <div ng-show="a.StationaryAlarmDuration">
+                                        Total: <span ng-bind="a.StationaryAlarmDuration"></span>
+                                    </div>
+                                    <br />
+                                    <button ng-click="excuseAlert(a, 'STATIONARY')"
+                                            ng-show="(a.StationaryAlarmExcused  | datefilter) === defaultDate"
+                                            class="btn btn-info btn-small"
+                                            title="excuse">
+                                        X
+                                    </button>
+                                    <button ng-show="(a.StationaryAlarmExcused  | datefilter) !== defaultDate"
+                                            class="btn btn-primary btn-small"
+                                            title="excused"
+                                            disabled="disabled">
+                                        X
+                                    </button>
+                                    <button ng-click="clearAlert(a, 'STATIONARY')" class="btn btn-danger btn-small" title="clear">C</button>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="alertExcuseConfirmationModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Please provide comments</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <textarea rows="5" placeholder="type here" ng-model="excuseComments" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="submitExcuse()">Submit</button>
+                        <button type="button" class="btn btn-default" ng-click="cancelExcuse()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/alertsController.js"></script>
+    <script src="~/app/services/alertsService.js"></script>
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}
+

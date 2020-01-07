@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MTCMotoristSurveysModelStoreContainer" CdmEntityContainer="MTCMotoristSurveysEntities">
+    <EntitySetMapping Name="Answers">
+      <EntityTypeMapping TypeName="MTCMotoristSurveysModel.Answer">
+        <MappingFragment StoreEntitySet="Answers">
+          <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostedAnswers">
+      <EntityTypeMapping TypeName="MTCMotoristSurveysModel.PostedAnswer">
+        <MappingFragment StoreEntitySet="PostedAnswers">
+          <ScalarProperty Name="PostedSurveyID" ColumnName="PostedSurveyID" />
+          <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+          <ScalarProperty Name="Checked" ColumnName="Checked" />
+          <ScalarProperty Name="AnswerVal" ColumnName="AnswerVal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostedSurveys">
+      <EntityTypeMapping TypeName="MTCMotoristSurveysModel.PostedSurvey">
+        <MappingFragment StoreEntitySet="PostedSurveys">
+          <ScalarProperty Name="PostedSurveyID" ColumnName="PostedSurveyID" />
+          <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+          <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="MTCMotoristSurveysModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+          <ScalarProperty Name="QuestionTypeID" ColumnName="QuestionTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionTypes">
+      <EntityTypeMapping TypeName="MTCMotoristSurveysModel.QuestionType">
+        <MappingFragment StoreEntitySet="QuestionTypes">
+          <ScalarProperty Name="QuestionTypeID" ColumnName="QuestionTypeID" />
+          <ScalarProperty Name="QuestionType1" ColumnName="QuestionType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Surveys">
+      <EntityTypeMapping TypeName="MTCMotoristSurveysModel.Survey">
+        <MappingFragment StoreEntitySet="Surveys">
+          <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+          <ScalarProperty Name="SurveyName" ColumnName="SurveyName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+          <ScalarProperty Name="SurveyNotes" ColumnName="SurveyNotes" />
+          <ScalarProperty Name="SurveyBoilerplate" ColumnName="SurveyBoilerplate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SurveysQuestions">
+      <EntityTypeMapping TypeName="MTCMotoristSurveysModel.SurveysQuestion">
+        <MappingFragment StoreEntitySet="SurveysQuestions">
+          <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Backup Resources";
+}
+
+<br />
+
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+<div class="btn-group">
+    <a href="~/BackupTrucks/MtcInstructions" class="btn btn-default btn-lg">MTC Instructions</a>
+    <a href="~/BackupTrucks/BackupResources" class="btn btn-primary btn-lg">Back-up Resources</a>
+    <a href="~/BackupTrucks/RequestBackup" class="btn btn-default btn-lg">Request a Back-up</a>
+    <a href="~/BackupTrucks/ResponseBackup" class="btn btn-default btn-lg">Respond to Request</a>
+    <a href="~/BackupTrucks/Status" class="btn btn-default btn-lg">Back-up Request Status</a>
+</div>
+
+<br />
+<br />
+
+<div ng-app="mtcApp">
+    <div ng-controller="backupResourcesController" ng-cloak>
+        <h3 ng-bind="header"></h3>
+        <br />
+
+        <div role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#backupProviders" aria-controls="backupProviders" role="tab" data-toggle="tab">Back-up Providers <i ng-show="isBusyGettingBackupProviders" class="fa fa-spinner fa-spin"></i></a></li>
+                <li role="presentation"><a href="#backupCoverage" aria-controls="backupCoverage" role="tab" data-toggle="tab">Back-up Coverage <i ng-show="isBusyGettingBackupAssignments" class="fa fa-spinner fa-spin"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+                <div role="tabpanel" class="tab-pane fade in active" id="backupProviders">
+                    <br />
+
+                  
+
+                    <table class="table table-hover footable" ng-show="backupProviders.length>0">
+                        <thead>
+                            <tr>
+                                <th data-type="numeric" data-toggle="true" data-sort-initial="true">Back-up Beat</th>
+                                <th>Contractor</th>
+                                <th>Truck #</th>
+                                <th>Truck Make</th>
+                                <th>Truck Model</th>
+                                <th data-hide="all">Phone</th>
+                                <th data-hide="all">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="a in backupProviders">
+                                <td ng-bind="a.Beat.BeatNumber"></td>
+                                <td ng-bind="a.Contractor.ContractorCompanyName"></td>
+                                <td ng-bind="a.FleetVehicle.VehicleNumber"></td>
+                                <td ng-bind="a.FleetVehicle.VehicleMake"></td>
+                                <td ng-bind="a.FleetVehicle.VehicleModel"></td>
+                                <td ng-bind="a.Contractor.Phone"></td>
+                                <td ng-bind="a.Contractor.Email"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    @*<pre>{{backupProviders|json}}</pre>*@
+
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="backupCoverage">
+                    <br />
+                    <table class="table table-hover footable" ng-show="backupAssignments.length>0">
+                        <thead>
+                            <tr>
+                                <th data-type="numeric" data-toggle="true" data-sort-initial="true">Beat</th>
+                                <th>Primary Beat</th>
+                                <th>Secondary Beat</th>
+                                <th>Tertiary Beat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="a in backupAssignments">
+                                <td ng-bind="a.BeatNumber"></td>
+                                <td>
+                                    Beat {{a.PrimaryBackupBeatNumber}}-Back-up Truck
+                                </td>
+                                <td>
+                                    Beat {{a.SecondaryBackupBeatNumber}}-Back-up Truck
+                                </td>
+                                <td>
+                                    Beat {{a.TertiaryBackupBeatNumber}}-Back-up Truck
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/backupResourcesController.js"></script>
+    <script src="~/app/services/backupTruckService.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+    <script src="~/app/directives/showInputErrorDirective.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}
+

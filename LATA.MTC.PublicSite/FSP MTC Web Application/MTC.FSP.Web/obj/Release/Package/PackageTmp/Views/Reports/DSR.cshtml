@@ -1,0 +1,179 @@
+﻿@model IList<MTC.FSP.Web.ViewModels.DSR>
+
+@{
+    ViewBag.Title = "Daily Shift Report";
+}
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+<br />
+
+<p>
+    <a href="~/Reports/Index">Back to Reports</a>
+</p>
+
+<div class="col-lg-12">
+    <div class="col-xs-6">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="col-xs-6">
+        <br />
+        <div class="form-inline pull-right col-lg-5">
+            <input type="text" class="form-control" id="filter" placeholder="Filter Grid" />
+            <a href='@Url.Action("ExportToExcel", "Reports")'>
+                <img src='@Url.Content("~/Content/Images/icon_excel_2013.png")' width="30" />
+            </a>
+            @*@if (ViewBag.Contractor == false)
+            {
+                @Html.DropDownList("Contractors", null, htmlAttributes: new { @class = "form-control", id = "ContractorsDD" })
+            }
+            else
+            {
+                @Html.DropDownList("Drivers", null, htmlAttributes: new { @class = "form-control", id = "DriversDD" })
+            }*@
+        </div>
+    </div>
+    <br /><br />
+    <div class="row">
+        <br /><br /> <table class="footable table table-hover toggle-circle" data-filter=#filter data-filter-text-only="true" id="incidentsTable" data-page-size="20" data-limit-navigation="10">
+            <thead>
+                <tr>
+                    <th class="text-center" data-toggle="true" data-sort-initial="true">
+                        @Html.DisplayName("Date Entered")
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayName("Contract Company")
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayName("Driver")
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayName("Beat")
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayName("Callsign")
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayName("Truck Number")
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayName("Odometer Reading")
+                    </th>
+
+                    <th data-hide="all" class="text-center">@Html.DisplayName("CHP Incident Log #")</th>
+                    <th data-hide="all" class="text-center">@Html.DisplayName("CHP OT Log #")</th>
+                    <th data-hide="all" class="text-center">@Html.DisplayName("Beat")</th>
+                    <th data-hide="all" class="text-center">@Html.DisplayName("Incident Survery #")</th>
+                    <th data-hide="all" class="text-center"></th>
+                    <th data-hide="all" class="text-center">@Html.DisplayName("Pre Assist(s)") </th>
+                    <th data-hide="all" class="text-center"></th>
+                    <th data-hide="all" class="text-center">@Html.DisplayName("Assist(s)") </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model)
+                {
+                    <tr>
+                        <td class="text-center">@item.DatePosted</td>
+                        <td class="text-center">@item.ContractCompany</td>
+                        <td class="text-center">@item.DriverFirstName @item.DriverLastName</td>
+                        <td class="text-center">@item.Beat</td>
+                        <td class="text-center">@item.Callsign</td>
+                        <td class="text-center">@item.fromTruck</td>
+                        <td class="text-center">@item.StartODO @Html.Raw(" - ") @item.EndODO</td>
+                        <td class="text-right">@item.CHPLogNumber</td>
+                        <td class="text-right">@item.OTAuthorizationNumber</td>
+                        <td class="text-right">@item.DropSite</td>
+                        <td class="text-right">@item.IncidentSurveyNumber</td>
+                        <td class="text-right">                           --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                        </td>
+                        <td class="text-left">
+                            <table class="footable toggle-circle">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" data-toggle="true">@Html.DisplayName("CHP Incident Type")</th>
+                                        <th class="text-center">@Html.DisplayName("CHP Log #")</th>
+                                        <th class="text-center">@Html.DisplayName("Direction")</th>
+                                        <th class="text-center">@Html.DisplayName("Beat")</th>
+                                        <th class="text-center">@Html.DisplayName("Highway")</th>
+                                        <th class="text-center">@Html.DisplayName("FSP Location")</th>
+                                        <th class="text-center">@Html.DisplayName("Initial Dispatch Location")</th>
+                                        <th class="text-center">@Html.DisplayName("Position")</th>
+                                        <th class="text-center">@Html.DisplayName("Incident Survey ID #")</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var preass in item.PreAssists)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@preass.CHPIncidentType</td>
+                                            <td class="text-center">@preass.CHPLogNumber</td>
+                                            <td class="text-center">@preass.Direction</td>
+                                            <td class="text-center">@item.Beat</td>
+                                            <td class="text-center">@preass.Freeway</td>
+                                            <td class="text-center">@preass.FSPLocation</td>
+                                            <td class="text-center">@preass.DispatchLocation</td>
+                                            <td class="text-center">@preass.Position</td>
+                                            <td class="text-center" @preass.IncidentSurveyNumber></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                        <td class="text-right">                            --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                        </td>
+                        <td>
+                            <table class="footable toggle-circle">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">@Html.DisplayName("Traffic Collision")</th>
+                                        <th class="text-center">@Html.DisplayName("Breakdown")</th>
+                                        <th class="text-center">@Html.DisplayName("Debris Only")</th>
+                                        <th class="text-center">@Html.DisplayName("Other")</th>
+                                        <th class="text-center">@Html.DisplayName("Actions Taken")</th>
+                                        <th class="text-center">@Html.DisplayName("Transport")</th>
+                                        <th class="text-center">@Html.DisplayName("Plate State")</th>
+                                        <th class="text-center">@Html.DisplayName("Plate #")</th>
+                                        <th class="text-center">@Html.DisplayName("Vehicle Type")</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var ass in item.Assists)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@ass.TrafficCollision</td>
+                                            <td class="text-center">@ass.Breakdown</td>
+                                            <td class="text-center">@ass.DebrisOnly</td>
+                                            <td class="text-center">@ass.Other</td>
+                                            <td class="text-center">@ass.TrafficCollision</td>
+                                            <td class="text-center">@ass.TransportType</td>
+                                            <td class="text-center">@ass.State</td>
+                                            <td class="text-center">@ass.LicensePlateNumber</td>
+                                            <td class="text-center">@ass.VehicleType</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="12" class="text-center">
+                        <div class="paging">
+                            <ul class="pagination pagination-sm"></ul>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/footable.all.min.js"></script>
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

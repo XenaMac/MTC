@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Maintenance";
+}
+
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+<link href="~/Content/footable.core.min.css" rel="stylesheet" />
+
+
+<br />
+
+<div ng-app="mtcApp">
+    <div ng-controller="troubleTicketMaintenanceController" ng-cloak>
+
+        <div class="btn-group">
+            <a href="~/TroubleTickets/InVehicleContractorPortalInVehicleEquipmentGeneral" class="btn btn-default btn-lg">In-Vehicle Equipment General</a>
+            <a href="~/TroubleTickets/InVehicleContractorPortalInVehicleEqupmentLATATrax" class="btn btn-primary btn-lg">In-Vehicle Equipment LATATrax</a>
+            <a class="btn btn-default btn-lg" href="~/TroubleTickets/AtVehicle">At Vehicle</a>
+        </div>
+
+        <h2>Maintenance <i class="fa fa-spinner fa-spin" ng-show="isBusyGettingTroubleTickets"></i></h2>
+
+        <br />
+
+        <table class="table table-hover footable">
+            <thead>
+                <tr>
+                    <th data-toggle="true" data-sort-initial="true">Ticket ID</th>
+                    <th>Truck #</th>
+                    <th>Tow Contractor</th>
+                    <th>OEM Serial #</th>
+
+
+                    <th data-hide="phone">Trouble Shooting</th>
+                    <th data-hide="phone,tablet">Fixed Problem</th>
+                    <th data-hide="phone,tablet">Removed Asset</th>
+                    <th data-hide="phone,tablet">LATA RMA #</th>
+
+                    <th data-hide="phone,tablet">Shipped Asset</th>
+                    <th data-hide="phone,tablet">Received Asset</th>
+                    <th data-hide="phone,tablet">Installed Asset</th>
+
+                    <th data-hide="phone,tablet">Replacement OEM Serial #</th>
+                    <th data-hide="phone,tablet">IP Address</th>
+                    <th data-hide="phone,tablet">WiFi SSID</th>
+
+                    <th data-hide="all">Maintenance Notes</th>
+
+                    <th data-sort-ignore="true"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in troubleTickets">
+
+                    <td ng-bind="t.Id"></td>
+                    <td ng-bind="t.TruckNumber"></td>
+                    <td ng-bind="t.TowContractCompanyName"></td>
+                    <td ng-bind="t.ReliaGateOEMSerialNumber"></td>
+
+                    <td ng-bind="t.TroubleShootingDateNice"></td>
+                    <td ng-bind="t.FixedDateNice"></td>
+                    <td ng-bind="t.RemovedAssetDateNice"></td>
+                    <td ng-bind="t.LATARMANumber"></td>
+
+                    <td ng-bind="t.ShippedAssetDateNice"></td>
+                    <td ng-bind="t.ReceivedAssetDateNice"></td>
+                    <td ng-bind="t.InstalledAssetDateNice"></td>
+
+                    <td ng-bind="t.ReplacementOEMSerialNumber"></td>
+                    <td ng-bind="t.ReplacementIPAddress"></td>
+                    <td ng-bind="t.ReplacementWiFiSSID"></td>
+
+                    <td ng-bind="t.MaintenanceNotes"></td>
+
+                    <td>
+                        <div class="pull-right">
+                            <button class="btn btn-primary btn-sm" ng-click="showInputForm(t)" ng-show="canEdit">Action</button>
+                            <button class="btn btn-danger btn-sm" ng-click="resolveTroubleTicket(t)" ng-show="canEdit">Close</button>
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div id="maintenanceInputFormModal" class="modal fade" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">In-Vehicle Equipment Trouble Ticket</h4>
+                    </div>
+                    <form role="form" name="maintenanceInputForm">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="TroubleShootingDateNice">Trouble Shooting Date</label>
+                                <input name="TroubleShootingDateNice" type="text" ng-model="selectedTroubleTicket.TroubleShootingDateNice" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="FixedDateNice">Fixed Date</label>
+                                <input name="FixedDateNice" type="text" ng-model="selectedTroubleTicket.FixedDateNice" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="RemovedAssetDateNice">Removed Asset Date</label>
+                                <input name="RemovedAssetDateNice" type="text" ng-model="selectedTroubleTicket.RemovedAssetDateNice" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ShippedAssetDateNice">Shipped Asset Date</label>
+                                <input name="ShippedAssetDateNice" type="text" ng-model="selectedTroubleTicket.ShippedAssetDateNice" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ReceivedAssetDateNice">Received Asset Date</label>
+                                <input name="ReceivedAssetDateNice" type="text" ng-model="selectedTroubleTicket.ReceivedAssetDateNice" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="InstalledAssetDateNice">Installed Asset Date</label>
+                                <input name="InstalledAssetDateNice" type="text" ng-model="selectedTroubleTicket.InstalledAssetDateNice" class="form-control" mtc-date-picker />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="LATARMANumber">LATA RMA #</label>
+                                <input name="LATARMANumber" type="text" ng-model="selectedTroubleTicket.LATARMANumber" class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notes">Maintenance</label>
+                                <textarea name="MaintenanceNotes" ng-model="selectedTroubleTicket.MaintenanceNotes" class="form-control" rows="5"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-primary" ng-disabled="maintenanceInputForm.$invalid || isBusySaving" ng-click="saveForm()"><i class="fa fa-save" ng-hide="isBusySaving"></i><i class="fa fa-spinner fa-spin" ng-show="isBusySaving"></i> Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/footable.all.min.js"></script>
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/troubleTicketMaintenanceController.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+    <script src="~/app/services/troubleTicketService.js"></script>
+    <script src="~/app/directives/showInputErrorDirective.js"></script>
+    <script src="~/app/directives/mtcDatePickerDirective.js"></script>
+
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}
+
+
+
+

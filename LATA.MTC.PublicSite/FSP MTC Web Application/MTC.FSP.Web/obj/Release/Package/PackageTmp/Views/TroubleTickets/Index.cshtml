@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Trouble Ticket Portals";
+}
+
+<div ng-app="mtcApp">
+    <div ng-controller="troubleTicketPortalController" ng-cloak>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Trouble Ticket Portals</h2>
+                <br />
+                <div class="btn-group">
+                    <a href="~/TroubleTickets/AdminPortal" class="btn btn-default btn-lg" ng-disabled="!isAdmin">Administrators</a>
+                    <a href="~/TroubleTickets/TowContractorPortal" class="btn btn-default btn-lg" ng-disabled="!isContractor">Tow Contractors</a>
+                    <a href="~/TroubleTickets/InVehicleContractorPortal" class="btn btn-default btn-lg" ng-disabled="!isInVehicleContractor">In-Vehicle Contractors</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/troubleTicketPortalController.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+}
+

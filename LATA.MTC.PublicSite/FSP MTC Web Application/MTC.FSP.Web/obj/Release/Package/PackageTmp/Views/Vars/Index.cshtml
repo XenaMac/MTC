@@ -1,0 +1,107 @@
+﻿@model IEnumerable<MTC.FSP.Web.Models.Var>
+
+@{
+    ViewBag.Title = "Leeways";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Leeways</h2>
+        @Html.ActionLink("Back to Tables", "Index", "Tables")
+    </div>
+    <div class="col-sm-6">
+        <br />
+        <div class="pull-right">
+            <input type="text" id="search" class="form-control" placeholder="search" />
+        </div>
+    </div>
+</div>
+<br />
+<table class="table table-hover footable" data-page-size="20" data-limit-navigation="10" data-filter="#search">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Friendly Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Value
+            </th>
+            <th>
+                Units
+            </th>
+            <th>
+                Is MTC Alarm?
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FriendlyVarName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Units)
+                </td>
+                <td>
+                    @if (item.IsMTCAlarm != null)
+                    {
+                        if (item.IsMTCAlarm == true)
+                        {
+                            <span>Yes</span>
+                        }
+                        else
+                        {
+                            <span>No</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>Not set</span>
+                    }                    
+                </td>
+
+                <td>
+                    <div class="pull-right">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.VarID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.VarID })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12" class="text-center">
+                <div class="paging">
+                    <ul class="pagination pagination-sm"></ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+@section scripts{
+    <script src="~/Scripts/footable.all.min.js"></script>
+    <script>
+        $(function () {
+            $('.footable').footable();
+        });
+    </script>
+}

@@ -1,0 +1,232 @@
+﻿@model MTC.FSP.Web.Models.Appeal
+
+@{
+    ViewBag.Title = "Create Appeal";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Create", "Appeals", FormMethod.Post, new { id = "CreateAppealForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("DriverId", "00000000-0000-0000-0000-000000000000 ")
+    @Html.Hidden("Beatid", "00000000-0000-0000-0000-000000000000")
+    @Html.Hidden("ViolationId")
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contractor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBox("ContratorName", (string)@ViewBag.ContractorName, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ContactName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContactName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.ContactPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContactPhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AppealType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <div class="btn-group" data-toggle="buttons" id="typeChooser">
+                    <label class="btn btn-default">
+                        @Html.RadioButtonFor(model => model.AppealType, "Violation", new { id = "Type_V" }) Violation
+                    </label>
+                    <label class="btn btn-default">
+                        @Html.RadioButtonFor(model => model.AppealType, "Overtime", new { id = "Type_O" }) Overtime
+                    </label>
+                    <label class="btn btn-default">
+                        @Html.RadioButtonFor(model => model.AppealType, "Invoice", new { id = "Type_I" }) Invoice
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        @*Violation Div*@
+        <div id="violationDiv">
+            <div class="form-group">
+                @Html.Label("Select Violation", new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.DropDownList("Violations", null, "-- Select Violation --", htmlAttributes: new { @class = "form-control", id = "ViolationDD" })
+                    <div id="ViolationInfoDiv" style="background-color: #ececec; padding: 3px;"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.V_ReasonForAppeal, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.TextAreaFor(model => model.V_ReasonForAppeal, new { @class = "form-control", @rows = "6", @cols = "10", @style = "resize:none" })
+                    @Html.ValidationMessageFor(model => model.V_ReasonForAppeal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.V_AppropriateCharge, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        @Html.EditorFor(model => model.V_AppropriateCharge, new { htmlAttributes = new { @class = "form-control", @placeholder = "0.00", onkeypress = "return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46" } })
+                        @Html.ValidationMessageFor(model => model.V_AppropriateCharge, "", new { @class = "text-danger" })
+                        <label id="error"></label>  
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.v, htmlAttributes: new { @class = "control-label col-md-2 col-md-offset-1" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.V_AppropriateCharge, new { htmlAttributes = new { @class = "form-control", @type = "number", @placeholder = "0.00", onkeypress = "return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46" } })
+                        @Html.ValidationMessageFor(model => model.V_AppropriateCharge, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+        </div>
+
+        @*Overtime*@
+        <div id="overtimeDiv">
+            <div class="form-group">
+                @Html.LabelFor(model => model.O_Datetime, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.O_Datetime, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Driver", new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.DropDownList("Drivers", null, "-- Select Driver --", htmlAttributes: new { @class = "form-control", id = "DriverDD" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BeatData, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.DropDownList("Beat", null, "-- Select Beat --", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.O_CallSign, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    <select id="CallSign" class="form-control" disabled="disabled"></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.O_NumOfBlocks, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.O_NumOfBlocks, ViewBag.Blocks as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.O_BlocksInitGranted, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.O_BlocksInitGranted, ViewBag.BlocksGranted as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.O_CHPOTNumber, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.O_CHPOTNumber, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.O_Detail, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.TextAreaFor(model => model.O_Detail, new { @class = "form-control", @rows = "6", @cols = "10", @style = "resize:none" })
+                </div>
+            </div>
+
+        </div>
+
+        @*Invoice*@
+        <div id="invoiceDiv">
+            <div class="form-group">
+                @Html.LabelFor(model => model.I_EventDate, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.I_EventDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.BeatData, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.DropDownList("Beat", null, "-- Select Beat --", htmlAttributes: new { @class = "form-control", id = "I_Beat" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Driver", new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.DropDownList("Drivers", null, "-- Select Driver --", htmlAttributes: new { @class = "form-control", id = "I_DriverDD" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.I_InvoiceReason, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.TextAreaFor(model => model.I_InvoiceReason, new { @class = "form-control", @rows = "3", @cols = "10", @style = "resize:none" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.I_AppealReason, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    @Html.TextAreaFor(model => model.I_AppealReason, new { @class = "form-control", @rows = "3", @cols = "10", @style = "resize:none" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.I_InvoiceDeduction, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        @Html.EditorFor(model => model.I_InvoiceDeduction, new { htmlAttributes = new { @class = "form-control", @type = "number", @placeholder = "0.00", onkeypress = "return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46" } })
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.I_AppealDeduction, htmlAttributes: new { @class = "control-label col-md-3 col-md-offset-1" })
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        @Html.EditorFor(model => model.I_AppealDeduction, new { htmlAttributes = new { @class = "form-control", @type = "number", @placeholder = "0.00", onkeypress = "return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46" } })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="button" value="Create" id="btnCreateAppeal" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Contactor Appeals", "ContractorAppeals")
+</div>
+@section scripts{
+    <script src="~/Scripts/CreateAppeal.js"></script>
+}

@@ -1,0 +1,161 @@
+﻿@model MTC.FSP.Web.Models.DriverInteraction
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Driver Contact</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.InteractionID)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contractor</label>
+            <div class="col-md-10">
+                @Html.DropDownList("ContractorID", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.ContractorID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Driver</label>
+            <div class="col-md-10">
+                @Html.DropDownList("DriverID", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.DriverID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contact Type</label>
+            <div class="col-md-10">
+                @Html.DropDownList("InteractionTypeID", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.InteractionTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contact Date</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InteractionDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.InteractionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contact Location</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InteractionArea, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.InteractionArea, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Vehicle Number</label>
+            <div class="col-md-10">
+                @Html.DropDownList("VehicleNumber", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.VehicleNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Beat Number</label>
+            <div class="col-md-10">
+                @Html.DropDownList("BeatNumber", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BeatNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Contact Description</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.InteractionDescription, new { @class = "form-control", rows = "5", required = "required" })
+                @Html.ValidationMessageFor(model => model.InteractionDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.InspectionPassFail)<span>Inspection Pass/Fail</span>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.AccidentPreventable)<span>Accident preventable</span>
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(model => model.FollowupRequired)<span>Follow-up required</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Follow-up Description</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.FollowupDescription, new { @class = "form-control", rows = "5" })
+                @Html.ValidationMessageFor(model => model.FollowupDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Follow-up Date</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FollowupDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.FollowupDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Follow-up Completion Date</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FollowupCompletionDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.FollowupCompletionDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Follow-up Comments</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.FollowupComments, new { @class = "form-control", rows = "5" })
+                @Html.ValidationMessageFor(model => model.FollowupComments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Close Date</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CloseDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.CloseDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Badge ID</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BadgeID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BadgeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a href="~/DriverInteractions/Index" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </div>
+}

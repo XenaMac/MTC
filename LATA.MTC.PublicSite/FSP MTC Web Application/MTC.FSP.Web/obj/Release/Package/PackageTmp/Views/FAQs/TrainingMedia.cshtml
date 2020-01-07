@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "Training Media";
+}
+<link href="~/Content/themes/base/all.css" rel="stylesheet" />
+
+<h2 class="col-lg-offset-2">@ViewBag.Title</h2>
+
+<br />
+
+<div ng-app="mtcApp">
+    <div ng-controller="trainingMediaController" ng-cloak>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-2" ng-show="currentUserRoleName">
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-class="{active:currentUserRoleName !== 'TowContractor'}"><a href="#Admin" aria-controls="Admin" role="tab" data-toggle="tab" ng-hide="currentUserRoleName === 'TowContractor'">Admin/FSP Partners</a></li>
+                        <li role="presentation" ng-class="{currentUserRoleName === 'TowContractor'}"><a href="#Contractors" aria-controls="Contractors" role="tab" data-toggle="tab">Tow Contractors/Drivers</a></li>
+                        <li role="presentation" ng-class="{currentUserRoleName !== 'Guest'}"><a href="#DropSites" aria-controls="DropSites" role="tab" data-toggle="tab">DropSites</a></li>
+                    </ul>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    @*Everyone has access except TowContractor*@
+                    <div role="tabpanel" class="tab-pane fade in active" ng-class="{active:currentUserRoleName !== 'TowContractor'}" ng id="Admin" ng-disabled="currentUserRoleName!='TowContractor'">
+                        <br />
+                        <div class="list-group">
+                            <a href="~/Content/LATATrax User Guide.pdf" class="list-group-item active">
+                                <h4 class="list-group-item-heading">User Guide</h4>
+                                <p class="list-group-item-text">The Main UserGuide for this Application/System</p>
+                            </a>
+                        </div>
+                        <br />
+                    </div>
+
+                    @*Contractors only have access to this tab and only THEIR information*@
+                    <div role="tabpanel" class="tab-pane fade in" ng-class="{currentUserRoleName === 'TowContractor'}" id="Contractors">
+                        <br /><br />
+                        <div class="col-lg-4">
+                            <h4 class="list-group-item-heading">Video # 1</h4>
+                            <p class="list-group-item-text">The Reliagate Device</p>
+                            <video width="320" height="240" controls>
+                                <source src="~/Content/videos/IMG_3725.MOV" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col-lg-4 col-lg-offset-1">
+                            <h4 class="list-group-item-heading">Video # 2</h4>
+                            <p class="list-group-item-text">Driver Screen Login</p>
+                            <video width="320" height="240" controls>
+                                <source src="~/Content/videos/DSL1.MOV" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <br /><br /><br /><br />
+                        <div class="col-lg-4">
+                            <h4 class="list-group-item-heading">Video # 1</h4>
+                            <p class="list-group-item-text">Pre-Assist Report</p>
+                            <video width="320" height="240" controls>
+                                <source src="~/Content/videos/PreAssist_1.MOV" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col-lg-4 col-lg-offset-1">
+                            <h4 class="list-group-item-heading">Video # 2</h4>
+                            <p class="list-group-item-text">Incident Report</p>
+                            <video width="320" height="240" controls>
+                                <source src="~/Content/videos/closing.MOV" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <br /><br /><br /><br />
+                        <div class="col-lg-4">
+                            <h4 class="list-group-item-heading">Video # 1</h4>
+                            <p class="list-group-item-text">Oddities</p>
+                            <video width="320" height="240" controls>
+                                <source src="~/Content/videos/OtherOddities.MOV" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    @*Everyone but GUEST has access tothe drop sites tab*@
+                    <div role="tabpanel" class="tab-pane fade in" ng-class="{currentUserRoleName !== 'Guest'}" id="DropSites">
+                        <br />
+                        
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Drop Sites Descriptions  
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="../Content/DropSitePDFs/Beat 1 Dropsites.pdf">Dropsite(s) 1</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 2 Dropsites.pdf">Dropsite(s) 2</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 3 Dropsites.pdf">Dropsite(s) 3</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 4 Dropsites.pdf">Dropsite(s) 4</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 5 Dropsites.pdf">Dropsite(s) 5</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 6 and 7 Dropsites.pdf">Dropsite(s) 6 & 7</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 8 Dropsites.pdf">Dropsite(s) 8</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 9 Dropsites.pdf">Dropsite(s) 9</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 10 Dropsites.pdf">Dropsite(s) 10</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 11 Dropsites.pdf">Dropsite(s) 11</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 12 Dropsites.pdf">Dropsite(s) 12</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 13 Dropsites.pdf">Dropsite(s) 13</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 14 Dropsites.pdf">Dropsite(s) 14</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 15 Dropsites.pdf">Dropsite(s) 15</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 16 Dropsites.pdf">Dropsite(s) 16</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 17 Dropsites.pdf">Dropsite(s) 17</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 18 Dropsites.pdf">Dropsite(s) 18</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 19 Dropsites.pdf">Dropsite(s) 19</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 20 Dropsites.pdf">Dropsite(s) 20</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 21 Dropsites.pdf">Dropsite(s) 21</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 22 Dropsites.pdf">Dropsite(s) 22</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 23 Dropsites.pdf">Dropsite(s) 23</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 24 Dropsites.pdf">Dropsite(s) 24</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 25 Dropsites.pdf">Dropsite(s) 25</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 26 Dropsites.pdf">Dropsite(s) 26</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 27 Dropsites.pdf">Dropsite(s) 27</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 28 Dropsites.pdf">Dropsite(s) 28</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 29 Dropsites.pdf">Dropsite(s) 29</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 32 Dropsites.pdf">Dropsite(s) 32</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 33 Dropsites.pdf">Dropsite(s) 33</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 34 Dropsites.pdf">Dropsite(s) 34</a></li>
+                                <li><a href="../Content/DropSitePDFs/Beat 35 Dropsites.pdf">Dropsite(s) 35</a></li>
+                            </ul>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+
+    <script src="~/app/controllers/trainingMediaController.js"></script>
+    <script src="~/app/services/generalService.js"></script>
+
+}

@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Live Incidents";
+}
+<br />
+
+<div ng-app="mtcApp" ng-cloak>
+    <div ng-controller="liveIncidentsController" ng-cloak>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>
+                    {{header}}
+                    <small>
+                        <i ng-show="isBusy" class="fa fa-refresh fa-spin"></i> Loading...
+                    </small>
+                </h2>
+
+            </div>
+            <div class="col-md-6">
+                <br />
+                <a class="btn btn-info pull-right" ng-click="showColumnConfig()">Column Configuration</a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <legend>Dispatched but Un-Acknowledged (<span>{{(incidents | filter:{isAcked:false}| filter:{isIncidentComplete:'No'}).length}}</span>)</legend>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in columns | filter: {visible:true}">
+                                <a href="" ng-click="reverse=!reverse;order(column.name,reverse)">{{column.display}}</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="incident in incidents | filter:{isAcked:false} | filter:{isIncidentComplete:'No'}">
+                            <td ng-repeat="column in columns | filter: {visible:true}">{{incident[columns[$index].name]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <br />
+            <div class="col-md-12">
+                <legend>Active (<span>{{(incidents | filter:{isAcked:true}| filter:{isIncidentComplete:'No'}).length}}</span>)</legend>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in columns | filter: {visible:true}">
+                                <a href="" ng-click="reverse=!reverse;order(column.name,reverse)">{{column.display}}</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="incident in incidents | filter:{isAcked:true} | filter:{isIncidentComplete:'No'}">
+                            <td ng-repeat="column in columns | filter: {visible:true}">{{incident[columns[$index].name]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <div class="col-md-12">
+                <legend>Today's Completed (<span>{{(incidents | filter:{isIncidentComplete:'Yes'}).length}}</span>)</legend>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="column in columns | filter: {visible:true} | orderBy:predicate:reverse">
+                                <a href="" ng-click="reverse=!reverse;order(column.name,reverse)">{{column.display}}</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="incident in incidents | filter:{isIncidentComplete:'Yes'}">
+                            <td ng-repeat="column in columns | filter: {visible:true}">{{incident[columns[$index].name]}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        @Html.Partial("_ColumnConfig")
+    </div>
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/appAngular")
+    <script src="~/app/controllers/liveIncidentsController.js"></script>
+    <script src="~/app/services/liveIncidentsService.js"></script>
+
+}

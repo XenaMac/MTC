@@ -1,0 +1,162 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+#loginForm {
+    padding: 40px;
+    margin: 0;
+    border: 1px solid #a6a6a6;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        width: 1370px;
+    }
+}
+
+
+.splash1 {
+    background-image: url('Images/splash_1280.png');
+    height: 300px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    color: white;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 1400px) {
+    .splash1 {
+        background-image: url('Images/splash_2000.png');
+    }
+}
+
+.customCheckBox {
+    padding-bottom: 10px;
+}
+
+.customControlGroup {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.headerH4 {
+    font-size: 18px;
+}
+
+.ui-autocomplete-loading {
+    background: white url('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/images/ui-anim_basic_16x16.gif') right center no-repeat;
+}
+
+.ui-autocomplete {
+    z-index: 2147483647;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+.pageSize {
+    float: left;
+}
+
+.dateInputControl {
+    width: 100px!important;
+}
+
+/*bootstrap menu customization*/
+
+
+/* Adjust Menu (red) text color, (Garamond) font-family, (1.5em) font-size  */
+.navbar .nav > li > a, .navbar .nav > li > a:first-letter,
+.navbar .nav > li.current-menu-item > a,
+.navbar .nav > li.current-menu-ancestor > a {
+    /*display:        inline;*/
+    color: white;
+    /*font-family:    Garamond;*/
+    font-size: 16px;
+    /*padding:        5px 20px;*/
+}
+
+/* Adjust Menu colors - Normal */
+/*.navbar .nav > li > a, .navbar .nav > li > a:first-letter {
+color:          lightgray;
+text-shadow:    none;
+}*/
+
+/* Adjust Menu colors - Hover */
+/*.navbar .nav > li > a:hover, .navbar .nav > li > a:hover:first-letter { 
+color:          white;                      
+text-shadow:    none;
+}*/
+
+/* Adjust Menu colors - Active */
+/*.navbar .nav > li > a:active, .navbar .nav > li > a:active:first-letter,
+.navbar .nav > li.current-menu-item > a, 
+.navbar .nav > li.current-menu-ancestor > a,
+.navbar .nav > li.current-menu-item > a:first-letter, 
+.navbar .nav > li.current-menu-ancestor > a:first-letter {
+color:          blue;
+text-shadow:    none;
+}*/
+
+/* Adjust dropdown Menu items (blue) text color & (yellow) shading */
+/*.dropdown-menu > li > a {
+color:          blue;
+background:     yellow;
+}*/
+
+/* Remove the Hover/Focus Colors  */
+/*.navbar .nav > li.current-menu-item > a, .navbar .nav > li.current-menu-ancestor > a, 
+.navbar .nav > li > a:hover, .navbar .nav > li > a:focus {
+color:          #5A5A5A;
+}*/

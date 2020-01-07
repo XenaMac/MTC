@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNet.Identity
+@using MTC.FSP.Web.Common
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/dojo/dijit/themes/claro/claro.css" />
+    <link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css" />
+    <link rel="stylesheet" href="~/Content/myMap.css" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        var dojoConfig = {
+            parseOnLoad: false,
+            async: true,
+            //paths: { Custom: location.pathname.replace(/\/[^/]+$/, "") + "/../MyScripts/Map/Custom"}
+            paths: { Custom: location.href.replace(/Map\/Index/, "") + "/MyScripts/Map/Custom" }
+        };
+    </script>
+    <script src="http://js.arcgis.com/3.12/"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/MyScripts/Map/myMap.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="claro">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="~/"><img src="~/Content/Images/mtcLogo.png" class="navbar-brand" /></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @Html.HtmlMenu()
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <div class="websiteUrl hidden">
+            @Request.Url.GetLeftPart(System.UriPartial.Authority)@Request.ApplicationPath
+        </div>
+    </div>
+
+</body>
+</html>

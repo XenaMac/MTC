@@ -1,0 +1,79 @@
+﻿@using MTC.FSP.Web.Models
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<div class="row">
+    <div class="col-md-12 splash1 center-block">
+        <img src="~/Content/Images/mtcLataTraxLogoLarge.png" class="center-block" style="padding-top:50px" />
+        <div class="col-md-9">
+            <div style="color: #000000; padding-top:50px;">
+                <h2>Welcome to Bay Area LATATrax</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="row">
+                            <div class="col-md-12">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "email" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />                   
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="~/Account/Register" class="btn btn-info btn-block">New Account</a>
+                            <br />
+                        </div>
+
+                        <div class="col-md-6">
+                            <a href="~/Account/ForgotPassword" class="btn btn-danger btn-block">Password Reset</a>
+                        </div>
+                    </div>
+
+
+                }
+            </section>
+        </div>
+        <br />
+        <br />
+        <div class="col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-5 col-lg-2">
+            <div style="padding-top:30px;text-align:center">Contact MTC SAFE or Los Alamos Technical Associates (LATA) using the links below to request a User Name and Password</div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+@Html.Partial("_footer")
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
