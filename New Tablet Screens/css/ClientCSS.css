@@ -162,6 +162,11 @@ input[type='radio'] {
     text-align: center;
 }
 
+.assistRequestWAZE {
+    background-color: #93c4d3;
+    text-align: center;
+}
+
 .assistHead {
     font-family: Arial,sans-serif;
     font-size: 64px;
@@ -176,7 +181,7 @@ input[type='radio'] {
     font-family: Arial,sans-serif;
     font-size: 36px;
     font-weight: bold;
-    margin: 20px;
+    margin: 18px;
     text-align: center;
     color: #ffffff;
 }
@@ -184,6 +189,22 @@ input[type='radio'] {
 .assistOK {
     height: 70px;
     width: 300px;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #600000;
+    display: inline;
+    border-radius: 10px;
+    text-shadow: 1px 1px 1px black;
+    color: #700000;
+    border-top: 1px #380000;
+    text-align: center;
+}
+
+.assistDRP {
+    height: 70px;
+    width: 350px;
     font-size: 32px;
     font-weight: bold;
     padding: 10px;

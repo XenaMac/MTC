@@ -653,7 +653,7 @@ namespace FPSService
                     i.Beat = t.currentIncident.beat;
                     i.CallSign = t.currentIncident.callSign;
                     i.TruckNumber = t.TruckNumber;
-                    i.Driver = t.currentIncident.driverLastName + ", " + t.currentIncident.driverLastName;
+                    i.Driver = t.currentIncident.driverLastName + ", " + t.currentIncident.driverFirstName;
                     i.DispatchSummaryMessage = t.currentIncident.comment;
                     i.ContractorName = t.Extended.ContractorName;
                     i.Time = (DateTime)t.currentIncident.incidentDatePosted;

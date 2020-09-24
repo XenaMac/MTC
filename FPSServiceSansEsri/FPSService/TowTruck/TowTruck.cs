@@ -1069,6 +1069,7 @@ namespace FPSService.TowTruck
         public void addIncident(Incident i) {
             try {
                 if (this.currentIncident == null){
+
                     if (i.incidentID == null || i.incidentID == Guid.Empty)
                     {
                         i.incidentID = Guid.NewGuid();

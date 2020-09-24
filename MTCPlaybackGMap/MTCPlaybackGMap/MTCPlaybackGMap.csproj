@@ -121,10 +121,10 @@
     <Reference Include="ESRI.ArcGIS.Client, Version=2.4.0.851, Culture=neutral, PublicKeyToken=29c6dd6e8553d944, processorArchitecture=MSIL" />
     <Reference Include="Esri.ArcGISRuntime, Version=10.2.5.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL" />
     <Reference Include="GMap.NET.Core">
-      <HintPath>..\..\GMap.NET.Core.dll</HintPath>
+      <HintPath>..\..\..\OCTA-XT\FSPPlayback\FSPPlayback\GMAP\GMap.NET.Core.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.WindowsForms">
-      <HintPath>..\..\GMap.NET.WindowsForms.dll</HintPath>
+      <HintPath>..\..\..\OCTA-XT\FSPPlayback\FSPPlayback\GMAP\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

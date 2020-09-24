@@ -1,0 +1,677 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>STATUS</title>
+    <!--<link rel="stylesheet" href="http://js.arcgis.com/3.18/esri/css/esri.css">-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- for new google map file (statusMapGoogle.js)-->
+	<script src="js/gmaps.js"></script>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/ClientCSS.css" />
+    <link rel="stylesheet" href="css/jsKeyboard.css" type="text/css" media="screen" />
+    <!--<script src="http://js.arcgis.com/3.18/"></script>-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmqJd9aVxnOpEq-g1KHlIAsvMj1IhMVm8"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.map.full.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/GlobalData.js" type="text/javascript"></script>
+    <!--<script src="js/statusMap.js" type="text/javascript"></script>-->
+	<script src="js/statusMapGoogle.js" type="text/javascript"></script>
+    <!--<script src="js/statusCode.js" type="text/javascript"></script>-->
+    <script type="text/javascript" src="js/jsKeyboard.js"></script>
+
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        #mapDiv {
+            /*background: #10096a;*/
+            display: block;
+            position: relative;
+            height: 900px;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin-top: 0px; /* adjust top margin to your header height */
+            height: 95vh;
+            z-index: 0;
+        }
+
+        .loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('images/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid row">
+
+        <div class="loader"></div>
+
+        <div id="status" class="content" style="background: #000;">
+            <span id="holder" class="logonStatusHolder">
+                <!--<span id="status" class="logonStatus">Status:&nbsp</span>-->
+                <span id="statusName" class="logonStatus">ON INCIDENT</span>
+            </span>
+            <span id="driverName" class="truckStatus">&nbspMcNutty, Scratty&nbsp</span>
+            <span id="truck" class="truckStatus">&nbspTruck:&nbsp</span>
+            <span id="truckNumber" class="truckStatus">28-19</span>
+            <span id="beat" class="truckStatus">&nbspBeat:&nbsp</span>
+            <span id="beatNumber" class="truckStatus">01</span>
+            <span id="callSign" class="truckStatus">&nbsp Sign:&nbsp</span>
+            <span id="callSignNumber" class="truckStatus">Anaconda</span>
+        </div>
+
+        <div id="buttonBar" class="buttonBar">
+            <input type="button" value="LOG&#10;OFF" class="lrgButton" name="btnLogOff" id="btnLogOff" />
+            <!--<input type="image" name="btnLogOff" id="btnLogOff" src="images/MTC - Tablet Buttons_v3_LOG_OFF.png" class="imgButton"/>-->
+            <input type="button" value="ROLL&#10;OUT" class="lrgButton" name="btnRollOut" id="btnRollOut" />
+            <input type="button" value="ROLL&#10;IN" class="lrgButton" name="btnRollIn" id="btnRollIn" />
+            <input type="button" value="ON&#10;PATROL" class="lrgButton" name="btnOnPatrol" id="btnOnPatrol" />
+            <input type="button" value="ON&#10;BREAK" class="lrgButton" name="btnOnBreak" id="btnOnBreak" />
+            <input type="button" value="ON&#10;LUNCH" class="lrgButton" name="btnOnLunch" id="btnOnLunch" />
+            <input type="button" value="ON&#10;INCIDENT" class="lrgButton" name="btnOnIncident" id="btnOnIncident" />
+            <input type="button" value="ON&#10;TOW" class="lrgButton" name="btnOnTow" id="btnOnTow" />
+            <input type="button" value="POST&#10;REPORT" class="lrgButton" name="btnAssist" id="btnAssist" />
+            <input type="button" value="CANCEL&#10;INCIDENT" class="lrgButtonRed" name="btnCancel" id="btnCancel" />
+            <input type="button" value="ACTIVE&#10;INCIDENT&#10;REPORT" class="lrgButtonBlue" name="btnReturn" id="btnReturn" />
+
+            <!--<input type="button" value="Toggle" class="lrgButton" name="btnToggle" id="btnToggle"/> Testing only-->
+            <!--<input type="button" value="DROPS" class="drpButton" name="btnDropSites" id="btnDropSites"/>-->
+            <input type="image" name="btnDropSites" id="btnDropSites" src="images/MTC - Tablet Buttons_v4_DROP_SITES.png" align="right" />
+            <input type="image" name="btnFindMe" id="btnFindMe" src="images/MTC - Tablet Buttons_v4_FIND_ME.png" align="right" />
+            <!--<input type="button" value="FIND ME" class="drpButton" name="btnFindMe" id="btnFindMe"/>-->
+        </div>
+
+        <div id="mapDiv"></div>
+
+    </div>
+
+    <div class="modal" id="incidentModal" data-backdrop="static" data-keyboard="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" id="rtm">Return to map</button>
+                    <h3 class="modal-title" id="stepTitle" style="color: black;">Incident Report</h3>
+                </div>
+                <div class="modal-body">
+                    <div id="briefUpdate" class="col-lg-9">
+                        <div class="col-lg-6">
+                            <div class="dropdown">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="btnProblemType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    CHP Incident Type
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="problemType">
+                                    <li><a href="#" id="11-25">Traffic Hazard (11-25) </a></li>
+                                    <li><a href="#" id="11-82">Accident-Property Damage (11-82)</a></li>
+                                    <li><a href="#" id="11-26">Disabled Vehicle-Occupied (11-26)</a></li>
+                                    <li><a href="#" id="11-24">Abandoned Vehicle (11-24)</a></li>
+                                    <li><a href="#" id="11-83">Accident-No Details (11-83)</a></li>
+                                    <li><a href="#" id="11-98">Meet With (11-98)</a></li>
+                                    <li><a href="#" id="11-99">Test Code (11-99)</a></li>
+                                    <li><a href="#" id="Other">Other</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="dropdown">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="incidentDirection" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Direction
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="direction">
+                                    <li><a href="#" id="NB">North Bound</a></li>
+                                    <li><a href="#" id="EB">East Bound</a></li>
+                                    <li><a href="#" id="SB">South Bound</a></li>
+                                    <li><a href="#" id="WB">West Bound</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="dropdown">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="incidentFreeway" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Freeway
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="freeway"></ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="dropdown">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="incidentPosition" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Position
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="position">
+                                    <li><a href="#" id="RS">RS</a></li>
+                                    <li><a href="#" id="CD">CD</a></li>
+                                    <li><a href="#" id="Ramp">Ramp</a></li>
+                                    <li><a href="#" id="InLane">In Lane</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="dropdown">
+                                <button class="btn btn-default btn-xlarge btn-block dropdown-toggle" type="button" id="laneNumber" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Lane Number
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="laneNumberList">
+                                    <li><a href="#" id="1">1</a></li>
+                                    <li><a href="#" id="2">2</a></li>
+                                    <li><a href="#" id="3">3</a></li>
+                                    <li><a href="#" id="4">4</a></li>
+                                    <li><a href="#" id="5">5</a></li>
+                                    <li><a href="#" id="6">6</a></li>
+                                    <li><a href="#" id="7">7</a></li>
+                                    <li><a href="#" id="8">8</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <button id="submitIncidentReport" class="btn btn-success btn-xlarge btn-block" type="button">Submit Incident Report</button>
+                        </div>
+
+                    </div>
+                    <div id="assistReport" class="container-fluid col-lg-9">
+
+                        <div class="col-lg-6">
+                            <button id="licensePlate" type="button" class="btn btn-primary btn-xlarge btn-block">License Plate</button>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="dropdown" id="statedropdownlist">
+                                <button class="btn btn-default btn-xlarge btn-block dropdown-toggle" type="button" id="stateDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    California
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="stateList">
+                                    <!--<li><a href="#">Action</a></li> -->
+                                    <li><a href="#" id="AL">Alabama</a></li>
+                                    <li><a href="#" id="AK">Alaska</a></li>
+                                    <li><a href="#" id="AZ">Arizona</a></li>
+                                    <li><a href="#" id="AR">Arkansas</a></li>
+                                    <li><a href="#" id="CA" selected="selected">California</a></li>
+                                    <li><a href="#" id="CO">Colorado</a></li>
+                                    <li><a href="#" id="CT">Connecticut</a></li>
+                                    <li><a href="#" id="DE">Delaware</a></li>
+                                    <li><a href="#" id="DC">DC</a></li>
+                                    <li><a href="#" id="FL">Florida</a></li>
+                                    <li><a href="#" id="GA">Georgia</a></li>
+                                    <li><a href="#" id="HI">Hawaii</a></li>
+                                    <li><a href="#" id="ID">Idaho</a></li>
+                                    <li><a href="#" id="IL">Illinois</a></li>
+                                    <li><a href="#" id="IN">Indiana</a></li>
+                                    <li><a href="#" id="IA">Iowa</a></li>
+                                    <li><a href="#" id="KS">Kansas</a></li>
+                                    <li><a href="#" id="KY">Kentucky</a></li>
+                                    <li><a href="#" id="LA">Louisiana</a></li>
+                                    <li><a href="#" id="ME">Maine</a></li>
+                                    <li><a href="#" id="MD">Maryland</a></li>
+                                    <li><a href="#" id="MA">Massachusetts</a></li>
+                                    <li><a href="#" id="MI">Michigan</a></li>
+                                    <li><a href="#" id="MN">Minnesota</a></li>
+                                    <li><a href="#" id="MS">Mississippi</a></li>
+                                    <li><a href="#" id="MO">Missouri</a></li>
+                                    <li><a href="#" id="MT">Montana</a></li>
+                                    <li><a href="#" id="NE">Nebraska</a></li>
+                                    <li><a href="#" id="NV">Nevada</a></li>
+                                    <li><a href="#" id="NH">New Hampshire</a></li>
+                                    <li><a href="#" id="NJ">New Jersey</a></li>
+                                    <li><a href="#" id="NM">New Mexico</a></li>
+                                    <li><a href="#" id="NY">New York</a></li>
+                                    <li><a href="#" id="NC">North Carolina</a></li>
+                                    <li><a href="#" id="ND">North Dakota</a></li>
+                                    <li><a href="#" id="OH">Ohio</a></li>
+                                    <li><a href="#" id="OK">Oklahoma</a></li>
+                                    <li><a href="#" id="OR">Oregon</a></li>
+                                    <li><a href="#" id="PA">Pennsylvania</a></li>
+                                    <li><a href="#" id="RI">Rhode Island</a></li>
+                                    <li><a href="#" id="SC">South Carolina</a></li>
+                                    <li><a href="#" id="SD">South Dakota</a></li>
+                                    <li><a href="#" id="TN">Tennessee</a></li>
+                                    <li><a href="#" id="TX">Texas</a></li>
+                                    <li><a href="#" id="UT">Utah</a></li>
+                                    <li><a href="#" id="VT">Vermont</a></li>
+                                    <li><a href="#" id="VA">Virginia</a></li>
+                                    <li><a href="#" id="WA">Washington</a></li>
+                                    <li><a href="#" id="WV">West Virginia</a></li>
+                                    <li><a href="#" id="WI">Wisconsin</a></li>
+                                    <li><a href="#" id="WY">Wyoming</a></li>
+                                    <li><a href="#" id="O">Other ( Add To Notes )</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="dropdown" id="problemtypedropdownlist">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="problemTypeDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Problem Type
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="problemTypeList">
+                                    <li><a href="#" id="BD">BREAKDOWN</a></li>
+                                    <li><a href="#" id="TC">COLLISION</a></li>
+                                    <li><a href="#" id="DB">DEBRIS</a></li>
+                                    <li><a href="#" id="TO">OTHER</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="dropdown " id="trafficcollisiondropdownlist">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="trafficCollisionDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Traffic Collision
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="collisionList">
+                                    <li><a href="#" id="1VEH">1 VEH</a></li>
+                                    <li><a href="#" id="2VEH">2 VEH</a></li>
+                                    <li><a href="#" id="3VEH">3 VEH</a></li>
+                                    <li><a href="#" id="O">Other ( Add Notes )</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown" id="breakdowndropdownlist">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="breakDownDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Breakdown
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="breakDownList">
+                                    <!--<li><a href="#">Action</a></li> -->
+                                    <li><a href="#" id="BATT">DEAD BATERY (BATT)</a></li>
+                                    <li><a href="#" id="TIRE">FLAT TIRE (TIRE)</a></li>
+                                    <li><a href="#" id="GAS">OUT OF GAS (GAS)</a></li>
+                                    <li><a href="#" id="ABAN">ABANDONED VEHICLE (ABAN)</a></li>
+                                    <li><a href="#" id="HEAT">OVERHEAT (HEAT)</a></li>
+                                    <li><a href="#" id="MECH">MECHANICAL (MECH)</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown" id="debrisdropdownlist">
+                                <button class="btn btn-warning btn-xlarge btn-block  dropdown-toggle" type="button" id="debrisDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Debris
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="debrisList">
+                                    <!--<li><a href="#">Action</a></li> -->
+                                    <li><a href="#" id="DIL">DEBRIS IN LANE (DIL)</a></li>
+                                    <li><a href="#" id="DOS">ALL DEBRIS ON SHOULDER (DOS)</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown" id="otherdropdownlist">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="otherDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Other
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="otherList">
+                                    <!--<li><a href="#">Action</a></li> -->
+                                    <li><a href="#" id="SMNA">STOPPED MOTORIST - NO ASSIST (SMNA)</a></li>
+                                    <li><a href="#" id="Other">OTHER - NOTES REQUIRED</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="dropdown" id="assistdescdownlist">
+                                <button class="btn btn-warning btn-xlarge btn-block col-lg-10 dropdown-toggle" type="button" id="assistDescDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Action Taken
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="assistDescList">
+                                    <!--<li><a href="#">Action</a></li> -->
+                                    <li><a href="#" id="ASST">Performed Assist as primary/solo provider (ASST)</a></li>
+                                    <li><a href="#" id="PART">Assisted Beat Partner (PART)</a></li>
+                                    <li><a href="#" id="OFCR">Assisted Peace Officer (OFCR)</a></li>
+                                    <li><a href="#" id="RFSD">Refused Service (RFSD)</a></li>
+                                    <li><a href="#" id="HLPW">Help Enroute - Waited (HLPW)</a></li>
+                                    <li><a href="#" id="HLPN">Help Enroute - Not Waited (HLPN)</a></li>
+                                    <li><a href="#" id="DOFF">Motorist Drove Off (DOFF)</a></li>
+                                    <li><a href="#" id="OTHR">Other (note required) (OTHR)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="dropdown" id="ptnDropDownlist">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="ptnDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    P/T/N
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="ptnList">
+                                    <!--<li><a href="#">Action</a></li> -->
+                                    <li><a href="#" id="N">NEITHER</a></li>
+                                    <li><a href="#" id="P">PUSH</a></li>
+                                    <li><a href="#" id="T">TOW</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="dropdown" id="vehicletypedownlist">
+                                <button class="btn btn-warning btn-xlarge btn-block dropdown-toggle" type="button" id="vehicleTypeDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Vehicle Type
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="vehicleTypeList">
+                                    <li><a href="#" id="NA">N/A</a></li>
+                                    <li><a href="#" id="AUTO">AUTO</a></li>
+                                    <li><a href="#" id="PKUP">PKUP</a></li>
+                                    <li><a href="#" id="BIGT">BIGT</a></li>
+                                    <li><a href="#" id="SMLT">SMLT</a></li>
+                                    <li><a href="#" id="MC">MC</a></li>
+                                    <li><a href="#" id="BGRG">BGRG</a></li>
+                                    <li><a href="#" id="MTHM">MTHM</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="dropdown" id="assistprovideddownlist">
+                                <button class="btn btn-default btn-xlarge btn-block dropdown-toggle" type="button" id="assistProvidedDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Transportation
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="assistProvidedList">
+                                    <li><a href="#" id="NPAS">No Passenger (NPAS)</a></li>
+                                    <li><a href="#" id="11-48X-FPAS">Provided Transportation to Female (11-48X) (FPAS)</a></li>
+                                    <li><a href="#" id="11-48X-FJUV">Provided Transportation to Female Juvenile (11-48X) (FJUV)</a></li>
+                                    <li><a href="#" id="11-48-MPAS">Provided Transportation to Male (11-48) (MPAS)</a></li>
+                                    <li><a href="#" id="11-48-MJUV">Provided Transportation to Male Juvenile(11-48) (MJUV)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="transportArea" class="container col-lg-12" style="background-color: rgb(128, 128, 128);">
+                            <div class="col-lg-4">
+                                <div class="dropdown" id="dropsitedropdownlist">
+                                    <button class="btn btn-default btn-xlarge btn-block dropdown-toggle" type="button" id="dropsiteDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Drop Site
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="dropsiteList"></ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <button id="startOdo" type="button" class="btn btn-default btn-xlarge btn-block">Start Odometer</button>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <button id="endOdo" type="button" class="btn btn-default btn-block btn-xlarge">End Odometer</button>
+                            </div>
+                        </div>
+
+                        <div id="dropSiteArea" class="container col-lg-12" style="background-color: rgb(128, 128, 128);">
+                            <div class="col-lg-4">
+                                <div class="dropdown" id="beatdropdownlist">
+                                    <button class="btn btn-default btn-xlarge btn-block dropdown-toggle" type="button" id="beatDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Beat #
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="beatList"></ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="dropdown" id="ODSdropdownlist">
+                                    <button class="btn btn-default btn-xlarge btn-block dropdown-toggle" type="button" id="ODSDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Other Drop Site
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="ODSList"></ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <button id="OTAuth" type="button" class="btn btn-default btn-xlarge btn-block">OT Authorization #</button>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <hr />
+                            <button id="submitAssistAdd" class="btn btn-info btn-xlarge" type="button">Submit Assist and Add Another</button>
+                            <button id="submitFinalAssistReport" class="btn btn-success btn-xlarge" type="button">Submit Final Assist</button>
+                        </div>
+                    </div>
+                    <div id="Summary" class="col-lg-3">
+                        <div class="NavDiv" id="incidentInformation">
+                            <h4><u>Incident Information</u></h4>
+                            <div id="CHPLN"></div>
+                            <div id="SURNUM"></div>
+                        </div>
+                        <br />
+                        <div class="btnNavDiv" id="sumBtnIncidentReport">
+                            <h4><u>Incident Report</u></h4>
+                            <div id="PT"></div>
+                            <div id="IDir"></div>
+                            <div id="FW"></div>
+                            <div id="POS"></div>
+                            <div id="inLane"></div>
+                        </div>
+                        <br />
+                        <div class="btnNavDiv" id="sumBtnAssistReport">
+                            <h4 id="assistTitle"><u>Assist Report</u></h4>
+                            <div id="lp"></div>
+                            <div id="lps"></div>
+                            <div id="pt"></div>
+                            <div id="ptd"></div>
+                            <div id="actionTaken"></div>
+                            <div id="ptn"></div>
+                            <div id="vehicleTypeDiv"></div>
+                            <div id="oTAuthDiv"></div>
+                            <div id="transDesc"></div>
+                            <div id="dropSiteDiv"></div>
+                            <div id="startOdoDiv"></div>
+                            <div id="endOdoDiv"></div>
+                        </div>
+                        <br />
+                        <div class="btnNavDiv" id="sumBtnNotes">
+                            <h4><u>Notes</u></h4>
+                            <div id="commentsDiv"></div>
+                        </div>
+                        <br />
+                        <button id="cancelIR" type="button" class="btn btn-default btn-xlarge" data-dismiss="modal">Cancel Report</button>
+                    </div>
+                    <div id="btns" class="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--#region These are the functional divs -->
+    <!-- Message0 Modal No Response -->
+    <div class="modal fade" id="message0" tabindex="-1" role="dialog" aria-labelledby="Message 0 Modal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="background-color: blue; color: white;">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <h1 class="modal-title" id="myModalLabel">INCOMING MESSAGE</h1>
+                </div>
+                <div class="modal-body text-center">
+                    <h3>THIS IS NOT AN ASSIST REQUEST</h3>
+                    <br />
+                    <p style="font-size:26px; text-wrap: normal; word-wrap: break-word;" id="MessageInfo0">Message Intro</p>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" id="btnAckMessage0">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message1 Modal Response Required-->
+    <div class="modal fade" id="message1" tabindex="-1" role="dialog" aria-labelledby="Message 1 Modal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="background-color: blue; color: white;">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <h1 class="modal-title" id="myModalLabel">INCOMING MESSAGE</h1>
+                </div>
+                <div class="modal-body text-center">
+                    <h3>THIS IS NOT AN ASSIST REQUEST, PLEASE RESPOND</h3>
+                    <br />
+                    <p style="font-size:26px; text-wrap: normal; word-wrap: break-word;" id="MessageInfo1">Message Into</p>
+                    <div>
+                        <label for="txtNum">Enter number: </label><input style="color: black; padding-left: 5px;" type="number" id="txtNum" class="txtLogon" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" id="btnYesMessage1">YES</button>
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal" id="btnYesMessage1">NO</button>
+                    <button type="button" class="btn btn-success btn-lg" data-dismiss="modal" id="btnEnterNumber">#</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lunch Modal -->
+    <div class="modal fade" id="lunch" tabindex="-1" role="dialog" aria-labelledby="Lunch Modal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <h1 class="modal-title" id="myModalLabel">ON LUNCH</h1>
+                </div>
+                <div class="modal-body text-center">
+                    <h3>Click OK to go off lunch</h3>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" id="btnModalOffLunch">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Break Modal -->
+    <div class="modal fade" id="break" tabindex="-1" role="dialog" aria-labelledby="break Modal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <h1 class="modal-title" id="myModalLabel">ON BREAK</h1>
+                </div>
+                <div class="modal-body text-center">
+                    <div>
+                        <h2 class="" style="font-size:26px" id="breakTime"><label id="breakTimeRemaining">x</label></h2>
+                    </div>
+                    <div>
+                        <h2 class=""><label id="lblClickOKBreak">Click OK to go off break</label></h2>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" id="btnModalOffBreak">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forced Break Modal -->
+    <div class="modal fade" id="forcedBreak" tabindex="-1" role="dialog" aria-labelledby="Forced Break Modal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <h1 class="modal-title" id="myModalLabel">FORCED BREAK</h1>
+                </div>
+                <div class="modal-body text-center">
+                    <div>
+                        <h2 class="jqmBody"><label id="lblClickPatrolBreak">Click ON PATROL to go off break</label></h2>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" id="btnBackOnPatrol">ON PATROL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cancel Modal -->
+    <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="Cancel Modal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <h1 class="modal-title" id="myModalLabel">Cancel Incident</h1>
+                </div>
+                <div class="modal-body text-center">
+                    <h2 class="jqmBody" style="font-size:26px" id="CancelReasonTitle"><label id="CancelTitle">Reason For Canceling</label></h2>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" id="btnUTL">Unable To Locate (UTL)</button>
+                    <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" id="btnCA">Canceled Assignment (CANC)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- #endregion End functional divs -->
+    <!-- KeyBoard Modal -->
+    <div class="modal fade" id="KB_LP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <input type="text" id="kbTxt" class="form-control" placeholder="" readonly="readonly" />
+                    <br />
+                    <div class="text-center col-lg-12">
+                        <button type="button" id="cursorLeft"><span aria-hidden="true">&#60; Cursor Left</span></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" id="cursorRight"><span aria-hidden="true">Cursor Right &#62;</span></button>
+                    </div>
+                </div>
+                <div class="modal-body text-center col-lg-12">
+                    <div id="virtualKeyboard"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notes keyBoard Modal -->
+    <div class="modal fade" id="KB_NT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h1>Notes</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body text-center col-lg-12">
+                    <textarea id="taNotes" name="taNotes" cols="10" rows="4"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

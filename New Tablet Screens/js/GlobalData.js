@@ -1,7 +1,7 @@
 	var DriverName = "";
 	var TruckID = "";
 	var TruckStatus = "";
-    var ServiceLocation = "http://38.124.164.212:9017/";
+    var ServiceLocation = "http://38.124.164.211:9017/";
 	//var ServiceLocation = "http://localhost:9017/";
 	var ClientStatus = "LoggedOff";
 

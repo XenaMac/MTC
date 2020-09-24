@@ -29,3 +29,6 @@ C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.g.resources
 C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.Properties.Resources.resources
 C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.csproj.GenerateResource.Cache
 C:\MTC\MTCPlaybackRev2\MTCPlaybackRev2\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\GitHub\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2.csprojAssemblyReference.cache
+C:\GitHub\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\App.g.cs
+C:\GitHub\MTC\MTCPlaybackRev2\MTCPlaybackRev2\obj\Debug\MTCPlaybackRev2_MarkupCompile.cache

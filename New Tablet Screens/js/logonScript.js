@@ -163,6 +163,11 @@ GetBeats();
 	**************************************/
 	
 	$('#btnLogon').click(function(){
+		
+		// clear error 
+		$('#errLabel').empty();			
+		$('#errLabel').append("Let's Do This");
+		
 		//check for ID
 		if ($('#txtFSPID').val() == '') {
             $.fallr('show', {
@@ -288,7 +293,8 @@ GetBeats();
 			localStorage["TruckStatus"] = "LOGGED ON";
 			localStorage["breakTimerTotal"] = 0;
 			localStorage["lunchTimerTotal"] = 0;
-			var today = new Date();
+			//var today = new Date();
+			var today = new Date(2017,4,20,12,0,0,0);
 			var totalBreaks = 0;
 			var dow = today.getDay();
 			if(today.getDay() == 6 || today.getDay() == 7){

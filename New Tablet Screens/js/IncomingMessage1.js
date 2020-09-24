@@ -1,8 +1,9 @@
-$(document).ready(function(){
-	
+$(document).ready(function(){	
+
+	var msgData = localStorage["assistMessage"];
 	$('#AssistInfo').empty();
-	$('#AssistInfo').append(localStorage["MessageText"]);
-	
+	$('#AssistInfo').append(msgData);
+		
 	$('#btnYesMessage1').click(function(){
 		var _url = ServiceLocation + 'AJAXFSPService.svc/AckMessageWithResponse';
         var _data = "MessageID=" + localStorage.getItem('MessageID') + "&Response=Yes";
@@ -58,11 +59,10 @@ $(document).ready(function(){
         }
 	});
 	
-	/*unused
-	$('#btnAckMessage').click(function(){
-		//alert('Acked');
-		var _url = ServiceLocation + 'AJAXFSPService.svc/AckMessage';
-        var _data = "MessageID=" + localStorage.getItem('MessageID');
+	$('#btnAckWaze').click(function () {
+        localStorage["WazeMarker"] = true;
+        var _url = ServiceLocation + 'AJAXFSPService.svc/AckWazeMessage';
+        var _data = "UUID=" + localStorage.getItem('WazeUUID') + "&Response=true&Accepted=true";
         try {
             $.ajax({
                 type: "GET",
@@ -70,15 +70,43 @@ $(document).ready(function(){
                 url: _url,
                 data: _data,
                 contentType: "application/json; charset=utf-8",
-                success: AckMsgSuccess
+                success: AckMsgSuccess1
             });
         }
         catch (error) {
             alert(error);
         }
 	});
-	*/
-	function AckMsgSuccess(result){
-		alert('Acked');
+	
+	$('#ddIgnore').change(function () {
+        var reason = this.value;
+        var _url = ServiceLocation + 'AJAXFSPService.svc/AckWazeMessage';
+        var _data = "UUID=" + localStorage.getItem('WazeUUID') + "&Response="+ reason + "&Accepted=false";
+        try {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: _url,
+                data: _data,
+                contentType: "application/json; charset=utf-8",
+                success: AckMsgSuccess2
+            });
+        }
+        catch (error) {
+            alert(error);
+        }
+        $('#message1').jqmHide();
+    });
+	
+	function AckMsgSuccess1(result){
+		alert('WAZE Acked. Look for Waze icon on Map.');
+    }
+    
+    function AckMsgSuccess2(result){
+		alert('Wazw Ignored. Please close this tab.');           
+        localStorage["WazeMarker"] = false;        
+        localStorage["WazeUUID"] = null;
+        localStorage["WazeLat"] = null;
+        localStorage["WazeLon"] = null;
 	}
 });

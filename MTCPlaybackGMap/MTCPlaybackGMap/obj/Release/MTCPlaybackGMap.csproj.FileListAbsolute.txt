@@ -1,0 +1,7 @@
+C:\GitHub\MTC\MTCPlaybackGMap\MTCPlaybackGMap\obj\Release\MTCPlaybackGMap.csprojAssemblyReference.cache
+C:\GitHub\MTC\MTCPlaybackGMap\MTCPlaybackGMap\obj\Release\MTCPlaybackGMap.Form1.resources
+C:\GitHub\MTC\MTCPlaybackGMap\MTCPlaybackGMap\obj\Release\MTCPlaybackGMap.GridTest.resources
+C:\GitHub\MTC\MTCPlaybackGMap\MTCPlaybackGMap\obj\Release\MTCPlaybackGMap.Properties.Resources.resources
+C:\GitHub\MTC\MTCPlaybackGMap\MTCPlaybackGMap\obj\Release\MTCPlaybackGMap.SplashScreen.resources
+C:\GitHub\MTC\MTCPlaybackGMap\MTCPlaybackGMap\obj\Release\MTCPlaybackGMap.csproj.GenerateResource.cache
+C:\GitHub\MTC\MTCPlaybackGMap\MTCPlaybackGMap\obj\Release\MTCPlaybackGMap.exe.licenses

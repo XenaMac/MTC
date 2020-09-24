@@ -40,6 +40,10 @@ $(document).ready(function () {
     localStorage["problemType"] = null;
     localStorage["actionTaken"] = null;
     localStorage["detailNotes"] = null;
+    localStorage["WazeUUID"] = null;
+    localStorage["WazeMarker"] = false;
+    localStorage["WazeLat"] = null;
+    localStorage["WazeLon"] = null;
 
     //hide initial buttons
     $('#submitIncidentReport').hide();
@@ -159,6 +163,23 @@ $(document).ready(function () {
     assistTimer = setInterval(function () { checkForAssistRequests() }, 60000);
 
     GetBeats();
+	
+	/*********************
+	* Error Handler
+	*
+	*********************/
+	
+	function setError(errorMsg, caller){
+		if(errorMsg){
+			alert(errorMsg);
+		}
+		else if(caller){
+			alert('An undefined error has occurred in ' + caller)
+		}
+		else{
+			alert('An undefined error has occurred')
+		}
+	}
 
     /***************************************
     *
@@ -202,7 +223,8 @@ $(document).ready(function () {
 
     function GetBeatsError(result, error) {
         var err = error;
-        setError('GetBets Error: A problem occurred getting the list of beats, please reload or contact the administrator');
+		//alert('A problem occurred getting the list of beats, please reload or contact the administrator');
+        setError('GetBets Error:' + error.responseJSON.Message, 'GetBeats');
     }
 
     /**********************
@@ -297,11 +319,12 @@ $(document).ready(function () {
             localStorage["chpLogNumber"] = _msg.CHPLogNumber; //for new incident model
             $('#CHPLN').html("CHP Incident Log #: " + localStorage["CHPLogNumber"]); // for incident information div
 
-            var assistMessage = "Incident Type: " + localStorage["dispatchCode"] + "<br/>Direction: " + localStorage["preAssistDirection"] + "<br/>Location: " +
+			var assistMessage = "Incident Type: " + localStorage["dispatchCode"] + "<br/>Direction: " + localStorage["preAssistDirection"] + "<br/>Location: " +
 				localStorage["preAssistDispatchLocation"] + "<br/>Cross Streets: " + localStorage["crossStreets"] + "<br/>Highway: " + localStorage["freeway"] + "<br/>Lane Number: " +
 				localStorage["laneNumber"] + "<br/>Comment: " + localStorage["comment"];
-            localStorage["assistMessage"] = assistMessage;
-            window.open('AssistRequest.html', 'ASSISTREQUEST');
+				localStorage["assistMessage"] = assistMessage;
+				window.open('AssistRequest.html', 'ASSISTREQUEST');
+            
             /*
 			$('#AssistInfo').empty();
 			//$('#dialog').empty();
@@ -330,7 +353,9 @@ $(document).ready(function () {
 
     function ackSuccess(result) { }
 
-    function ackError(error) { }
+    function ackError(error) { 
+		setError('AckAssist Error:' + error.responseJSON.Message, 'ackAssistRequest');
+	}
 
     /**********************
 	*
@@ -344,6 +369,7 @@ $(document).ready(function () {
             return;
         }
         var _assistData;
+		
         _assistData = {
             assistID: null,
             incidentID: localStorage['incidentID'],
@@ -394,7 +420,9 @@ $(document).ready(function () {
     }
 
     function createAssistError(error) {
-        alert("Create Assist Error: " + error);
+        //alert("Create Assist Error: " + error);
+		//setError(error.JSON.Message, 'CreateAssist');
+		setError('CreateAsssist Error:' + error.responseJSON.Message, 'CreateAssist');
     };
 
     /**********************
@@ -434,7 +462,8 @@ $(document).ready(function () {
     }
 
     function GetDropsError(error) {
-        alert("Get Drops Error: " + error);
+        //alert("Get Drops Error: " + error);
+		setError('GetDrops Error:' + error.responseJSON.Message, 'GetDrops');
     }
 
     /**********************
@@ -472,7 +501,8 @@ $(document).ready(function () {
     }
 
     function GetOtherDropsError(error) {
-        alert("Get Other Drops Error: " + error);
+        //alert("Get Other Drops Error: " + error);
+		setError('GetOtherDrops Error:' + error.responseJSON.Message, 'GetOtherDrops');
     }
 
     /**********************
@@ -606,6 +636,7 @@ $(document).ready(function () {
         if (cStatus.toUpperCase() == 'ON INCIDENT') {
             $('#btnRollIn').show();
             //$('#btnAssist').show();
+			$('#btnOnIncident').show();
             var today = new Date();
             /*Test code, forcing weekend*/
             //today.setDate(23);
@@ -667,7 +698,8 @@ $(document).ready(function () {
     }
 
     function getSurveyNumberError(error) {
-        alert("Get Survey Number error: " + error);
+        //alert("Get Survey Number error: " + error);
+		setError('GetSurveyNumber Error:' + error.responseJSON.Message, 'GetSurveyNumber');
     }
 
     /************************
@@ -676,7 +708,7 @@ $(document).ready(function () {
 	*
 	************************/
 
-    function setStatus(status) {
+    window.setStatus = function(status) {
         var message = 'Selected ' + status;
         //$('#statusName').emtpy();
         localStorage["TruckStatus"] = status;
@@ -713,6 +745,7 @@ $(document).ready(function () {
 
     function SetStatusError(error) {
         //alert("Set Status Error: " + error);
+		setError('SetStatus Error:' + error.responseJSON.Message, 'SetStatus');
     }
 
     function setLogOff(endODO) {
@@ -745,7 +778,8 @@ $(document).ready(function () {
     }
 
     function SetLogOffError(error) {
-        alert("Log Off Error: " + error);
+        //alert("Log Off Error: " + error);
+		setError('SetLogOff Error:' + error.responseJSON.Message, 'SetLogOff');
     }
 
     /************************
@@ -763,6 +797,12 @@ $(document).ready(function () {
             alert('No current assist, aborting');
             return;
         }
+		if(localStorage['startODO'] == null || localStorage['startODO'] == 'null'){
+			localStorage["startODO"] = 0.0;
+		}
+		if(localStorage["endODO"] == null || localStorage["endODO"] == 'null'){
+			localStorage["endODO"] = 0.0
+		}
         var _assistData;
         _assistData = {
             assistID: localStorage['assistID'],
@@ -827,7 +867,8 @@ $(document).ready(function () {
     }
 
     function closeAssistError(error) {
-        alert("Close Assist Error: " + error);
+        //alert("Close Assist Error: " + error);
+		setError('CloseAssist Error:' + error.responseJSON.Message, 'CloseAssist');
     };
 
     /************************
@@ -846,6 +887,12 @@ $(document).ready(function () {
             return;
         }
         var _assistData;
+		if(localStorage['startODO'] == null || localStorage['startODO'] == 'null'){
+			localStorage["startODO"] = 0.0;
+		}
+		if(localStorage["endODO"] == null || localStorage["endODO"] == 'null'){
+			localStorage["endODO"] = 0.0
+		}
         _assistData = {
             assistID: localStorage['assistID'],
             incidentID: localStorage['incidentID'],
@@ -901,10 +948,12 @@ $(document).ready(function () {
             alert("Close Final Assist Error: " + result.d);
         }
         localStorage['assistID'] = null;
+		setStatus('ON PATROL')
     }
 
     function closeFinalAssistError(error) {
-        alert("Close Final Assist Error: " + error);
+        //alert("Close Final Assist Error: " + error.responseJSON.Message);
+		setError('CloseFinalAssist Error:' + error.responseJSON.Message, 'CloseFinalAssist');
     };
 
     function clearVals() {
@@ -931,6 +980,7 @@ $(document).ready(function () {
         localStorage['assistDesc'] = null;
         localStorage['transportation'] = null;
         localStorage['startOdo'] = 0;
+		localStorage['startODO'] = 0;
         localStorage['endODO'] = 0;
         localStorage['vehicleType'] = null;
         localStorage['OTAuth'] = null;
@@ -1013,6 +1063,7 @@ $(document).ready(function () {
 
     $('#btnOnPatrol').click(function () {
         setStatus('ON PATROL');
+        localStorage["WazeMarker"] = false;
     });
 
     $('#btnBackOnPatrol').click(function () {
@@ -1473,12 +1524,18 @@ $(document).ready(function () {
         setStatus('ON PATROL');
         clearLocalIncidentStorage();
         clearLocalAssistStorage();
+        localStorage["WazeMarker"] = false;       
+        localStorage["WazeUUID"] = null;
+        localStorage["WazeLat"] = null;
+        localStorage["WazeLon"] = null;
     });
 
     //Start Up Helper functions
-    function startIncident() {
+    window.startIncident = function () {
         localStorage['incidentID'] = null;
-        var _incidentData;
+        var _incidentData;		
+		var WID = localStorage['WazeUUID'];
+		
         // most of this data will get overwritten at the service end.
         // technically the only reason this has to happen now is to
         //get the incident id and store it and get the incident ball rolling
@@ -1494,7 +1551,7 @@ $(document).ready(function () {
             beat: null,
             truckNumber: null,
             logID: null,
-            wazeID: null,
+            wazeID: WID,
             truckStatusID: null,
             FSPLocation: null,
             dispatchLocation: null,
@@ -1542,14 +1599,17 @@ $(document).ready(function () {
     }
 
     function postIncidentError(error) {
-        alert("Post Incident Error: " + error);
+        //alert("Post Incident Error: " + error);
+		setError('PostIncident Error:' + error.responseJSON.Message, 'PostIncident');
     }
 
     //Update Incident
     function updateIncidentBasicWaze() {
         localStorage['wazeComments']
 
-        var _incidentData;
+        var _incidentData;		
+		var WID = localStorage['WazeUUID'];
+		
         _incidentData = {
             incidentID: localStorage['incidentID'],
             incidentDatePosted: null,
@@ -1563,7 +1623,7 @@ $(document).ready(function () {
             beat: null,
             truckNumber: null,
             logID: null,
-            wazeID: null,
+            wazeID: WID,
             truckStatusID: null,
             FSPLocation: null,
             dispatchLocation: null,
@@ -1602,6 +1662,7 @@ $(document).ready(function () {
 
     function updateIncident() {
         var _incidentData;
+		var WID = localStorage['WazeUUID'];
 
         _incidentData = {
             incidentID: localStorage['incidentID'],
@@ -1616,7 +1677,7 @@ $(document).ready(function () {
             beat: null,
             truckNumber: null,
             logID: null,
-            wazeID: null,
+            wazeID: WID,
             truckStatusID: null,
             FSPLocation: null,
             dispatchLocation: null,
@@ -1658,7 +1719,8 @@ $(document).ready(function () {
     }
 
     function updateIncidentError(error) {
-        alert("Update Incident Error: " + error);
+        //alert("Update Incident Error: " + error);
+		setError('UpdateIncident Error:' + error.responseJSON.Message, 'UpdateIncident');
     }
 
     /*********************************
@@ -1805,7 +1867,8 @@ $(document).ready(function () {
     }
 
     function GetTruckMessagesError(error) {
-        alert("Get Truck Message Error: " + error);
+        //alert("Get Truck Message Error: " + error);
+		setError('GetTruckMessages Error:' + error.responseJSON.Message, 'GetTruckMessages');
     }
 
     function GetTruckMessagesSuccess(result) {
@@ -1814,6 +1877,9 @@ $(document).ready(function () {
             var _msg = $.parseJSON(_data);
             localStorage["MessageID"] = _msg[0].MessageID;
             var _msgType = _msg[0].MessageType;
+            var dt = new Date(parseInt(_msg[0].SentTime.replace('/Date(', '')))
+            var msgExp = new Date();
+            msgExp.setHours(dt.getHours() + 1);
             if (_msgType == 0) { //no response needed
                 $('#MessageInfo0').empty();
                 $('#MessageInfo0').append(_msg[0].MessageText);
@@ -1828,9 +1894,64 @@ $(document).ready(function () {
                 //$('#message1').jqm({ modal: false});
                 //$('#message1').jqmShow();
             }
+			else if (_msgType == 4) {
+				localStorage["WazeUUID"] = _msg[0].WazeUUID;
+				localStorage["WazeLat"] = _msg[0].lat;
+				localStorage["WazeLon"] = _msg[0].lon;
+				localStorage["WazeMarker"] = true;
+				var now = new Date();
+                if (now < msgExp) {
+                    //took this out as they want to go enroute andthen start incident. startIncident();
+                    var assistMessage = "<b>WAZE Type: </b>" + _msg[0].WazeType + "<br /> <b>WAZE Subtype: </b>" + _msg[0].WazeSubType + "<br/><b>Street Information: </b>" + _msg[0].streetInformation + "<br /><br /><button style='background-color: #4CAF50;' onclick='setStatus(\"ENROUTE\");AckWazeMessage()'>Go En Route</button>";
+					
+					//var assistMessage = "Incident Type: " + _msg[0].MessageText + "<br/>Street Information: " + _msg[0].streetInformation + "<br/>WAZE Type: " + _msg[0].WazeType + "  |  WAZE Subtype: " + _msg[0].WazeSubType ;
+					localStorage["assistMessage"] = assistMessage;
+					//window.open('AssistRequest_Waze.html', 'ASSISTREQUEST');
+				} else {
+					AckWazeMessage();
+				}
+			}
         }
     }
+	
+	window.AckWazeMessage = function () {
+		if(localStorage["WazeUUID"] !== '') {
+			var _url = ServiceLocation + 'ajaxfspservice.svc/AckWazeMessage';
+			var _data = "uuid=" + localStorage["WazeUUID"] + "&response=false&accepted=false";
+			$.ajax({
+				type: "get",
+				datatype: "json",
+				url: _url,
+				data: _data,
+				contenttype: "application/json; charset=utf-8",
+				success: AckMsgSuccess1
+			});
+		} else {
+			var _url = ServiceLocation + 'ajaxfspservice.svc/ackmessage';
+			var _data = "messageid=" + localStorage.getItem('MessageID');
+			$.ajax({
+				type: "get",
+				datatype: "json",
+				url: _url,
+				data: _data,
+				contenttype: "application/json; charset=utf-8",
+				success: AckMsgSuccess2
+			});
+		}
+	}
+	
+	window.AckMsgSuccess1 = function (result){
+		//alert('Waze Acknowledged');           
+	}
 
+	window.AckMsgSuccess2 = function (result){
+		//alert('Wazw Ignored. Please close this tab.');           
+        localStorage["WazeMarker"] = false;        
+        localStorage["WazeUUID"] = null;
+        localStorage["WazeLat"] = null;
+        localStorage["WazeLon"] = null;
+	}
+	
     $('#btnAckMessage0').click(function () {
         //showFallR('Sending ack with no extra response');
         var _url = ServiceLocation + 'AJAXFSPService.svc/AckMessage';
@@ -1846,7 +1967,8 @@ $(document).ready(function () {
             });
         }
         catch (error) {
-            alert("Acknowlegde Error: " + error);
+            //alert("Acknowlegde Error: " + error);
+			setError('Ack Error:' + error.responseJSON.Message, 'btnAckMessage0');
         }
     });
 
@@ -1866,6 +1988,7 @@ $(document).ready(function () {
         }
         catch (error) {
             //alert(error);
+			setError('Ack Error:' + error.responseJSON.Message, 'btnAckMessage1');
         }
         $('#message1').jqmHide();
     });
@@ -1885,6 +2008,7 @@ $(document).ready(function () {
         }
         catch (error) {
             //alert(error);
+			setError('YesMessage Error:' + error.responseJSON.Message, 'btnYesMessage1');
         }
         $('#message1').jqmHide();
     });
@@ -1904,6 +2028,7 @@ $(document).ready(function () {
         }
         catch (error) {
             //alert(error);
+			setError('NoMessage1 Error:' + error.responseJSON.Message, 'btnNoMessage1');
         }
         $('#message1').jqmHide();
     });
@@ -1924,6 +2049,7 @@ $(document).ready(function () {
         }
         catch (error) {
             //alert(error);
+			setError('EnterNumber Error:' + error.responseJSON.Message, 'btnEnterNumber');
         }
         $('#message1').jqmHide();
     });
@@ -1952,7 +2078,8 @@ $(document).ready(function () {
             });
         }
         catch (error) {
-            alert("Cancel Assist Error: " + error);
+            //alert("Cancel Assist Error: " + error);
+			setError('UTL Error:' + error.responseJSON.Message, 'btnUTL');
         }
     });
 
@@ -1970,7 +2097,8 @@ $(document).ready(function () {
             });
         }
         catch (error) {
-            alert("Cancel Assist Error: " + error);
+            //alert("Cancel Assist Error: " + error);
+			setError('CancelAssist Error:' + error.responseJSON.Message, 'btnCA');
         }
     });
 
@@ -2036,11 +2164,15 @@ $(document).ready(function () {
                 _selCode += "<li><a href='#' id='" + _data[i] + "'>" + _data[i] + "</a></li>";
             }
         }
+		if(_data.length == 0 ) {
+			_selCode += "<li><a href='#' id='40'>40</a></li>";
+		}
         $('#freeway').append(_selCode);
     }
 
     function getFreewaysError(error) {
-        alert("Get Freeway Error: " + error);
+        //alert("Get Freeway Error: " + error);
+		setError('getFreeways Error:' + error.responseJSON.Message, 'getFreeways');
     }
 
     /***********************************
@@ -2051,7 +2183,8 @@ $(document).ready(function () {
 
     function closeIncident() {
         var _incidentData;
-
+		var WID = localStorage['WazeUUID'];
+		
         _incidentData = {
             incidentID: localStorage['incidentID'],
             incidentDatePosted: null,
@@ -2065,7 +2198,7 @@ $(document).ready(function () {
             beat: null,
             truckNumber: null,
             logID: null,
-            wazeID: null,
+            wazeID: WID,
             truckStatusID: null,
             FSPLocation: null,
             dispatchLocation: null,
@@ -2113,19 +2246,26 @@ $(document).ready(function () {
         $('#briefUpdate').hide();
         $('#Summary').hide();
         setStatus('ON PATROL');
-        location.reload();
+        //location.reload();
         localStorage['incidentID'] = null;
         clearLocalIncidentStorage();
-        clearLocalAssistStorage();
+        clearLocalAssistStorage();   
+        localStorage["WazeMarker"] = false;        
+        localStorage["WazeUUID"] = null;
+        localStorage["WazeLat"] = null;
+        localStorage["WazeLon"] = null;
     }
 
     function closeIncidentError(error) {
-        alert("Close Incident Error: " + error);
+        //alert("Close Incident Error: " + error);
+		setError('closeIncident Error:' + error.responseJSON.Message, 'closeIncident');
     }
 
 	function cancelIncident() {
         var _incidentData;
-
+        localStorage["WazeMarker"] = false; 		
+		var WID = localStorage['WazeUUID'];
+		
         _incidentData = {
             incidentID: localStorage['incidentID'],
             incidentDatePosted: null,
@@ -2139,7 +2279,7 @@ $(document).ready(function () {
             beat: null,
             truckNumber: null,
             logID: null,
-            wazeID: null,
+            wazeID: WID,
             truckStatusID: null,
             FSPLocation: null,
             dispatchLocation: null,
@@ -2196,6 +2336,7 @@ $(document).ready(function () {
     }
 
     function cancelIncidentError(error) {
-        alert("Close Incident Error: " + error);
+        //alert("Close Incident Error: " + error);
+		setError('cancelIncident Error:' + error.responseJSON.Message, 'cancelIncident');
     }
 });
