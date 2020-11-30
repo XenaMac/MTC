@@ -66,7 +66,7 @@ namespace MTC.FSP.Web
 
                     var backupProviders = db.BackupProviders.ToList();
 
-                    if (timeSinceBackupRequestWasMadeInMinutes >= responseTimeInMinutes)
+                    if (timeSinceBackupRequestWasMadeInMinutes >= responseTimeInMinutes && backupProviders.Count > 0)
                     {
                         var backupRequest = db.BackupRequests.Find(unResolvedBackupRequest.Id);
                         var backupAssignment = db.BackupAssignments.FirstOrDefault(p => p.BeatId == unResolvedBackupRequest.BeatId);

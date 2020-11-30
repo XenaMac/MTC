@@ -58,3 +58,4 @@ C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Releas
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Release\MTC.FSP.Web.csproj.CopyComplete
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Release\MTC.FSP.Web.dll
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Release\MTC.FSP.Web.pdb
+C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Release\MTC.FSP.Web.csproj.CoreCompileInputs.cache
