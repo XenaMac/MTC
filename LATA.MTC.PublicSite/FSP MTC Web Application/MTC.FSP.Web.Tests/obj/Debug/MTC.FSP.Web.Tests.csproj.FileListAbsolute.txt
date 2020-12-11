@@ -21,3 +21,4 @@ C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web.Tests\obj\
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web.Tests\obj\Debug\MTC.FSP.Web.Tests.csproj.CopyComplete
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web.Tests\obj\Debug\MTC.FSP.Web.Tests.dll
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web.Tests\obj\Debug\MTC.FSP.Web.Tests.pdb
+C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web.Tests\obj\Debug\MTC.FSP.Web.Tests.csproj.CoreCompileInputs.cache

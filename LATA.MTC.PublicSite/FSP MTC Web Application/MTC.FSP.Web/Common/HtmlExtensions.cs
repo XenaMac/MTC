@@ -10,6 +10,7 @@ namespace MTC.FSP.Web.Common
         {
             var sb = new StringBuilder();
             var applicationPath = HttpContext.Current.Request.ApplicationPath;
+            //var applicationPath = "http://" + HttpContext.Current.Request.Url.Authority;
 
 #if(TOLGAPC)
             applicationPath = "http://" + HttpContext.Current.Request.Url.Authority;

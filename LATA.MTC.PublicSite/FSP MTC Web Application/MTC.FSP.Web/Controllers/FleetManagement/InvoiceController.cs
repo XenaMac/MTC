@@ -1443,10 +1443,11 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
             List<InvoiceDeductions> Deductions = new List<InvoiceDeductions>();
             int year = DateTime.Now.Year;
 
-            if(month == 11 || month == 12)
-            {
-                year = DateTime.Now.Year - 1;
-            }
+            ///This crap is going to have be reset
+            //if(month == 11 || month == 12)
+            //{
+            //    year = DateTime.Now.Year - 1;
+            //}
 
             #region get all violations
 
