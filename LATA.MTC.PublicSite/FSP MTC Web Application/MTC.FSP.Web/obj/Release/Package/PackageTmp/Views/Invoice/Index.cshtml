@@ -260,9 +260,15 @@
                                 <td class="deductionsTD">{{deduction.category}}</td>
                                 <td class="deductionsTD">{{deduction.date | date:'MM/dd/yyyy HH:mm:ss Z'}}</td>
                                 <td class="deductionsTD">{{deduction.description}}</td>
-                                <td class="deductionsTD">{{deduction.TimeAdded}}</td>
+                                <td class="col-lg-2 deductionsTD">
+                                    <div class="input-group">
+                                        <input type="text" id="TB-{{deduction.id}}" class="form-control" aria-label="Costs" value="{{deduction.TimeAdded}}" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" ng-click="updateCost(deduction.id)" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                                        </span>
+                                    </div>
+                                </td>
                                 <td class="deductionsTD">{{BaseRate | currency}}</td>
-                                @*<td class="additionsTD">${{deduction.Cost}}</td>*@
                                 <td class="col-lg-2 deductionsTD">
                                     <div class="input-group">
                                         <span class="input-group-addon">$</span>

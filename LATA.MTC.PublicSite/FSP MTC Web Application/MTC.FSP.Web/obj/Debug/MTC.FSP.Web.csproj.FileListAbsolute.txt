@@ -54,8 +54,7 @@ C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\bin\System
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\bin\System.Web.WebPages.xml
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\bin\System.Web.WebPages.Deployment.xml
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\bin\System.Web.WebPages.Razor.xml
+C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Debug\MTC.FSP.Web.csproj.CoreCompileInputs.cache
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Debug\MTC.FSP.Web.csproj.CopyComplete
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Debug\MTC.FSP.Web.dll
 C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Debug\MTC.FSP.Web.pdb
-C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Debug\MTC.FSP.Web.csproj.CoreCompileInputs.cache
-C:\GitHub\MTC\LATA.MTC.PublicSite\FSP MTC Web Application\MTC.FSP.Web\obj\Debug\MTC.FSP.Web.csprojAssemblyReference.cache

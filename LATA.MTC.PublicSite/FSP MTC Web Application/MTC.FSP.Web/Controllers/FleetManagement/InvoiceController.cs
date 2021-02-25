@@ -917,6 +917,14 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
                 if (HSWorked.Count() != 0)
                 {
                     HolidaysWorkedInMonth.Add(holiday);
+                    var day = holiday.DayOfWeek;
+                    if(day == DayOfWeek.Sunday)
+                    {
+                        ISD.SunDaysWorkedInMonth.Remove(holiday);
+                    } else if(day == DayOfWeek.Saturday)
+                    {
+                        ISD.SaturDaysWorkedInMonth.Remove(holiday);
+                    }
                 }
             }
 
@@ -1443,11 +1451,11 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
             List<InvoiceDeductions> Deductions = new List<InvoiceDeductions>();
             int year = DateTime.Now.Year;
 
-            ///This crap is going to have be reset
-            //if(month == 11 || month == 12)
-            //{
-            //    year = DateTime.Now.Year - 1;
-            //}
+            //This crap is going to have be reset
+            if (month == 11 || month == 12)
+            {
+                year = DateTime.Now.Year - 1;
+            }
 
             #region get all violations
 
@@ -1464,7 +1472,7 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
                 ID.id = Guid.NewGuid();
                 ID.category = vio.ViolationType.Name;
                 ID.date = vio.DateTimeOfViolation.ToString();
-                ID.description = "ID: " + vio.Id + " | Code: " + vio.ViolationType.Code + " | Driver: " + driver + " | Truck #: " + truckId;
+                ID.description = "ID: " + vio.Id + " | Code: " + vio.ViolationType.Code + " | Truck #: " + truckId;
                 if(vio.PenaltyForDriver != null)
                 {
                     ID.description += " | Invoice Notes: " + vio.PenaltyForDriver;
@@ -1481,7 +1489,7 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
                     AdditionalFine.id = Guid.NewGuid();
                     AdditionalFine.category = vio.ViolationType.Name + " Fine";
                     AdditionalFine.date = vio.DateTimeOfViolation.ToString();
-                    AdditionalFine.description = "ID: " + vio.Id + " | Code: " + vio.ViolationType.Code + " | Driver: " + driver + " | Truck #: " + truckId;
+                    AdditionalFine.description = "ID: " + vio.Id + " | Code: " + vio.ViolationType.Code + " | Truck #: " + truckId;
                     if (vio.PenaltyForDriver != null)
                     {
                         AdditionalFine.description += " | Invoice Notes: " + vio.PenaltyForDriver;

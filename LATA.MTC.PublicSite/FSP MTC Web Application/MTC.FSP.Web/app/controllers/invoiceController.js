@@ -515,6 +515,30 @@
                 $scope.InvoiceTotal = Number(Number(BasePay) + Number(totalAdditions) - Number(totalDeductions)).toFixed(2);
             }
 
+            //Deduction Costs are updated
+            $scope.updateCost = function (id) {
+                //Change the array item cost
+                var TB = $('#TB-' + id).val();
+
+                for (var i = 0; i <= $scope.deductions.length - 1; i++) {
+                    if ($scope.deductions[i].id === id) {
+                        if (TB === 0) {
+                            $('#' + id).val(0);
+                        } else {
+                            var BlockCost = parseFloat($scope.BaseRate / 4).toFixed(2);
+                            var Cost = Number($scope.deductions[i].Cost);
+                            var TBN = Number(TB);
+                            var CostN = Cost + (BlockCost * TBN);
+                            $scope.deductions[i].Cost = CostN.toString();
+                            $scope.deductions[i].TimeAdded = TB;
+                            $('#' + id).val(CostN);
+                        }
+                    }
+                }
+
+                $scope.updateDeductsTotals(id);
+            }
+
             //Open addition add modal
             $('#openAdditionModal').click(function (e) {
                 $('#additionModal').modal("show");
