@@ -765,32 +765,38 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
         {
             List<DateTime> WeekdaysWorkedInMonth = new List<DateTime>();
 
-            for (int i = startday; i <= endDay; i++)
-            {
-                #region if nov or dec need to subtract year
-                DateTime dt = new DateTime((int)DateTime.Now.Year, (int)month, i);
-
-                int nowmonth = DateTime.Now.Month;
-
-                if (month == 11 || month == 12)
+            try
+            { 
+                for (int i = startday; i <= endDay; i++)
                 {
-                    if (nowmonth == 1 || nowmonth == 2)
-                    {
-                        dt = new DateTime((int)DateTime.Now.Year - 1, (int)month, i);
+                    DateTime dt = new DateTime((int)DateTime.Now.Year, (int)month, i);
 
+                    #region if nov or dec need to subtract year
+                    int nowmonth = DateTime.Now.Month;
+
+                    if (month == 11 || month == 12)
+                    {
+                        if (nowmonth == 1 || nowmonth == 2)
+                        {
+                            dt = new DateTime((int)DateTime.Now.Year - 1, (int)month, i);
+
+                        }
+                    }
+                    #endregion
+
+                    var schedules = db.SchedulesSearch(dt, BID).ToList();
+
+                    if (schedules.Count != 0)
+                    {
+                        if (!ISD.HolidaysInMonth.Contains(dt) && !ISD.SaturDaysInMonth.Contains(dt) && !ISD.SunDaysInMonth.Contains(dt))
+                        {
+                            WeekdaysWorkedInMonth.Add(dt);
+                        }
                     }
                 }
-                #endregion
-
-                var schedules = (db.SchedulesSearch(dt, BID)).ToList();
-
-                if (schedules.Count != 0)
-                {
-                    if (!ISD.HolidaysInMonth.Contains(dt) && !ISD.SaturDaysInMonth.Contains(dt) && !ISD.SunDaysInMonth.Contains(dt))
-                    { 
-                        WeekdaysWorkedInMonth.Add(dt);
-                    }
-                }           
+            } catch (Exception ex)
+            {
+                //nothing
             }
 
             return WeekdaysWorkedInMonth;
@@ -1452,10 +1458,10 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
             int year = DateTime.Now.Year;
 
             //This crap is going to have be reset
-            if (month == 11 || month == 12)
-            {
-                year = DateTime.Now.Year - 1;
-            }
+            //if (month == 11 || month == 12)
+            //{
+            //    year = DateTime.Now.Year - 1;
+            //}
 
             #region get all violations
 

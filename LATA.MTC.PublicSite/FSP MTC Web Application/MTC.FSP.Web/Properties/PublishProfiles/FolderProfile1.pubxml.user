@@ -7,6 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>C:\deploy\MTC</_PublishTargetUrl>
+    <History>True|2021-11-02T16:22:54.1440125Z;True|2021-11-01T17:28:59.2927655-06:00;True|2021-06-08T16:25:04.6019441-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="app/app.js">
@@ -394,10 +395,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/MTC.FSP.Web.dll">
-      <publishTime>02/25/2021 09:20:53</publishTime>
+      <publishTime>11/02/2021 10:22:48</publishTime>
     </File>
     <File Include="bin/MTC.FSP.Web.pdb">
-      <publishTime>02/25/2021 09:20:53</publishTime>
+      <publishTime>11/02/2021 10:22:48</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>01/11/2015 19:54:54</publishTime>
