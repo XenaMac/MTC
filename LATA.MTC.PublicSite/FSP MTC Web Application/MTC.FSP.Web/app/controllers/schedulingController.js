@@ -174,7 +174,7 @@
         };
         $scope.manageHolidaySchedule = function(s) {
             $scope.holidaySchedule = s;
-            $scope.getContractorBeats();
+            $scope.getContractorBeats(s.ContractorId);
             $scope.getHolidayScheduleTimes();
             $("#manageHolidayScheduleModal").modal('show');
         };
