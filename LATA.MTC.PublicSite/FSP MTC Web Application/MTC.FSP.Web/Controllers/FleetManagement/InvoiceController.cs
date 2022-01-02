@@ -1458,10 +1458,10 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
             int year = DateTime.Now.Year;
 
             //This crap is going to have be reset
-            //if (month == 11 || month == 12)
-            //{
-            //    year = DateTime.Now.Year - 1;
-            //}
+            if (month == 11 || month == 12)
+            {
+                year = DateTime.Now.Year - 1;
+            }
 
             #region get all violations
 
