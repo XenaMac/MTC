@@ -171,7 +171,7 @@ namespace MTC.FSP.Web.Controllers.FleetManagement
                         order.ContractorId = model.ContractorId;
                         order.CreatedBy = HttpContext.User.Identity.Name;
                         order.CreatedOn = DateTime.Now;
-                        order.PickupDate = model.PickupDate;
+                        order.PickupDate = DateTime.Now.AddDays(12);
                         order.PickupTime = model.PickupTime;
                         order.MerchandiseOrderStatus = MerchandiseOrderStatus.OrderSubmitted;
 

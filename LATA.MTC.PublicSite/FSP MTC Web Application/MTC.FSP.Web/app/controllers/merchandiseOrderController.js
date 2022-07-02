@@ -9,7 +9,7 @@
             $scope.isBusy = false;
             $scope.contactName = "";
             $scope.contactNumber = "";
-            $scope.pickupDate = "";
+            $scope.pickupDate = "12 days";
             $scope.pickupTime = 9;
             $scope.paymentType = "";
             $scope.selectedContractorId = "";

@@ -89,15 +89,15 @@
             <br />
             <div class="row">
                 <div class="col-sm-6">
-                    Pickup Date <i class="fa fa-exclamation-circle" title="required"></i>
+                    @*Pickup Date <i class="fa fa-exclamation-circle" title="required"></i>
                     <input type="text" ng-model="pickupDate" class="form-control" mtc-date-picker min-date-from-today="2" ng-required="true" ng-disabled="!canEdit" />
-                    <br />
+                    <br />*@
                     <div class="alert alert-info">
-                        Pick-ups must be scheduled two day in advance and are not available on Weekends or Holidays. MTC will confirm your requested pick-up time.
+                        All orders will be shipped within 2 weeks of when the order is placed.
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    Pickup Time <i class="fa fa-exclamation-circle" title="required"></i><br />
+                    @*Pickup Time <i class="fa fa-exclamation-circle" title="required"></i><br />
                     <label class="radio-inline">
                         <input type="radio" name="pickupTime" ng-model="pickupTime" value="9" ng-required="true" />9 AM
                     </label>
@@ -118,7 +118,7 @@
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="pickupTime" ng-model="pickupTime" value="4" ng-required="true" />4 PM
-                    </label>
+                    </label>*@
 
                 </div>
             </div>

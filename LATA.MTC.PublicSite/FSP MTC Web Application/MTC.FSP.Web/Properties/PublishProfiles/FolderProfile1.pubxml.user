@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>C:\deploy\MTC</_PublishTargetUrl>
-    <History>True|2022-01-02T17:31:11.2965784Z;True|2021-11-02T10:22:54.1440125-06:00;True|2021-11-01T17:28:59.2927655-06:00;True|2021-06-08T16:25:04.6019441-06:00;</History>
+    <History>True|2022-07-02T20:09:56.8451408Z;True|2022-01-02T10:31:11.2965784-07:00;True|2021-11-02T10:22:54.1440125-06:00;True|2021-11-01T17:28:59.2927655-06:00;True|2021-06-08T16:25:04.6019441-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="app/app.js">
@@ -107,7 +107,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2019 07:08:33</publishTime>
     </File>
     <File Include="app/controllers/merchandiseOrderController.js">
-      <publishTime>06/27/2019 07:08:33</publishTime>
+      <publishTime>07/02/2022 14:00:11</publishTime>
     </File>
     <File Include="app/controllers/merchandiseOrderDetailsController.js">
       <publishTime>06/27/2019 07:08:33</publishTime>
@@ -395,10 +395,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/MTC.FSP.Web.dll">
-      <publishTime>01/02/2022 10:31:05</publishTime>
+      <publishTime>07/02/2022 14:09:51</publishTime>
     </File>
     <File Include="bin/MTC.FSP.Web.pdb">
-      <publishTime>01/02/2022 10:31:05</publishTime>
+      <publishTime>07/02/2022 14:09:51</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>01/11/2015 19:54:54</publishTime>
@@ -4349,7 +4349,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2019 07:08:33</publishTime>
     </File>
     <File Include="Views/Merchandise/Order.cshtml">
-      <publishTime>06/27/2019 07:08:33</publishTime>
+      <publishTime>07/02/2022 13:41:36</publishTime>
     </File>
     <File Include="Views/Merchandise/OrderDetails.cshtml">
       <publishTime>06/27/2019 07:08:33</publishTime>
